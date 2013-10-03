@@ -7,8 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+		<div id='menu'>
+			Menue
 
-<%= yield %>
 
-</body>
+			<%= link_to 'Attributes', attris_path%>
+			<%= link_to 'Locations', locations_path%>
+			<%= link_to 'Storages', storages_path%>
+			<%= link_to 'Classify', classify_mfiles_path+"?typ=attribute"%>
+
+		</div>
+
+		<%= yield %>
+
+</body> 
 </html>
