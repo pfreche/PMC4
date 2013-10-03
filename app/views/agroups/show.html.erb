@@ -3,6 +3,11 @@
 <p>
   <strong>Name:</strong>
   <%= @agroup.name %>
+ <p>
+ 	<% @attris = @agroup.attris
+ 	for a in @attris%>
+ 	 <%=a.name %>
+ 	<%end%>
 </p>
 
 <%= link_to 'Edit', edit_agroup_path(@agroup) %> |

@@ -15,10 +15,17 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+  
+
+
+
   <div class="field">
     <%= f.label :agroup_id %><br>
-    <%= f.number_field :agroup_id %>
+	<%= f.select :agroup_id,
+	Agroup.all.map {|l| [l.name, l.id]},
+	prompt: "Bitte wählen" %>
   </div>
+  
   <div class="field">
     <%= f.label :id_sort %><br>
     <%= f.number_field :id_sort %>
