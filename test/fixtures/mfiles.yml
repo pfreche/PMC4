@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  folder_id: 1
+  filename: MyString
+  modified: 2013-08-28 21:12:30
+  mod_date: 2013-08-28
+
+two:
+  folder_id: 1
+  filename: MyString
+  modified: 2013-08-28 21:12:30
+  mod_date: 2013-08-28

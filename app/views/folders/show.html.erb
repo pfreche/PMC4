@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Storage:</strong>
+  <%= @folder.storage_id %>
+</p>
+
+<p>
+  <strong>Mpath:</strong>
+  <%= @folder.mpath %>
+</p>
+
+<p>
+  <strong>Lfolder:</strong>
+  <%= @folder.lfolder %>
+</p>
+
+
+<p>
+  <strong>Folderpath</strong>
+  <%= @folder.path(2) %>
+</p>
+
+
+<p>
+  <strong>Mfile:</strong>
+  <%= @folder.mfile_id %>
+</p>
+
+<%= link_to 'Edit', edit_folder_path(@folder) %> |
+<%= link_to 'Back', folders_path %>

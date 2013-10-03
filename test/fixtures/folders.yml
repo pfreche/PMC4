@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  storage_id: 1
+  mpath: MyString
+  lfolder: MyString
+  mfile_id: 1
+
+two:
+  storage_id: 1
+  mpath: MyString
+  lfolder: MyString
+  mfile_id: 1

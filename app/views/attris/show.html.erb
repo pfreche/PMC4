@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @attri.name %>
+</p>
+
+<p>
+  <strong>Agroup:</strong>
+  <%= @attri.agroup_id %>
+</p>
+
+<p>
+  <strong>Id sort:</strong>
+  <%= @attri.id_sort %>
+</p>
+
+<p>
+  <strong>Parent:</strong>
+  <%= @attri.parent_id %>
+</p>
+
+<p>
+  <strong>Keycode:</strong>
+  <%= @attri.keycode %>
+</p>
+
+<%= link_to 'Edit', edit_attri_path(@attri) %> |
+<%= link_to 'Back', attris_path %>

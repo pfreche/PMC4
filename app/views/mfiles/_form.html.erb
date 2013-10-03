@@ -1,0 +1,33 @@
+<div class="mfileForm"> 
+	<%= form_for(@mfile) do |f| %>
+  <% if @mfile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mfile.errors.count, "error") %> prohibited this mfile from being saved:</h2>
+
+      <ul>
+      <% @mfile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<p>
+  <strong>Folder:</strong>
+  <%= @mfile.folder.lfolder%>
+</p>
+
+<p>
+  <strong>Filename:</strong>
+  <%= @mfile.filename %>
+</p>
+  <div class="field">
+    <%= f.label :modified %><br>
+    <%= f.datetime_local_field :modified, disabled: :disabled%>
+  </div>
+  <div class="field">
+    <%= f.label :mod_date %><br>
+    <%= f.date_field :mod_date, disabled: :disabled%>
+  </div>
+<% end %>
+</div>

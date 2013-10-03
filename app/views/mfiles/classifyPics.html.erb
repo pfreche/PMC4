@@ -1,0 +1,65 @@
+
+<div id="thumbnailBox">
+<%= form_tag(set_attris_mfiles_path, method: "post", remote: :true) do  %>
+
+    <% @numberMfiles = @mfiles.length
+       @mfiles.each do |mfile| %>
+      <div id="<%=mfile.id%>" data-<%=mfile.id%>="a" class="thumbC vis <% mfile.attris.each do |attri| %> <%=attri.name%> A-<%=attri.id%> <% end %> 
+             <% mfile.agroups.each do |agroup| %> <%=agroup.name%> G-<%=agroup.id%> <% end %> " 
+             style="background-image: url(<%=mfile.path(3)%>) " >
+        
+       <div class="check"> <%= hidden_field_tag "mfile["+mfile.id.to_s+"]" %> </div>
+
+             </div>
+    <% end %>
+    <div style="display: all">
+    <%= text_field_tag "ag_id" %>
+    <%= text_field_tag "AorG" %>
+    <%= text_field_tag :namei, "" %>
+
+<button id="but"> hallo </button>
+    </div>
+    <% end %>
+</div>
+
+
+
+<div id="classifyBox">
+	
+<button id="setIt"> SET IT</button>
+<button id="hideUnselected"> show selected</button>
+<button id="showAll"> show All</button>
+<button id="selectInvert"> Invert</button>
+	<%= text_field_tag :name, "", data: {autocomplete_source: autocomplete_attris_path}, autofocus: :autofocus%>
+
+
+<% 
+   @agroups = Agroup.all
+   
+   @agroups.each do |agroup| %>
+   	
+   	<div class="classifyGroup">
+ 
+          <% clname = (@numbers[agroup.id] == @mfiles.count)?"agroup_no":"agroup_no" %>
+      	
+    	   <div class='<%=clname%> selAtgr' id='<%=agroup.id%>' alt="blalbal" >
+    	       <div class='balken' style='width: <%=((@numbers[agroup.id]||0)*100)/@numberMfiles%>%'> <%= agroup.name %> </div>  
+           </div>   <!-- <div class='number'><%= @numbers[agroup.id] %></div> -->
+       
+   <%  @attris.each do |attri| %>
+      <% if attri.agroup_id == agroup.id%>
+        <div class='attribute selAtgr' id='<%=attri.id%>'><%=attri.name %>  
+
+          </div>
+      <%end %>  
+   <% end %>
+ 
+   </div>
+ 
+ <% end %>
+</div>
+
+<div id="overlayPic">
+	 <div id="bildCont"><img id="bild" src=""> </img></div>
+	<div id="bildAttris"> </div>
+</div>

@@ -1,0 +1,28 @@
+<h1>Agroups</h1>
+Number of Medio-Objects: <%= @mfilesN%>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @agroups.each do |agroup| %>
+      <tr>
+        <td><%= agroup.name %></td>
+        <td><%= @numbers[agroup.id] %></td>
+        <td><%= link_to 'Show', agroup %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Index to Edit', indexedit_agroups_path, method: :patch %>
+

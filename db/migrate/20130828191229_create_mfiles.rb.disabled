@@ -1,0 +1,12 @@
+class CreateMfiles < ActiveRecord::Migration
+  def change
+    create_table :mfiles do |t|
+      t.integer :folder_id
+      t.string :filename
+      t.datetime :modified
+      t.date :mod_date
+
+      t.timestamps
+    end
+  end
+end

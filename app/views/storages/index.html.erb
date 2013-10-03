@@ -1,0 +1,23 @@
+<h1>Listing storages</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @storages.each do |storage| %>
+  <tr>
+    <td><%= storage.name %></td>
+    <td><%= link_to 'Show', storage %></td>
+    <td><%= link_to 'Edit', edit_storage_path(storage) %></td>
+    <td><%= link_to 'Destroy', storage, data: { confirm: 'Are you sure?'}, method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Storage', new_storage_path %>

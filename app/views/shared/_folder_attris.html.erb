@@ -1,0 +1,13 @@
+<div class='attriFolder'>
+
+  
+ 
+ <div style="clear: both;"></div>
+    <%  @attrisFolder.each do |attri| %>
+        <div class='attribute'> 
+          <%= link_to attri[1], add_attri_mfile_path(@mfile)+"?attri_id="+attri[0].to_s,  method: :post, remote: true%>
+         </div>
+   <% end %>
+   
+
+</div>

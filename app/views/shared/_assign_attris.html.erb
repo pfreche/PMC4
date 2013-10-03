@@ -1,0 +1,49 @@
+<div class='attriAssign'>
+
+<% @attris = @mfile.attris
+ %>
+
+	<%= form_tag add_attri_name_mfile_path(@mfile), remote: true do%>
+	<%= text_field_tag :name, "", data: {autocomplete_source: autocomplete_attris_path}, autofocus: :autofocus%>
+
+	<%= submit_tag "ADD"%>
+	<% end%>
+
+
+
+<% @agroupssel = @mfile.agroups
+   @agroups = Agroup.all
+   
+   @agroups.each do |agroup| %>
+   	
+   	<div>
+    <% if @agroupssel.include?(agroup)%>
+    	
+    	   <div class='agroup_yes'> <%= agroup.name %> 
+              <%= link_to 'X', remove_agroup_mfile_path(@mfile)+"?agroup_id="+agroup.id.to_s, method: :delete, remote: true%>
+          </div>
+    <% else%>
+    
+           <div class='agroup_no'> <%= agroup.name %> 
+              <%= link_to '+', add_agroup_mfile_path(@mfile)+"?agroup_id="+agroup.id.to_s, method: :post, remote: true%>
+           </div>
+   <% end %>
+   
+   
+   <%  @attris.each do |attri| %>
+      <% if attri.agroup_id == agroup.id%>
+        <div class='attribute'> <%= attri.name %> 
+          <%= link_to 'X', remove_attri_mfile_path(@mfile)+"?attri_id="+attri.id.to_s, confirm: 'Are you sure?', method: :delete, remote: true%>
+         </div>
+      <%end %>  
+   <% end %>
+ 
+   </div>
+ 
+ <% end %>
+ 
+ 
+ <div style="clear: both;"></div>
+   
+
+</div>

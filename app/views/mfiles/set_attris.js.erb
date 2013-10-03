@@ -1,0 +1,14 @@
+    <% @mfiles.each do |mfile| %>
+      $inp = $('#<%=mfile.id%>');
+      <%  if @myn[mfile.id] == 0 %>         
+         $inp.removeClass('<%=@name1%>');     
+         $inp.removeClass('<%=@name2%>'); 
+      <% end %>   
+    
+       <%  if @myn[mfile.id] == 1 %>         
+           $inp.addClass('<%=@name1%>');
+           $inp.addClass('<%=@name2%>');
+      <% end %>
+    <%end%>
+    $('#<%=@balken%> .balken').css({"width": "<%=(@count*100)/@mfiles.length%>%"})
+ 

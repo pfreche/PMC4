@@ -1,0 +1,42 @@
+<%= form_for(@storage) do |f| %>
+  <% if @storage.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@storage.errors.count, "error") %> prohibited this storage from being saved:</h2>
+
+      <ul>
+      <% @storage.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @storage.locations.order(:typ).each do |location| %>
+  <tr>
+        <td><%= location.typ %></td>
+        <td><%= location.name %></td>
+    <td><%= location.uri %></td>
+       <td>  <%= radio_button_tag "typ["+location.typ.to_s+"]", location.id.to_s ,location.inuse %> </td>
+  </tr>
+<% end %>
+
+</table>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

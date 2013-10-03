@@ -1,0 +1,73 @@
+<h1>Listing mfiles</h1>
+
+<%= form_tag(set_attris_mfiles_path, method: "post", remote: :true) do  %>
+
+<table class="mfileTable">
+  <thead>
+    <tr>
+    	 <th>Folder</th>
+      <th>Folder</th>
+      <th>Filename</th>
+      <th>Modified</th>
+      <th>Mod date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mfiles.each do |mfile| %>
+      <tr id="<%=mfile.id%>" data-<%=mfile.id%>="a" 
+     	class=" <% mfile.attris.each do |attri| %> <%=attri.name%> <% end %> 
+             <% mfile.agroups.each do |agroup| %> <%=agroup.name%> <% end %> " >
+        
+       <td class="check"> <%= text_field_tag "mfile["+mfile.id.to_s+"]" %> </td>
+  
+        <td><%= mfile.folder_id %></td>
+        <td><%= mfile.filename %></td>
+        <td><%= mfile.modified %></td>
+        <td><%= mfile.mod_date %></td>
+        <td><%= link_to 'Show', mfile %></td>
+        <td><%= link_to 'Edit', edit_mfile_path(mfile) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= text_field_tag "ag_id" %>
+<%= text_field_tag "AorG" %>
+	<%= text_field_tag :name, "", data: {autocomplete_source: autocomplete_attris_path}, autofocus: :autofocus%>
+
+<button id="but"> hallo </button>
+
+<%end%>
+
+<button id="selAll"> Selct All</button>
+<button id="selectInvert"> Invert</button>
+
+<div id="classifyBox">
+	<button id="but"> hallo </button>
+<% 
+   @agroups = Agroup.all
+   
+   @agroups.each do |agroup| %>
+   	
+   	<div class="classifyGroup">
+ 
+    <% clname = (@numbers[agroup.id] == @mfiles.count)?"agroup_yes":"agroup_no" %>
+      	
+    	   <div class='<%=clname%> selAtgr' id='<%=agroup.id%>' ><%= agroup.name %>  
+          </div>   <div class='number'><%= @numbers[agroup.id] %></div> 
+       
+   <%  @attris.each do |attri| %>
+      <% if attri.agroup_id == agroup.id%>
+        <div class='attribute selAtgr' id='<%=attri.id%>'><%=attri.name %>  
+          </div>
+      <%end %>  
+   <% end %>
+ 
+   </div>
+ 
+ <% end %>
+</div>

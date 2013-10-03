@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Folder:</strong>
+  <%= @mfile.folder_id %>
+</p>
+
+<p>
+  <strong>Filename:</strong>
+  <%= @mfile.filename %>
+</p>
+
+<p>
+  <strong>Modified:</strong>
+  <%= @mfile.modified %>
+</p>
+
+<p>
+  <strong>Mod date:</strong>
+  <%= @mfile.mod_date %>
+</p>
+
+<%= link_to 'Edit', edit_mfile_path(@mfile) %> |
+<%= link_to 'Back', mfiles_path %>
+<%=@kala%>

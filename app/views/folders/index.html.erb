@@ -1,0 +1,37 @@
+<h1>Listing folders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+
+     <th>Anzahl Objekte</th>
+
+      <% @agroups.each do |agroup|%>
+      <th><%=agroup.name%></th>
+      <%end%>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @folders.each do |folder| %>
+      <tr>
+
+        <td><%= folder.lfolder %></td>
+        <td><%= @numbers[folder.id] %></td>
+
+     
+        <% @agroups.each do |agroup|%>
+        <% a = [folder.id,agroup.id] %>
+        <th><%=(@numbersa[a]?@numbersa[a]*100/@numbers[folder.id]:0)%></th>
+        <%end%>
+         
+        <td><%= link_to 'Show', folder %></td>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Index to Edit', indexedit_folders_path, method: :patch %>

@@ -1,0 +1,54 @@
+<h1>Attributes
+	
+<%= link_to "Show selected Mfiles", mfiles_path+"?typ=attribute", method: :get %>
+ 
+</h1>
+	<%= link_to "All", attris_path+"?reset=1"%>
+<% if @selectedAttributes
+      @selectedAttributes.each do |attri| %>    
+
+ <%= link_to attri.name, attris_path+"?id_remove="+attri.id.to_s, method: :get %>
+ 
+ <% end %>
+ <% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Agroup</th>
+      <th>Id sort</th>
+      <th>Parent</th>
+      <th>Keycode</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attris.each do |attri| %>
+      <tr>
+        <td><%= attri.name %></td>
+        <td><%= attri.agroup_id %></td>
+        <td><%= attri.id_sort %></td>
+        <td><%= attri.parent_id %></td>
+        <td><%= attri.keycode %></td>
+        <td><%= link_to 'Show', attri %></td>
+        <td><%= link_to 'Edit', edit_attri_path(attri) %></td>
+        <td><%= link_to 'Destroy', attri, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+        		<td> 
+         <td> <%= link_to @numbers[attri.id], attris_path+"?id_add="+attri.id.to_s, method: :get %>
+          <td> <%= link_to @numbersall[attri.id], attris_path+"?id_select="+attri.id.to_s, method: :get %>
+      <td> <%= link_to @numbers[attri.id], find_attris2_path(attri.id), method: :get %>
+
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attri', new_attri_path %>

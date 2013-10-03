@@ -1,0 +1,12 @@
+class CreateFolders < ActiveRecord::Migration
+  def change
+    create_table :folders do |t|
+      t.integer :storage_id
+      t.string :mpath
+      t.string :lfolder
+      t.integer :mfile_id
+
+      t.timestamps
+    end
+  end
+end

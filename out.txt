@@ -1,0 +1,30 @@
+<!--
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Agroup</th>
+    <th>Id sort</th>
+    <th>Parent</th>
+    <th>Keycode</th>
+    <th>Group</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @attris = @mfile.attris
+   @attris.each do |attri| %>
+  <tr>
+    <td><%= attri.name %></td>
+    <td><%= attri.agroup_id %></td>
+    <td><%= attri.id_sort %></td>
+    <td><%= attri.parent_id %></td>
+    <td><%= attri.keycode %></td>
+    <td> attri.group_id </td>
+    <td><%= link_to 'Show', attri %></td>
+    <td><%= link_to 'Edit', edit_attri_path(attri) %></td>
+    <td><%= link_to 'Destroy', remove_attri_mfile_path(@mfile.id)+"?attri_id="+attri.id.to_s, confirm: 'Are you sure?', method: :delete, remote: true%></td>
+
+  </tr>
+<% end %>
+</table>
+-->

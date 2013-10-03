@@ -1,0 +1,29 @@
+<h1>Listing agroups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @agroups.each do |agroup| %>
+      <tr>
+        <td><%= agroup.name %></td>
+        <td><%= link_to 'Show', agroup %></td>
+        <td><%= link_to 'Edit', edit_agroup_path(agroup) %></td>
+        <td><%= link_to 'Destroy', agroup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Agroup', new_agroup_path %>
+<%= link_to 'Index to Edit', indexedit_agroups_path, method: :patch %>
+

@@ -1,0 +1,9 @@
+class CreateAgroups < ActiveRecord::Migration
+  def change
+    create_table :agroups do |t|
+      t.string :name
+
+      t.timestamps
+    end
+  end
+end
