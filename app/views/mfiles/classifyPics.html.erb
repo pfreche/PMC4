@@ -9,10 +9,11 @@
              style="background-image: url(<%=mfile.path(3)%>) " >
         
        <div class="check"> <%= hidden_field_tag "mfile["+mfile.id.to_s+"]" %> </div>
+              <div class="marker"> mark</div>
 
              </div>
     <% end %>
-    <div style="display: all">
+    <div style="display: none">
     <%= text_field_tag "ag_id" %>
     <%= text_field_tag "AorG" %>
     <%= text_field_tag :namei, "" %>
@@ -20,17 +21,19 @@
 <button id="but"> hallo </button>
     </div>
     <% end %>
+    <div id="dunkel">
+    </div>
 </div>
 
 
 
 <div id="classifyBox">
-	
+<%= text_field_tag :name, "", data: {autocomplete_source: autocomplete_attris_path}, autofocus: :autofocus%>
+
 <button id="setIt"> SET IT</button>
 <button id="hideUnselected"> show selected</button>
 <button id="showAll"> show All</button>
 <button id="selectInvert"> Invert</button>
-	<%= text_field_tag :name, "", data: {autocomplete_source: autocomplete_attris_path}, autofocus: :autofocus%>
 
 
 <% 

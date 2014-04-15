@@ -80,11 +80,17 @@ class MfilesController < ApplicationController
       @name2 = "A-"
       if params[:ag_id] == "-1"
         @attri = Attri.find_by_name(params[:name]||params[:namei])
+        @name3 = @attri.agroup.id
+        @attri
       else
+        @name3 = "nan"
         @attri = Attri.find(params[:ag_id])
       end
     end)
 
+
+                
+                
     mfs = mf.map {|m|   m[0]  }
     @myn = mf.inject({}) do |hash,value|
       hash[value.first.to_i] = value.last.to_i
@@ -114,6 +120,7 @@ class MfilesController < ApplicationController
     end
     @name1 = @ag.name
     @name2 += @ag.id.to_s
+
   end
   
   def path

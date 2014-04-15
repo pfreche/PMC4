@@ -157,17 +157,24 @@ $(document).ready ->
     $.get id+"/path", (data) ->
       $("#bild").attr('src',data)
     $("#overlayPic").show()
+    $("#dunkel").css('z-index', 2)
     
     attris = th.attr("class").replace(/\s+/g, ' ').split(' ')
     a = ""
     for atr in attris    
        if atr.indexOf("A-")==-1 && atr.indexOf("G-")==-1  && atr.indexOf("thumbC") ==-1
          a = a + "<div class='attributeRight'>"+ atr + "</div>" 
+       else
+         x = "#"+atr.substr(2,5)
+         b = $(x).html()
+         a = a + "<div class='attributeRight'>"+ atr.substr(2,5) + " "+ b + " </div>" 
+
     $("#bildAttris").html(a)
     
     
   $("#overlayPic").bind 'click', ->
     $("#overlayPic").hide()
+    $("#dunkel").css('z-index', -2)
   $('#selAll').bind 'click', selectAll
   $('#selectInvert').bind 'click', selectInvert
   $('.selAtgr').mousedown(startTimer).click(selectByAttribute)

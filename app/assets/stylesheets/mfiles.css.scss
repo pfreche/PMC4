@@ -67,7 +67,13 @@
     width: 140px;
     height: 140px;
     background-size: cover;
+    position: relative;
  //   background: no-repeat;
+}
+.marker {
+  position: absolute;
+  left: 100px;
+  top: 40px;
 }
 
 .thumbC:hover {
@@ -83,10 +89,11 @@
 
 
 #thumbnailBox{
+    position: relative; // wichtig: damit sind alle innerhalb der Box absoluten Positionierungen relativ hierzu//#dunkel
     font-size: 8px;
     margin-right: 245px;
     border: 0px solid silver;
-    background-color: black;
+    background-color: #012;
 }
 
 
@@ -101,7 +108,7 @@
     margin: 10px;
     padding: 2px;
     border: 1px solid silver;
-    background-color: #fff;
+    background-color: #224;
     color: #111;
     overflow: auto;
     height: 90%;
@@ -131,10 +138,11 @@
     height: 90%;
     margin: 0px;
     padding: 0px;
+    z-index: 10;
  //   border: 1px solid silver;
 
 //   overflow: auto;
-    overflow: hidden;
+    overflow: hidden; 
 }
 
 #bild {
@@ -155,17 +163,25 @@
     float: left;
     clear: left;
     margin: 2px;
+        border: 1px solid black;
+    
+
 }
 
 .attributeRightStart {
       background-color: #4f4;
     float: left;
     margin: 2px;
+    
 }
  
 #bildAttris {
-      overflow: hidden;
-//      float: left;
+      overflow: hidden; // wichtig: es entsteht ein neuer Kontext für float!
+    
+    position: relative;
+    left: -10px;
+    z-index: 100;
+
 }
 
 #bildCont {
@@ -180,3 +196,16 @@
   background-color: #0F0;
   height: 17px;
 }
+
+
+#dunkel{
+display:block;
+position:absolute;
+background:#002;
+width:100%;
+height:100%;
+opacity:0.8;
+color:#f00;
+z-index: -12;
+top:0;
+left:0; }

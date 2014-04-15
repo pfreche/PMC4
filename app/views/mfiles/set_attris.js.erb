@@ -10,5 +10,7 @@
            $inp.addClass('<%=@name2%>');
       <% end %>
     <%end%>
-    $('#<%=@balken%> .balken').css({"width": "<%=(@count*100)/@mfiles.length%>%"})
+    $('#<%=@balken%> .balken').css({"width": "<%=(@count*100)/@mfiles.length%>%"});
+    
+    $(" <div class='attribute selAtgr' id='<%=@attri.id%>'><%=@name1 %> </div>").insertAfter(".agroup_no#<%=@name3%>");
  
