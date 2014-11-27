@@ -24,6 +24,7 @@ PMC4::Application.routes.draw do
     get 'delete_tag', :on => :member
     get 'pic', :on => :member
     get 'path', :on => :member
+    get 'renderMfile', :on => :member
     get  'classify', :on => :collection
     post 'set_attris', :on => :collection
   end
@@ -33,7 +34,11 @@ PMC4::Application.routes.draw do
 
   resources :locations
 
-  resources :storages
+  resources :storages do
+    get 'detectfolders', :on => :member
+    get 'detectfiles', :on => :member
+    get 'make_thumbnails', :on => :member
+  end
 
 # The priority is based upon order of creation: first created -> highest priority.
 # See how all your routes lay out with "rake routes".

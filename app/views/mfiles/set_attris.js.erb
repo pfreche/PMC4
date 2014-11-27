@@ -11,6 +11,8 @@
       <% end %>
     <%end%>
     $('#<%=@balken%> .balken').css({"width": "<%=(@count*100)/@mfiles.length%>%"});
-    
-    $(" <div class='attribute selAtgr' id='<%=@attri.id%>'><%=@name1 %> </div>").insertAfter(".agroup_no#<%=@name3%>");
- 
+    <%  if @attri %>        
+        $(" <div class='attribute selAtgr' id='<%=@attri.id%>'><%=@name1 %> </div>").insertAfter(".agroup_no#<%=@name3%>");
+  
+    <% end %>
+    $('.selAtgr').mousedown(startTimer).click(selectByAttribute)

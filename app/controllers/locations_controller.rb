@@ -23,6 +23,8 @@ class LocationsController < ApplicationController
   # POST /locations
   # POST /locations.json
   def create
+    
+    Folder.resetFOLDERPATH
     @location = Location.new(location_params)
 
     # @location.typ = 2
@@ -45,7 +47,9 @@ class LocationsController < ApplicationController
   # PATCH/PUT /locations/1
   # PATCH/PUT /locations/1.json
   def update
-
+ 
+    Folder.resetFOLDERPATH
+    
     lp = location_params
     if params[:commit] == "unassign"
       lp[:storage_id] = nil

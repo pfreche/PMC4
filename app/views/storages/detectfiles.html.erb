@@ -1,0 +1,20 @@
+<h1>Detected Media Files </h1>
+<p id="notice"><%= notice %></p>
+
+<table>
+	 <th> ID </th>
+  <th> full Path </th> <th> filename </th>
+<% for mfile in @mfiles %>
+   <tr>  <td> <%=mfile.id%></td>
+   	     <td> <%=mfile.folder.path(55)%></td> <td> <%=mfile.filename%></td>  <th> Time </th>
+   <td> <%=mfile.modified%></td> 
+     <td> <%=mfile.mod_date%></td> 
+   </tr>
+<% end %>
+</table>
+
+<p>
+<%= link_to 'Save New Mediafiles to Database', detectfiles_storage_path(@storage)+"?save=yes" %>
+<%= link_to 'Storages List', storages_path %>
+
+

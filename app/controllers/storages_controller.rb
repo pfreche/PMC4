@@ -2,6 +2,8 @@ class StoragesController < ApplicationController
   before_action :set_storage, only: [:show, :edit, :update, :destroy]
   # GET /storages
   # GET /storages.json
+  
+  FILEPATH=55
   def index
     @storages = Storage.all
   end
@@ -105,7 +107,224 @@ class StoragesController < ApplicationController
     end
   end
 
+ # Detect Folders for a storage
+  # 
+  def detectfolders
+ 
+    @storage_id = params[:id];
+    save = params[:save]
+    @storage = Storage.find(@storage_id)
+    @basepath = @storage.path(FILEPATH) # take the filepath
+    
+    a = []
+    get_all_folders("", "", a)
+    @folders = a    
+    
+  #  render text: @folders.map {|a| a.lfolder+"/"+a.mpath}
+    if  save == "yes"
+      if !@folders.nil?
+          Folder.resetFOLDERPATH
+ #        Folder.setFolderPath(55)
+          success = true
+      for folder in @folders
+        success = success & folder.save
+      end
+      if success
+        flash[:notice] = 'Folders successfully added.'
+      else
+        flash[:notice] = 'Error occured during adding Folders.'
+      end
+    else
+      flash[:notice] = 'No files to be added.'      
+    end
+    end
+
+
+  end
+  
+  # Detect files in folders
+  # 
+  def detectfiles
+    @storage_id = params[:id];
+    @storage = Storage.find(@storage_id)
+    folders = Folder.where(storage_id: @storage_id)
+    
+    @mfiles = []    
+    for folder in folders
+      fp = folder.path(FILEPATH) # filepath
+      d = Dir.entries(fp)
+      @mfiles_temp = []
+      for file in d
+        if file == '.' or file == '..'
+          next
+        end
+        if File.directory?(fp+"/"+file)
+        else
+          if Mfile.find_by_folder_id_and_filename( folder.id, file)
+          else
+            mfile = Mfile.new()
+            mfile.folder_id = folder.id
+            mfile.filename = file
+            modtime = File.new(mfile.path(FILEPATH)).mtime
+            mfile.modified = modtime
+            mfile.mod_date = modtime
+            #          puts mfile.path(1)
+            @mfiles_temp << mfile
+            #            @mfiles << mfile
+          end
+        end
+      end
+      if @mfiles_temp != nil
+        #       puts @mfiles_temp[0].path(1)
+        @mfiles_temp.sort! {|x,y| x.filename <=> y.filename}
+        @mfiles += @mfiles_temp     
+      end 
+    end
+    if @mfiles.nil?
+      flash[:notice] = 'No new files detected.'  
+    end
+    
+    if params[:save] == "yes"
+      
+      if !@mfiles.nil?
+      success = true
+      for mfile in @mfiles
+        success = success & mfile.save
+      end
+      if success
+        flash[:notice] = 'Media Files successfully added.'
+      else
+        flash[:notice] = 'Error occured during adding Media Files.'
+      end
+    end
+    end
+    
+  end
+  
+  # generate the thumbnails for a given storage
+ 
+  def make_thumbnails
+ 
+    @height = params[:height]
+    @width = params[:width]
+    @complete = params[:complete]
+    @embedded = params[:embedded]
+    @embedded = true
+    @complete = true
+       
+    @storage_id = params[:id];
+    @storage = Storage.find(@storage_id)
+    
+    fol = @storage.path(56)+"/"
+    
+    folders = @storage.folders
+    
+    if @embedded      # use embeded thumbnail pictures
+      ja = "jhead -st "
+    else             # generate thumbnails via java Thumbnail class
+      ja = "java Thumbnail "
+    end
+    n = 0
+    
+    str = []
+    
+    for folder in folders
+      
+      mfiles = folder.mfiles
+      for mfile in mfiles
+        if @complete  || !File.exist?(mfile.path(56))
+
+          if @embedded
+            str[n] = ja + "\"" + fol + mfile.id.to_s + ".jpg\" " + "\""+ mfile.path(55) +"\"" 
+          else
+            str[n] = ja + "\""+ mfile.path(55) +"\" \""+ fol + mfile.id.to_s + ".jpg\" "  +
+            @width.to_s +  " " + @height.to_s + " 90"
+          end
+          puts str[n]
+          n = n + 1
+        end
+      end
+    end
+    
+ 
+ #   Thread.new do
+      nn = 0
+#      Thread.current[:no] = str.length
+      session[:no_tns] = 0
+      str.each do |st|
+        nn = nn + 1
+        system(st)        
+#        Thread.current["nn"] = nn         
+      end
+#    end   
+    redirect_to :action => 'index' 
+    
+  end
+  
+  
   private
+  
+  #------------------------------------------------
+  
+  
+  def get_all_folders (mpath, lfolder, folders)
+    if mpath == ""
+      path = lfolder
+    else
+      path = mpath + "/" + lfolder
+    end
+    
+    if path == ""
+      complete_path = @basepath 
+    else
+      complete_path = @basepath + "/" + path
+    end
+    
+    if complete_path == @storage.filepath_tn
+      return
+    end    
+    
+    d = Dir.entries(complete_path)
+    # files
+    for file in d
+      if file == '.' or file == '..'
+        next
+      end
+      if File.directory?(complete_path+"/"+file)
+      else
+        
+        if folder = Folder.find_by_storage_id_and_mpath_and_lfolder( @storage_id,
+                                                           mpath,
+                                                           lfolder)
+           folders << folder
+        else
+          folder = Folder.new()
+          folder.storage_id = @storage_id
+          folder.mpath = mpath
+          folder.lfolder = lfolder
+          
+          folders << folder
+          
+        end
+        break
+      end
+    end
+    
+    
+    # subdirs
+    for file in d
+      if file == '.' or file == '..'
+        next
+      end
+      if File.directory?(complete_path+"/"+file)
+        get_all_folders(path, file, folders)
+      end
+    end
+    
+    return folders
+  end
+
+
 
   # Use callbacks to share common setup or constraints between actions.
   def set_storage

@@ -29,12 +29,13 @@
 
 <div id="classifyBox">
 <%= text_field_tag :name, "", data: {autocomplete_source: autocomplete_attris_path}, autofocus: :autofocus%>
-
+<p>
 <button id="setIt"> SET IT</button>
+<p>
 <button id="hideUnselected"> show selected</button>
 <button id="showAll"> show All</button>
 <button id="selectInvert"> Invert</button>
-
+<button id="selectAll"> SelectAll</button>
 
 <% 
    @agroups = Agroup.all
@@ -63,6 +64,10 @@
 </div>
 
 <div id="overlayPic">
-	 <div id="bildCont"><img id="bild" src=""> </img></div>
+    <div id="bildCont"><img id="bild" src=""> </img></div>
 	<div id="bildAttris"> </div>
+	
+	<div id="bildNext"> next </div>
+	<div id="bildPrev"> prev </div>
+	
 </div>

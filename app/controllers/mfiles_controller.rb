@@ -1,5 +1,5 @@
 class MfilesController < ApplicationController
-  before_action :set_mfile, only: [:show, :edit0, :edit, :path, :update, :destroy, :add_attri, :add_attri_name, :remove_attri, :add_agroup, :remove_agroup]
+  before_action :set_mfile, only: [:show, :edit0, :edit, :path, :update, :destroy, :add_attri, :add_attri_name, :remove_attri, :add_agroup, :remove_agroup, :renderMfile]
   # GET /mfiles
   # GET /mfiles.json
   def index
@@ -108,13 +108,14 @@ class MfilesController < ApplicationController
         @count +=1
         end
 
-      else
+      else if @myn[mfile.id] == 0
         if @myn[mfile.id] == 0
           if @attri
           mfile.attris.delete(@attri)
           else
           mfile.agroups.delete(@agroup)
           end
+        end
         end
       end
     end
@@ -124,7 +125,24 @@ class MfilesController < ApplicationController
   end
   
   def path
-    render text: @mfile.path(1)
+    render text: @mfile.path(URLWEB)
+  end
+  
+  def renderMfile
+    extension = File.extname(@mfile.filename)
+    p extension
+    @urlweb = @mfile.path(URLWEB)
+    case extension
+    when ".jpg", ".jpeg", ".gif", ".png"
+      p "Bild"
+#      render text: @mfile.path(URLWEB)
+       render "snippet_picture",  layout: false
+     when ".mp4"
+       p "Film"
+       render "snippet_video",  layout: false
+     else 
+ #            render text: @mfile.path(URLWEB)
+    end
   end
 
   # GET /mfiles/1

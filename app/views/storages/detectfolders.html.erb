@@ -1,0 +1,13 @@
+<h1>Detected Folders </h1>
+<p id="notice"><%= notice %></p>
+<table>
+  <th>id</th> <th> Middle Path </th> <th> Folder </th>
+<% for folder in @folders %>
+   <tr>   <td> <%=folder.id%></td>  <td> <%=folder.mpath%></td> <td> <%=folder.lfolder%></td> </tr>
+<% end %>
+</table>
+
+<p>
+<%= link_to 'Save New Folders to Database', detectfolders_storage_path(@storage)+"?save=yes" %>
+<%= link_to 'Storages List', storages_path %>
+

@@ -76,15 +76,16 @@ class AttrisController < ApplicationController
       a.each do |i|
         selector = selector.joins(jointext.gsub("X",i.to_s)).where(wheretext.gsub("X",i.to_s) => i)
       end
-      @attris = selector.distinct
+      @attris = selector.distinct.to_a
     else
-      @attris = Attri.all
+      @attris = Attri.all.to_a    
     end
 
     @numbers = selector.group('attris.id').count('attris_mfiles.mfile_id')
     @numbersall = Attri.joins(:mfiles)\
           .group('attris.id').count('attris_mfiles.mfile_id')
 
+ 
     @attris.sort! {|a,b| @numbers[b.id].to_i <=> @numbers[a.id].to_i}
 
     # else

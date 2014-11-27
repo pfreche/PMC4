@@ -6,8 +6,11 @@ $(document).ready ->
 
   clickTimeout = false
   clickTimeout2 = false
+  actualPic = false
   a = 0
   name  = ""
+  
+  hlColour = "yellow"
   
   $('#name').autocomplete
     source: $('#name').data('autocomplete-source')
@@ -34,15 +37,15 @@ $(document).ready ->
         $this.css({ 'opacity' : 0.4 })
       else
         $inp.attr('value', "1");
-        $this.css "background-color", "yellow"
-        $this.css "border-color", "yellow"
+        $this.css "background-color", hlColour
+        $this.css "border-color", hlColour
         $this.css({ 'opacity' : 1.00})
     else
       showPic($this)
  
     
     
-  selectMfile = () ->
+  selectMfileDisabled = () ->
     $this = $(this)
     $inp = $this.find("input")
     if $inp.attr('value') == "1"
@@ -50,14 +53,20 @@ $(document).ready ->
       $this.css "background-color", "white"
     else
       $inp.attr('value', "1");
-      $this.css "background-color", "yellow"
+      $this.css "background-color", hlColour
     end    
          
   selectAll = () -> 
-    aa = " input"
-    $(aa).attr('value', "1");
-    $('tr').css "background-color", "green" 
-  
+    aa = "input"
+#   $(aa).attr('value', "1");   
+
+    $(".thumbC.vis .check input").attr('value', "1")    
+   
+    $(".thumbC.vis").css {"background-color": hlColour}
+    $(".thumbC.vis").css "border-color", hlColour
+    $(".thumbC.vis").css({ 'opacity' : 1.0 })
+   
+ 
   hideUnselected = ->
 
     $(".thumbC").each  (i,e)  ->
@@ -89,7 +98,7 @@ $(document).ready ->
         $e.css({ 'opacity' : 0.4})
       else if $inp.attr('value') == "0"  ## and leave the -1 untouched
           $inp.attr('value', "1");
-          $e.css "border-color", "yellow"
+          $e.css "border-color", hlColour
           $e.css({ 'opacity' : 1.00})
        
     $("tr").each  (i,e)  ->
@@ -121,13 +130,12 @@ $(document).ready ->
       $(".thumbC.vis").css "background-color", ""
       $(".thumbC.vis").css "border-color", ""
       $(".thumbC.vis").css({ 'opacity' : 0.4 })
-
       $(".thumbC.vis .check input").attr('value', "0")    
-      $(aa).css {"background-color": "yellow"}
-      $(aa).css "border-color", "yellow"
+   
+      $(aa).css {"background-color": hlColour}
+      $(aa).css "border-color", hlColour
       $(aa).css({ 'opacity' : 1.0 })
- #     $(aa).addClass('SEL')
-    
+ #     $(aa).addClass('SEL') 
       aa = aa+" .check input"
       $(aa).attr('value', "1");    
       
@@ -153,9 +161,13 @@ $(document).ready ->
     
   showPic = (th) ->
 #    $this = $(this)
+    actualPic = th
     id = th.attr("id")
-    $.get id+"/path", (data) ->
-      $("#bild").attr('src',data)
+#    $.get id+"/renderMfile", (data) ->
+#      $("#bild").attr('src',data)
+    $.get id+"/renderMfile", (data) ->
+       $("#bildCont").html(data)
+ 
     $("#overlayPic").show()
     $("#dunkel").css('z-index', 2)
     
@@ -171,15 +183,37 @@ $(document).ready ->
 
     $("#bildAttris").html(a)
     
+  nextPic = (th) ->
+    actualPic = actualPic.next()
+    if actualPic == false # idea!!!! 
+      actualPic = actualPic
+#       actualPic = erstes Bild
+    id = actualPic.attr("id")
+    $.get id+"/renderMfile", (data) ->
+       $("#bildCont").html(data)
+ 
+   showPicAttris = (th) ->
+      attris = th.attr("class").replace(/\s+/g, ' ').split(' ')
+      a = ""
+      for atr in attris    
+         if atr.indexOf("A-")==-1 && atr.indexOf("G-")==-1  && atr.indexOf("thumbC") ==-1
+           a = a + "<div class='attributeRight'>"+ atr + "</div>" 
+         else
+           x = "#"+atr.substr(2,5)
+           b = $(x).html()
+           a = a + "<div class='attributeRight'>"+ atr.substr(2,5) + " "+ b + " </div>" 
+      $("#bildAttris").html(a)
+  
     
   $("#overlayPic").bind 'click', ->
     $("#overlayPic").hide()
     $("#dunkel").css('z-index', -2)
+  
   $('#selAll').bind 'click', selectAll
   $('#selectInvert').bind 'click', selectInvert
   $('.selAtgr').mousedown(startTimer).click(selectByAttribute)
 #  $('.balken').mousedown(startTimer).click(selectByAttribute)
-  $('.mfileTable tr').bind 'click', selectMfile
+#  $('.mfileTable tr').bind 'click', selectMfile
   
 #  $('.thumbC').bind 'click', showPic
 #  $('.thumbC').bind 'click', selectMfileP
@@ -192,7 +226,7 @@ $(document).ready ->
   $('#setIt').click -> 
     $('#but').trigger('click')
 
-
+  $('#selectAll').bind 'click', selectAll
   $('#overlayPic').hide()
   
 #    $(aa).each (i,e) -> 
