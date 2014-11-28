@@ -1,0 +1,3 @@
+git commit -am "message"
+git remote
+git push origin master
