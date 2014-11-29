@@ -34,7 +34,7 @@ $(document).ready ->
         $inp.attr('value', "0");
         $this.css "background-color", ""
         $this.css "border-color", ""
-        $this.css({ 'opacity' : 0.4 })
+        $this.css({ 'opacity' : ""})
       else
         $inp.attr('value', "1");
         $this.css "background-color", hlColour
@@ -95,7 +95,7 @@ $(document).ready ->
       if $inp.attr('value') == "1"
         $inp.attr('value', "0");
         $e.css "border-color", ""
-        $e.css({ 'opacity' : 0.4})
+        $e.css({ 'opacity' : ""})
       else if $inp.attr('value') == "0"  ## and leave the -1 untouched
           $inp.attr('value', "1");
           $e.css "border-color", hlColour
@@ -129,7 +129,7 @@ $(document).ready ->
       $("tr").css "background-color", "white"
       $(".thumbC.vis").css "background-color", ""
       $(".thumbC.vis").css "border-color", ""
-      $(".thumbC.vis").css({ 'opacity' : 0.4 })
+      $(".thumbC.vis").css({ 'opacity' : "" })
       $(".thumbC.vis .check input").attr('value', "0")    
    
       $(aa).css {"background-color": hlColour}
@@ -186,19 +186,28 @@ $(document).ready ->
       attris = th.attr("class").replace(/\s+/g, ' ').split(' ')
       a = ""
       for atr in attris    
-         if atr.indexOf("A-")==-1 && atr.indexOf("G-")==-1  && atr.indexOf("thumbC") ==-1
-           a = a + "<div class='attributeRight'>"+ atr + "</div>" 
-         else
-           x = "#"+atr.substr(2,5)
+         if atr.indexOf("G-")!=-1   
+           x = "#"+atr.substr(2,5).trim()+".agroup_no"
            b = $(x).html()
-           a = a + "<div class='attributeRight'>"+ atr.substr(2,5) + " "+ b + " </div>" 
+           a = a + "<div class='agroupRight'>"+ " "+ b + " </div>" 
+     
+         if atr.indexOf("A-")==-1  
+#          a = a + "<div class='attributeRight'> notfound"+ atr + "</div>" 
+         else
+           x = "#"+atr.substr(2,5).trim()+".attribute"
+           b = $(x).html()
+           a = a + "<div class='attributeRight'>"+  " "+ b + " </div>" 
+     
       $("#bildAttris").html(a)
   
     
-  $("#overlayPic").bind 'click', ->
+  $("#bildCont").bind 'click', ->
     $("#overlayPic").hide()
     $("#dunkel").css('z-index', -2)
-  
+  $("#overlayPic").bind 'click', ->
+    nextPic()
+    showPicAttris(actualPic)
+    
   $('#selAll').bind 'click', selectAll
   $('#selectInvert').bind 'click', selectInvert
   $('.selAtgr').mousedown(startTimer).click(selectByAttribute)

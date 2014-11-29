@@ -133,7 +133,7 @@ class MfilesController < ApplicationController
     p extension
     @urlweb = @mfile.path(URLWEB)
     case extension
-    when ".jpg", ".jpeg", ".gif", ".png"
+    when ".jpg", ".jpeg", ".gif", ".png", ".JPG", ".JPEG", ".GIF", ".PNG"
       p "Bild"
 #      render text: @mfile.path(URLWEB)
        render "snippet_picture",  layout: false

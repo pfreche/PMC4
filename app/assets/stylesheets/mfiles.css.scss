@@ -59,8 +59,15 @@
   overflow: hidden;
 }
 
+.marker {
+  position: absolute;
+  left: 100px;
+  top: 40px;
+}
+
 .thumbC {
-    border: 4px solid black;
+    border: 4px solid #002;
+ //   padding: 3px;
     float: left;
     margin: 0px;
     background-color: black;
@@ -68,23 +75,27 @@
     height: 140px;
     background-size: cover;
     position: relative;
+    opacity: 0.4;
  //   background: no-repeat;
-}
-.marker {
-  position: absolute;
-  left: 100px;
-  top: 40px;
 }
 
 .thumbC:hover {
 
       background: center center no-repeat;
-    background-size: contain;
-    background-color: blue;
-//   overflow: visisble;
-//   width: 100%;
-//    height: 100%;
- 
+      border: 0px solid #002;
+      background-size: contain;
+    background-color: "";
+    opacity: 1.00;
+    overflow: visible;
+//    width: 100%;
+//     height: 200px;
+//   background-size: 200% 200%;
+// background-attachment: scroll;  
+//  background-position: 0% 0%;
+  
+     padding: 50px;
+     margin: -50px;
+     z-index: 10;
 }
 
 
@@ -140,10 +151,25 @@
     padding: 0px;
     z-index: 10;
  //   border: 1px solid silver;
-
 //   overflow: auto;
     overflow: hidden; 
 }
+
+#bildNext {
+    position: fixed;
+    top: 20px;
+    left: 6%;
+    height: 20px;
+    margin: 0px;
+    padding: 0px;
+    z-index: 10;
+    background-color: #fff;
+ //   border: 1px solid silver;
+//   overflow: auto;
+    overflow: hidden; 
+    cursor: cell;
+}
+
 
 #bild {
 
@@ -158,15 +184,23 @@
 }
 
 .attributeRight {
+      background-color: #eee;
+      color: #000;
+    float: left;
+    clear: left;
+    margin: 2px;
+        border: 1px solid black;
+}
+
+.agroupRight {
       background-color: #4f4;
       color: #000;
     float: left;
     clear: left;
     margin: 2px;
         border: 1px solid black;
-    
-
 }
+
 
 .attributeRightStart {
       background-color: #4f4;
