@@ -45,6 +45,7 @@ class MfilesController < ApplicationController
 
   end
 
+# Classify mfiles
   def classify
 
     typ = params[:typ]
@@ -64,6 +65,19 @@ class MfilesController < ApplicationController
       render :classifyPics
     end
   end
+
+# slideshow
+  def slideshow
+
+    typ = params[:typ]
+    getMfiles(typ)
+    mfs = @mfiles.map(&:id)
+    @mfiles = Mfile.includes(:attris, :folder).find(mfs)
+    @attris = Attri.joins(:mfiles).where('mfiles.id in (?)', mfs).distinct
+    as = @attris.map(&:id)
+
+  end 
+
 
   #
   def set_attris

@@ -26,6 +26,7 @@ PMC4::Application.routes.draw do
     get 'path', :on => :member
     get 'renderMfile', :on => :member
     get  'classify', :on => :collection
+    get  'slideshow', :on => :collection
     post 'set_attris', :on => :collection
   end
 

@@ -182,6 +182,18 @@ $(document).ready ->
     $.get id+"/renderMfile", (data) ->
        $("#bildCont").html(data)
  
+  nextPicSlide = (th) ->
+    if actualPic == false 
+       actualPic = $(".vis").first() 
+    actualPic = actualPic.next()
+    if actualPic == false # idea!!!! 
+      actualPic = actualPic
+#       actualPic = erstes Bild
+    id = actualPic.attr("id")
+    $.get id+"/path", (data) ->
+       $("#overlayPicFull").css('background-image', 'url(\''+data+'\')')
+ 
+  
    showPicAttris = (th) ->
       attris = th.attr("class").replace(/\s+/g, ' ').split(' ')
       a = ""
@@ -204,9 +216,13 @@ $(document).ready ->
   $("#bildCont").bind 'click', ->
     $("#overlayPic").hide()
     $("#dunkel").css('z-index', -2)
+    
   $("#overlayPic").bind 'click', ->
     nextPic()
     showPicAttris(actualPic)
+  $("#bildNextSlide").bind 'click', ->
+    nextPicSlide()
+  
     
   $('#selAll').bind 'click', selectAll
   $('#selectInvert').bind 'click', selectInvert
