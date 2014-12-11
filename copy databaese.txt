@@ -1,0 +1,2 @@
+mysqldump --user=root --password=master media_production  > picdb_prod.txt
+mysql     --user root --password=master media_development  --port=3306 < picdb_prod.txt 

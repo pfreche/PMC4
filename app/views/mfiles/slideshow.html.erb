@@ -1,0 +1,24 @@
+
+  <% mfile =  @mfiles[6] %>
+
+
+    <% @numberMfiles = @mfiles.length
+       @mfiles.each do |mfile| %>
+      <div id="<%=mfile.id%>" data-<%=mfile.id%>="a" class="vis <% mfile.attris.each do |attri| %> <%=attri.name%> A-<%=attri.id%> <% end %> 
+             <% mfile.agroups.each do |agroup| %> <%=agroup.name%> G-<%=agroup.id%> <% end %> "  >
+        
+       <div class="check"> <%= hidden_field_tag "mfile["+mfile.id.to_s+"]" %> </div>
+    </div> <% end %>
+
+
+
+
+<div id="overlayPicFull"  style="background-image: url('<%=mfile.path(URLWEB)%>')" >
+ <img id="bild" src=""> 
+  	</img>
+	<div id="bildAttris"> </div>
+	
+	<div id="bildNextSlide"> next </div>
+	<div id="bildPrev"> prev </div>
+	
+</div>
