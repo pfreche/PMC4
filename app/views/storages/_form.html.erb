@@ -39,8 +39,9 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+  <% if @storage.id%>
   <%= link_to 'Detect Folders', detectfolders_storage_path(@storage) %>
   <%= link_to 'Detect Files', detectfiles_storage_path(@storage) %>
    <%= link_to 'Make Thumbnails', make_thumbnails_storage_path(@storage) %>
-  
+  <%end%>
 <% end %>
