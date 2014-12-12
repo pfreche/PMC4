@@ -1,5 +1,6 @@
 class AttrisController < ApplicationController
   before_action :set_attri, only: [:show, :edit, :update, :destroy]
+
   # GET /attris/autocomplete
   def autocomplete
     @attris = Attri.order(:name).where("name like ?", "%#{params[:term]}%")
