@@ -15,11 +15,17 @@ class Folder < ActiveRecord::Base
       FOLDERPATH[typ] = Hash.new 
       fp = Folder.all
       fp.each do |f|
-        ppath = f.storage.path(typ)
-        if typ != 3
+        storage = f.storage
+        ppath = storage.path(typ)
+        location = storage.location(typ)
+        if typ != URL_STORAGE_WEBTN
           a =  ppath+ "/" +  f.mpath + "/" +  f.lfolder
         else 
-           a =  ppath+ "/"  # relevant for thumbnails path in the old fashion
+#          if tnprefix = location.tnprefix 
+#            a =  ppath+ "/" +  f.mpath + "/" +  f.lfolder + "/" + tnprefix
+ #         else
+             a =  ppath+ "/"  # relevant for thumbnails path in the old fashion
+#         end
         end 
         FOLDERPATH[typ][f.id]=  a.gsub("//", "/").gsub("//", "/").gsub("http:/","http://")
       end

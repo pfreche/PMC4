@@ -3,7 +3,7 @@ class StoragesController < ApplicationController
   # GET /storages
   # GET /storages.json
   
-  FILEPATH=55
+# =>  FILEPATH=55
   def index
     @storages = Storage.all
   end
@@ -64,8 +64,6 @@ class StoragesController < ApplicationController
       end
     end
     
-
-    
     # locs = params[:location]
     # @locations = Location.where(storage_id: @storage.id)
     # for location in @locations
@@ -111,10 +109,11 @@ class StoragesController < ApplicationController
   # 
   def detectfolders
  
-    @storage_id = params[:id];
+    @storage_id = params[:id]
     save = params[:save]
+    
     @storage = Storage.find(@storage_id)
-    @basepath = @storage.path(FILEPATH) # take the filepath
+    @basepath = @storage.path(URL_STORAGE_FS) # take the filepath
     
     a = []
     get_all_folders("", "", a)
@@ -146,18 +145,28 @@ class StoragesController < ApplicationController
   # 
   def detectfiles
     @storage_id = params[:id];
+    filter = params[:filter]
+    if filter == nil
+      filter = /./
+    end
+
     @storage = Storage.find(@storage_id)
     folders = Folder.where(storage_id: @storage_id)
     
     @mfiles = []    
     for folder in folders
-      fp = folder.path(FILEPATH) # filepath
+      fp = folder.path(URL_STORAGE_FS) # filepath
       d = Dir.entries(fp)
       @mfiles_temp = []
       for file in d
         if file == '.' or file == '..'
           next
         end
+        if file =~ filter
+        else 
+          next
+        end
+        
         if File.directory?(fp+"/"+file)
         else
           if Mfile.find_by_folder_id_and_filename( folder.id, file)
@@ -165,7 +174,7 @@ class StoragesController < ApplicationController
             mfile = Mfile.new()
             mfile.folder_id = folder.id
             mfile.filename = file
-            modtime = File.new(mfile.path(FILEPATH)).mtime
+            modtime = File.new(mfile.path(URL_STORAGE_FS)).mtime
             mfile.modified = modtime
             mfile.mod_date = modtime
             #          puts mfile.path(1)
@@ -215,7 +224,7 @@ class StoragesController < ApplicationController
     @storage_id = params[:id];
     @storage = Storage.find(@storage_id)
     
-    fol = @storage.path(56)+"/"
+    fol = @storage.path(URL_STORAGE_FSTN)+"/"
     
     folders = @storage.folders
     
@@ -232,12 +241,12 @@ class StoragesController < ApplicationController
       
       mfiles = folder.mfiles
       for mfile in mfiles
-        if @complete  || !File.exist?(mfile.path(56))
+        if @complete  || !File.exist?(mfile.path(URL_STORAGE_FSTN))
 
           if @embedded
-            str[n] = ja + "\"" + fol + mfile.id.to_s + ".jpg\" " + "\""+ mfile.path(55) +"\"" 
+            str[n] = ja + "\"" + fol + mfile.id.to_s + ".jpg\" " + "\""+ mfile.path(URL_STORAGE_FS) +"\"" 
           else
-            str[n] = ja + "\""+ mfile.path(55) +"\" \""+ fol + mfile.id.to_s + ".jpg\" "  +
+            str[n] = ja + "\""+ mfile.path(URL_STORAGE_FS) +"\" \""+ fol + mfile.id.to_s + ".jpg\" "  +
             @width.to_s +  " " + @height.to_s + " 90"
           end
           puts str[n]
@@ -291,7 +300,7 @@ class StoragesController < ApplicationController
         next
       end
       if File.directory?(complete_path+"/"+file)
-      else
+      else # it's a file and not a directory, therefore at least one file is in the directory
         
         if folder = Folder.find_by_storage_id_and_mpath_and_lfolder( @storage_id,
                                                            mpath,
@@ -306,7 +315,7 @@ class StoragesController < ApplicationController
           folders << folder
           
         end
-        break
+        break # directory (containing at least one filed) is collected; go to the next entry.
       end
     end
     
