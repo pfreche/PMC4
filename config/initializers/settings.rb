@@ -9,7 +9,6 @@ URLWEBTN = 3 # Web URL for Thumbnails
 FILEPATH = 55 # Filepath
 FILETNPATH = 56 
 
-URLWEB = 
 
 URL_STORAGE_WEB = 1
 URL_STORAGE_WEBTN = 3
