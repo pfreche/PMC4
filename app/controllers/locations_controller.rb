@@ -3,7 +3,7 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    @locations = Location.all.order(:storage_id)
   end
 
   # GET /locations/1
@@ -86,6 +86,6 @@ class LocationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def location_params
-    params.require(:location).permit(:name, :uri, :description, :typ, :storage_id, :inuse)
+    params.require(:location).permit(:name, :uri, :description, :typ, :storage_id, :inuse, :prefix)
   end
 end

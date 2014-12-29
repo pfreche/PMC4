@@ -6,7 +6,7 @@
        @mfiles.each do |mfile| %>
       <div id="<%=mfile.id%>" data-<%=mfile.id%>="a" class="thumbC vis <% mfile.attris.each do |attri| %> <%=attri.name%> A-<%=attri.id%> <% end %> 
              <% mfile.agroups.each do |agroup| %> <%=agroup.name%> G-<%=agroup.id%> <% end %> " 
-             style="background-image: url(<%=mfile.path(3)%>) " >
+             style="background-image: url(<%=mfile.path(URL_STORAGE_WEBTN)%>) " >
         
        <div class="check"> <%= hidden_field_tag "mfile["+mfile.id.to_s+"]" %> </div>
               <div class="marker"> mark</div>

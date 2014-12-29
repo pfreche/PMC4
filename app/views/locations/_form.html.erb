@@ -29,11 +29,23 @@
 	<%= f.text_field :description, size: 50 %>
 </div>
 
+
 <div class="field">
-	<%= f.label :typ %>
+	<%= f.label "Thumbnail_Prefix" %>
 	<br>
-	<%= f.text_field :typ %>
+	<%= f.text_field :prefix %>
 </div>
+
+<div class="field">
+	<%= f.label "Typ" %>
+	<br>
+	<% i = -1 %>
+	<%= f.select :typ,
+	TYPPP.map {|l| [l, i+=1]},
+	prompt: "Bitte wählen" %>
+</div>
+
+
 
 <div class="field">
 	<%= f.label :location %>

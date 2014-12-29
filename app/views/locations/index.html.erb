@@ -20,7 +20,7 @@ u<h1>Listing locations</h1>
         <td><%= location.name %></td>
         <td><%= location.uri %></td>
         <td><%= location.description %></td>
-        <td><%= location.typ %></td>
+        <td><%= TYPPP[location.typ] %></td>
         <td><%= (a=location.storage)? a.name : "" %></td>
         <td><%= link_to 'Show', location %></td>
         <td><%= link_to 'Edit', edit_location_path(location) %></td>

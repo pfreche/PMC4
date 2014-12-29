@@ -18,14 +18,18 @@ class Folder < ActiveRecord::Base
         storage = f.storage
         ppath = storage.path(typ)
         location = storage.location(typ)
-        if typ != URL_STORAGE_WEBTN
-          a =  ppath+ "/" +  f.mpath + "/" +  f.lfolder
-        else 
-#          if tnprefix = location.tnprefix 
-#            a =  ppath+ "/" +  f.mpath + "/" +  f.lfolder + "/" + tnprefix
- #         else
+        
+        next unless location  #  important if a location for a certain type has not been defined
+        
+        if typ == URL_STORAGE_WEBTN or typ == URL_STORAGE_FSTN
+          tnprefix = location.prefix
+          if tnprefix && !tnprefix.empty?
+              a =  ppath+ "/" +  f.mpath + "/" +  f.lfolder + "/" + tnprefix
+          else
              a =  ppath+ "/"  # relevant for thumbnails path in the old fashion
-#         end
+          end
+        else 
+          a =  ppath+ "/" +  f.mpath + "/" +  f.lfolder + "/"
         end 
         FOLDERPATH[typ][f.id]=  a.gsub("//", "/").gsub("//", "/").gsub("http:/","http://")
       end

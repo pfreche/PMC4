@@ -10,10 +10,17 @@ FILEPATH = 55 # Filepath
 FILETNPATH = 56 
 
 
+URL_WEB = 0
 URL_STORAGE_WEB = 1
 URL_STORAGE_WEBTN = 3
 URL_STORAGE_FS = 2
 URL_STORAGE_FSTN = 4
-URL_WEB = 5
+
+TYPPP = Array.new(5)
+TYPPP[URL_WEB ] = "Generic Web Access URL" 
+TYPPP[URL_STORAGE_WEBTN] = "Storage: Thnumbnail Web Access URL" 
+TYPPP[URL_STORAGE_WEB ] = "Storage: Web Access URL" 
+TYPPP[URL_STORAGE_FSTN] = "Storage: Thnumbnail Filesystem Access" 
+TYPPP[URL_STORAGE_FS] = "Storage: Filesystem Access" 
 
 #STORAGES.each {|s| s.setpaths}

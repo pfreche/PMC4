@@ -224,7 +224,7 @@ class StoragesController < ApplicationController
     @storage_id = params[:id];
     @storage = Storage.find(@storage_id)
     
-    fol = @storage.path(URL_STORAGE_FSTN)+"/"
+ #   fol = @storage.path(URL_STORAGE_FSTN)+"/"
     
     folders = @storage.folders
     
@@ -244,7 +244,10 @@ class StoragesController < ApplicationController
         if @complete  || !File.exist?(mfile.path(URL_STORAGE_FSTN))
 
           if @embedded
-            str[n] = ja + "\"" + fol + mfile.id.to_s + ".jpg\" " + "\""+ mfile.path(URL_STORAGE_FS) +"\"" 
+             str[n] = ja + "\"" + mfile.path(URL_STORAGE_FSTN) + "\" "  +  "\""+ mfile.path(URL_STORAGE_FS) +"\"" 
+ #            str[n] = ja + "\"" + fol + mfile.id.to_s + ".jpg\" " + "\""+ mfile.path(URL_STORAGE_FS) +"\"" 
+               # leere Verzeichnsisstruktur erstellen geht mit:  xcopy e:\ c:\ /s/t 
+             p str[n]
           else
             str[n] = ja + "\""+ mfile.path(URL_STORAGE_FS) +"\" \""+ fol + mfile.id.to_s + ".jpg\" "  +
             @width.to_s +  " " + @height.to_s + " 90"
