@@ -1,5 +1,10 @@
+require 'open-uri'
+require "net/http"
+require "uri"
+#require "Nokogiri"
+
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_action :set_location, only: [:show, :edit, :update, :destroy, :requestTitle]
   # GET /locations
   # GET /locations.json
   def index
@@ -29,8 +34,30 @@ class LocationsController < ApplicationController
       @location.mfile = @mfile
       @location.save
     end
+       # check response
+       
+ 
+       
+#   open (@location.uri) do |f|
+      
+ #   end
   end
 
+  def requestTitle
+    
+    uri = URI.parse(@location.uri)
+  begin
+     response = Net::HTTP.get_response(uri)
+#  doc = Nokogiri::HTML(open(@location.uri))
+     @title = "site is there"
+   rescue StandardError
+      @title = "site not available"
+#      doc = Nokogiri::HTML(open(@location.uri))
+#      @title = doc.css('title')
+    end
+    render :text => @title
+  end
+  
   # POST /locations
   # POST /locations.json
   def create
@@ -69,7 +96,10 @@ class LocationsController < ApplicationController
   # PATCH/PUT /locations/1.json
   def update
  
+ 
+    if @location.typ == URL_WEB or @location.typ == URL_WEBTN
     Folder.resetFOLDERPATH
+    end 
     
     lp = location_params
     if params[:commit] == "unassign"
@@ -79,7 +109,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.update(lp)
-        format.html { redirect_to @location, notice: 'Location was successfully updated.' }
+        format.html { redirect_to edit_location_path(@location.id), notice: 'Location was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -108,6 +138,6 @@ class LocationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def location_params
-    params.require(:location).permit(:name, :uri, :description, :typ, :storage_id, :inuse, :prefix)
+    params.require(:location).permit(:name, :uri, :description, :typ, :storage_id, :inuse, :prefix, :requestTitle)
   end
 end
