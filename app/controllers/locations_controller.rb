@@ -97,8 +97,8 @@ class LocationsController < ApplicationController
   def update
  
  
-    if @location.typ == URL_WEB or @location.typ == URL_WEBTN
-    Folder.resetFOLDERPATH
+    if @location.typ != URL_WEB 
+      Folder.resetFOLDERPATH
     end 
     
     lp = location_params

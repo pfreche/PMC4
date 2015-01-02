@@ -25,23 +25,6 @@ ActiveRecord::Schema.define(version: 20141230130633) do
   add_index "agroups_mfiles", ["agroup_id"], name: "index_agroups_mfiles_on_agroup_id", using: :btree
   add_index "agroups_mfiles", ["mfile_id"], name: "index_agroups_mfiles_on_mfile_id", using: :btree
 
-  create_table "albums", force: true do |t|
-    t.integer  "artist_id",             null: false
-    t.string   "name",                  null: false
-    t.datetime "date_added",            null: false
-    t.string   "year",       limit: 20
-  end
-
-  add_index "albums", ["artist_id", "name"], name: "artist_id", unique: true, using: :btree
-
-  create_table "artists", force: true do |t|
-    t.string   "name",        null: false
-    t.datetime "date_added",  null: false
-    t.string   "browse_name"
-  end
-
-  add_index "artists", ["name"], name: "name", unique: true, using: :btree
-
   create_table "attris", force: true do |t|
     t.string  "name"
     t.integer "agroup_id"
@@ -61,10 +44,6 @@ ActiveRecord::Schema.define(version: 20141230130633) do
   add_index "attris_mfiles", ["attri_id"], name: "index_attris_mfiles_on_attri_id", using: :btree
   add_index "attris_mfiles", ["mfile_id"], name: "index_attris_mfiles_on_mfile_id", using: :btree
 
-  create_table "collection", force: true do |t|
-    t.string "path", limit: 500, null: false
-  end
-
   create_table "folders", force: true do |t|
     t.integer "storage_id"
     t.string  "mpath"
@@ -73,10 +52,6 @@ ActiveRecord::Schema.define(version: 20141230130633) do
   end
 
   add_index "folders", ["storage_id"], name: "index_folders_on_storage_id", using: :btree
-
-  create_table "indexer", force: true do |t|
-    t.datetime "last_modified", null: false
-  end
 
   create_table "locations", force: true do |t|
     t.string   "name"
@@ -121,36 +96,6 @@ ActiveRecord::Schema.define(version: 20141230130633) do
     t.integer "packlocation_id"
   end
 
-  create_table "play_log", force: true do |t|
-    t.integer  "track_id"
-    t.datetime "date_played",                 null: false
-    t.integer  "user_id"
-    t.boolean  "scrobbled",   default: false, null: false
-  end
-
-  add_index "play_log", ["track_id"], name: "ix_play_log_track_id", using: :btree
-
-  create_table "playlist_tracks", force: true do |t|
-    t.integer "playlist_id"
-    t.integer "track_id"
-  end
-
-  create_table "playlists", force: true do |t|
-    t.string   "name",          null: false
-    t.datetime "date_created",  null: false
-    t.datetime "date_modified", null: false
-    t.integer  "user_id"
-  end
-
-  add_index "playlists", ["name"], name: "name", unique: true, using: :btree
-
-  create_table "properties", force: true do |t|
-    t.string "name",  limit: 100, null: false
-    t.string "value",             null: false
-  end
-
-  add_index "properties", ["name"], name: "name", unique: true, using: :btree
-
   create_table "props", force: true do |t|
     t.integer "mfile_id"
     t.integer "width"
@@ -162,16 +107,6 @@ ActiveRecord::Schema.define(version: 20141230130633) do
 
   add_index "props", ["md5"], name: "index_props_on_md5", using: :btree
   add_index "props", ["mfile_id"], name: "index_props_on_mfile_id", using: :btree
-
-  create_table "request_log", force: true do |t|
-    t.integer  "user_id"
-    t.string   "ip_address",      limit: 16, null: false
-    t.datetime "date_of_request",            null: false
-    t.string   "request_url",                null: false
-    t.string   "user_agent",                 null: false
-    t.string   "referer",                    null: false
-    t.string   "cookies",                    null: false
-  end
 
   create_table "selections", force: true do |t|
     t.string   "name"
@@ -192,12 +127,6 @@ ActiveRecord::Schema.define(version: 20141230130633) do
 
   add_index "selitems", ["selection_id"], name: "index_selitems_on_selection_id", using: :btree
 
-  create_table "sessions", force: true do |t|
-    t.string   "code",         limit: 10, null: false
-    t.integer  "user_id",                 null: false
-    t.datetime "date_created",            null: false
-  end
-
   create_table "storages", force: true do |t|
     t.string  "name",        limit: 20
     t.integer "no",                      default: 1
@@ -207,29 +136,5 @@ ActiveRecord::Schema.define(version: 20141230130633) do
     t.string  "webpath_tn",  limit: 50
     t.integer "mtype"
   end
-
-  create_table "tracks", force: true do |t|
-    t.integer  "artist_id",                 null: false
-    t.integer  "album_id"
-    t.string   "name",                      null: false
-    t.string   "path",          limit: 500, null: false
-    t.integer  "length",                    null: false
-    t.datetime "date_added",                null: false
-    t.integer  "collection_id",             null: false
-    t.integer  "track_no",      limit: 2
-  end
-
-  add_index "tracks", ["artist_id", "album_id", "name"], name: "artist_id", unique: true, using: :btree
-
-  create_table "users", force: true do |t|
-    t.string   "name",         limit: 50,                 null: false
-    t.string   "pass",         limit: 32,                 null: false
-    t.string   "email",                                   null: false
-    t.datetime "date_created",                            null: false
-    t.boolean  "is_admin",                default: false, null: false
-    t.string   "is_active",    limit: 1,  default: "1",   null: false
-  end
-
-  add_index "users", ["name"], name: "name", unique: true, using: :btree
 
 end

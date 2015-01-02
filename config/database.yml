@@ -14,9 +14,10 @@ development:
   database: media_development
   pool: 5
   username: root
-  password: master
+  password: bitnami
   host: localhost
   port: 3306
+  socket: /opt/bitnami/mysql/tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -27,9 +28,10 @@ test:
   database: media_test
   pool: 5
   username: root
-  password: master
+  password: bitnami
   host: localhost
-  port: 3303
+  port: 3306
+  socket: /opt/bitnami/mysql/tmp/mysql.sock
 
 staging:
   adapter: mysql2
@@ -47,6 +49,8 @@ production:
   database: media_production
   pool: 5
   username: root
-  password: master
+  password: bitnami
   host: localhost
-  port: 3303
+  port: 3306
+  socket: /opt/bitnami/mysql/tmp/mysql.sock
+  
