@@ -1,0 +1,16 @@
+
+<%= form_tag(set_attris_mfiles_path, method: "post", remote: :true) do  %>
+
+    <% @mfiles.each do |mfile| %>
+      <div class="thumbC" id="<%=mfile.id%>" data-<%=mfile.id%>="a" 
+     	class=" <% mfile.attris.each do |attri| %> <%=attri.name%> <% end %> 
+             <% mfile.agroups.each do |agroup| %> <%=agroup.name%> <% end %> " >
+        
+       <div class="check"> <%= hidden_field_tag "mfile["+mfile.id.to_s+"]" %> </div>
+
+<%= mfile.folder_id %>
+        <%= mfile.filename %>
+        <img src="<%=mfile.path(3)%>"> </img>
+             </div>
+    <% end %>
+    <% end %>
