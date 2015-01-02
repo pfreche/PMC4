@@ -23,4 +23,17 @@ TYPPP[URL_STORAGE_WEB ] = "Storage: Web Access URL"
 TYPPP[URL_STORAGE_FSTN] = "Storage: Thnumbnail Filesystem Access" 
 TYPPP[URL_STORAGE_FS] = "Storage: Filesystem Access" 
 
+MFILETYPE = Array.new(5)
+MFILE_LOCATION = 1
+MFILE_PHOTO = 2
+MFILE_MOVIE = 3
+MFILE_BOOK = 4
+
+MFILETYPE[MFILE_LOCATION] = "Generic Link"
+MFILETYPE[MFILE_PHOTO] = "Personal Photo"
+MFILETYPE[MFILE_MOVIE] = "Movie"
+MFILETYPE[MFILE_BOOK] = "Book"
+
+
+ 
 #STORAGES.each {|s| s.setpaths}

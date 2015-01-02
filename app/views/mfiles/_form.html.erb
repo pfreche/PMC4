@@ -12,14 +12,19 @@
     </div>
   <% end %>
 
-<p>
+<p>	
+  <strong>Mtype:</strong>
+  <%= MFILETYPE[@mfile.mtype]%>
+</p>
+
+<p>	
   <strong>Folder:</strong>
-  <%= @mfile.folder.lfolder%>
+  <%= @mfile.furlder%>
 </p>
 
 <p>
   <strong>Filename:</strong>
-  <%= @mfile.filename %>
+  <%= @mfile.name %>
 </p>
   <div class="field">
     <%= f.label :modified %><br>

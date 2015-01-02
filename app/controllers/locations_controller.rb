@@ -18,6 +18,17 @@ class LocationsController < ApplicationController
 
   # GET /locations/1/edit
   def edit
+    @mfile = @location.mfile 
+    unless @mfile  # for old locations without mfile
+      @mfile = Mfile.new
+      @mfile.mtype = MFILE_LOCATION
+      @mfile.filename = "TBD"
+      @mfile.modified = Time.now
+      @mfile.mod_date = Time.now
+      @mfile.save
+      @location.mfile = @mfile
+      @location.save
+    end
   end
 
   # POST /locations
@@ -32,6 +43,16 @@ class LocationsController < ApplicationController
     # if @location.uri[0..3] == "http"
     # @location.typ = 1
     # end
+    if @location.typ == URL_WEB or true # create mfile if URL_WEB, nicht für alle ?
+      #create mfile
+      mfile = Mfile.new
+      mfile.mtype = MFILE_LOCATION
+      mfile.filename = "TBD"
+      mfile.modified = Time.now
+      mfile.mod_date = Time.now
+      mfile.save
+      @location.mfile = mfile
+    end
 
     respond_to do |format|
       if @location.save
@@ -70,7 +91,8 @@ class LocationsController < ApplicationController
   # DELETE /locations/1
   # DELETE /locations/1.json
   def destroy
-    @location.destroy
+    @location.mfile.destroy
+#    @location.destroy # obsolete as mfile has  dependent destroy on location
     respond_to do |format|
       format.html { redirect_to locations_url }
       format.json { head :no_content }

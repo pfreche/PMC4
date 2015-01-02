@@ -1,7 +1,5 @@
 <h1>Attributes
 	
-<%= link_to "Show selected Mfiles", mfiles_path+"?typ=attribute", method: :get %>
- 
 </h1>
 	<%= link_to "All", attris_path+"?reset=1"%>
 <% if @selectedAttributes
@@ -11,7 +9,10 @@
  
  <% end %>
  <% end %>
-
+ -->
+ <%= link_to "Show selected Mfiles", mfiles_path+"?typ=attribute", method: :get %>
+ <%= link_to "Show selected Mfiles as Thumbs", thumbs_mfiles_path+"?typ=attribute", method: :get %>
+ 
 <table>
   <thead>
     <tr>

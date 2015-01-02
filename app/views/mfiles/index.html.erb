@@ -3,8 +3,8 @@
 <table>
   <thead>
     <tr>
-      <th>Folder</th>
-      <th>Filename</th>
+      <th>Folder/URL</th>
+      <th>Name</th>
       <th>Modified</th>
       <th>Mod date</th>
       <th></th>
@@ -16,14 +16,14 @@
   <tbody>
     <% @mfiles.each do |mfile| %>
       <tr>
-        <td><%= mfile.folder_id %></td>
-        <td><%= mfile.filename %></td>
+      	<td><%= mfile.furlder %></td>
+        <td><%= mfile.name %></td>
         <td><%= mfile.modified %></td>
         <td><%= mfile.mod_date %></td>
         <td><%= link_to 'Show', mfile %></td>
         <td><%= link_to 'Edit', edit_mfile_path(mfile) %></td>
         <td><%= link_to 'Destroy', mfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-         <td><%= mfile.folder.lfolder %></td>
+
       </tr>
     <% end %>
   </tbody>

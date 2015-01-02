@@ -7,8 +7,9 @@
 <%= render :partial => 'shared/folder_attris' %>
 </div >
 
+<% if @mfile.mtype == MFILE_PHOTO or @mfile.mtype == nil%>
 <%= render 'showPic'%>
 
-
+<%end%>
 <%= link_to 'Show', @mfile %> |
 <%= link_to 'Back', mfiles_path %>

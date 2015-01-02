@@ -1,2 +1,17 @@
 mysqldump --user=root --password=master media_production  > picdb_prod.txt
 mysql     --user root --password=master media_development  --port=3306 < picdb_prod.txt 
+
+rake db:migrate
+rake db:reset --> deletes all tables and recreates via schema.rb
+rake db:rollback --> one step back 	
+
+rake db:rollback step=x --> x steps back 	
+
+
+rails g migration AddXyzToTables abc:string type:integer
+
+rails g scaffold Table abc:string type:integer
+
+Vorgehen bei Migration: Load Production with mysql command (above), then migrate, then dump (as backup)
+
+

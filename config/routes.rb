@@ -1,4 +1,6 @@
 PMC4::Application.routes.draw do
+  resources :media_types
+
   resources :agroups
   patch 'agroups' => 'agroups#indexedit', as: 'indexedit_agroups'
   
@@ -28,6 +30,7 @@ PMC4::Application.routes.draw do
     get  'classify', :on => :collection
     get  'slideshow', :on => :collection
     post 'set_attris', :on => :collection
+    get  'thumbs', :on => :collection   
   end
 
   resources :folders

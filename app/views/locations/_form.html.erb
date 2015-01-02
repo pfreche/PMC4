@@ -16,7 +16,7 @@
 <div class="field">
 	<%= f.label :name%>
 	<br>
-	<%= f.text_field :name, size: 50 %>
+	<%= f.text_field :name, size: 100 %>
 </div>
 <div class="field">
 	<%= f.label :uri %>
@@ -26,29 +26,22 @@
 <div class="field">
 	<%= f.label :description %>
 	<br>
-	<%= f.text_field :description, size: 50 %>
+	<%= f.text_field :description, size: 100%>
 </div>
 
-
-<div class="field">
-	<%= f.label "Thumbnail_Prefix" %>
-	<br>
-	<%= f.text_field :prefix %>
-</div>
 
 <div class="field">
 	<%= f.label "Typ" %>
 	<br>
 	<% i = -1 %>
 	<%= f.select :typ,
-	TYPPP.map {|l| [l, i+=1]},
-	prompt: "Bitte wählen" %>
+	TYPPP.map {|l| [l, i+=1]} %>
 </div>
 
-
+<div class="storagefields">
 
 <div class="field">
-	<%= f.label :location %>
+	<%= f.label :storage %>
 	<br>
 	<%= f.select :storage_id,
 	Storage.all.map {|l| [l.name, l.id]},
@@ -63,6 +56,13 @@
 	<%= f.label :inuse %>
 	<br>
 	<%= f.check_box :inuse %>
+</div>
+
+<div class="field">
+	<%= f.label "Thumbnail_Prefix" %>
+	<br>
+	<%= f.text_field :prefix %>
+</div>
 </div>
 
 <div class="actions">

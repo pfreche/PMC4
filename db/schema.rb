@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141228184717) do
+ActiveRecord::Schema.define(version: 20141230130633) do
 
   create_table "agroups", force: true do |t|
     t.string "name"
@@ -88,6 +88,13 @@ ActiveRecord::Schema.define(version: 20141228184717) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "prefix"
+    t.integer  "mfile_id"
+  end
+
+  create_table "media_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "mfiles", force: true do |t|
@@ -95,6 +102,7 @@ ActiveRecord::Schema.define(version: 20141228184717) do
     t.string   "filename"
     t.datetime "modified"
     t.date     "mod_date"
+    t.integer  "mtype"
   end
 
   add_index "mfiles", ["folder_id"], name: "index_mfiles_on_folder_id", using: :btree
@@ -197,6 +205,7 @@ ActiveRecord::Schema.define(version: 20141228184717) do
     t.string  "webpath",     limit: 50
     t.string  "filepath_tn", limit: 100
     t.string  "webpath_tn",  limit: 50
+    t.integer "mtype"
   end
 
   create_table "tracks", force: true do |t|

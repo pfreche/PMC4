@@ -6,8 +6,13 @@ class MfilesController < ApplicationController
     typ = params[:typ]
     getMfiles(typ)
 
-    render "thumbs"
-
+ #   render "thumbs"
+  end
+  
+  def thumbs
+    typ = params[:typ]
+    getMfiles(typ)
+     render "thumbs"
   end
 
   def getMfiles(typ)
@@ -79,6 +84,7 @@ class MfilesController < ApplicationController
   end 
 
 
+ 
   #
   def set_attris
 

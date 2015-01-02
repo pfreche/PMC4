@@ -161,6 +161,7 @@ $(document).ready ->
     
   showPic = (th) ->
 #    $this = $(this)
+    th = $(this).parent()  # new 1.1.2015
     actualPic = th
     id = th.attr("id")
 #    $.get id+"/renderMfile", (data) ->
@@ -234,6 +235,7 @@ $(document).ready ->
 #  $('.thumbC').bind 'click', selectMfileP
   $('.thumbC').mousedown(startTimer2).click(selectMfileP)
 #
+  $('.marker').click(showPic)
 
   $('#hideUnselected').bind 'click', hideUnselected
   $('#showAll').bind 'click', showAll

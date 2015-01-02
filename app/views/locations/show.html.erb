@@ -25,5 +25,10 @@
   <%= (a=@location.storage)? a.name : ""%>
 </p>
 
+
+<p>
+  <strong>Mfile_id</strong>
+  <%= (a=@location.mfile)? a.id : ""%>
+</p>
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>

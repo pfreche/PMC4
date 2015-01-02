@@ -177,7 +177,7 @@ class StoragesController < ApplicationController
             modtime = File.new(mfile.path(URL_STORAGE_FS)).mtime
             mfile.modified = modtime
             mfile.mod_date = modtime
-            #          puts mfile.path(1)
+            mfile.type = MFILE_PHOTO # should be replaced by dependency of storage type
             @mfiles_temp << mfile
             #            @mfiles << mfile
           end
