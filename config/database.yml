@@ -14,7 +14,7 @@ development:
   database: media_development
   pool: 5
   username: root
-  password: master
+  password: bitnami
   host: localhost
   port: 3306
 
