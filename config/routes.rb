@@ -37,7 +37,8 @@ PMC4::Application.routes.draw do
   patch 'folders' => 'folders#indexedit', as: 'indexedit_folders'
 
   resources :locations do 
-    get 'requestTitle', :on => :member
+    get 'parse', :on => :member
+    get 'checkAvail', :on => :member
   end
 
   resources :storages do

@@ -1,10 +1,10 @@
 require 'open-uri'
 require "net/http"
 require "uri"
-#require "Nokogiri"
+#require "nokogiri"
 
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy, :requestTitle]
+  before_action :set_location, only: [:show, :edit, :update, :destroy, :parse, :checkAvail]
   # GET /locations
   # GET /locations.json
   def index
@@ -19,6 +19,7 @@ class LocationsController < ApplicationController
   # GET /locations/new
   def new
     @location = Location.new
+    @location = Location.new(uri: params[:uri], name: params[:name])
   end
 
   # GET /locations/1/edit
@@ -42,14 +43,30 @@ class LocationsController < ApplicationController
       
  #   end
   end
+  
+  def checkAvail
+    
+     uri = URI.parse(@location.uri)
+     begin
+       response = Net::HTTP.get_response(uri)
 
-  def requestTitle
+       @title = "site is there"
+     rescue StandardError
+       @title = "site not available"
+    end
+    render :text => @title
+    
+  end
+
+  def parse
     
     uri = URI.parse(@location.uri)
-  begin
-     response = Net::HTTP.get_response(uri)
-#  doc = Nokogiri::HTML(open(@location.uri))
-     @title = "site is there"
+    begin
+       response = Net::HTTP.get_response(uri)
+       page = Nokogiri::HTML(open(@location.uri))
+       
+       @title = page.css("title")[0].text
+       
    rescue StandardError
       @title = "site not available"
 #      doc = Nokogiri::HTML(open(@location.uri))

@@ -21,13 +21,16 @@ $(document).ready ->
        $(".storagefields").css({"display": "block"})
       
    checkAvailiblity = (th) ->
-
        $this = $(th)
        id = $this.attr("id")
-
-       $.get "requestTitle", (data) ->
+       $.get "checkAvail", (data) ->
           $("#titlee").html(data)
-#      $("#titlee").html(id)
-   
+          
+   parse = (th) ->
+       $this = $(th)
+       id = $this.attr("id")
+       $.get "parse", (data) ->
+          $("#titlee").html(data)
+#      
    checkAvailiblity()
-   $('.checkAvailiblity').bind 'click', checkAvailiblity
+   $('.checkAvailiblity').bind 'click', parse
