@@ -59,22 +59,54 @@ class LocationsController < ApplicationController
   end
 
   def parse
-    
+
     uri = URI.parse(@location.uri)
+    urlbase = @location.uri
     begin
        response = Net::HTTP.get_response(uri)
        page = Nokogiri::HTML(open(@location.uri))
        
        @title = page.css("title")[0].text
-       
+      links = page.css("a")
+
+      links.each do |l|
+         name = l.attr("href").to_s
+         @title+=  "Href: " +name + " "
+         url = URI.join(urlbase, name)
+         @title+=  url.to_s + " <p>"
+#         puts "Kompletter URI: "+ url.to_s
+#         puts "img: " + l.css("img").to_s
+#         imgs = l.css("img")
+
+       end
+
+
    rescue StandardError
-      @title = "site not available"
+     #@title+= "site not available"
 #      doc = Nokogiri::HTML(open(@location.uri))
 #      @title = doc.css('title')
     end
     render :text => @title
   end
-  
+
+  def parseLInks
+
+    uri = URI.parse(@location.uri)
+    begin
+      response = Net::HTTP.get_response(uri)
+      page = Nokogiri::HTML(open(@location.uri))
+
+      @title = page.css("title")[0].text
+
+    rescue StandardError
+      @title = "site not available"
+#      doc = Nokogiri::HTML(open(@location.uri))
+#      @title = doc.css('title')
+    end
+  end
+
+
+
   # POST /locations
   # POST /locations.json
   def create
