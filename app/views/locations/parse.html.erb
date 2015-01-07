@@ -1,0 +1,23 @@
+u<h1>Listing parsed links</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Uri</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @links.each do |link| %>
+      <tr>
+        <td><%= link %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
