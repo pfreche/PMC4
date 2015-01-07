@@ -66,8 +66,9 @@ class LocationsController < ApplicationController
        response = Net::HTTP.get_response(uri)
        page = Nokogiri::HTML(open(@location.uri))
        
-       @title = page.css("title")[0].text
+      @title = page.css("title")[0].text
       links = page.css("a")
+      @links = links.map {|l| URI.join(urlbase, l.attr("href").to_s).to_s}
 
       links.each do |l|
          name = l.attr("href").to_s
@@ -86,7 +87,7 @@ class LocationsController < ApplicationController
 #      doc = Nokogiri::HTML(open(@location.uri))
 #      @title = doc.css('title')
     end
-    render :text => @title
+ #   render :text => @title
   end
 
   def parseLInks
