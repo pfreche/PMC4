@@ -62,6 +62,9 @@ class LocationsController < ApplicationController
 
     uri = URI.parse(@location.uri)
     urlbase = @location.uri
+    @filter =  params[:filter]
+    a = UriHandler.part("aaaa")
+
     begin
        response = Net::HTTP.get_response(uri)
        page = Nokogiri::HTML(open(@location.uri))
@@ -69,6 +72,7 @@ class LocationsController < ApplicationController
       @title = page.css("title")[0].text
       links = page.css("a")
       @links = links.map {|l| URI.join(urlbase, l.attr("href").to_s).to_s}
+       @links.select! { |l| l[%r{#{@filter}}] } if @filter
 
       links.each do |l|
          name = l.attr("href").to_s
