@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Rails PMC4: development" uuid="b76c464e-33ac-4c73-88f6-cd5873596843">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails PMC4: test" uuid="0a64cbdc-77f7-43b2-93f9-19c32790e4e1">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails PMC4: staging" uuid="96b4cc1e-680f-49a3-be7b-5ef7189b0d23">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails PMC4: production" uuid="ba993570-5ef7-4042-89e6-2123eb823eb2">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>
