@@ -4,7 +4,7 @@ require "uri"
 #require "nokogiri"
 
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy, :parse, :checkAvail]
+  before_action :set_location, only: [:show, :edit, :update, :destroy, :parse, :checkAvail, :parseURL]
   # GET /locations
   # GET /locations.json
   def index
@@ -63,38 +63,41 @@ class LocationsController < ApplicationController
     uri = URI.parse(@location.uri)
     urlbase = @location.uri
     @filter =  params[:filter]
-    a = UriHandler.part("aaaa")
-
-    begin
-       response = Net::HTTP.get_response(uri)
-       page = Nokogiri::HTML(open(@location.uri))
+   
+#   begin
+#       response = Net::HTTP.get_response(uri)
+#       page = Nokogiri::HTML(open(@location.uri))
        
-      @title = page.css("title")[0].text
-      links = page.css("a")
-      @links = links.map {|l| URI.join(urlbase, l.attr("href").to_s).to_s}
-       @links.select! { |l| l[%r{#{@filter}}] } if @filter
+#      @title = page.css("title")[0].text
+#      links = page.css("a")
+#      @links = links.map {|l| URI.join(urlbase, l.attr("href").to_s).to_s}
+ #      @links.select! { |l| l[%r{#{@filter}}] } if @filter
 
-      links.each do |l|
-         name = l.attr("href").to_s
-         @title+=  "Href: " +name + " "
-         url = URI.join(urlbase, name)
-         @title+=  url.to_s + " <p>"
+ #     links.each do |l|
+ #        name = l.attr("href").to_s
+ #        @title+=  "Href: " +name + " "
+ #        url = URI.join(urlbase, name)
+ #        @title+=  url.to_s + " <p>"
 #         puts "Kompletter URI: "+ url.to_s
 #         puts "img: " + l.css("img").to_s
 #         imgs = l.css("img")
 
-       end
+ #      end
 
-
-   rescue StandardError
+#   rescue StandardError
      #@title+= "site not available"
 #      doc = Nokogiri::HTML(open(@location.uri))
 #      @title = doc.css('title')
-    end
+#    end
  #   render :text => @title
+ 
+    @links = UriHandler.getLinks(urlbase,@filter)
+    @links = UriHandler.match(@links)
+#    UriHandler.save(@links)
+    
   end
 
-  def parseLInks
+  def parseLinks
 
     uri = URI.parse(@location.uri)
     begin
@@ -110,7 +113,13 @@ class LocationsController < ApplicationController
     end
   end
 
-
+  def parseURL
+    url = params[:url]
+    @links = UriHandler.parse(url,"")
+    
+    
+    render "parse"
+  end
 
   # POST /locations
   # POST /locations.json

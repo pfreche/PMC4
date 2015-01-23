@@ -9,6 +9,10 @@ PMC4::Application.routes.draw do
   get 'attris/indi' => 'attris#indi', as: 'indi_attris'
   get 'attris/:id/find' => 'attris#find', as: 'find_attris2'
 
+  get 'uris/show'  => "uris#show", as: 'uris_show'
+  
+  get 'uris/match'  => "uris#match", as: 'uris_match'
+
   resources :attris do
     get 'autocomplete', :on => :collection
     get 'overview', :on => :collection
@@ -39,6 +43,7 @@ PMC4::Application.routes.draw do
   resources :locations do 
     get 'parse', :on => :member
     get 'checkAvail', :on => :member
+    get 'parseURL', :on => :member
   end
 
   resources :storages do

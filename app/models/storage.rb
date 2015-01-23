@@ -1,6 +1,6 @@
 class Storage < ActiveRecord::Base
   has_many :locations
-  has_many :folders #  ":dependent => :destroy" too risky
+  has_many :folders,  :dependent => :destroy # too risky
 
   def webLocation
    locations.where(storage_id: id).where(inuse: true, typ: 1).first

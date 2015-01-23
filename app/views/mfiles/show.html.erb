@@ -20,6 +20,15 @@
   <%= @mfile.mod_date %>
 </p>
 
+
+<p>
+  <strong>Web-Link</strong>
+  <%= @mfile.path(URL_STORAGE_WEB) %>
+</p>
+
+
 <%= link_to 'Edit', edit_mfile_path(@mfile) %> |
 <%= link_to 'Back', mfiles_path %>
+
+
 <%=@kala%>

@@ -1,10 +1,5 @@
 <h1>Listing parsed links</h1>
 
-<%= form_tag(parse_location_path(@location),  method: "get") do  %>
-<%= text_field_tag :filter, @filter, autofocus: :autofocus%>
-<button > search </button>
-<% end %>
-
 <table>
   <thead>
     <tr>
@@ -26,8 +21,7 @@
         <td ><%= link[3]%></td>
        <td ><%= link[4]%></td>
               <td ><%= link[5]%></td>
-      <td><%= link_to "parse:", parseURL_location_path(@location)+"?url="+link[0] %></td>     
-  
+
 
       </tr>
     <% end %>
@@ -35,4 +29,3 @@
 </table>
 
 <br>
-
