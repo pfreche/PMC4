@@ -7,7 +7,8 @@
 Path:
 
 <%= form_tag(uris_match_path, method: "get") do  %>
-    <%= text_field_tag "path" %>
+    <%= text_field_tag "path" %><p>
+    <%= text_field_tag "filter" %>
 
 <button id="a"> Match</button>
 

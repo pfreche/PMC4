@@ -28,7 +28,7 @@ class LocationsController < ApplicationController
     unless @mfile  # for old locations without mfile
       @mfile = Mfile.new
       @mfile.mtype = MFILE_LOCATION
-      @mfile.filename = "TBD"
+      @mfile.filename = ""
       @mfile.modified = Time.now
       @mfile.mod_date = Time.now
       @mfile.save
@@ -91,10 +91,13 @@ class LocationsController < ApplicationController
 #    end
  #   render :text => @title
  
-    @links = UriHandler.getLinks(urlbase,@filter)
-    @links = UriHandler.match(@links)
+ 
+ 
+#   @links = UriHandler.getLinks(urlbase,@filter)
+#    @links = UriHandler.match(@links)
 #    UriHandler.save(@links)
-    
+ 
+   redirect_to :controller => 'uris', :action => 'matchURL', :path => urlbase
   end
 
   def parseLinks
@@ -137,7 +140,7 @@ class LocationsController < ApplicationController
       #create mfile
       mfile = Mfile.new
       mfile.mtype = MFILE_LOCATION
-      mfile.filename = "TBD"
+      mfile.filename = ""
       mfile.modified = Time.now
       mfile.mod_date = Time.now
       mfile.save

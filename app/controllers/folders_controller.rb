@@ -9,6 +9,7 @@ class FoldersController < ApplicationController
         @numbersa = Folder.joins(mfiles: :agroups).group('folders.id').group('agroups.id').count('mfiles.id')
   #      @numbersa = Folder.joins(mfiles: :agroups).group('folders.id').count('mfiles.id')
     @agroups = Agroup.all
+    
   end
 
   def indexedit
@@ -19,6 +20,7 @@ class FoldersController < ApplicationController
   # GET /folders/1.json
   def show
     session[:selectedFolder] = @folder.id
+    @mfiles = @folder.mfiles
   end
 
   # GET /folders/new

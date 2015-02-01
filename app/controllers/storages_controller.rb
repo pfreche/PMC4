@@ -141,6 +141,18 @@ class StoragesController < ApplicationController
 
   end
   
+  # Detect files and folders with new uri_handler
+  
+  def detectFaFs
+    @storage_id = params[:id]    
+    @storage = Storage.find(@storage_id)
+    @basepath = @storage.path(URL_STORAGE_FS) # take the filepath  
+    
+    files = UriHandler.getFiles(@basepath,"")
+    @links = UriHandler.match(files)
+    render "uris/match"
+  end
+  
   # Detect files in folders
   # 
   def detectfiles

@@ -1,8 +1,13 @@
 <h1>Listing parsed links</h1>
 
+<%= @path%>
+<%= link_to "save", matchURL_uris_path(:path => @path, :save => "yes")%>
+
+<%= form_tag(save_uris_path, method: "post") do  %>
 <table>
   <thead>
     <tr>
+    	<th> nr </th>
       <th>Uri</th>
       <th>Location</th>      
       <th>Complete Path </th>      
@@ -13,10 +18,15 @@
   </thead>
 
   <tbody>
-    <% @links.each do |link| %>
-      <tr>  
+    <% i = 0
+    @links.each do |link| %>
+    
+      <%= hidden_field_tag "path["+link[0]+"]" %>
+    
+      <tr> 
+      	<td ><%= i = i+1 %></td>
        <td><%= link_to link[0].first(30), link[0] %></td>
-       <td><%= link[1] %></td>
+       <td><%= link[1].uri if link[1] %></td>
        <td ><%= link[2]%></td>
         <td ><%= link[3]%></td>
        <td ><%= link[4]%></td>
@@ -28,4 +38,6 @@
   </tbody>
 </table>
 
-<br>
+<button id="but"> save </button>
+<% end %>
+

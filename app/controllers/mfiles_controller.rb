@@ -4,6 +4,9 @@ class MfilesController < ApplicationController
   # GET /mfiles.json
   def index
     typ = params[:typ]
+    
+    @mtypes = Mfile.group(:mtype).count(:id)
+    
     getMfiles(typ)
 
  #   render "thumbs"
@@ -45,6 +48,7 @@ class MfilesController < ApplicationController
 
       else
         @mfiles = Mfile.find([1,2,3])
+        @mfiles = Mfile.all
       end
     end
 

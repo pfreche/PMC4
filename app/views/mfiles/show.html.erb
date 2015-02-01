@@ -1,8 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+
+<p>
+  <strong>Media Type</strong>
+  <%= MFILETYPE[@mfile.mtype] %>
+</p>
 <p>
   <strong>Folder:</strong>
   <%= @mfile.folder_id %>
+  <%= @mfile.folder.mpath + " "+ @mfile.folder.lfolder if @mfile.folder_id%>
 </p>
 
 <p>
@@ -21,11 +27,19 @@
 </p>
 
 
-<p>
-  <strong>Web-Link</strong>
-  <%= @mfile.path(URL_STORAGE_WEB) %>
-</p>
+<% if @mfile.mtype == MFILE_LOCATION %>
 
+
+<p>
+  <strong>Location</strong>
+  <%= @mfile.location.name + " "+  @mfile.location.uri %>
+</p>
+<%else%>
+<p>
+  <strong>Web-Path</strong>
+  <%= link_to @mfile.path(URL_STORAGE_WEB), @mfile.path(URL_STORAGE_WEB) %>
+</p>
+<%end%>
 
 <%= link_to 'Edit', edit_mfile_path(@mfile) %> |
 <%= link_to 'Back', mfiles_path %>

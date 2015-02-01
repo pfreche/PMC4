@@ -3,8 +3,9 @@
 <table>
   <thead>
     <tr>
+      <th>Mpath</th>
       <th>Name</th>
-
+           <th>Storage Id</th
      <th>Anzahl Objekte</th>
 
       <% @agroups.each do |agroup|%>
@@ -18,9 +19,12 @@
     <% @folders.each do |folder| %>
       <tr>
 
+        <td><%= folder.mpath %></td>
+        
         <td><%= folder.lfolder %></td>
+                    <td><%= folder.storage_id%> </td>
         <td><%= @numbers[folder.id] %></td>
-            <td><%= folder.path(55)%> </td>
+
 
      
         <% @agroups.each do |agroup|%>

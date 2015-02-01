@@ -2,7 +2,7 @@
 
 <p>
   <strong>Storage:</strong>
-  <%= @folder.storage_id %>
+  <%= @folder.storage.name %>
 </p>
 
 <p>
@@ -18,7 +18,7 @@
 
 <p>
   <strong>Folderpath</strong>
-  <%= @folder.path(2) %>
+  <%= @folder.path(URL_STORAGE_WEB) %>
 </p>
 
 
@@ -29,3 +29,36 @@
 
 <%= link_to 'Edit', edit_folder_path(@folder) %> |
 <%= link_to 'Back', folders_path %>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Folder/URL</th>
+      <th>Name</th>
+      <th>Modified</th>
+      <th>Mod date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mfiles.each do |mfile| %>
+      <tr>
+      	<td><%= mfile.furlder %></td>
+        <td><%= mfile.name %></td>
+        <td><%= mfile.modified %></td>
+        <td><%= mfile.mod_date %></td>
+        <td><%= link_to 'Show', mfile %></td>
+        <td><%= link_to 'Edit', edit_mfile_path(mfile) %></td>
+        <td><%= link_to 'Destroy', mfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

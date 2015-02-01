@@ -5,10 +5,27 @@ class UriHandler
   end
 
   def self.getFiles(path, filter)
-    links =[]
-    Dir.glob(path+"/**/*") {|f| links << f unless File.directory?(f)}
+    links = []
+    if filter == nil
+      filter  = "."
+    end
+    Dir.glob(path+"/**/*") {|f| 
+      if !File.directory?(f) and f[%r{#{filter}}] 
+        links << f 
+      end
+      }
     links
   end
+
+  def self.getLowestDirs(path, filter)
+    links = []
+    Dir.glob(path+"/**/*") {|f| links << f if File.directory?(f)}
+    
+    #unfertig
+    
+    links
+  end
+
 
 
   def self.getLinks(euri, filter)
@@ -48,37 +65,60 @@ def self.match(links,setlocation=nil)
    
    matchList = Array.new
    
-   locuri = location.uri if setlocation
+   locuri = setlocation.uri if setlocation
+   
+   collectedLocations = []
+   
+   allLocations = Location.where(typ: URL_STORAGE_WEB) + Location.where(typ: URL_STORAGE_FS)
       
    links.each do |link| 
-     loc, path = nil
+     locuri, path = nil
           
      if setlocation
        if link.first(locuri.length) == locuri
          loc = setlocation
        end
      else
-       puts link
+
        ls = link.split(/\//)
+       
        blink = ""
-       ls.each do |l| 
-         blink = blink + l +  "\/" 
-         location = Location.where(uri: blink).first  # kann man besser machen, locations lokal mit speichern
-         if location && location.storage_id
-           loc = location
+       if collectedLocations
+         ls.each do |l| 
+           blink = blink + l +  "\/" 
+         
+#          if c = collectedLocations.detect {|l| l==blink}
+#             locuri = c
+#           end
+           if c = allLocations.detect {|l| l.uri==blink}
+             locuri = c
+           end 
          end
        end
-     end
+       
+#       unless locuri
+#         blink = ""
+#         ls.each do |l| 
+#           blink = blink + l +  "\/" 
+#
+#           location = Location.where(uri: blink).first  
+#           if location && location.storage_id
+#             locuri = blink
+#           end
+#         end
+#         if locuri
+#             collectedLocations << locuri
+#         end      
+#      end
+       
+       if locuri
+         length = blink.length
+         ulength = locuri.uri.length
+         path = link.last(length-ulength)
+       end
      
-     if loc
-       length = link.length
-       ulength = loc.uri.length
-       path = link.last(length-ulength)
+       matchList << ([link,locuri,path]+ canonize(path))
      end
-     
-
-      matchList << ([link,loc,path]+ canonize(path))
-      
    end
    
    matchList
@@ -91,11 +131,13 @@ def self.canonize(cpath)
      name = split[0] || ""
      lfolder = split[1] || "" 
      
+     split.reverse!
+     
      path = ""
-     le = split.length - 1
-     if le > 1
-       (le..2).each do |i|
-         path += split[i] || ""
+     le = split.length - 3
+     if le > -1
+       (0..le).each do |i|
+         path += split[i] + "/"
        end
     end
     [path,lfolder,name]
@@ -103,7 +145,7 @@ def self.canonize(cpath)
 end
 
 
-def self.save(matchedLinks)
+def self.save(matchedLinks, mtype)
   
   matchedLinks.each do |a|
     
@@ -128,12 +170,13 @@ def self.save(matchedLinks)
       mfile = Mfile.new
       mfile.filename = a[5]
       mfile.folder_id = folder.id
-      mfile.mtype = 99   
+      mfile.mtype = mtype   
       
       mfile.save  
      
     end       
- end  
+ end 
+ Folder.resetFOLDERPATH
  end
 
 end

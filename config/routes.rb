@@ -10,8 +10,10 @@ PMC4::Application.routes.draw do
   get 'attris/:id/find' => 'attris#find', as: 'find_attris2'
 
   get 'uris/show'  => "uris#show", as: 'uris_show'
-  
-  get 'uris/match'  => "uris#match", as: 'uris_match'
+  get 'uris/matchURL'  => "uris#matchURL", as: 'matchURL_uris'
+  get 'uris/matchDir'  => "uris#matchDir", as: 'uris_matchDir'
+  get 'uris/save'  => "uris#save", as: 'save_uris'
+
 
   resources :attris do
     get 'autocomplete', :on => :collection
@@ -49,6 +51,7 @@ PMC4::Application.routes.draw do
   resources :storages do
     get 'detectfolders', :on => :member
     get 'detectfiles', :on => :member
+    get 'detectFaFs', :on => :member
     get 'make_thumbnails', :on => :member
   end
 
