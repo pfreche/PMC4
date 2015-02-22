@@ -3,10 +3,15 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>Storage</b>
   <%= @storage.name %>
 </p>
 
+<%= render 'shared/folders' %>
 
 <%= link_to 'Edit', edit_storage_path(@storage) %> |
 <%= link_to 'Back', storages_path %>
+
+
+
+

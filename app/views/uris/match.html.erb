@@ -1,7 +1,27 @@
 <h1>Listing parsed links</h1>
 
 <%= @path%>
-<%= link_to "save", matchURL_uris_path(:path => @path, :save => "yes")%>
+
+
+
+<%= link_to "save", matchURL_uris_path(:path => @path, :save => "yes", :act => @act)%>
+
+	<%= form_tag(fetch_uris_path, method: "get") do%>
+
+    <%= text_field_tag :filter, @filter%>
+     <%= hidden_field_tag :path, @path%>
+     <%= hidden_field_tag :act, @act%>
+             
+	<%= submit_tag "Filter"%>
+	<%= submit_tag "Save"%>
+	
+	<% end%>
+
+
+
+
+
+
 
 <%= form_tag(save_uris_path, method: "post") do  %>
 <table>

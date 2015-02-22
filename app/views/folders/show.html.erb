@@ -61,4 +61,16 @@
   </tbody>
 </table>
 
+    <% @mfiles.each do |mfile| %>
+      <div class="thumbD" id="<%=mfile.id%>" data-<%=mfile.id%>="a" 
+     	class=" <% mfile.attris.each do |attri| %> <%=attri.name%> <% end %> 
+             <% mfile.agroups.each do |agroup| %> <%=agroup.name%> <% end %> " >
+
+
+<%= mfile.folder_id %>
+        <%= mfile.filename %>
+      <a href="<%=mfile.path(1)%>">  <img src="<%=mfile.path(1)%>"> </img> </a>
+             </div>
+    <% end %>
+
 

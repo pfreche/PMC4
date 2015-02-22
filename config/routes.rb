@@ -12,6 +12,8 @@ PMC4::Application.routes.draw do
   get 'uris/show'  => "uris#show", as: 'uris_show'
   get 'uris/matchURL'  => "uris#matchURL", as: 'matchURL_uris'
   get 'uris/matchDir'  => "uris#matchDir", as: 'uris_matchDir'
+  
+  get 'uris/fetch'  => "uris#fetch", as: 'fetch_uris'
   get 'uris/save'  => "uris#save", as: 'save_uris'
 
 
@@ -44,6 +46,7 @@ PMC4::Application.routes.draw do
 
   resources :locations do 
     get 'parse', :on => :member
+    get 'gswl', :on => :member
     get 'checkAvail', :on => :member
     get 'parseURL', :on => :member
   end

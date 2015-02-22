@@ -11,6 +11,7 @@ class StoragesController < ApplicationController
   # GET /storages/1
   # GET /storages/1.json
   def show
+    @folders = @storage.folders
   end
 
   # GET /storages/new

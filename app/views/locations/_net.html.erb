@@ -1,11 +1,11 @@
 <div class="locationNet">
 	
-	<button class="checkAvailiblity" id=<%=@location.id%>>
-		Check </button>
+
 		
 	
 	<div id="titlee">   </div>
 	
-	<%=link_to "Parse", parse_location_path(@location)%>
-			
+	<%=link_to "Get Content", parse_location_path(@location)%>
+	
+		<%=link_to "Genarate Storage with Location", gswl_location_path(@location)%>		
 </div>

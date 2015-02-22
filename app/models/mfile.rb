@@ -13,7 +13,7 @@ class Mfile < ActiveRecord::Base
          p +filename
       end
     else
-      folder.path(typ) +filename
+      folder.path(typ) + filename
     end
   end
   def name

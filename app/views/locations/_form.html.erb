@@ -13,36 +13,39 @@
 </div>
 <% end %>
 
+<div class= "fieldbox">
 <div class="field">
 	<%= f.label :name%>
-	<br>
+	
 	<%= f.text_field :name, size: 100 %>
 </div>
 <div class="field">
 	<%= f.label :uri %>
-	<br>
+
 	<%= f.text_field :uri, size: 100%>
 </div>
 <div class="field">
 	<%= f.label :description %>
-	<br>
+
 	<%= f.text_field :description, size: 100%>
 </div>
 
 
 <div class="field">
 	<%= f.label "Typ" %>
-	<br>
+
 	<% i = -1 %>
 	<%= f.select :typ,
 	TYPPP.map {|l| [l, i+=1]} %>
+	.............................................................
+</div>
+
 </div>
 
 <div class="storagefields">
 
 <div class="field">
 	<%= f.label :storage %>
-	<br>
 	<%= f.select :storage_id,
 	Storage.all.map {|l| [l.name, l.id]},
 	prompt: "Bitte wählen" %>
@@ -54,7 +57,6 @@
 
 <div class="field">
 	<%= f.label :inuse %>
-	<br>
 	<%= f.check_box :inuse %>
 </div>
 

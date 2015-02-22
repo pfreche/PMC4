@@ -4,9 +4,9 @@ class Folder < ActiveRecord::Base
   
   def path(typ)
     
-    if FOLDERPATH[typ] == nil 
+   if FOLDERPATH[typ] == nil 
        Folder.setFolderPath(typ)
-    end
+  end
     FOLDERPATH[typ][id] 
 
   end
@@ -16,11 +16,13 @@ class Folder < ActiveRecord::Base
       fp = Folder.all
       fp.each do |f|
         storage = f.storage
+        next unless storage
+        
         ppath = storage.path(typ)
         location = storage.location(typ)
         
         next unless location  #  important if a location for a certain type has not been defined
-        
+       
         if typ == URL_STORAGE_WEBTN or typ == URL_STORAGE_FSTN
           tnprefix = location.prefix
           if tnprefix && !tnprefix.empty?
@@ -30,7 +32,9 @@ class Folder < ActiveRecord::Base
           end
         else 
           a =  ppath+ "/" +  f.mpath + "/" +  f.lfolder + "/"
+          
         end 
+        
         FOLDERPATH[typ][f.id]=  a.gsub("//", "/").gsub("//", "/").gsub("http:/","http://")
       end
   end

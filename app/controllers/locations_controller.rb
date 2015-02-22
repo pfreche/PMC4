@@ -4,7 +4,7 @@ require "uri"
 #require "nokogiri"
 
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy, :parse, :checkAvail, :parseURL]
+  before_action :set_location, only: [:show, :edit, :update, :destroy, :parse, :checkAvail, :parseURL, :gswl]
   # GET /locations
   # GET /locations.json
   def index
@@ -35,13 +35,7 @@ class LocationsController < ApplicationController
       @location.mfile = @mfile
       @location.save
     end
-       # check response
-       
- 
-       
-#   open (@location.uri) do |f|
-      
- #   end
+
   end
   
   def checkAvail
@@ -64,40 +58,14 @@ class LocationsController < ApplicationController
     urlbase = @location.uri
     @filter =  params[:filter]
    
-#   begin
-#       response = Net::HTTP.get_response(uri)
-#       page = Nokogiri::HTML(open(@location.uri))
-       
-#      @title = page.css("title")[0].text
-#      links = page.css("a")
-#      @links = links.map {|l| URI.join(urlbase, l.attr("href").to_s).to_s}
- #      @links.select! { |l| l[%r{#{@filter}}] } if @filter
-
- #     links.each do |l|
- #        name = l.attr("href").to_s
- #        @title+=  "Href: " +name + " "
- #        url = URI.join(urlbase, name)
- #        @title+=  url.to_s + " <p>"
-#         puts "Kompletter URI: "+ url.to_s
-#         puts "img: " + l.css("img").to_s
-#         imgs = l.css("img")
-
- #      end
-
-#   rescue StandardError
-     #@title+= "site not available"
-#      doc = Nokogiri::HTML(open(@location.uri))
-#      @title = doc.css('title')
-#    end
- #   render :text => @title
- 
- 
- 
-#   @links = UriHandler.getLinks(urlbase,@filter)
-#    @links = UriHandler.match(@links)
-#    UriHandler.save(@links)
- 
-   redirect_to :controller => 'uris', :action => 'matchURL', :path => urlbase
+   if @location.typ == URL_WEB
+     act= :matchURL
+   end
+   if @location.typ == URL_STORAGE_FS
+     act = :matchDir
+   end
+   
+   redirect_to :controller => 'uris', :action => 'fetch', :act => act, :path => urlbase
   end
 
   def parseLinks
@@ -122,6 +90,42 @@ class LocationsController < ApplicationController
     
     
     render "parse"
+  end
+
+  def gswl 
+        
+    storageNew = Storage.new
+    storageNew.name = @location.name.first(20) # weil name im Moment noch auf 20 Zeichen limitiert ist
+    storageNew.save
+    
+    locationNew = Location.new
+    locationNew.name = @location.name
+    
+
+    uri = URI.parse(@location.uri)
+
+    locationNew.uri = uri.scheme + "://"+uri.host
+    
+    locationNew.typ = URL_STORAGE_WEB
+    locationNew.inuse = true
+    locationNew.storage = storageNew
+    locationNew.save
+    
+    @mfile = locationNew.mfile 
+    unless @mfile  # for old locations without mfile
+      @mfile = Mfile.new
+      @mfile.mtype = MFILE_LOCATION
+      @mfile.filename = ""
+      @mfile.modified = Time.now
+      @mfile.mod_date = Time.now
+      @mfile.save
+      locationNew.mfile = @mfile
+      locationNew.save
+    end
+
+ 
+    
+    render "edit"
   end
 
   # POST /locations
@@ -187,7 +191,7 @@ class LocationsController < ApplicationController
   # DELETE /locations/1
   # DELETE /locations/1.json
   def destroy
-    @location.mfile.destroy
+    @location.mfile.destroy if @location.mfile
 #    @location.destroy # obsolete as mfile has  dependent destroy on location
     respond_to do |format|
       format.html { redirect_to locations_url }

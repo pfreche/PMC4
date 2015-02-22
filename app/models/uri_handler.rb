@@ -50,7 +50,7 @@ class UriHandler
     images = images.map {|i| URI.join(urlbase, i.attr("src").to_s).to_s}
     links += images
     
-#   links.select! { |l| l[%r{#{filter}}] } if filter
+   links.select! { |l| l[%r{#{filter}}] } if filter
 
 #   links = links.map {|l| [l, URI(l).path, l[%r{#{filter}}] ]}
 
@@ -79,13 +79,19 @@ def self.match(links,setlocation=nil)
          loc = setlocation
        end
      else
+       http = %r/httup:\/\//
+       if link =~ http
+         link = link.last(link.length-7)
+         ls = ["http://"]+link.split(/\//)
+       else
+         ls = link.split(/\//)
+       end
 
-       ls = link.split(/\//)
        
        blink = ""
        if collectedLocations
          ls.each do |l| 
-           blink = blink + l +  "\/" 
+           blink = blink + l 
          
 #          if c = collectedLocations.detect {|l| l==blink}
 #             locuri = c
@@ -93,6 +99,7 @@ def self.match(links,setlocation=nil)
            if c = allLocations.detect {|l| l.uri==blink}
              locuri = c
            end 
+           blink = blink + "\/" 
          end
        end
        
@@ -112,7 +119,7 @@ def self.match(links,setlocation=nil)
 #      end
        
        if locuri
-         length = blink.length
+         length = link.length
          ulength = locuri.uri.length
          path = link.last(length-ulength)
        end
@@ -146,6 +153,7 @@ end
 
 
 def self.save(matchedLinks, mtype)
+  
   
   matchedLinks.each do |a|
     
