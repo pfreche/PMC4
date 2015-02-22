@@ -1,0 +1,34 @@
+<h2>Mfiles</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Folder/URL</th>
+      <th>Name</th>
+      <th>Modified</th>
+      <th>Mod date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mfiles.each do |mfile| %>
+      <tr>
+      	<td><%= mfile.furlder %></td>
+        <td><%= link_to mfile.name, mfile.path(1) %></td>
+        
+        
+        <td><%= mfile.modified %></td>
+        <td><%= mfile.mod_date %></td>
+        <td><%= link_to 'Show', mfile %></td>
+        <td><%= link_to 'Edit', edit_mfile_path(mfile) %></td>
+        <td><%= link_to 'Destroy', mfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
