@@ -11,22 +11,25 @@
     </div>
   <% end %>
 
+<div class= "fieldbox">
   <div class="field">
-    <%= f.label :storage_id %><br>
-    <%= f.number_field :storage_id %>
+    <%= f.label :storage_id %>
+    <%= f.number_field :storage_id,  size: 100 %>
   </div>
   <div class="field">
-    <%= f.label :mpath %><br>
-    <%= f.text_field :mpath %>
+    <%= f.label :mpath %>
+    <%= f.text_field :mpath,  size: 100 %>
   </div>
   <div class="field">
-    <%= f.label :lfolder %><br>
-    <%= f.text_field :lfolder %>
+    <%= f.label :lfolder %>
+    <%= f.text_field :lfolder,  size: 100 %>
   </div>
   <div class="field">
-    <%= f.label :mfile_id %><br>
-    <%= f.number_field :mfile_id %>
+    <%= f.label :mfile_id %>
+    <%= f.number_field :mfile_id,  size: 100 %>
   </div>
+</div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

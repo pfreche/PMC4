@@ -4,7 +4,7 @@ require "uri"
 #require "nokogiri"
 
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy, :parse, :checkAvail, :parseURL, :gswl]
+  before_action :set_location, only: [:show, :edit, :update, :destroy, :parse, :checkAvail, :parseURL, :gswl, :getTitle]
   # GET /locations
   # GET /locations.json
   def index
@@ -40,14 +40,29 @@ class LocationsController < ApplicationController
   
   def checkAvail
     
-     uri = URI.parse(@location.uri)
-     begin
-       response = Net::HTTP.get_response(uri)
+     ltyp = @location.typ
+     
+     if ltyp == URL_WEB  or ltyp == URL_STORAGE_WEB or ltyp == URL_STORAGE_WEBTN
+                    
+       uri = URI.parse(@location.uri)
+       begin
+          response = Net::HTTP.get_response(uri)
 
-       @title = "site is there"
-     rescue StandardError
-       @title = "site not available"
-    end
+         @title = "site is there"
+       rescue StandardError
+         @title = "site not available"
+       end     
+     end
+     
+     if ltyp == URL_STORAGE_FS or ltyp == URL_STORAGE_FSTN 
+     
+       if File.exist?(@location.uri)
+          @title = "Directory is there"
+       else
+          @title = "Directory does not exist"
+       end
+     end
+
     render :text => @title
     
   end
@@ -82,6 +97,23 @@ class LocationsController < ApplicationController
 #      doc = Nokogiri::HTML(open(@location.uri))
 #      @title = doc.css('title')
     end
+  end
+
+  def getTitle
+
+    uri = URI.parse(@location.uri)
+    begin
+      response = Net::HTTP.get_response(uri)
+      page = Nokogiri::HTML(open(@location.uri))
+
+      @title = page.css("title")[0].text
+
+    rescue StandardError
+      @title = "site not available"
+
+    end
+    
+    render :text => @title
   end
 
   def parseURL

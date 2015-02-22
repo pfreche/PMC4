@@ -31,4 +31,10 @@ class Mfile < ActiveRecord::Base
        folder.lfolder
     end
   end
+  
+  def pic?
+    
+    name.end_with?("jpg") || name.end_with?("gif") ||  name.end_with?("jpeg") || name.end_with?("JPG")
+
+  end
 end

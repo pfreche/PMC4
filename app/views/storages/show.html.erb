@@ -2,12 +2,18 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Storage</b>
-  <%= @storage.name %>
-</p>
+<h1> Storage   <i class="titleName"><%= @storage.name %> </i>
+</h1>
 
+<div class="fbox">
 <%= render 'shared/folders' %>
+</div>
+
+<div class="fbox">
+<%= render 'shared/mfiles' %>
+</div>
+
+
 
 <%= link_to 'Edit', edit_storage_path(@storage) %> |
 <%= link_to 'Back', storages_path %>

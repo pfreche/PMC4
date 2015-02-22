@@ -15,6 +15,7 @@ class MfilesController < ApplicationController
   def thumbs
     typ = params[:typ]
     getMfiles(typ)
+    @mfiles.to_a.select!{|mfile| mfile.pic?}
      render "thumbs"
   end
 

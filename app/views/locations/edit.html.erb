@@ -1,9 +1,10 @@
 <h1>Location</h1>
 
 <%= render 'form' %>
+<%= link_to 'Show', @location %> |
+<%= link_to 'Back', locations_path %>
 <%= render 'net' %>
 
 <%= render :partial => 'shared/assign_attris' %>
 
-<%= link_to 'Show', @location %> |
-<%= link_to 'Back', locations_path %>
+

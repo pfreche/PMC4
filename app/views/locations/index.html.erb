@@ -1,12 +1,14 @@
-<h1>Listing locations</h1>
+<h1>Locations</h1>
+
+
+<%= link_to 'New Location', new_location_path %>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Uri</th>
-      <th>Description</th>
       <th>Typ</th>
+      <th>Location Name</th>
+
       <th> Storage</th>
         <th></th>    
       <th></th>
@@ -17,10 +19,10 @@
   <tbody>
     <% @locations.each do |location| %>
       <tr>
-        <td><%= location.name %></td>
-        <td><%= location.uri %></td>
-        <td><%= location.description %></td>
+
         <td><%= TYPPP[location.typ] %></td>
+        <td><%= link_to location.name, location.uri, :target => '_blank'%></td>
+
         <td><%= (a=location.storage)? a.name : "" %></td>
         <td><%= link_to 'Show', location %></td>
         <td><%= link_to 'Edit', edit_location_path(location) %></td>
@@ -32,4 +34,3 @@
 
 <br>
 
-<%= link_to 'New Location', new_location_path %>

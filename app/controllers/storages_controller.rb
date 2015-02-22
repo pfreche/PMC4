@@ -1,5 +1,5 @@
 class StoragesController < ApplicationController
-  before_action :set_storage, only: [:show, :edit, :update, :destroy]
+  before_action :set_storage, only: [:show, :edit, :update, :destroy, :touchMfiles]
   # GET /storages
   # GET /storages.json
   
@@ -12,6 +12,8 @@ class StoragesController < ApplicationController
   # GET /storages/1.json
   def show
     @folders = @storage.folders
+    @mfiles =  @storage.getMfiles
+    @mtypes = Mfile.group(:mtype).count(:id)
   end
 
   # GET /storages/new
@@ -106,6 +108,12 @@ class StoragesController < ApplicationController
     end
   end
 
+ def touchMfiles
+   
+   @mfiles = @storage.touchMfiles
+   @mtypes = Mfile.group(:mtype).count(:id)
+   render "mfiles/index"
+ end
  # Detect Folders for a storage
   # 
   def detectfolders

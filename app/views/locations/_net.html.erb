@@ -1,11 +1,19 @@
 <div class="locationNet">
 	
 
+	<button class="getTitle" id=<%=@location.id%>>
+		Get Title </button>
 		
 	
-	<div id="titlee">   </div>
+	<%= form_tag parse_location_path(@location), method: "get"  do %>
+
+       <%= submit_tag("Get Content") %>
+    <% end %>
 	
-	<%=link_to "Get Content", parse_location_path(@location)%>
-	
-		<%=link_to "Genarate Storage with Location", gswl_location_path(@location)%>		
+    <%= form_tag gswl_location_path(@location), method: "post"  do %>
+
+       <%= submit_tag("Genarate Storage with Location") %>
+    <% end %>
+
+    
 </div>

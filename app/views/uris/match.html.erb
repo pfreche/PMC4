@@ -1,10 +1,7 @@
-<h1>Listing parsed links</h1>
+<h1>Parsing Result</h1>
 
 <%= @path%>
 
-
-
-<%= link_to "save", matchURL_uris_path(:path => @path, :save => "yes", :act => @act)%>
 
 	<%= form_tag(fetch_uris_path, method: "get") do%>
 
@@ -16,11 +13,6 @@
 	<%= submit_tag "Save"%>
 	
 	<% end%>
-
-
-
-
-
 
 
 <%= form_tag(save_uris_path, method: "post") do  %>

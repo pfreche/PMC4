@@ -1,26 +1,10 @@
+<h1>Folder  <i class="titleName"> <%= @folder.mpath %> <%= @folder.lfolder %>  </i ></h1>
 <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Storage:</strong>
   <%= @folder.storage.name %>
 </p>
-
-<p>
-  <strong>Mpath:</strong>
-  <%= @folder.mpath %>
-</p>
-
-<p>
-  <strong>Lfolder:</strong>
-  <%= @folder.lfolder %>
-</p>
-
-
-<p>
-  <strong>Folderpath</strong>
-  <%= @folder.path(URL_STORAGE_WEB) %>
-</p>
-
 
 <p>
   <strong>Mfile:</strong>
@@ -30,38 +14,11 @@
 <%= link_to 'Edit', edit_folder_path(@folder) %> |
 <%= link_to 'Back', folders_path %>
 
+<%= render 'shared/mfiles' %>
 
 
-<table>
-  <thead>
-    <tr>
-      <th>Folder/URL</th>
-      <th>Name</th>
-      <th>Modified</th>
-      <th>Mod date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @mfiles.each do |mfile| %>
-      <tr>
-      	<td><%= mfile.furlder %></td>
-        <td><%= mfile.name %></td>
-        <td><%= mfile.modified %></td>
-        <td><%= mfile.mod_date %></td>
-        <td><%= link_to 'Show', mfile %></td>
-        <td><%= link_to 'Edit', edit_mfile_path(mfile) %></td>
-        <td><%= link_to 'Destroy', mfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-    <% @mfiles.each do |mfile| %>
+<% @mfiles.each do |mfile| %>
       <div class="thumbD" id="<%=mfile.id%>" data-<%=mfile.id%>="a" 
      	class=" <% mfile.attris.each do |attri| %> <%=attri.name%> <% end %> 
              <% mfile.agroups.each do |agroup| %> <%=agroup.name%> <% end %> " >
@@ -69,8 +26,7 @@
 
 <%= mfile.folder_id %>
         <%= mfile.filename %>
-      <a href="<%=mfile.path(1)%>">  <img src="<%=mfile.path(1)%>"> </img> </a>
-             </div>
+
     <% end %>
 
 

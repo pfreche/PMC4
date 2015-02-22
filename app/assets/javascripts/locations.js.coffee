@@ -24,13 +24,16 @@ $(document).ready ->
        $this = $(th)
        id = $this.attr("id")
        $.get "checkAvail", (data) ->
-          $("#titlee").html(data)
-          
-   parse = (th) ->
+          $("#aval").html(data)
+ #      
+   checkAvailiblity()
+            
+   getTitle = (th) ->
+
        $this = $(th)
        id = $this.attr("id")
-       $.get "parse", (data) ->
-          $("#titlee").html(data)
-#      
-   checkAvailiblity()
-   $('.checkAvailiblity').bind 'click', parse
+       $.get "getTitle", (data) ->
+          $("#location_name").attr('value', data);
+        
+
+   $('.getTitle').bind 'click', getTitle

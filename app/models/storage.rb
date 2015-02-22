@@ -17,4 +17,20 @@ class Storage < ActiveRecord::Base
           ""
     end
   end
+  
+  def touchMfiles
+    @mfiles = getMfiles
+    
+    @mfiles.each do |mfile|
+
+            modtime = File.new(mfile.path(URL_STORAGE_FS)).mtime
+            mfile.modified = modtime
+            mfile.mod_date = modtime
+            mfile.save
+    end
+  end
+  
+  def getMfiles
+    Mfile.joins(:folder => :storage).where("storages.id = ?", id).distinct.to_a
+  end
 end

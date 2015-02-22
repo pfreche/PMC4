@@ -22,8 +22,8 @@
 <div class="field">
 	<%= f.label :uri %>
 
-	<%= f.text_field :uri, size: 100%>
-</div>
+	<%= f.text_field :uri, size: 100%> 	<div id="aval">   </div>
+</div> 
 <div class="field">
 	<%= f.label :description %>
 
@@ -50,9 +50,8 @@
 	Storage.all.map {|l| [l.name, l.id]},
 	prompt: "Bitte wählen" %>
 
-	<div class="actions">
 		<%= f.submit "unassign"%>
-	</div>
+	
 </div>
 
 <div class="field">
@@ -62,7 +61,7 @@
 
 <div class="field">
 	<%= f.label "Thumbnail_Prefix" %>
-	<br>
+
 	<%= f.text_field :prefix %>
 </div>
 </div>
