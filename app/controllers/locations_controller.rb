@@ -4,7 +4,7 @@ require "uri"
 #require "nokogiri"
 
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy, :parse, :checkAvail, :parseURL, :gswl, :getTitle]
+  before_action :set_location, only: [:show, :edit, :update, :destroy, :parse, :checkAvail, :parseURL, :gswl, :getTitle, :analyzeFiles]
   # GET /locations
   # GET /locations.json
   def index
@@ -40,30 +40,9 @@ class LocationsController < ApplicationController
   
   def checkAvail
     
-     ltyp = @location.typ
+     @success = UriHandler.checkAvail(@location)
      
-     if ltyp == URL_WEB  or ltyp == URL_STORAGE_WEB or ltyp == URL_STORAGE_WEBTN
-                    
-       uri = URI.parse(@location.uri)
-       begin
-          response = Net::HTTP.get_response(uri)
-
-         @title = "site is there"
-       rescue StandardError
-         @title = "site not available"
-       end     
-     end
-     
-     if ltyp == URL_STORAGE_FS or ltyp == URL_STORAGE_FSTN 
-     
-       if File.exist?(@location.uri)
-          @title = "Directory is there"
-       else
-          @title = "Directory does not exist"
-       end
-     end
-
-    render :text => @title
+     render :text => @success
     
   end
 
@@ -124,6 +103,19 @@ class LocationsController < ApplicationController
     render "parse"
   end
 
+# analyze files
+
+  def analyzeFiles
+     a = UriHandler.checkContent(@location)
+     
+     text = "Number of Files " + a[0].to_s
+     text = text + " / Available Files " + a[1].to_s
+     render :text => text
+    
+  end
+  
+# Generate Storage with Location
+
   def gswl 
         
     storageNew = Storage.new
@@ -153,9 +145,7 @@ class LocationsController < ApplicationController
       @mfile.save
       locationNew.mfile = @mfile
       locationNew.save
-    end
-
- 
+    end 
     
     render "edit"
   end

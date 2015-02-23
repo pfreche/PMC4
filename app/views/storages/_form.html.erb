@@ -35,6 +35,7 @@
         <td><%= link_to location.name, edit_location_path(location)%></td>
        <td><%= location.uri %></td>
        <td>  <%= radio_button_tag "typ["+location.typ.to_s+"]", location.id.to_s ,location.inuse %> </td>
+       <td> <div id="<%=location.id%>" class="analyzeFiles" data-url='/locations/<%=location.id%>/analyzeFiles'> Analyze Files </div> </td>
   </tr>
 <% end %>
 
@@ -46,8 +47,11 @@
   
 <% end %>
 
+ <% if @storage.id%>
+ 
     <%= form_tag touchMfiles_storage_path(@storage), method: "post"  do %>
 
        <%= submit_tag("Touch Mfiles in this Storage") %>
     <% end %>
+ <% end %>
     
