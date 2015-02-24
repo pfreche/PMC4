@@ -46,6 +46,9 @@ PMC4::Application.routes.draw do
 
   resources :locations do 
     get 'analyzeFiles', :on => :member
+    get 'deleteFiles', :on => :member
+    get 'copyToFiles', :on => :member
+    get 'downloadToFiles', :on => :member
     get 'parse', :on => :member
     get 'getTitle', :on => :member
     post 'gswl', :on => :member
@@ -59,6 +62,7 @@ PMC4::Application.routes.draw do
     get 'detectFaFs', :on => :member
     get 'make_thumbnails', :on => :member
     post 'touchMfiles', :on => :member
+    post 'generateTNs', :on => :member
   end
 
 # The priority is based upon order of creation: first created -> highest priority.

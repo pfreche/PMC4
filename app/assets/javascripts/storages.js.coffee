@@ -5,11 +5,11 @@
 
 $(document).ready ->
   
-   analyzeFiles = () ->
+   processFiles = () ->
      $this = $(this)
      url = $this.attr("data-url")
      
      $.get url, (data) ->       
        $this.html(data)
        
-   $('.analyzeFiles').bind 'click', analyzeFiles
+   $('.processFiles').bind 'click', processFiles

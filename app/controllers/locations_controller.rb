@@ -4,7 +4,7 @@ require "uri"
 #require "nokogiri"
 
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy, :parse, :checkAvail, :parseURL, :gswl, :getTitle, :analyzeFiles]
+  before_action :set_location, only: [:show, :edit, :update, :destroy, :parse, :checkAvail, :parseURL, :gswl, :getTitle, :analyzeFiles, :copyToFiles, :downloadToFiles, :deleteFiles]
   # GET /locations
   # GET /locations.json
   def index
@@ -18,8 +18,16 @@ class LocationsController < ApplicationController
 
   # GET /locations/new
   def new
-    @location = Location.new
-    @location = Location.new(uri: params[:uri], name: params[:name])
+    if params[:uri]
+      @location = Location.new(uri: params[:uri], name: params[:name])
+    else
+      if params[:storage_id]
+        @location = Location.new(uri: params[:uri], name: params[:name], storage_id: params[:storage_id], typ: 1)
+      else 
+           @location = Location.new
+      end 
+    end
+
   end
 
   # GET /locations/1/edit
@@ -97,8 +105,7 @@ class LocationsController < ApplicationController
 
   def parseURL
     url = params[:url]
-    @links = UriHandler.parse(url,"")
-    
+    @links = UriHandler.parse(url,"")    
     
     render "parse"
   end
@@ -110,6 +117,47 @@ class LocationsController < ApplicationController
      
      text = "Number of Files " + a[0].to_s
      text = text + " / Available Files " + a[1].to_s
+     render :text => text
+    
+  end
+
+# copy files
+
+  def copyToFiles
+    
+     toLocation   = @location
+     fromLocation = toLocation.storage.location(URL_STORAGE_FS)
+     
+     UriHandler.mkDirectories(toLocation)
+     
+     text = UriHandler.copyFiles(fromLocation, toLocation)
+
+     render :text => text
+    
+  end
+  
+# download files
+  def downloadToFiles
+    
+     toLocation   = @location
+     fromLocation = toLocation.storage.location(URL_STORAGE_WEB)
+     
+     UriHandler.mkDirectories(toLocation)
+     
+     text = UriHandler.copyFiles(fromLocation, toLocation)
+     
+#    text = "Number of Files " + a[0].to_s
+#     text = text + " / Files copied " + a[1].to_s
+     render :text => text
+  end
+  
+# delete files
+
+  def deleteFiles
+     a = UriHandler.deleteFiles(@location)
+     
+     text = "Number of Files " + a[0].to_s
+     text = text + " / deleted Files " + a[1].to_s
      render :text => text
     
   end
@@ -199,9 +247,17 @@ class LocationsController < ApplicationController
       lp[:inuse] = false
     end
 
+    gotoLocation = true if  params[:commit] == "Save and go to Storage"
+
     respond_to do |format|
       if @location.update(lp)
-        format.html { redirect_to edit_location_path(@location.id), notice: 'Location was successfully updated.' }
+        format.html {
+           unless gotoLocation
+              redirect_to edit_location_path(@location.id), notice: 'Location was successfully updated.' 
+           else
+              redirect_to edit_storage_path(@location.storage.id), notice: 'Location was successfully updated.' 
+           end
+           }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

@@ -1,5 +1,5 @@
 class StoragesController < ApplicationController
-  before_action :set_storage, only: [:show, :edit, :update, :destroy, :touchMfiles]
+  before_action :set_storage, only: [:show, :edit, :update, :destroy, :touchMfiles, :generateTNs]
   # GET /storages
   # GET /storages.json
   
@@ -89,7 +89,7 @@ class StoragesController < ApplicationController
 
     respond_to do |format|
       if @storage.update(storage_params)
-        format.html { redirect_to @storage, notice: 'Storage was successfully updated.' }
+        format.html { render action: 'edit', notice: 'Storage was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -231,7 +231,19 @@ class StoragesController < ApplicationController
     
   end
   
-  # generate the thumbnails for a given storage
+  def generateTNs
+    
+     fromLocation = @storage.location(URL_STORAGE_FS)
+     toLocation   = @storage.location(URL_STORAGE_FSTN)
+     
+     text = UriHandler.generateTNs(fromLocation,toLocation,true,toLocation.prefix)
+      
+     flash[:notice] = text
+     render "edit"
+    
+  end
+  
+  # generate the thumbnails for a given storage / OBSOLete
  
   def make_thumbnails
  

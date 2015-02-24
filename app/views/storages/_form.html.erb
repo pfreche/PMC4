@@ -35,12 +35,16 @@
         <td><%= link_to location.name, edit_location_path(location)%></td>
        <td><%= location.uri %></td>
        <td>  <%= radio_button_tag "typ["+location.typ.to_s+"]", location.id.to_s ,location.inuse %> </td>
-       <td> <div id="<%=location.id%>" class="analyzeFiles" data-url='/locations/<%=location.id%>/analyzeFiles'> Analyze Files </div> </td>
+       <td> <div  class="processFiles" data-url='/locations/<%=location.id%>/analyzeFiles'> Analyze Files </div> </td>
+       <td> <div  class="processFiles" data-url='/locations/<%=location.id%>/deleteFiles'> Delete Files </div> </td>
+       <td> <div  class="processFiles" data-url='/locations/<%=location.id%>/copyToFiles'> copy Files to this area </div> </td>
+       <td> <div  class="processFiles" data-url='/locations/<%=location.id%>/downloadToFiles'> download Files to this area </div> </td>
+       
   </tr>
 <% end %>
-
 </table>
 
+<%= link_to "new location" , new_location_path(:storage_id => @storage.id) %>
   <div class="actions">
     <%= f.submit %>
   </div>
@@ -51,7 +55,16 @@
  
     <%= form_tag touchMfiles_storage_path(@storage), method: "post"  do %>
 
-       <%= submit_tag("Touch Mfiles in this Storage") %>
+       <%= submit_tag("Set Dates of Mfiles in this Storage") %>
     <% end %>
+    
+    <%= form_tag generateTNs_storage_path(@storage), method: "post"  do %>
+
+       <%= submit_tag("Generate Thumbnails from in Picture") %>
+       <%= submit_tag("Generate Thumbnails by max height 100") %>
+       <%= submit_tag("Generate Thumbnails by ...") %>
+       
+    <% end %>
+    
  <% end %>
     

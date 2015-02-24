@@ -187,8 +187,8 @@ def self.save(matchedLinks, mtype)
 
    storage = toLocation.storage
    uri = toLocation.uri
-# check types
    
+# check types   
    return "wrong typ in toLocation"    unless toLocation.typ == URL_STORAGE_FS  or toLocation.typ == URL_STORAGE_FSTN
    
 # get all folder from storage
@@ -204,8 +204,6 @@ def self.save(matchedLinks, mtype)
        next if fs == ""
        fr = File.join(fr,fs)
        Dir.mkdir(fr) unless File.exist?(fr) 
-         
-       puts fr
      end
    end
  
@@ -218,26 +216,81 @@ def self.save(matchedLinks, mtype)
    toUri = toLocation.uri
    fromUri = fromLocation.uri
 # check types
-   return "wrong typ in fromLocation"  unless fromLocation.typ == URL_STORAGE_FS  or fromLocation.typ == URL_STORAGE_FSTN
+#  return "wrong typ in fromLocation"  unless fromLocation.typ == URL_STORAGE_FS  or fromLocation.typ == URL_STORAGE_FSTN
    return "wrong typ in toLocation"    unless toLocation.typ == URL_STORAGE_FS  or toLocation.typ == URL_STORAGE_FSTN
+   # todo: check FS or FSTN in common?
    
 # get all folder from storage - fromLocation
 
    folders = storage.folders
+   n = 0
    
    folders.each do |folder|
-     from = File.join(fromUri, folder.mpath, folder.lfolder)
+     from = File.join(fromUri, folder.mpath, folder.lfolder).gsub("//", "/").gsub(":/","://")
      to =   File.join(toUri, folder.mpath, folder.lfolder)
      
      mfiles = folder.mfiles
      
      mfiles.each do |mfile|           
-        FileUtils.cp(File.join(from,mfile.filename), File.join(to,mfile.filename))      
+        fromFile = File.join(from,mfile.filename)
+        toFile   = File.join(to,mfile.filename)
+        
+        if fromLocation.typ == URL_STORAGE_WEB           
+              uri = URI.parse(fromFile)
+              Net::HTTP.start(uri.host, uri.port) do |http|
+                 response = http.get(uri.path)
+                 open(toFile, "wb") do |file|
+                     file.write(response.body)
+                     n = n +1
+                 end
+              end
+        end
+        
+        if fromLocation.typ == URL_STORAGE_FS
+          if File.exist?(fromFile) 
+             FileUtils.cp(fromFile, toFile)
+             n = n +1
+          end
+        end
+        
      end
+     
    end
+   return n.to_s+ " files copied"
  end
 
- def self.generateTNs(fromLocation, toLocation, prefix="tn_")
+# delete all files in the location' filesystem
+ def self.deleteFiles(location)
+   storage = location.storage
+   typ = location.typ
+   
+   return ["wrong type",0] unless typ == URL_STORAGE_FS  or typ == URL_STORAGE_FSTN
+   
+   folders = storage.folders
+   
+   n = 0 
+   del = 0
+   
+   folders.each do |folder|
+     
+     mfiles = folder.mfiles
+     
+     mfiles.each do |mfile|
+       n = n + 1
+       prefix = location.prefix || ""
+       path = File.join(location.uri, folder.mpath, folder.lfolder, prefix+mfile.filename)
+       if File.exist?(path)
+         File.delete(path)
+         del = del + 1
+       end
+     end
+   end
+   
+   [n, del]
+   
+ end
+
+ def self.generateTNs(fromLocation, toLocation, force=true, prefix="tn_")
    
    storage = toLocation.storage
    return "different storages" unless fromLocation.storage == storage
@@ -250,6 +303,7 @@ def self.save(matchedLinks, mtype)
 # get all folder from storage - fromLocation
 
    folders = storage.folders
+   n = 0
    
    folders.each do |folder|
      from = File.join(fromUri, folder.mpath, folder.lfolder)
@@ -257,12 +311,16 @@ def self.save(matchedLinks, mtype)
      
      mfiles = folder.mfiles
      
-     mfiles.each do |mfile|           
-        command = "jhead -st " + File.join(to,prefix+mfile.filename) + " " + File.join(from,mfile.filename)
-         puts command
+     mfiles.each do |mfile|
+        tofile = File.join(to,prefix+mfile.filename)
+        next unless force or !File.exist?(tofile)  # 
+        command = "jhead -st " + tofile + " " + File.join(from,mfile.filename)
+        puts command
         system(command)
+        n = n + 1
      end
    end
+   return n.to_s+" thumbnails generated"
  end
 
 # check the Content
@@ -282,7 +340,10 @@ def self.save(matchedLinks, mtype)
      
      mfiles.each do |mfile|
        n = n + 1
-       path = File.join(location.uri, folder.mpath, folder.lfolder, mfile.filename)
+       prefix = location.prefix || ""
+       path = File.join(location.uri, folder.mpath, folder.lfolder, prefix+mfile.filename)
+       path = path.gsub("//", "/").gsub(":/","://")
+       
        puts path    
        if typ == URL_STORAGE_FS  or typ == URL_STORAGE_FSTN
            avail = avail + 1 if File.exist?(path)
@@ -308,9 +369,11 @@ def self.save(matchedLinks, mtype)
               uri = URI.parse(path)
               response = nil
               Net::HTTP.start(uri.host, uri.port) do |http|
+                 puts "11111111"
                  response = http.head(uri.path)
+                 puts  "222222222222"
               end
-              puts response.code.to_i
+              puts "3333333333333"
               if response.kind_of? Net::HTTPSuccess
                  avail = avail + 1
               end
@@ -342,7 +405,7 @@ def self.save(matchedLinks, mtype)
      end
      
      if ltyp == URL_STORAGE_FS or ltyp == URL_STORAGE_FSTN 
-     
+       puts location.uri
        if File.exist?(location.uri)
           @title = "Directory is there"
        else
