@@ -209,7 +209,7 @@ def self.save(matchedLinks, mtype)
  
  end
  
- def self.copyFiles(fromLocation, toLocation)
+ def self.copyFiles(fromLocation, toLocation, force = true)
    
    storage = toLocation.storage
    return "different storages" unless fromLocation.storage == storage
@@ -314,7 +314,7 @@ def self.save(matchedLinks, mtype)
      mfiles.each do |mfile|
         tofile = File.join(to,prefix+mfile.filename)
         next unless force or !File.exist?(tofile)  # 
-        command = "jhead -st " + tofile + " " + File.join(from,mfile.filename)
+        command = "jhead -st '" + tofile + "'  '" + File.join(from,mfile.filename) +"'"
         puts command
         system(command)
         n = n + 1
