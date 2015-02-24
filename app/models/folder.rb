@@ -25,7 +25,7 @@ class Folder < ActiveRecord::Base
        
         if typ == URL_STORAGE_WEBTN or typ == URL_STORAGE_FSTN
           tnprefix = location.prefix
-          if tnprefix && !tnprefix.empty?
+          if (tnprefix && !tnprefix.empty?) or true # CHANGE 25.02.2015
               a =  ppath+ "/" +  f.mpath + "/" +  f.lfolder + "/" + tnprefix
           else
              a =  ppath+ "/"  # relevant for thumbnails path in the old fashion

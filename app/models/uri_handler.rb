@@ -203,7 +203,11 @@ def self.save(matchedLinks, mtype)
      fsplit.each do |fs|
        next if fs == ""
        fr = File.join(fr,fs)
-       Dir.mkdir(fr) unless File.exist?(fr) 
+       puts "'"+f+"'"
+       puts "dir='"+fr+"'"
+       unless File.exist?(fr) 
+          Dir.mkdir(fr)
+       end
      end
    end
  
