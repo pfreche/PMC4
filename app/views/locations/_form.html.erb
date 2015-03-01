@@ -13,12 +13,17 @@
 </div>
 <% end %>
 
+
+<%= submit_tag value="Save", class: "buttonForm" %>
+
+  
 <div class= "fieldbox">
 <div class="field">
 	<%= f.label :name%>
 	
 	<%= f.text_field :name, size: 100 %>
 </div>
+
 <div class="field">
 	<%= f.label :uri %>
 
@@ -37,10 +42,9 @@
 	<% i = -1 %>
 	<%= f.select :typ,
 	TYPPP.map {|l| [l, i+=1]} %>
-	.............................................................
-</div>
 
 </div>
+
 
 <div class="storagefields">
 
@@ -51,7 +55,7 @@
 	prompt: "Bitte wählen" %>
 
 		<%= f.submit "unassign"%>
-	
+
 </div>
 
 <div class="field">
@@ -63,11 +67,9 @@
 	<%= f.label "Thumbnail_Prefix" %>
 
 	<%= f.text_field :prefix %>
+
 </div>
+		<%= submit_tag value="Save and go to Storage", class: "buttonForm" %>
 </div>
 
-<div class="actions">
-	<%= f.submit %>
-	<%= f.submit("Save and go to Storage") %>
-</div>
 <% end %>

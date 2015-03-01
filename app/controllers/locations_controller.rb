@@ -9,6 +9,10 @@ class LocationsController < ApplicationController
   # GET /locations.json
   def index
     @locations = Location.all.order(:storage_id)
+    @search = params[:search]
+    if @search 
+      render "search"
+    end
   end
 
   # GET /locations/1
@@ -24,7 +28,11 @@ class LocationsController < ApplicationController
       if params[:storage_id]
         @location = Location.new(uri: params[:uri], name: params[:name], storage_id: params[:storage_id], typ: 1)
       else 
+        if params[:id]
+           @location = Location.find(params[:id]).dup
+        else
            @location = Location.new
+        end
       end 
     end
 
@@ -115,8 +123,8 @@ class LocationsController < ApplicationController
   def analyzeFiles
      a = UriHandler.checkContent(@location)
      
-     text = "Number of Files " + a[0].to_s
-     text = text + " / Available Files " + a[1].to_s
+     text =  a[1].to_s
+     text = text + " from " + a[0].to_s
      render :text => text
     
   end
@@ -156,8 +164,8 @@ class LocationsController < ApplicationController
   def deleteFiles
      a = UriHandler.deleteFiles(@location)
      
-     text = "Number of Files " + a[0].to_s
-     text = text + " / deleted Files " + a[1].to_s
+     text = a[1].to_s
+     text = text + " from " + a[1].to_s + " deleted"
      render :text => text
     
   end

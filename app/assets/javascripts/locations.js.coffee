@@ -35,5 +35,15 @@ $(document).ready ->
        $.get "getTitle", (data) ->
           $("#location_name").attr('value', data);
         
-
+ 
+   asearch = (th) ->
+       $this = $(th)
+       xiiiiii =  $this.attr("id") 
+       alert (xiiiiii)
+       
+       
    $('.getTitle').bind 'click', getTitle
+
+   $('#searchLocation').click  asearch
+   
+   

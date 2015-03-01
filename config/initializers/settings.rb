@@ -18,10 +18,10 @@ URL_STORAGE_FSTN = 4
 
 TYPPP = Array.new(5)
 TYPPP[URL_WEB ] = "Generic Web Access URL" 
-TYPPP[URL_STORAGE_WEBTN] = "Storage: Thnumbnail Web Access URL" 
-TYPPP[URL_STORAGE_WEB ] = "Storage: Web Access URL" 
-TYPPP[URL_STORAGE_FSTN] = "Storage: Thnumbnail Filesystem Access" 
-TYPPP[URL_STORAGE_FS] = "Storage: Filesystem Access" 
+TYPPP[URL_STORAGE_WEBTN] = "Storage: Web TN" 
+TYPPP[URL_STORAGE_WEB ] = "Storage: Web" 
+TYPPP[URL_STORAGE_FSTN] = "Storage: Filesystem TN" 
+TYPPP[URL_STORAGE_FS] = "Storage: Filesystem" 
 
 MFILETYPE = Array.new(5)
 MFILE_LOCATION = 1

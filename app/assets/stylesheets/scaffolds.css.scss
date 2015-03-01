@@ -6,22 +6,48 @@ body {
   line-height: 18px;
 }
 
-.field {
-  font-size: 16px;
-  text-align: right;  
+table {
+#  background-color: #99B;
+  color: #000;
+  border: 1px solid grey;
+  padding: 2px;
+  border-collapse: collapse;
+  margin-left: 10px;
+  position: relative;
 }
 
-
-.fieldbox {
- width: 800px;
-  
+ th,td {
+  background-color: #88A;
+  color: #000;
+  padding: 2px;
+  border-collapse: collapse;
+    border: 1px solid grey;
+   max-width: 300px;
+   overflow: hidden;
+     &:hover {
+    color: #004;
+    background-color: #bbb;
+#    overflow: visible;
+#    font-size: 20px;
+   }
 }
+
+ th {
+  background-color: #557;
+  color: #DDD;
+  padding: 2px;
+  border-collapse: collapse;
+    border: 1px solid grey;
+}
+
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  
 }
+
 
 pre {
   background-color: #eee;
@@ -30,13 +56,14 @@ pre {
 }
 
 a {
-  color: #aaa;
+  color: #000;
+  text-decoration: none;
   &:visited {
-    color: #aaa;
+    color: #004;
   }
   &:hover {
     color: #004;
-    background-color: #bbb;
+    background-color: #aaf;
   }
 }
 
@@ -44,6 +71,15 @@ div {
   &.field, &.actions {
     margin-bottom: 10px;
   }
+}
+
+.actions {
+
+}
+
+input  {
+  
+    background-color: #EFE;
 }
 
 #notice {
@@ -79,8 +115,12 @@ div {
   }
 }
 
-.titleName {
+.titlename {
   font-size: 18px; 
+}
+
+.buttonForm {
+  background-color: #D96;
 }
 
 .fbox {
@@ -91,3 +131,64 @@ div {
 .processFiles {
   cursor: pointer;
 }
+
+label {
+   display: inline-block;
+  width: 150px;  
+//  background-color: green;
+  text-align: right;  
+}
+
+.field {
+  font-size: 16px;
+//  text-align: right;  
+}
+
+
+.fieldbox {
+ width: 800px;
+ background-color: #224;
+  
+}
+
+#menu {
+  background-color: #EEF;
+  position: fixed;
+  top: 0px;
+}
+
+#main {
+  
+ margin-top: 40px;
+}
+
+.clink {
+ background-color: #DDF;
+ border: 2px solid #FFF; 
+ padding: 0px;
+ border-radius:0px;
+ margin: 1px;
+ 
+}
+
+// Tooltip
+
+.fa{
+//   display: inline;
+// display: relative;
+}
+
+.fa:hover:after{
+//    background: #333;
+    background-color: rgba(0,200,0,.9);
+    border-radius: 5px;
+    top: 0px;
+    color: #fff;
+    content: attr(data-tooltip);
+    right: 0px;
+    padding: 5px 15px;
+    position: absolute;
+    z-index: 989;
+ //   width: 220px;
+}
+

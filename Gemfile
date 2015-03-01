@@ -46,3 +46,5 @@ gem 'tzinfo-data'
 # gem 'debugger', group: [:development, :test]
 
 gem "nokogiri"
+
+gem "font-awesome-rails"

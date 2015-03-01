@@ -1,4 +1,6 @@
 PMC4::Application.routes.draw do
+  resources :mtypes
+
   resources :media_types
 
   resources :agroups

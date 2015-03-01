@@ -1,7 +1,8 @@
 <h1>Locations</h1>
 
 
-<%= link_to 'New Location', new_location_path %>
+<%= link_to 'New Location', new_location_path, class: 'clink' %>
+<p>
 
 <table>
   <thead>
@@ -10,9 +11,8 @@
       <th>Location Name</th>
 
       <th> Storage</th>
-        <th></th>    
-      <th></th>
-      <th></th>
+   
+  
     </tr>
   </thead>
 
@@ -24,9 +24,9 @@
         <td><%= link_to location.name, location.uri, :target => '_blank'%></td>
 
         <td><%= (a=location.storage)? a.name : "" %></td>
-        <td><%= link_to 'Show', location %></td>
-        <td><%= link_to 'Edit', edit_location_path(location) %></td>
-        <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to fa_icon("folder-open "), location %></td>
+        <td><%= link_to fa_icon("pencil lg"), edit_location_path(location) %></td>
+        <td><%= link_to fa_icon("trash lg"), location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

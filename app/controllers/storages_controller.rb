@@ -23,6 +23,7 @@ class StoragesController < ApplicationController
 
   # GET /storages/1/edit
   def edit
+    
   end
 
   # POST /storages

@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+  <span class='clink'>
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>
+<span>
+
 <p>
   <strong>Name:</strong>
   <%= @location.name %>
@@ -30,5 +35,4 @@
   <strong>Mfile_id</strong>
   <%= (a=@location.mfile)? a.id : ""%>
 </p>
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
+

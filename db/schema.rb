@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141230130633) do
+ActiveRecord::Schema.define(version: 20150228104350) do
 
   create_table "agroups", force: true do |t|
     t.string "name"
@@ -107,6 +107,15 @@ ActiveRecord::Schema.define(version: 20141230130633) do
 
   add_index "mfiles", ["folder_id"], name: "index_mfiles_on_folder_id", using: :btree
   add_index "mfiles", ["modified"], name: "index_mfiles_on_modified", using: :btree
+
+  create_table "mtypes", force: true do |t|
+    t.string   "name"
+    t.string   "icon"
+    t.string   "model"
+    t.boolean  "has_file"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "packlocations", force: true do |t|
     t.string "name"

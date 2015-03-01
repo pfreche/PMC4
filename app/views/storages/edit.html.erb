@@ -2,15 +2,9 @@
 <p id="notice"><%= notice %></p>
 <%= render 'form' %>
 
-<%= link_to 'Show', @storage %> |
-<%= link_to 'Back', storages_path %>
 
-<p>.
-	<p>.<p>
-		<p>.
-	<p>.
-	
-  <% if @storage.id%>
+
+  <% if false%>
   <%= link_to 'Detect Files and Folders', detectFaFs_storage_path(@storage) %>
 <p>
   <%= link_to 'Detect Folders', detectfolders_storage_path(@storage) %>
