@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @mtype.name %>
+</p>
+
+<p>
+  <strong>Icon:</strong>
+  <%= @mtype.icon %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @mtype.model %>
+</p>
+
+<p>
+  <strong>Has file:</strong>
+  <%= @mtype.has_file %>
+</p>
+
+<%= link_to 'Edit', edit_mtype_path(@mtype) %> |
+<%= link_to 'Back', mtypes_path %>
