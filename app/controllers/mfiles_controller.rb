@@ -48,8 +48,13 @@ class MfilesController < ApplicationController
         @mfiles = Mfile.where(folder_id: fid)
 
       else
-        @mfiles = Mfile.find([1,2,3])
-        @mfiles = Mfile.all
+        if typ == "nextFolder"
+        fid = session[:selectedFolder]
+        folder = Folder.find(fid).next ### to be defined
+        else
+          @mfiles = Mfile.find([1,2,3])
+          @mfiles = Mfile.all
+        end
       end
     end
 

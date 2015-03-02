@@ -238,7 +238,7 @@ class StoragesController < ApplicationController
      toLocation   = @storage.location(URL_STORAGE_FSTN)
 
             UriHandler.mkDirectories(toLocation)
-     text = UriHandler.generateTNs(fromLocation,toLocation,true,toLocation.prefix)
+     text = UriHandler.generateTNs(fromLocation,toLocation,true,toLocation.prefix,20000)
       
      flash[:notice] = text
      render "edit"

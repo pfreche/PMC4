@@ -294,7 +294,7 @@ def self.save(matchedLinks, mtype)
    
  end
 
- def self.generateTNs(fromLocation, toLocation, force=true, prefix="tn_")
+ def self.generateTNs(fromLocation, toLocation, force=true, prefix, area)
    
    storage = toLocation.storage
    return "different storages" unless fromLocation.storage == storage
@@ -318,8 +318,12 @@ def self.save(matchedLinks, mtype)
      mfiles.each do |mfile|
         tofile = File.join(to,prefix+mfile.filename)
         next unless force or !File.exist?(tofile)  # 
-        command = "jhead -st '" + tofile + "'  '" + File.join(from,mfile.filename) +"'"
-        puts command
+        if area == 0 
+           command = "jhead -st '" + tofile + "'  '" + File.join(from,mfile.filename) +"'"
+        else
+           command = "convert '"+File.join(from,mfile.filename)+ "' -thumbnail "+area.to_s+"@ '"+ tofile+"'"
+        end
+         puts command
         system(command)
         n = n + 1
      end
