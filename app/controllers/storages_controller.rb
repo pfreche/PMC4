@@ -237,6 +237,11 @@ class StoragesController < ApplicationController
      fromLocation = @storage.location(URL_STORAGE_FS)
      toLocation   = @storage.location(URL_STORAGE_FSTN)
 
+
+     @area = params[:area]    
+     
+     @area = params[:commit]    
+     
             UriHandler.mkDirectories(toLocation)
      text = UriHandler.generateTNs(fromLocation,toLocation,true,toLocation.prefix,20000)
       

@@ -213,7 +213,7 @@ def self.save(matchedLinks, mtype)
  
  end
  
- def self.copyFiles(fromLocation, toLocation, force = true)
+ def self.copyFiles(fromLocation, toLocation, force = true) # force implementierung fehlt
    
    storage = toLocation.storage
    return "different storages" unless fromLocation.storage == storage

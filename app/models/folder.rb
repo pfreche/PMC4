@@ -42,9 +42,23 @@ class Folder < ActiveRecord::Base
   def Folder.resetFOLDERPATH()
     FOLDERPATH.map! {|x| nil}  # puh, jetzt gehts
   end
+ 
+  def next
+    f = Folder.where(storage_id: storage_id).where('id >?', id).first
+    if f
+      return f
+    else
+      return  Folder.where(storage_id: storage_id).first
+    end
+  end
 
-  # ppath = storage.path(typ)
-  #
-  # a =  ppath+ "/" +  mpath + "/" +  lfolder
-  # a.gsub("//", "/").gsub("//", "/")
+  def previous
+    f = Folder.where(storage_id: storage_id).where('id <?', id).order(id: :desc).take
+    if f
+      return f
+    else
+      return  Folder.where(storage_id: storage_id).last
+    end
+  end
+  
 end
