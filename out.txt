@@ -1,0 +1,325 @@
+=> Booting WEBrick
+=> Rails 4.1.6 application starting in development on http://0.0.0.0:3000
+=> Run `rails server -h` for more startup options
+=> Notice: server is listening on all interfaces (0.0.0.0). Consider using 127.0.0.1 (--binding option)
+=> Ctrl-C to shutdown server
+
+
+Started POST "/storages/36/generateTNs" for 192.168.213.1 at 2015-03-06 10:35:36 -0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by StoragesController#generateTNs as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Zu1peUifdEal0r4Fmisbu8mrYRgKiOD8flgaAK7Ppyg=", "commit"=>"Generate Thumbnails by Area", "area"=>"20000", "id"=>"36"}
+  [1m[35mStorage Load (4.3ms)[0m  SELECT  `storages`.* FROM `storages`  WHERE `storages`.`id` = 36 LIMIT 1
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT  `locations`.* FROM `locations`  WHERE `locations`.`storage_id` = 36 AND `locations`.`storage_id` = 36 AND `locations`.`inuse` = 1 AND `locations`.`typ` = 2  ORDER BY `locations`.`id` ASC LIMIT 1[0m
+  [1m[35mLocation Load (0.3ms)[0m  SELECT  `locations`.* FROM `locations`  WHERE `locations`.`storage_id` = 36 AND `locations`.`storage_id` = 36 AND `locations`.`inuse` = 1 AND `locations`.`typ` = 4  ORDER BY `locations`.`id` ASC LIMIT 1
+  [1m[36mFolder Load (0.2ms)[0m  [1mSELECT `folders`.* FROM `folders`  WHERE `folders`.`storage_id` = 36[0m
+'/home/test/media1TN/sheetmusic///sheetmusic'
+dir='/home'
+'/home/test/media1TN/sheetmusic///sheetmusic'
+dir='/home/test'
+'/home/test/media1TN/sheetmusic///sheetmusic'
+dir='/home/test/media1TN'
+'/home/test/media1TN/sheetmusic///sheetmusic'
+dir='/home/test/media1TN/sheetmusic'
+'/home/test/media1TN/sheetmusic///sheetmusic'
+dir='/home/test/media1TN/sheetmusic/sheetmusic'
+  [1m[35mMfile Load (1.5ms)[0m  SELECT `mfiles`.* FROM `mfiles`  WHERE `mfiles`.`folder_id` = 3252
+convert '/home/test/media1/sheetmusic/sheetmusic/1001 - Barbara Streisand - The Way We Were (v2).pdf'[0] -thumbnail 20000@ '/home/test/media1TN/sheetmusic/sheetmusic/1001 - Barbara Streisand - The Way We Were (v2).jpg'
+convert '/home/test/media1/sheetmusic/sheetmusic/Vanessa Carlton - A Thousand Miles.pdf'[0] -thumbnail 20000@ '/home/test/media1TN/sheetmusic/sheetmusic/Vanessa Carlton - A Thousand Miles.jpg'
+convert '/home/test/media1/sheetmusic/sheetmusic/Akon - Don't Matter.pdf'[0] -thumbnail 20000@ '/home/test/media1TN/sheetmusic/sheetmusic/Akon - Dont Matter.jpgt Matter.jpg'
+convert '/home/test/media1/sheetmusic/sheetmusic/Colbie Caillat - Bubbly.pdf'[0] -thumbnail 20000@ '/home/test/media1TN/sheetmusic/sheetmusic/Colbie Caillat - Bubbly.jpg'
+convert '/home/test/media1/sheetmusic/sheetmusic/Frank Sinatra - Singing In The Rain.pdf'[0] -thumbnail 20000@ '/home/test/media1TN/sheetmusic/sheetmusic/Frank Sinatra - Singing In The Rain.jpg'
+convert '/home/test/media1/sheetmusic/sheetmusic/Jay Chou - Graduation.pdf'[0] -thumbnail 20000@ '/home/test/media1TN/sheetmusic/sheetmusic/Jay Chou - Graduation.jpg'
+convert '/home/test/media1/sheetmusic/sheetmusic/Jay Chou - Piano Battle 1.pdf'[0] -thumbnail 20000@ '/home/test/media1TN/sheetmusic/sheetmusic/Jay Chou - Piano Battle 1.jpg'
+convert '/home/test/media1/sheetmusic/sheetmusic/Jay Chou - Piano Battle 2.pdf'[0] -thumbnail 20000@ '/home/test/media1TN/sheetmusic/sheetmusic/Jay Chou - Piano Battle 2.jpg'
+convert '/home/test/media1/sheetmusic/sheetmusic/Justin Timberlake - What Goes Around (Comes Around).pdf'[0] -thumbnail 20000@ '/home/test/media1TN/sheetmusic/sheetmusic/Justin Timberlake - What Goes Around (Comes Around).jpg'
+convert '/home/test/media1/sheetmusic/sheetmusic/Meditation - Key of F Violin.pdf'[0] -thumbnail 20000@ '/home/test/media1TN/sheetmusic/sheetmusic/Meditation - Key of F Violin.jpg'
+convert '/home/test/media1/sheetmusic/sheetmusic/Natalie Imbruglia - Torn.pdf'[0] -thumbnail 20000@ '/home/test/media1TN/sheetmusic/sheetmusic/Natalie Imbruglia - Torn.jpg'
+convert '/home/test/media1/sheetmusic/sheetmusic/Natasha Bedingfield - Wild Horses.pdf'[0] -thumbnail 20000@ '/home/test/media1TN/sheetmusic/sheetmusic/Natasha Bedingfield - Wild Horses.jpg'
+convert '/home/test/media1/sheetmusic/sheetmusic/What I've Been Looking For (HSM).pdf'[0] -thumbnail 20000@ '/home/test/media1TN/sheetmusic/sheetmusic/What Ive Been Looking For (HSM).jpgve Been Looking For (HSM).jpg'
+convert '/home/test/media1/sheetmusic/sheetmusic/What I've Been Looking For(MidiIllustrator).pdf'[0] -thumbnail 20000@ '/home/test/media1TN/sheetmusic/sheetmusic/What Ive Been Looking For(MidiIllustrator).jpgve Been Looking For(MidiIllustrator).jpg'
+  [1m[36mLocation Load (0.2ms)[0m  [1mSELECT `locations`.* FROM `locations`  WHERE `locations`.`storage_id` = 36  ORDER BY `locations`.`typ` ASC[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `locations`.* FROM `locations`  WHERE `locations`.`storage_id` = 36 AND `locations`.`storage_id` = 36 AND `locations`.`inuse` = 1 AND `locations`.`typ` = 2  ORDER BY `locations`.`id` ASC LIMIT 1  [["storage_id", 36]]
+  [1m[36mLocation Load (0.7ms)[0m  [1mSELECT  `locations`.* FROM `locations`  WHERE `locations`.`storage_id` = 36 AND `locations`.`storage_id` = 36 AND `locations`.`inuse` = 1 AND `locations`.`typ` = 1  ORDER BY `locations`.`id` ASC LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT  `locations`.* FROM `locations`  WHERE `locations`.`storage_id` = 36 AND `locations`.`storage_id` = 36 AND `locations`.`inuse` = 1 AND `locations`.`typ` = 4  ORDER BY `locations`.`id` ASC LIMIT 1  [["storage_id", 36]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  `locations`.* FROM `locations`  WHERE `locations`.`storage_id` = 36 AND `locations`.`storage_id` = 36 AND `locations`.`inuse` = 1 AND `locations`.`typ` = 1  ORDER BY `locations`.`id` ASC LIMIT 1[0m  [["storage_id", 36]]
+  [1m[35mLocation Load (0.2ms)[0m  SELECT  `locations`.* FROM `locations`  WHERE `locations`.`storage_id` = 36 AND `locations`.`storage_id` = 36 AND `locations`.`inuse` = 1 AND `locations`.`typ` = 3  ORDER BY `locations`.`id` ASC LIMIT 1
+  Rendered storages/_form.html.erb (43.5ms)
+  Rendered storages/edit.html.erb within layouts/application (48.0ms)
+Completed 200 OK in 5270ms (Views: 727.1ms | ActiveRecord: 13.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/theme.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/core.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/accordion.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/autocomplete.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/menu.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/button.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/datepicker.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/draggable.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/resizable.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/dialog.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/progressbar.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/selectable.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/selectmenu.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/sortable.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/slider.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/spinner.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/tabs.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/tooltip.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/base.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/all.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/agroups.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/attris.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/folders.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/locations.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/media_types.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/mfiles.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/mtypes.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/storages.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/font-awesome.css?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/core.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/widget.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/accordion.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/position.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/menu.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/autocomplete.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/button.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/datepicker.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/mouse.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/draggable.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/resizable.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/dialog.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/droppable.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/effect.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/effect-blind.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/effect-bounce.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/effect-clip.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/effect-drop.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/effect-explode.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/effect-fade.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/effect-fold.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/effect-highlight.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/effect-size.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/effect-scale.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/effect-puff.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/effect-pulsate.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:42 -0800
+
+
+Started GET "/assets/jquery-ui/effect-shake.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/jquery-ui/effect-slide.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/jquery-ui/effect-transfer.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/jquery-ui/progressbar.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/jquery-ui/selectable.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/jquery-ui/selectmenu.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/jquery-ui/slider.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/jquery-ui/sortable.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/jquery-ui/spinner.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/jquery-ui/tabs.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/jquery-ui/tooltip.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/jquery-ui.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/agroups.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/attris.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/folders.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/locations.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/media_types.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/mfiles.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/mtypes.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/storages.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/assets/application.js?body=1" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+
+Started GET "/storages/36/checkAvail" for 192.168.213.1 at 2015-03-06 10:35:43 -0800
+
+ActionController::RoutingError (No route matches [GET] "/storages/36/checkAvail"):
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /home/test/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /home/test/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /home/test/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /home/test/.rvm/gems/ruby-2.2.0/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.text.erb (0.7ms)
+  Rendered /home/test/.rvm/gems/ruby-2.2.0/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/routing_error.text.erb (6.3ms)
+Exiting
