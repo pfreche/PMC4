@@ -10,7 +10,7 @@ $(document).ready ->
   a = 0
   name  = ""
   
-  hlColour = "yellow"
+  hlColour = "#ddf"
   
   $('#name').autocomplete
     source: $('#name').data('autocomplete-source')
@@ -65,7 +65,7 @@ $(document).ready ->
     $(".thumbC.vis").css {"background-color": hlColour}
     $(".thumbC.vis").css "border-color", hlColour
     $(".thumbC.vis").css({ 'opacity' : 1.0 })
-   
+
  
   hideUnselected = ->
 
@@ -182,6 +182,18 @@ $(document).ready ->
     id = actualPic.attr("id")
     $.get id+"/renderMfile", (data) ->
        $("#bildCont").html(data)
+       
+   prevPic = (th) ->
+    actualPic = actualPic.prev()
+    if actualPic == false # idea!!!! 
+      actualPic = actualPic
+#       actualPic = erstes Bild
+    id = actualPic.attr("id")
+    $.get id+"/renderMfile", (data) ->
+       $("#bildCont").html(data)
+ 
+      
+       
  
   nextPicSlide = (th) ->
     if actualPic == false 
@@ -213,16 +225,29 @@ $(document).ready ->
      
       $("#bildAttris").html(a)
   
+  thumbSize = (th) ->
+        $this = $(this)
+        size = $this.val() 
+        $(".thumbC.vis").css({ 'width' : size })
+        $(".thumbC.vis").css({ 'height' : size })
+    
+       
+      
     
   $("#bildCont").bind 'click', ->
     $("#overlayPic").hide()
     $("#dunkel").css('z-index', -2)
     
-  $("#overlayPic").bind 'click', ->
+  $("#bildNext").bind 'click', ->
     nextPic()
     showPicAttris(actualPic)
-  $("#bildNextSlide").bind 'click', ->
-    nextPicSlide()
+    
+  $("#bildPrev").bind 'click', ->
+    prevPic()
+    showPicAttris(actualPic)
+
+#  $("#bildNextSlide").bind 'click', ->
+#    nextPicSlide()
   
     
   $('#selAll').bind 'click', selectAll
@@ -246,6 +271,8 @@ $(document).ready ->
   $('#selectAll').bind 'click', selectAll
   $('#overlayPic').hide()
   
+  selectAll()
+  $('#thumbSize').bind 'change', thumbSize
 #    $(aa).each (i,e) -> 
 #      $(e).attr('value', "1");
 

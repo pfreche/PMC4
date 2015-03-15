@@ -37,7 +37,7 @@ class UriHandler
     links = page.css("a")
     links = links.map {       |l| 
       begin
-      URI.join(urlbase, (l.attr("href")||"").to_s).to_s
+      URI.decode(URI.join(urlbase, (l.attr("href")||"").to_s).to_s)
       rescue
         "failure"
       end
@@ -240,7 +240,7 @@ def self.save(matchedLinks, mtype)
         toFile   = File.join(to,mfile.filename)
         
         if fromLocation.typ == URL_STORAGE_WEB           
-              uri = URI.parse(fromFile)
+              uri = URI.parse(URI.encode(fromFile))
               Net::HTTP.start(uri.host, uri.port) do |http|
                  response = http.get(uri.path)
                  open(toFile, "wb") do |file|
@@ -318,13 +318,32 @@ def self.save(matchedLinks, mtype)
      mfiles.each do |mfile|
         tofile = File.join(to,prefix+mfile.filename)
         next unless force or !File.exist?(tofile)  # 
-        if area == 0 
-           command = "jhead -st '" + tofile + "'  '" + File.join(from,mfile.filename) +"'"
-        else
-           command = "convert '"+File.join(from,mfile.filename)+ "' -thumbnail "+area.to_s+"@ '"+ tofile+"'"
+        
+        fromfile = File.join(from,mfile.filename)
+ 
+ #       fromfile = UriHandler.cesc(fromfile)
+ #       tofile = UriHandler.cesc(tofile)
+        
+        
+        case 
+        when mfile.pic?
+           if area == 0 
+              command = "jhead -st \"" + tofile + "\"  \"" + fromfile  +"\""
+           else
+              command = "convert \""+ fromfile + "\" -thumbnail "+area.to_s+"@ \""+ tofile+"\""
+           end
+        when mfile.pdf?
+              tofile = tofile.gsub(".pdf",".jpg").gsub(".PDF",".jpg")
+              are = (area==0)?20000:area
+              command = "convert \""+File.join(from,mfile.filename)+ "\"[0] -thumbnail "+are.to_s+"@ \""+ tofile+"\""
+        else 
+             command = nil
         end
-         puts command
-        system(command)
+        
+        if command
+           puts command
+           system(command)
+        end
         n = n + 1
      end
    end
@@ -425,6 +444,12 @@ def self.save(matchedLinks, mtype)
    
  end
 
+#######################################
+# Escape of ' for OS commonas
+def self.cesc(f)
+  
+  f.gsub("'", "\\'")
+end
 
 
 end

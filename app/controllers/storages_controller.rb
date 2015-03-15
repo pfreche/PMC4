@@ -240,11 +240,17 @@ class StoragesController < ApplicationController
 
      @area = params[:area]    
      
-     @area = params[:commit]    
+     commit = params[:commit]    
      
-            UriHandler.mkDirectories(toLocation)
-     text = UriHandler.generateTNs(fromLocation,toLocation,true,toLocation.prefix,20000)
-      
+     UriHandler.mkDirectories(toLocation)
+     
+     if commit == "Generate Thumbnails by Area"       
+        text = UriHandler.generateTNs(fromLocation,toLocation,true,toLocation.prefix,@area)
+    else
+        text = UriHandler.generateTNs(fromLocation,toLocation,true,toLocation.prefix,0)      
+     end
+
+        
      flash[:notice] = text
      render "edit"
     

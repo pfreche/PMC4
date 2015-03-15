@@ -172,6 +172,9 @@ class MfilesController < ApplicationController
      when ".mp4"
        p "Film"
        render "snippet_video",  layout: false
+     when ".pdf", ".PDF"
+       p "PDF"
+       render "snippet_pdf", layout: false
      else 
  #            render text: @mfile.path(URLWEB)
     end

@@ -1,9 +1,10 @@
 body {
-  background-color: #002;
+#  background-color: #002;
   color: #aaa;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  background: linear-gradient( to left, #aac, #002)
 }
 
 table {
@@ -120,7 +121,7 @@ input  {
 }
 
 .buttonForm {
-  background-color: #D96;
+  background-color: #D9C;
 }
 
 .fbox {
@@ -180,12 +181,15 @@ label {
 
 .fa:hover:after{
 //    background: #333;
-    background-color: rgba(0,200,0,.9);
+    background-color: rgba(200,200,250,1.0);
+    
+    background: linear-gradient( to right, #ccf, #557);
     border-radius: 5px;
-    top: 0px;
-    color: #fff;
+    
+    top: 20px;
+    color: #111;
     content: attr(data-tooltip);
-    right: 0px;
+    right: 40px;
     padding: 5px 15px;
     position: absolute;
     z-index: 989;

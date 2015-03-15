@@ -13,7 +13,11 @@ class Mfile < ActiveRecord::Base
 #         p +filename
 #      end
 #    else
-      folder.path(typ) + filename
+      p =  folder.path(typ) + filename
+      if pdf? and (typ == URL_STORAGE_WEBTN  or typ == URL_STORAGE_FSTN)
+        p.gsub!(".pdf", ".jpg")
+      end
+      p
  #   end
   end
   def name
@@ -32,9 +36,16 @@ class Mfile < ActiveRecord::Base
     end
   end
   
-  def pic?
-    
+  def pic?    
     name.end_with?("jpg") || name.end_with?("gif") ||  name.end_with?("jpeg") || name.end_with?("JPG")
-
   end
+  
+  def pdf?
+     name.end_with?("pdf") || name.end_with?("PDF")
+  end
+  
+  def mp3?
+     name.end_with?("mp3") || name.end_with?("MP3")
+  end
+  
 end

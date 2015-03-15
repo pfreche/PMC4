@@ -6,10 +6,10 @@
        @mfiles.each do |mfile| %>
       <div id="<%=mfile.id%>" data-<%=mfile.id%>="a" class="thumbC vis <% mfile.attris.each do |attri| %> <%=attri.name%> A-<%=attri.id%> <% end %> 
              <% mfile.agroups.each do |agroup| %> <%=agroup.name%> G-<%=agroup.id%> <% end %> " 
-             style="background-image: url(<%=mfile.path(URL_STORAGE_WEBTN)%>) " >
+             style="background-image: url('<%=URI.escape(mfile.path(URL_STORAGE_WEBTN), Regexp.union('\'','-',' ','(', ')'))%>')" >
         
        <div class="check"> <%= hidden_field_tag "mfile["+mfile.id.to_s+"]" %> </div>
-              <div class="marker"> mark</div>
+              <div class="marker">  <i data-tooltip="Show" class="fa fa-search fa-2x"> </i></div>
 
              </div>
     <% end %>
@@ -27,14 +27,15 @@
 
 
 <div id="classifyBox">
-<%= text_field_tag :name, "", data: {autocomplete_source: autocomplete_attris_path}, autofocus: :autofocus%>
+	<input id="thumbSize" type="range"  min="10" max="500" value="30"/>
+<%= text_field_tag :name, "", data: {autocomplete_source: autocomplete_attris_path}, autofocus: :autofocus, size: 28%>
+
+<button id="setIt">  <i data-tooltip="Set Tag" class="fa fa-tag"></i> </button>
 <p>
-<button id="setIt"> SET IT</button>
-<p>
-<button id="hideUnselected"> show selected</button>
-<button id="showAll"> show All</button>
-<button id="selectInvert"> Invert</button>
-<button id="selectAll"> SelectAll</button>
+<button id="hideUnselected"> <i data-tooltip="Hide Unselected" class="fa fa-ban"></i>  </button>
+<button id="showAll"> <i data-tooltip="Show All" class="fa fa-dot-circle-o"></i> </button>
+<button id="selectInvert"> <i data-tooltip="Invert" class="fa fa-adjust"></i> </button>
+<button id="selectAll"> <i data-tooltip="Select All" class="fa fa-check-circle"></i> </button>
 
 <% 
    @agroups = Agroup.all
@@ -63,10 +64,10 @@
 </div>
 
 <div id="overlayPic">
-    <div id="bildCont"><img id="bild" src=""> </img></div>
+    <div id="bildCont">   </div>
 	<div id="bildAttris"> </div>
 	
-	<div id="bildNext"> next </div>
-	<div id="bildPrev"> prev </div>
+	<div id="bildNext"> <i data-tooltip="Next" class="fa fa-chevron-right fa-3x"> </i> </div>
+	<div id="bildPrev"> <i data-tooltip="Prev" class="fa fa-chevron-left fa-3x"> </i> </div>
 	
 </div>

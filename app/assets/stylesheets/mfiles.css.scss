@@ -46,7 +46,7 @@
 
 .agroup_no {
    width: 80px;
-  background-color: rgba(255, 0, 0, 0.7);
+  background-color: rgba(255, 100, 100, 1.0);
     color: #111;
     text-align: right;
   float: left;
@@ -64,13 +64,16 @@
 
 .marker {
   position: absolute;
-  left: 100px;
-  top: 40px;
+  right: 10px;
+  top: 10px;
   z-index: 20;
+  color: green;
+  display: none;
 
 }
 .marker:hover {
     background-color: white;
+
     color: red;
     z-index: 20;
     cursor: pointer;
@@ -110,12 +113,19 @@
 }
 
 
+
+.thumbC:hover .marker{
+    display:block;
+}
+
+
+
 #thumbnailBox{
     position: relative; // wichtig: damit sind alle innerhalb der Box absoluten Positionierungen relativ hierzu//#dunkel
     font-size: 8px;
     margin-right: 245px;
     border: 0px solid silver;
-    background-color: #012;
+#   background-color: #012;
 }
 
 
@@ -130,14 +140,14 @@
     margin: 10px;
     padding: 2px;
     border: 1px solid silver;
-    background-color: #224;
+   background-color: #224;
     color: #111;
     overflow: auto;
     height: 90%;
 }
 
 .classifyGroup {
-      background-color: #222;
+     background-color: #222;
   
 }
 
@@ -189,17 +199,31 @@
 #bildNext {
     position: fixed;
     top: 20px;
-    left: 6%;
-    height: 20px;
+    left: 50%;
     margin: 0px;
     padding: 0px;
     z-index: 10;
-    background-color: #fff;
- //   border: 1px solid silver;
 //   overflow: auto;
     overflow: hidden; 
-    cursor: cell;
+    cursor: pointer;
+    color: white;
+    text-shadow: 7px 5px #000000;
 }
+
+#bildPrev {
+    position: fixed;
+    top: 20px;
+    left: 45%;
+    margin: 0px;
+    padding: 0px;
+    z-index: 10;
+//   overflow: auto;
+    overflow: hidden; 
+    cursor: pointer;
+    color: white;
+    text-shadow: 7px 5px #000000;
+}
+
 
 #bildNextSlide {
     position: fixed;
