@@ -1,10 +1,10 @@
 body {
 #  background-color: #002;
-  color: #aaa;
+  color: #eee;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
-  background: linear-gradient( to left, #aac, #002)
+  background: linear-gradient( to left, #aac, #88a)
 }
 
 table {
@@ -23,7 +23,7 @@ table {
   padding: 2px;
   border-collapse: collapse;
     border: 1px solid grey;
-   max-width: 300px;
+   max-width: 500px;
    overflow: hidden;
      &:hover {
     color: #004;

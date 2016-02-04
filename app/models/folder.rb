@@ -11,16 +11,18 @@ class Folder < ActiveRecord::Base
 
   end
   def Folder.setFolderPath(typ)
+    
       FOLDERPATH[typ] = nil
       FOLDERPATH[typ] = Hash.new 
       fp = Folder.all
       fp.each do |f|
         storage = f.storage
+        
         next unless storage
         
         ppath = storage.path(typ)
         location = storage.location(typ)
-        
+       
         next unless location  #  important if a location for a certain type has not been defined
        
         if typ == URL_STORAGE_WEBTN or typ == URL_STORAGE_FSTN

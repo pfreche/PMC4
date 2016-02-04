@@ -1,11 +1,24 @@
 PMC4::Application.routes.draw do
+  resources :matches do
+    get 'match', :on => :collection
+    get 'extract', :on => :member
+    get 'extractsave', :on => :member    
+   
+  end
+
+  resources :regurls do
+
+    get 'check', :on => :member
+    get 'match', :on => :collection
+
+  end
+
   resources :mtypes
 
   resources :media_types
 
   resources :agroups
   patch 'agroups' => 'agroups#indexedit', as: 'indexedit_agroups'
-  
 
   get 'attris/find' => 'attris#find', as: 'find_attris'
   get 'attris/indi' => 'attris#indi', as: 'indi_attris'
@@ -14,19 +27,20 @@ PMC4::Application.routes.draw do
   get 'uris/show'  => "uris#show", as: 'uris_show'
   get 'uris/matchURL'  => "uris#matchURL", as: 'matchURL_uris'
   get 'uris/matchDir'  => "uris#matchDir", as: 'uris_matchDir'
-  
+
   get 'uris/fetch'  => "uris#fetch", as: 'fetch_uris'
   get 'uris/save'  => "uris#save", as: 'save_uris'
 
+  get 'uris/getLinks'  => "uris#getLinks", as: 'getLinks_uris'
 
   resources :attris do
     get 'autocomplete', :on => :collection
     get 'overview', :on => :collection
   end
-  
+
   resources :mfiles do
-       post 'add_attri_name', :on => :member
-       post 'add_attri', :on => :member
+    post 'add_attri_name', :on => :member
+    post 'add_attri', :on => :member
     delete 'remove_attri', :on => :member
     post 'add_agroup', :on => :member
     delete 'remove_agroup', :on => :member
@@ -40,13 +54,13 @@ PMC4::Application.routes.draw do
     get  'classify', :on => :collection
     get  'slideshow', :on => :collection
     post 'set_attris', :on => :collection
-    get  'thumbs', :on => :collection   
+    get  'thumbs', :on => :collection
   end
 
   resources :folders
   patch 'folders' => 'folders#indexedit', as: 'indexedit_folders'
 
-  resources :locations do 
+  resources :locations do
     get 'analyzeFiles', :on => :member
     get 'deleteFiles', :on => :member
     get 'copyToFiles', :on => :member

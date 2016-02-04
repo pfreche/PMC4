@@ -64,7 +64,7 @@ class StoragesController < ApplicationController
     end
     if typs
       for typ in typs do
-          Folder.setFolderPath(typ[1].to_i)
+          Folder.setFolderPath(typ[0].to_i)
       end
     end
     

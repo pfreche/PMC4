@@ -1,4 +1,30 @@
+require 'open-uri'
+
 class UriHandler
+
+
+  def self.getMatches(url)
+    
+    re = Match.all
+    
+    mat = []
+    
+    re.each do |r|     
+      m =  r.match(url)
+      next unless m
+      mat << [url,r,m] if m
+      if r.tag == "redirect"
+        re.each do |s|
+          ms = s.match(m[1])
+          mat << [m[1],s, ms] if ms
+        end
+      else
+ 
+      end
+    end
+    
+    mat
+  end
 
   def self.getFiles(path, filter)
     links = []
@@ -22,16 +48,104 @@ class UriHandler
     links
   end
 
+# Load Page into Noktogiri
+def self.loadNokogirPage (urlbase)
 
+# uri = URI.parse(euri)
+  begin
+    oURL = open(urlbase)
+    source = open(urlbase).read
+#   response = Net::HTTP.get_response(uri)
+    page = Nokogiri::HTML(source)
+  rescue StandardError
+  end
+end
+
+#Get the Urls of specified tag 
+
+def self.getUrlsOfTag(urlbase, page, tag, attrName)
+  
+    links = page.css(tag)
+    links = links.map {       |l| 
+      begin
+      URI.decode(URI.join(urlbase, (l.attr(attrName)||"").to_s).to_s)
+      rescue
+        "failure"
+      end
+      }
+    return links
+end
+
+# Filter 
+def self.filterUrls(urls, filter)
+     
+     if filter   
+        urls.select! { |l| l[%r{#{filter}}] } 
+     else 
+       urls
+     end
+end
+
+# extract content from @url with given match
+
+
+def self.extract(match, url)
+    
+    sourcee = loadURL(url)
+    page = Nokogiri::HTML(sourcee)
+
+    urlbase = url
+    
+    links = page.css("a")
+    links = links.map { |l| 
+      begin
+      URI.decode(URI.join(urlbase, (l.attr("href")||"").to_s).to_s)
+      rescue
+        "failure"
+      end
+      }
+#    images = page.css("img")
+#    images = images.map {|i| URI.join(urlbase, i.attr("src").to_s).to_s}
+#    links += images
+    
+    links.select! { |l| l[%r{#{match.filter}}] } if match.filter
+    if match.filter and match.filter.length >0 
+       links.map! { |l| 
+         
+         match.result.gsub(/\$1/, %r{#{match.filter}}.match(l)[1])
+
+         
+        } 
+     end
+
+ 
+   links
+ 
+end
+
+def self.loadURL(u)
+  
+    Rails.cache.fetch(u, expires_in: 12.hours) do
+          open(u).read
+    end
+ end
+
+# Get Links V1.0
 
   def self.getLinks(euri, filter)
 
-  uri = URI.parse(euri)
+# uri = URI.parse(euri)
   urlbase = euri
 
   begin
-    response = Net::HTTP.get_response(uri)
-    page = Nokogiri::HTML(open(urlbase))
+#   response = Net::HTTP.get_response(uri)
+#  page = Nokogiri::HTML(open(urlbase))    
+    
+ #   sourcee = response.body
+ #   sourcee = open(euri).read
+    sourcee = loadURL(euri)
+
+    page = Nokogiri::HTML(sourcee)
 
 #    @title = page.css("title")[0].text
     links = page.css("a")
@@ -55,7 +169,7 @@ class UriHandler
   end
   
    links
-  end
+end
 
 def self.match(links,setlocation=nil)
    
@@ -183,6 +297,16 @@ def self.save(matchedLinks, mtype)
  Folder.resetFOLDERPATH
  end
  
+ #*****
+ def  matchURL(url, requrl)
+   
+   
+   
+ end
+  
+#****
+ 
+ 
  def self.mkDirectories(toLocation)
 
    storage = toLocation.storage
@@ -213,7 +337,7 @@ def self.save(matchedLinks, mtype)
  
  end
  
- def self.copyFiles(fromLocation, toLocation, force = true) # force implementierung fehlt
+ def self.copyFiles(fromLocation, toLocation, force = false) # force implementierung fehlt noch für File Copy
    
    storage = toLocation.storage
    return "different storages" unless fromLocation.storage == storage
@@ -238,6 +362,8 @@ def self.save(matchedLinks, mtype)
      mfiles.each do |mfile|           
         fromFile = File.join(from,mfile.filename)
         toFile   = File.join(to,mfile.filename)
+        
+ #       next if File.exist?(toFile) and not force # 20160108 
         
         if fromLocation.typ == URL_STORAGE_WEB           
               uri = URI.parse(URI.encode(fromFile))

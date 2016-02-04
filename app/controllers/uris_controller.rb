@@ -4,6 +4,15 @@ def show
   
 end
 
+def getLinks(url)
+  
+    @url= params[:url]
+  @filter = params[:filter]  
+
+  links = UriHandler.getLinks(@path,@filter)
+  
+end
+
 def fetch
   
   @path = params[:path]
@@ -76,8 +85,6 @@ def save
     
   files = UriHandler.getFiles(@path,@filter)
   @links = UriHandler.match(files)
-  
-  
   
 end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150228104350) do
+ActiveRecord::Schema.define(version: 20160111213543) do
 
   create_table "agroups", force: true do |t|
     t.string "name"
@@ -89,6 +89,16 @@ ActiveRecord::Schema.define(version: 20150228104350) do
     t.datetime "updated_at"
     t.string   "prefix"
     t.integer  "mfile_id"
+  end
+
+  create_table "matches", force: true do |t|
+    t.string   "pattern"
+    t.string   "extract"
+    t.string   "tag"
+    t.string   "filter"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "result"
   end
 
   create_table "media_types", force: true do |t|

@@ -64,7 +64,7 @@ class LocationsController < ApplicationController
 
   def parse
 
-    uri = URI.parse(@location.uri)
+ #   uri = URI.parse(@location.uri)  20150108 wegen Error
     urlbase = @location.uri
     @filter =  params[:filter]
    
