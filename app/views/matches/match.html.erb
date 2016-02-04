@@ -1,0 +1,28 @@
+<h1>Match URL</h1>
+
+
+<%= form_tag(match_matches_path, method: "get") do  %>
+
+    <%= text_field_tag "url" , @url, size: 100%>
+
+    <%=submit_tag "match"%>
+<%end %>
+
+<%=@matches.length%>
+<br>
+<% @matches.each do |match| %>
+
+ 
+  <%=match[0]%>
+  <%=match[1].pattern%>
+ ---
+
+ 1) <%=match[2][1]%>   
+      
+  <% if match[2][1]%>
+  <%= link_to "Get Content", extract_match_path(match[1].id, :url => match[2][1])  %>
+  <%end%>
+  
+  <br>
+
+<% end%>

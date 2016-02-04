@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pattern:</strong>
+  <%= @regurl.pattern %>
+</p>
+
+<p>
+  <strong>Extract:</strong>
+  <%= @regurl.extract %>
+</p>
+
+<p>
+  <strong>Examurl:</strong>
+  <%= @regurl.examURL %>
+</p>
+
+<p>
+  <strong>Fin:</strong>
+  <%= @regurl.fin %>
+</p>
+
+<%= link_to 'Edit', edit_regurl_path(@regurl) %> |
+<%= link_to 'Back', regurls_path %>

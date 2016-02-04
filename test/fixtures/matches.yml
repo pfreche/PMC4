@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pattern: MyString
+  extract: MyString
+  tag: MyString
+  filter: MyString
+
+two:
+  pattern: MyString
+  extract: MyString
+  tag: MyString
+  filter: MyString

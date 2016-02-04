@@ -1,0 +1,25 @@
+<h1>Match URL</h1>
+
+
+<%= form_tag(match_regurls_path, method: "get") do  %>
+
+    <%= text_field_tag "url" , @url%>
+
+    <%=submit_tag "match"%>
+<%end %>
+
+<%=@matches.length%>
+<% @matches.each do |match| %>
+
+ 
+  <%=match[0].examURL%>   <%=match[0].pattern%>
+ 
+  <%=match[1][0]%>   
+  
+  <% if match[1][1]%>
+  <%= link_to getLinks_uris_path(match[1][1])  %>
+  <%end%>
+  
+  <br>
+
+<% end%>

@@ -1,0 +1,31 @@
+<h1>Listing regurls</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pattern</th>
+      <th>Extract</th>
+      <th>Examurl</th>
+      <th>Fin</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @regurls.each do |regurl| %>
+      <tr>
+        <td><%= regurl.pattern %></td>
+        <td><%= regurl.extract %></td>
+        <td><%= regurl.examURL %></td>
+        <td><%= regurl.fin %></td>
+        <td><%= link_to 'Show', regurl %></td>
+        <td><%= link_to 'Edit', edit_regurl_path(regurl) %></td>
+        <td><%= link_to 'Destroy', regurl, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Regurl', new_regurl_path %>

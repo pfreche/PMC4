@@ -1,0 +1,39 @@
+<%= form_for(@regurl) do |f| %>
+  <% if @regurl.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@regurl.errors.count, "error") %> prohibited this regurl from being saved:</h2>
+
+      <ul>
+      <% @regurl.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :pattern %><br>
+    <%= f.text_field :pattern %>
+  </div>
+  <div class="field">
+    <%= f.label :extract %><br>
+    <%= f.text_field :extract %>
+  </div>
+  <div class="field">
+    <%= f.label :examURL %><br>
+    <%= f.text_field :examURL %>
+  </div>
+  <div class="field">
+    <%= f.label :fin %><br>
+    <%= f.check_box :fin %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+  <%= submit_tag value="Match Pattern", class: "buttonForm" %>
+  
+  Match-Result:
+  <%= @matche %>
+  
+<% end %>

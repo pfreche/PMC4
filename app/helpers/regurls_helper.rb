@@ -1,0 +1,2 @@
+module RegurlsHelper
+end
