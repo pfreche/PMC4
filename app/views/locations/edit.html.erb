@@ -1,8 +1,11 @@
-<h1>Location</h1>
+<h1>Location <%= link_to material_icon.fiber_new, new_location_path %>
+	<%= link_to material_icon.search, @location %> 
+    <%= link_to material_icon.list, locations_path %>
+	
+</h1>
 
 <%= render 'form' %>
-<%= link_to 'Show', @location %> |
-<%= link_to 'Back', locations_path %>
+
 <%= render 'net' %>
 
 <%= render :partial => 'shared/assign_attris' %>

@@ -47,4 +47,10 @@ gem 'tzinfo-data'
 
 gem "nokogiri"
 
-gem "font-awesome-rails"
+# gem "font-awesome-rails"
+
+# gem "MDL-rails"
+
+gem 'material_design_lite-rails'
+gem 'material_icons'
+

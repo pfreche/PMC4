@@ -1,4 +1,10 @@
 PMC4::Application.routes.draw do
+
+  resources :bookmarks
+  
+  resources :mtypes
+  
+
   resources :matches do
     get 'match', :on => :collection
     get 'extract', :on => :member
@@ -13,9 +19,6 @@ PMC4::Application.routes.draw do
 
   end
 
-  resources :mtypes
-
-  resources :media_types
 
   resources :agroups
   patch 'agroups' => 'agroups#indexedit', as: 'indexedit_agroups'

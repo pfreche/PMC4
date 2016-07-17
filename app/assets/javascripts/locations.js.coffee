@@ -26,7 +26,7 @@ $(document).ready ->
        $.get "checkAvail", (data) ->
           $("#aval").html(data)
  #      
-   checkAvailiblity()
+#   checkAvailiblity()
             
    getTitle = (th) ->
 

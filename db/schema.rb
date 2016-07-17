@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111213543) do
+ActiveRecord::Schema.define(version: 20160701132533) do
 
   create_table "agroups", force: true do |t|
     t.string "name"
@@ -60,6 +60,14 @@ ActiveRecord::Schema.define(version: 20160111213543) do
 
   add_index "attris_mfiles", ["attri_id"], name: "index_attris_mfiles_on_attri_id", using: :btree
   add_index "attris_mfiles", ["mfile_id"], name: "index_attris_mfiles_on_mfile_id", using: :btree
+
+  create_table "bookmarks", force: true do |t|
+    t.string   "title"
+    t.string   "url"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "collection", force: true do |t|
     t.string "path", limit: 500, null: false

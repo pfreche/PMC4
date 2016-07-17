@@ -43,20 +43,21 @@
 <% @storage.locations.order(:typ).each do |location| %>
   <tr> 
         
-        <td><%= link_to fa_icon("plus-circle") , new_location_path(:id => location.id)%></td>
+        <td><%= link_to material_icon.fiber_new , new_location_path(:id => location.id)%></td>
         <td><%= link_to location.name, edit_location_path(location)%></td>
        <td><%= location.uri %></td>
        <td><%= TYPPP[location.typ] %></td>
        <td>  <%= radio_button_tag "typ["+location.typ.to_s+"]", location.id.to_s ,location.inuse %> </td>
-       <td> <div  class="processFiles" data-url='/locations/<%=location.id%>/analyzeFiles'> <%= fa_icon("info lg ", "data-tooltip" => "Show Infos")  %></div> </td>
-       <td> <div  class="processFiles" data-url='/locations/<%=location.id%>/deleteFiles'> <%= fa_icon("trash lg") if !location.inuse and location.isFS? %> </div> </td>
-       <td> <div  class="processFiles" data-url='/locations/<%=location.id%>/copyToFiles' title="aa"> <%= fa_icon("copy lg") if location.copyAllowedTo?%></div> </td>
-       <td> <div  class="processFiles" data-url='/locations/<%=location.id%>/downloadToFiles'> <%= fa_icon("cloud-download lg", "data-tooltip" => "Download from the checked WebStorage") if location.downloadAllowedTo?%></div> </td>
+       <td> <div  id="M1" class="processFiles" data-url='/locations/<%=location.id%>/analyzeFiles'> <%= material_icon.fingerprint   %></div> </td>
+       <td> <div  class="processFiles" data-url='/locations/<%=location.id%>/deleteFiles'> <%= material_icon.delete if !location.inuse and location.isFS? %> </div> </td>
+       <td> <div  class="processFiles" data-url='/locations/<%=location.id%>/copyToFiles' title="aa"> <%= material_icon.games  if location.copyAllowedTo?%></div> </td>
+       <td> <div  id="M2" class="processFiles" data-url='/locations/<%=location.id%>/downloadToFiles'> <%= material_icon.redo  if location.downloadAllowedTo?%></div> </td>
        
   </tr>
 <% end %>
 </table>
-  
+<span class="mdl-tooltip" for="M1">Analyse</span>  
+<span class="mdl-tooltip" for="M2"> Get Files	</span>  
   </div>
   <p>
   	

@@ -16,6 +16,10 @@ table {
   margin-left: 10px;
   position: relative;
 }
+ 
+h1 {
+  font-size: 30px;
+}
 
  th,td {
   background-color: #88A;
@@ -49,6 +53,9 @@ p, ol, ul, td {
   
 }
 
+li.menu {
+  display: inline;
+}
 
 pre {
   background-color: #eee;
@@ -196,3 +203,7 @@ label {
  //   width: 220px;
 }
 
+
+.orange600 {
+      color: #F88;
+}

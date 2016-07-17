@@ -1,7 +1,6 @@
-<h1>Locations</h1>
+<h1>Locations  <%= link_to material_icon.fiber_new, new_location_path %> </h1>
 
-
-<%= link_to 'New Location', new_location_path, class: 'clink' %>
+<%= link_to material_icon.fiber_new.css_class('orange600'), new_location_path %>
 <p>
 
 <table>
@@ -9,13 +8,9 @@
     <tr>
       <th>Typ</th>
       <th>Location Name</th>
-
-      <th> Storage</th>
-   
-  
+      <th> Storage</th> 
     </tr>
   </thead>
-
   <tbody>
     <% @locations.each do |location| %>
       <tr>
@@ -24,13 +19,15 @@
         <td><%= link_to location.name, location.uri, :target => '_blank'%></td>
 
         <td><%= (a=location.storage)? a.name : "" %></td>
-        <td><%= link_to fa_icon("folder-open "), location %></td>
-        <td><%= link_to fa_icon("pencil lg"), edit_location_path(location) %></td>
-        <td><%= link_to fa_icon("trash lg"), location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to  material_icon.search, location %></td>
+        <td><%= link_to  material_icon.mode_edit, edit_location_path(location) %></td>
+        <td><%= link_to  material_icon.delete, location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+  Button
+</button>

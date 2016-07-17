@@ -14,25 +14,28 @@
 <% end %>
 
 
-<%= submit_tag value="Save", class: "buttonForm" %>
+
 
   
 <div class= "fieldbox">
+
+<%= submit_tag value="Save", class: "buttonForm" %>
+
 <div class="field">
 	<%= f.label :name%>
 	
-	<%= f.text_field :name, size: 100 %>
+	<%= f.text_field :name, size: 80 %>
 </div>
 
 <div class="field">
 	<%= f.label :uri %>
 
-	<%= f.text_field :uri, size: 100%> 	<div id="aval">   </div>
+	<%= f.text_field :uri, size: 80%> 	<span id="aval">  site </span>
 </div> 
 <div class="field">
 	<%= f.label :description %>
 
-	<%= f.text_field :description, size: 100%>
+	<%= f.text_field :description, size: 80%>
 </div>
 
 
@@ -71,5 +74,5 @@
 </div>
 		<%= submit_tag value="Save and go to Storage", class: "buttonForm" %>
 </div>
-
+</div>
 <% end %>

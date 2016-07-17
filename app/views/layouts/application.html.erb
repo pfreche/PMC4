@@ -7,22 +7,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-		<div id='menu'>
-			<%= link_to 'Attributes', attris_path%> |
-			<%= link_to 'Attribute-Groups', agroups_path%> |
-			<%= link_to 'Locations', locations_path%> |
-			<%= link_to 'Storages', storages_path%> |
-			<%= link_to 'Folders', folders_path%> |
 
-			<%= link_to 'Thumbs (Attr)', thumbs_mfiles_path+"?typ=attribute"%> |
-			<%= link_to 'Thumbs (Folder)', thumbs_mfiles_path+"?typ=folder"%>|
+		<div id='menu'>
+			<ul><li class="menu"><%= link_to 'Attribute-Groups', agroups_path%></li>
+				<li class="menu"><%= link_to 'Locations', locations_path%> </li>
+				<li class="menu"><%= link_to 'Bookmarks', bookmarks_path%> </li>
+				<li class="menu"><%= link_to 'Storages', storages_path%></li>
 			
+	<li class="menu">
+			<%= link_to 'Folders', folders_path%> 
+<li class="menu">
+		<li class="menu">	<%= link_to 'Thumbs (Attr)', thumbs_mfiles_path+"?typ=attribute"%> 
+		<li class="menu">	<%= link_to 'Thumbs (Folder)', thumbs_mfiles_path+"?typ=folder"%>|
+			<li class="menu">
 			<%= link_to 'Classify (Attr)', classify_mfiles_path+"?typ=attribute"%> |
-			<%= link_to 'Classify(Folder)', classify_mfiles_path+"?typ=folder"%> |||||
-			<%= link_to 'Classify(Folder) Next', classify_mfiles_path+"?typ=nextFolder"%> 
-			
+		<li class="menu"> <%= link_to 'Classify(Folder)', classify_mfiles_path+"?typ=folder"%> 
+		<li class="menu">	<%= link_to 'Classify(Folder) Next', classify_mfiles_path+"?typ=nextFolder"%> 
+			</ul> 
 		</div>
-		<div id='main'>
+		
+		
+	
+	<button id="menu-speed" class="mdl-button mdl-js-button mdl-button--icon">
+  <i class="material-icons">more_vert</i>
+</button>
+<ul class="mdl-menu mdl-js-menu" for="menu-speed">
+  <li class="mdl-menu__item"><%= link_to 'Attributes', attris_path%> </li>
+  <li class="mdl-menu__item">Medium</li>
+  <li class="mdl-menu__item">Slow</li>
+</ul>
+
 
 		<%= yield %>
 		

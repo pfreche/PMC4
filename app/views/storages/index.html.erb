@@ -1,8 +1,10 @@
-<h1>Storages</h1>
+<h1>Storages
 
 
+<%= link_to material_icon.fiber_new, new_storage_path %>
 
-<%= link_to 'New Storage', new_storage_path, class: 'clink' %>
+</h1>
+
 <p>
 
 <table>
@@ -16,11 +18,15 @@
 <% @storages.each do |storage| %>
   <tr>
     <td><%= storage.name %></td>
-    <td><%= link_to fa_icon("folder-open "), storage %></td>
-    <td><%= link_to fa_icon("pencil lg"), edit_storage_path(storage) %></td>
-    <td><%= link_to fa_icon("trash lg"), storage, data: { confirm: 'Are you sure?'}, method: :delete %></td>
+    <td><%= link_to material_icon.search, storage %></td>
+    <td><%= link_to material_icon.mode_edit, edit_storage_path(storage) %></td>
+    <td><%= link_to material_icon.delete, storage, data: { confirm: 'Are you sure?'}, method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
+
+
+
+link_to 'New Storage', new_storage_path, class: 'clink'
