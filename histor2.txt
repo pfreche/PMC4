@@ -1,0 +1,308 @@
+    1  git
+    2  git pull 
+    3  pwd
+    4  cd docker
+    5  mkdir docker
+    6  cd docker
+    7  mkdir pmc4
+    8  cd pmc4/
+    9  git init
+   10  git pull 
+   11  git pull https://github.com/pfreche/PMC4.git
+   12  git branches
+   13  git branch
+   14  git branch mdl
+   15  git branch
+   16  ls
+   17  docker run
+   18  docker run --name p1 ruby
+   19  docker build -t peter 
+   20  ls
+   21  docker build -t peter .
+   22  docker build -t peter Dockerfile.txt
+   23  ls D*
+   24  ren Dockerfile.txt  Dockerfile
+   25  mv Dockerfile.txt Dockerfile
+   26  docker build -t peter Dockerfile
+   27  docker build -t peter .
+   28  docker build -t peter .
+   29  docker build -t peter .c
+   30  docker images
+   31  docker rmi 28
+   32  cdoc
+   33  docker ps -a
+   34  docker rm 11
+   35  docker rmi 28
+   36  docker images
+   37  docker rmi 5d
+   38  docker rm a
+   39  docker rmi 5d
+   40  docker build -t peter .
+   41  cd ..
+   42  ls
+   43  cd testrails1/
+   44  touch Gemfile.lock
+   45  ls
+   46  docker-compose
+   47  docker-compose run web new . --force --database=mysql --skip bundle
+   48  docker-compose run -d  web new . --force --database=mysql --skip bundle
+   49  d
+   50    
+   51  docker-compose run -d  web rails new . --force --database=mysql --skip bundle
+   52  ls
+   53  edit
+   54  nano
+   55  docker-compose build
+   56  docker ps
+   57  docker images
+   58  docker ps -a
+   59  docker-compose up
+   60  docker-compose up
+   61  docker images
+   62  docker-compose build
+   63  docker-compose up
+   64  docker-compose up
+   65  docker-compose up
+   66  docker-compose run web rake db:create
+   67  docker-compose run -d web rake db:create
+   68  docker-compose up
+   69  docker-compose run -d web g scaffold aber text:string
+   70  docker-compose run -d web rails g scaffold aber text:string
+   71  docker-compose run -d web rake db:create
+   72  docker-compose run -d web rake db:migrate
+   73  docker-compose run web rake db:migrate
+   74  docker-compose up
+   75  cd ..
+   76  cd pmc4/
+   77  docker-compose run -d  web new . --force --database=mysql --skip bundle
+   78  docker-compose run -d  web rails new . --force --database=mysql --skip bundle
+   79  docker-compose run -d web rake db:create
+   80  docker-compose up
+   81  docker-compose up
+   82  docker-compose run -d web rake db:create
+   83  docker-compose up
+   84  docker-compose run -d web rake db:migrate
+   85  docker-compose up
+   86  docker-compose up
+   87  docker-compose run web -e RAILS_ENV=development rake db:migrate
+   88  docker-compose run -d web -e RAILS_ENV=development rake db:migrate
+   89  docker-compose run -d -e RAILS_ENV=development web rake db:migrate
+   90  docker-compose up
+   91  docker-compose run -d -e RAILS_ENV=development web rake db:migrate
+   92  docker-compose run web bash
+   93  docker-compose run -d web bash
+   94  docker ps
+   95  docker stop 97
+   96  docker-compose up
+   97  docker-compose up
+   98  docker-compose run -d -e RAILS_ENV=development web rails db:migrate
+   99  docker-compose up
+  100  cd ..
+  101  pwd
+  102  cd testrails1/
+  103  docker-compose up
+  104  rails images
+  105  docker images
+  106  docker ps
+  107  docker containers
+  108  docker container
+  109  docker ps -a
+  110  docker ps
+  111  docker ps -a
+  112  docker-compose up
+  113  docker-compose up
+  114  pwd
+  115  ls
+  116  cd ..
+  117  cd ..
+  118  cd docker/
+  119  cd pmc4/
+  120  docker-compose build
+  121  docker-compose build
+  122  docker-compose run -d webp rake db:create
+  123  docker-compose run -d -e RAILS_ENV=development webp rails db:migrate
+  124  docker-compose up
+  125  docker-compose run webp rake db:create
+  126  docker-compose run -d webp rake db:create
+  127  docker-compose up
+  128  docker-compose run -d -e RAILS_ENV=development webp rails db:migrate
+  129  docker-compose run -d - webp rails db:migrate
+  130  docker-compose run -d  webp rails db:migrate
+  131  docker-compose up
+  132  docker-compose up
+  133  docker-compose run webp rake db:create
+  134  docker-compose run -d webp rake db:create
+  135  docker-compose run -d webp rake db:create
+  136  docker-compose up
+  137  exit
+  138  cd docker/
+  139  cd PMC4
+  140  docker-compose up
+  141  git
+  142  git branch
+  143  git branch mdl
+  144  git branch
+  145  git branch --help
+  146  git checkout mdl
+  147  git branch
+  148  docker-compose up
+  149  docker-compose up
+  150  docker-compose up
+  151  docker-compose up^
+  152  docker-compose up
+  153  docker-compose build
+  154  docker-compose up
+  155  docker-compose build
+  156  docker-compose up
+  157  docker-compose run -d webp rake db:reset
+  158  docker ps -a
+  159  docker logs 08
+  160  docker-compose up
+  161  exit
+  162  pwd
+  163  cd docker/
+  164  cd pmc4/
+  165  docker-compose run -d webp rake db:create
+  166  docker-compose run -d -e RAILS_ENV=development webp rails db:migrate
+  167  docker-compose up
+  168  docker-compose run -d webp rake db:create
+  169  docker-compose run -d -e RAILS_ENV=development webp rails db:migrate
+  170  docker-compose up
+  171  docker-compose run -d webp rake db:create
+  172  docker-compose run -d -e RAILS_ENV=development webp rails db:migrate
+  173  docker-compose up
+  174  docker-compose run -d webp rake db:reset
+  175  docker-compose up
+  176  docker-compose run -d webp rake db:drop
+  177  docker-compose up
+  178  docker-compose run -d webp rake db:drop:all
+  179  docker-compose up
+  180  docker-compose run -d webp rake db:drop
+  181  docker-compose run -d webp rake db:drop:all
+  182  docker-compose run webp rake db:drop:all
+  183  docker log
+  184  docker logs
+  185  docker ps -a
+  186  docker logs 95
+  187  docker-compose run -e RAILS_ENV=development webp rake db:drop:all
+  188  docker-compose run -d -e RAILS_ENV=development webp rake db:drop:all
+  189  docker logs pmc4_wbp_run_19
+  190  docker ps -a
+  191  docker logs a6
+  192  docker-compose run -d webp rake db:reset
+  193  docker ps -a
+  194  docker logs 39
+  195  docker-compose run -d webp db:environment:set RAILS_ENV=development
+  196  docker-compose run -d webp rails db:environment:set RAILS_ENV=development
+  197  docker ps -a
+  198  docker rm 7
+  199  docker rm 7*
+  200  docker ps -a
+  201  docker logs 38
+  202  docker-compose run -d webp rake db:reset
+  203  docker ps -a
+  204  docker logs 72
+  205  docker logs 724
+  206  docker-compose up
+  207  docker rm $(docker ps -q -f status=exited)
+  208  docker ps -a
+  209  docker-compose up
+  210  c
+  211  docker-compose run -d webp rake db:reset
+  212  docker-compose up
+  213  docker-compose build
+  214  docker-compose up
+  215  docker rm $(docker ps -q -f status=exited)
+  216  docker-compose build
+  217  docker images
+  218  docker-compose up
+  219  docker-compose up
+  220  cd ..
+  221  ls
+  222  mv pmc4/ pmc4.firstattempt
+  223  mv pmc4/ pmc4.firstattempt
+  224  mv pmc4/ pmc4x
+  225  mkdir pmc4
+  226  cd pmc4
+  227  git init
+  228  history
+  229  history --help
+  230  git pull https://github.com/pfreche/PMC4.git
+  231  git branch 
+  232  git branch  lis
+  233  git branch  list
+  234  git 
+  235  git
+  236  git checkout mdl
+  237  git branch --help
+  238  git branch --list
+  239  git pull -hep
+  240  git pull -help
+  241  git branch --help
+  242  git pull --help
+  243  git clone --help
+  244  ls
+  245  rm 
+  246  ls
+  247  rm *
+  248  rm -R *
+  249  ls
+  250  git clone https://github.com/pfreche/PMC4.git
+  251  git branch
+  252  cd ..
+  253  mkdir pmc4
+  254  cd pmc4
+  255  git clone https://github.com/pfreche/PMC4.git
+  256  git branch
+  257  git branch -r
+  258  git init
+  259  ls
+  260  ls -la
+  261  rm -R .git
+  262  ls
+  263  git branch
+  264  git branch -r
+  265  git branch mdl
+  266  git branch -r
+  267  git branch 
+  268  git checkout mdl
+  269  cd ..
+  270  ls
+  271  git clone https://github.com/pfreche/PMC4.git
+  272  cd PMC4
+  273  ls
+  274  git branch 
+  275  git checkout mdl
+  276  git branch 
+  277  docker-compose build
+  278  docker-compose build
+  279  docker-compose up
+  280  docker-compose up
+  281  history
+  282  docker-compose run -d webp rake db:reset
+  283  docker ps -a
+  284  docker logs fc
+  285  docker-compose up
+  286  docker-compose up
+  287  e
+  288  exit
+  289  cd docker
+  290  cd PMC4
+  291  docker-compose up
+  292  docker-compose up
+  293  docker-compose up
+  294  docker-compose up
+  295  docker-compose up
+  296  exit
+  297  docker-compose up
+  298  cd docker 
+  299  cd pmc4
+  300  docker-compose up
+  301  docker-compose up
+  302  docker-compose up
+  303  ls
+  304  docker images
+  305  docker images
+  306  docker rmi 19
+  307  history
+  308  history > histor2.txt

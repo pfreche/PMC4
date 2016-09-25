@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @scanner.tag %>
+</p>
+
+<p>
+  <strong>Pattern:</strong>
+  <%= @scanner.pattern %>
+</p>
+
+<%= link_to 'Edit', edit_scanner_path(@scanner) %> |
+<%= link_to 'Back', scanners_path %>
