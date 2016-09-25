@@ -15,3 +15,9 @@ rails g scaffold Table abc:string type:integer
 Vorgehen bei Migration: Load Production with mysql command (above), then migrate, then dump (as backup)
 
 
+------- neu 25.9.2016 mit Docker
+
+docker exec -it af mysqldump --user=root --password=wordpress media_development > mytest.sql
+entferne erste Zeile.
+docker exec -i af mysql --user=root --password=wordpress media_development < mytest.sql 
+

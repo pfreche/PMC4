@@ -4,6 +4,7 @@ body {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  margin-left: 20px;
   background: linear-gradient( to left, #aac, #88a)
 }
 
@@ -141,10 +142,11 @@ input  {
 }
 
 label {
-   display: inline-block;
+  display: inline-block;
   width: 150px;  
-//  background-color: green;
+ //background-color: #eee;
   text-align: right;  
+
 }
 
 .field {
@@ -160,7 +162,7 @@ label {
 }
 
 #menu {
-  background-color: #EEF;
+  background-color: #FFF;
   position: fixed;
   top: 0px;
 }

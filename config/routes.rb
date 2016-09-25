@@ -1,5 +1,13 @@
 PMC4::Application.routes.draw do
 
+  get 'scanners/scan' => 'scanners#scan', as: 'scan_scanners'
+
+  resources :scanners do
+    post 'scan', :on => :collection
+    get 'extract', :on => :member
+    get 'extractsave', :on => :member    
+  end
+
   resources :bookmarks
   
   resources :mtypes
