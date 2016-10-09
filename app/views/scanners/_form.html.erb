@@ -12,8 +12,33 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :url %>
+    <%= f.text_field :url, size: 80 %>
+  </div>
+
+  <div class="field">
+    <%=  @scanner.matchS(@scanner.url) %>
+
+  </div>
+
+  <div class="field">
+    <%= f.label :match %>
+    <%= f.text_field :match, size: 80 %>
+  </div>
+
+  <div class="field">
     <%= f.label :tag %>
     <%= f.text_field :tag %>
+  </div>
+
+  <div class="field">
+    <%= f.label :attr %>
+    <%= f.text_field :attr %>
   </div>
 
   <div class="field">
@@ -24,4 +49,8 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+  <div class="actions">
+    <%= submit_tag "Scan" %>
+  </div>
+
 <% end %>

@@ -1,1 +1,8 @@
- 
+1. integriere Webserver im Docker-compose
+	Volume sollte auch von rails zugreifbar sein.
+
+
+
+Bugs: 
+a) attris ohne agroup
+b) 

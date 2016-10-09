@@ -1,9 +1,10 @@
 <h1>Scan HTML Page</h1>
 
 <%= render 'formScan', scanner: @scanner %>
-
+<% if @links %>
 <% @links.each do |link| %>
 
    <%=link_to link, link%>
+<% end %>
 <% end %>
 <%= link_to 'Back', scanners_path %>

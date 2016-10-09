@@ -1,14 +1,21 @@
 PMC4::Application.routes.draw do
 
   get 'scanners/scan' => 'scanners#scan', as: 'scan_scanners'
+  get 'scanners/match' => 'scanners#match', as: 'match_scanners'
+  post 'scanners/match' => 'scanners#match', as: 'match_scanners_post'
 
   resources :scanners do
-    post 'scan', :on => :collection
+#    get 'match', :on => :collection
+    get 'copy', :on => :member
+    get 'scann', :on => :member
     get 'extract', :on => :member
     get 'extractsave', :on => :member    
   end
 
-  resources :bookmarks
+  resources :bookmarks do
+    get 'getTitle', :on => :member
+    get 'scan', :on => :member
+  end
   
   resources :mtypes
   

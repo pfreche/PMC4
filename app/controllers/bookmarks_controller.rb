@@ -1,5 +1,5 @@
 class BookmarksController < ApplicationController
-  before_action :set_bookmark, only: [:show, :edit, :update, :destroy]
+  before_action :set_bookmark, only: [:show, :edit, :update, :destroy, :getTitle, :scan]
 
   # GET /bookmarks
   # GET /bookmarks.json
@@ -10,6 +10,18 @@ class BookmarksController < ApplicationController
   # GET /bookmarks/1
   # GET /bookmarks/1.json
   def show
+  end
+
+ # GET /bookmarks/1/scan
+  # GET /bookmarks/1.json
+  def scan
+    redirect_to match_scanners_path(url: @bookmark.url)
+    # @scanners = Scanner.all
+    # scanID = params[:scanID]
+    # if scanID
+    #     @scanner = Scanner.find(scanID)
+    #     @links = RHandler.extract(@bookmark.url, "HREF", @scanner.pattern)
+    # end
   end
 
   # GET /bookmarks/new
@@ -60,6 +72,22 @@ class BookmarksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+# get Title from URl by retrieving the url / implemented as AJAX
+
+  def getTitle
+
+    uri = URI.parse(@bookmark.url)
+    begin
+#      response = Net::HTTP.get_response(uri)
+      page = Nokogiri::HTML(open(@bookmark.url))
+      @title = page.css("title")[0].text
+    rescue StandardError
+      @title = "site not available: " + @bookmark.url
+    end
+    render plain: @title
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

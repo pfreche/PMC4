@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @bookmark.title %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @bookmark.url %>
+</p>
+
+<br>
+<% @scanners.each do |scanner| %>
+  <%= scanner.pattern%>
+  <%= link_to "Scan", scan_bookmark_path(@bookmark, scanID: scanner.id) %>
+   <p>
+<% end %>
+
+<% if @links %>
+<% @links.each do |link| %>
+
+   <%=link_to link, link%>
+<% end %>
+<% end %>
+
+
+
+<%= link_to 'Edit', edit_bookmark_path(@bookmark) %> |
+<%= link_to 'Back', bookmarks_path %>

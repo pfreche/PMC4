@@ -1,20 +1,25 @@
 class RHandler
 
-def self.extract(url, tag, pattern)
+def self.extract(url, tag, attr, pattern)
     
     sourcee = loadURL(url)
     page = Nokogiri::HTML(sourcee)
 
     urlbase = url
     
-    links = page.css("a")
+    links = page.css(tag)
+
     links = links.map { |l| 
       begin
-      URI.decode(URI.join(urlbase, (l.attr("href")||"").to_s).to_s)
+      if attr and attr.length >0 
+        URI.decode(URI.join(urlbase, (l.attr(attr)||"").to_s).to_s)
+      else 
+        l.to_s
+      end
       rescue
         "failure"
       end
-      }
+      } 
     
     links.select! { |l| l[%r{#{pattern}}] } if pattern
       if pattern and pattern.length >0 

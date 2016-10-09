@@ -7,7 +7,7 @@ def self.extract(url, tag, pattern)
 
     urlbase = url
     
-    links = page.css("a")
+    links = page.css(tag)
     links = links.map { |l| 
       begin
       URI.decode(URI.join(urlbase, (l.attr("href")||"").to_s).to_s)

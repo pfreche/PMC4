@@ -2,6 +2,17 @@
 
 <h1>Scanners</h1>
 
+
+ <%= form_tag(match_scanners_path) do %>
+  <div class="field">
+    <%= label_tag :url %>
+    <%= text_field_tag :url, @url, size: 80 %>
+  </div>
+  <%= submit_tag("Match") %>
+<% end %>
+
+
+
 <table>
   <thead>
     <tr>
@@ -9,6 +20,7 @@
       <th>match</th>
       <th>Tag</th>
       <th>Pattern</th>
+      <th>Fit</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,9 +32,11 @@
         <td><%= scanner.match %></td>
         <td><%= scanner.tag %></td>
         <td><%= scanner.pattern %></td>
-        <td><%= link_to 'Show', scanner %></td>
+        <td><%= scanner.matchS(@url) %></td>
+        
+        <td><%= link_to 'scan', scann_scanner_path(scanner, url: @url)  %></td>
+        <td><%= link_to 'new as copy', copy_scanner_path(scanner, urlExtern: @url) %></td>
         <td><%= link_to 'Edit', edit_scanner_path(scanner) %></td>
-        <td><%= link_to 'Destroy', scanner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

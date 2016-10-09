@@ -108,7 +108,7 @@ class LocationsController < ApplicationController
 
     end
     
-    render :text => @title
+    render plain: @title
   end
 
   def parseURL

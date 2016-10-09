@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Scanned Url: </strong>
+  <%= @url %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @scanner.name %>
+</p>
+<p>
+  <strong>Match:</strong>
+  <%= @scanner.match %>
+</p>
+<p>
+  <strong>Tag:</strong>
+  <%= @scanner.tag %>
+</p>
+
+<p>
+  <strong>Attribute:</strong>
+  <%= @scanner.attr %>
+</p>
+<p>
+  <strong>Pattern:</strong>
+  <%= @scanner.pattern %>
+</p>
+
+<% if @links %>
+<% @links.each do |link| %>
+<li>  <%=link_to link, link%>
+	  <%=link_to "Match", match_scanners_path(url: link) %>
+	
+</li>
+<% end %>
+<% end %>
+
+<%= link_to 'Edit', edit_scanner_path(@scanner) %> |
+<%= link_to 'Back', scanners_path %>
