@@ -5,11 +5,34 @@ class ScannersController < ApplicationController
   # GET /scanners.json
   def index
     @scanners = Scanner.all
+    @scanners = @scanners.sort {|a,b| a.url <=> b.url} 
   end
 
   def match
     @url = params[:url]
+    location_id = params[:location_id]
+    @location = Location.find(location_id) if location_id
+    if  params[:commit] == "Match and Scan"
+      matchAndScan
+    end
     @scanners = Scanner.all
+    @scanners = @scanners.sort {|a,b| a.url <=> b.url} 
+  end
+
+  def matchAndScan
+    @url = params[:url]
+    unless @location
+      @links = RHandler.scanAndMatch(@url)
+      @commonStart = RHandler.detCommonStart(@links.select{|l| l[2]=="x"}.map{|l| l[0].rstrip})
+      @possibleLocations = Location.all.select{|l| @commonStart.include? l.uri} 
+    else      
+      RHandler.createMfiles(@url,@location)
+ #     folder = @commonstart - Anfang - ende
+  #    mfiles = RHandler.separate(@links,@location)
+   #   create folder and mfiles
+    #  save @url mit folder-id       
+    end
+    render :scanResult
   end
 
   # GET /scanners/1
@@ -37,9 +60,11 @@ class ScannersController < ApplicationController
   def edit
   end
 
-  def scann    
+  def scann
     @url = params[:url]
-    @links = RHandler.extract(@url,@scanner.tag,@scanner.attr,@scanner.pattern) 
+      @links = RHandler.extract(@url,@scanner.tag,@scanner.attr,@scanner.pattern) 
+   #  @links = RHandler.scanAndMatch(@url,2)
+
   end
 
   def scan
@@ -110,6 +135,6 @@ class ScannersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def scanner_params
-      params.require(:scanner).permit(:tag, :attr, :pattern, :scan, :url, :name, :match)
+      params.require(:scanner).permit(:tag, :attr, :pattern, :scan, :url, :location, :name, :match, :final)
     end
 end

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+
+  <strong>Scanned Url: </strong>
+  <%= @url %>
+</p>
+
+Common Start:  <%= @commonStart %>
+
+<ul>
+<% @possibleLocations.each do |location| %>
+<li> <%= link_to "SELECT", match_scanners_path(url: @url, location_id: location) %> 
+   <%=location.name+ " "+location.uri %>
+<% end %>
+</ul>
+
+<% if @links %>
+<ul>
+<% @links.each do |link| %>
+<li> 
+<% if link[2] == "x"
+     m = "-------"
+   else
+   	 m = "Match"
+   end
+ %>
+<%=link_to m, match_scanners_path(url: link[0]) %>
+      <%= "..."*link[1] %> <%= link[1] %>  
+	  <%=link_to link[0], link[0]%>
+	 <%= link[2] %>	
+</li>
+<% end %>
+<ul>
+<% end %>
+
+<%= link_to 'Back', scanners_path %>

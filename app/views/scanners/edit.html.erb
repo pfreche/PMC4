@@ -2,12 +2,17 @@
 
 <%= render 'form', scanner: @scanner %>
 
+<ul>
 <% if @links %>
 <% @links.each do |link| %>
+<li>  <%=link_to link, link%>
+	  <%=link_to "Match", match_scanners_path(url: link) %>
+	
+</li>
+<% end %>
+<% end %>
+</ul>
 
-   <%=link_to link, link%>
-<% end %>
-<% end %>
 
 <%= link_to 'Show', @scanner %> |
 <%= link_to 'Back', scanners_path %>

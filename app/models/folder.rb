@@ -4,12 +4,28 @@ class Folder < ActiveRecord::Base
   
   def path(typ)
     
-   if FOLDERPATH[typ] == nil 
+    if FOLDERPATH[typ] == nil 
        Folder.setFolderPath(typ)
-  end
+    end
+    if FOLDERPATH[typ][id] == nil
+       setFolderPath(typ)
+    end
+
     FOLDERPATH[typ][id] 
+  end
+   
+  def setFolderPath(typ)
+        
+        return unless storage
+        
+        ppath = storage.path(typ)
+        location = storage.location(typ)
+        return unless location  #  important if a location for a certain type has not been defined
+        a =  ppath+ "/" +  mpath + "/" +  lfolder + "/"
+        FOLDERPATH[typ][id]=  a.gsub("//", "/").gsub("//", "/").gsub("http:/","http://")
 
   end
+
   def Folder.setFolderPath(typ)
     
       FOLDERPATH[typ] = nil

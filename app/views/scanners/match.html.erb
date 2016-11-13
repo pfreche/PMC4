@@ -7,8 +7,17 @@
   <div class="field">
     <%= label_tag :url %>
     <%= text_field_tag :url, @url, size: 80 %>
-  </div>
   <%= submit_tag("Match") %>
+  <%= submit_tag("Match and Scan") %>
+  </div>
+  <% if @location %>
+  <div class="field">
+    <%= label_tag :location %>
+    <%= @location.name %> <%= @location.uri %>
+    <%= hidden_field_tag "location_id", @location.id %>
+  <%= submit_tag("Match and Scan") %>
+  </div>
+  <%end %>
 <% end %>
 
 
@@ -17,7 +26,8 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>match</th>
+      <th>Example URL</th>
+      <th>Match</th>
       <th>Tag</th>
       <th>Pattern</th>
       <th>Fit</th>
@@ -29,6 +39,7 @@
     <% @scanners.each do |scanner| %>
       <tr>
         <td><%= scanner.name %></td>
+        <td><%= scanner.url %></td>
         <td><%= scanner.match %></td>
         <td><%= scanner.tag %></td>
         <td><%= scanner.pattern %></td>

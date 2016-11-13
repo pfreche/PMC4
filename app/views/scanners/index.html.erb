@@ -6,9 +6,11 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Example URL</th>
       <th>match</th>
       <th>Tag</th>
       <th>Pattern</th>
+      <th>Final</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,9 +19,11 @@
     <% @scanners.each do |scanner| %>
       <tr>
         <td><%= scanner.name %></td>
+        <td><%= scanner.url %></td>
         <td><%= scanner.match %></td>
         <td><%= scanner.tag %></td>
         <td><%= scanner.pattern %></td>
+        <td><%= scanner.final %></td>
         <td><%= link_to 'Show', scanner %></td>
         <td><%= link_to 'Edit', edit_scanner_path(scanner) %></td>
         <td><%= link_to 'Destroy', scanner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
