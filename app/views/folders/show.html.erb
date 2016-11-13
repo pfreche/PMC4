@@ -2,9 +2,25 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Title:</strong>
+  <%= @folder.title %>
+</p>
+
+<p>
   <strong>Storage:</strong>
   <%= @folder.storage.name %>
 </p>
+
+  <strong>Web Path</strong>
+  <%= @folder.path(1) %>
+ 
+</p>
+
+  <strong>Filesystem:</strong>
+  <%= @folder.path(2) %>
+  <%= @folder.mkdir(@folder.storage.location(2)) %>
+</p>
+
 
 <p>
   <strong>Mfile:</strong>
@@ -14,8 +30,20 @@
 <%= link_to 'Edit', edit_folder_path(@folder) %> |
 <%= link_to 'Back', folders_path %>
 
-<%= render 'shared/mfiles' %>
+<%= form_tag(copyFiles_folder_path(@folder) )  do %>
 
+  <div class="actions">
+    <%= hidden_field_tag :folder_id, {value: @folder.id} %>
+    <% @folder.storage.locations.select{|l| l.typ == 1}.each do  |location|%>
+    
+    <%= submit_tag "Download files from "+location.uri + @folder.mpath + @folder.lfolder %>
+  <% end %>
+</div>
+<% end %>
+
+
+
+<%= render 'shared/mfiles' %>
 
 
 <% @mfiles.each do |mfile| %>

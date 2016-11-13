@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Title</th>
       <th>Mpath</th>
       <th>Name</th>
            <th>Storage Id</th>
@@ -19,6 +20,8 @@
     <% @folders.each do |folder| %>
       <tr>
 
+        <td><%= folder.title %></td>
+        
         <td><%= folder.mpath %></td>
         
         <td><%= folder.lfolder %></td>

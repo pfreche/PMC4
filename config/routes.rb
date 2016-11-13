@@ -75,7 +75,12 @@ PMC4::Application.routes.draw do
     get  'thumbs', :on => :collection
   end
 
-  resources :folders
+  resources :folders do
+    post 'copyFiles', :on => :member
+  end
+
+
+
   patch 'folders' => 'folders#indexedit', as: 'indexedit_folders'
 
   resources :locations do

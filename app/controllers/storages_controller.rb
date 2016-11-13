@@ -49,6 +49,7 @@ class StoragesController < ApplicationController
     @storage.location(1)
 
     typs = params[:typ]
+    byebug ee
     @locations = Location.where(storage_id: @storage.id)
     
     for location in @locations

@@ -12,7 +12,16 @@ services:
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes:
       - .:/myapp
+      - /c/Users/systemq/docker/media:/me
     ports:
       - "3000:3000"
     depends_on:
       - dbp
+  webserver:
+    build: 
+      context: .
+      dockerfile: mynginx.Dockerfile
+    volumes:
+      - ../media:/usr/share/nginx/html
+    ports:
+      - "80:80"

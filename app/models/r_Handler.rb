@@ -86,7 +86,14 @@ end
 def self.createMfiles(url,location)
 
     links = scanAndMatch(url)
-    linksToSave =  links.select{|l| l[2]=="x"}.map{|l| l[0].rstrip}.uniq!
+    linksToSave =  links.select{|l| l[2]=="x"}.map{|l| l[0].rstrip}.uniq
+    folderTitles =  links.select{|l| l[2]=="title"}.map{|l| l[0].rstrip}.uniq
+    if folderTitles.length > 0
+      folderTitle = folderTitles[0]
+    else 
+      folderTitle = ""
+    end  
+
     @commonStart = RHandler.detCommonStart(linksToSave)
     locationLength = location.uri.length
     ldiff = - @commonStart.length + locationLength 
@@ -100,6 +107,7 @@ def self.createMfiles(url,location)
     
     folder.mpath = foldername
     folder.lfolder = ""
+    folder.title = folderTitle
 
     folder.storage_id = location.storage_id
     folder.save

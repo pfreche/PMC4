@@ -10,6 +10,7 @@ class ScannersController < ApplicationController
 
   def match
     @url = params[:url]
+    @urly = Urly.new(@url)
     location_id = params[:location_id]
     @location = Location.find(location_id) if location_id
     if  params[:commit] == "Match and Scan"
@@ -27,10 +28,6 @@ class ScannersController < ApplicationController
       @possibleLocations = Location.all.select{|l| @commonStart.include? l.uri} 
     else      
       RHandler.createMfiles(@url,@location)
- #     folder = @commonstart - Anfang - ende
-  #    mfiles = RHandler.separate(@links,@location)
-   #   create folder and mfiles
-    #  save @url mit folder-id       
     end
     render :scanResult
   end

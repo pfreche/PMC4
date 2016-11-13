@@ -61,7 +61,94 @@ class Folder < ActiveRecord::Base
     FOLDERPATH.map! {|x| nil}  # puh, jetzt gehts
   end
  
-  def next
+  def mkdir(toLocation)
+
+     toStorage = toLocation.storage
+     if toStorage != storage
+      return
+     end 
+     uri = toLocation.uri
+   
+# check types   
+     return "wrong typ in toLocation"   unless toLocation.typ == URL_STORAGE_FS  or toLocation.typ == URL_STORAGE_FSTN
+   
+     f = uri + "/"+ mpath + "/" + lfolder
+     
+     fsplit = f.split(/\//)
+     fr = ""
+     fsplit.each do |fs|
+       next if fs == ""
+       fr = File.join(fr,fs)
+       puts "'"+f+"'"
+       puts "dir='"+fr+"'"
+       unless File.exist?(fr) 
+          Dir.mkdir(fr)
+       end
+     end
+  end
+
+
+ def copyFiles(fromLocation, toLocation, force = false) # force implementierung fehlt noch für File Copy
+   
+   storage = toLocation.storage
+   return "different storages" unless fromLocation.storage == storage
+   
+   return "folder is in different storage" unless storage == storage
+
+   toUri = toLocation.uri
+   fromUri = fromLocation.uri
+# check types
+#  return "wrong typ in fromLocation"  unless fromLocation.typ == URL_STORAGE_FS  or fromLocation.typ == URL_STORAGE_FSTN
+   return "wrong typ in toLocation"    unless toLocation.typ == URL_STORAGE_FS  or toLocation.typ == URL_STORAGE_FSTN
+   # todo: check FS or FSTN in common?
+   
+
+# get all folder from storage - fromLocation
+
+   n = 0
+  
+   from = File.join(fromUri, mpath, lfolder).gsub("//", "/").gsub(":/","://")
+   to =   File.join(toUri, mpath, lfolder)
+     
+#   mfiles = folder.mfiles
+     
+   mfiles.each do |mfile|           
+        fromFile = File.join(from,mfile.filename)
+        toFile   = File.join(to,mfile.filename)
+        
+        next if File.exist?(toFile) and not force # 20160108 
+
+        x = toFile.split(/\//)
+        checkpath  = "/"
+        x = x[0,x.length-1]
+        x.each {|p| checkpath = checkpath + "/" + p 
+           unless File.exist?(checkpath)
+             Dir.mkdir(checkpath)
+           end          
+        }
+
+        if fromLocation.typ == URL_STORAGE_WEB           
+              uri = URI.parse(URI.encode(fromFile))
+              Net::HTTP.start(uri.host, uri.port) do |http|
+                 response = http.get(uri.path)
+                 open(toFile, "wb") do |file|
+                     file.write(response.body)
+                     n = n +1
+                 end
+              end
+        end
+        
+        if fromLocation.typ == URL_STORAGE_FS
+          if File.exist?(fromFile) 
+             FileUtils.cp(fromFile, toFile)
+             n = n +1
+          end
+        end     
+   end
+   return n.to_s+ " files copied"
+ end
+
+def next
     f = Folder.where(storage_id: storage_id).where('id >?', id).first
     if f
       return f

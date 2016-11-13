@@ -1,5 +1,5 @@
 class FoldersController < ApplicationController
-  before_action :set_folder, only: [:show, :edit, :update, :destroy]
+  before_action :set_folder, only: [:show, :edit, :update, :destroy, :copyFiles]
 
   # GET /folders
   # GET /folders.json
@@ -71,6 +71,17 @@ class FoldersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def copyFiles
+    
+    message = @folder.copyFiles(@folder.storage.location(1), @folder.storage.location(2))
+
+    flash[:notice] = message
+
+    redirect_to @folder
+
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

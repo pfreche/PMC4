@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102214720) do
+ActiveRecord::Schema.define(version: 20161113130759) do
 
   create_table "agroups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20161102214720) do
     t.string  "mpath"
     t.string  "lfolder"
     t.integer "mfile_id"
+    t.string  "title"
     t.index ["storage_id"], name: "index_folders_on_storage_id", using: :btree
   end
 
