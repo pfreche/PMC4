@@ -32,6 +32,16 @@ class ScannersController < ApplicationController
     render :scanResult
   end
 
+  def msas # match scan and save
+     @url = params[:url]
+     location_id = params[:location_id]
+     @location = Location.find(location_id) if location_id
+     folder = RHandler.createMfiles(@url,@location)
+     bm = Bookmark.new(url: @url, folder_id: folder.id)
+     bm.save
+
+  end
+
   # GET /scanners/1
   # GET /scanners/1.json
   def show

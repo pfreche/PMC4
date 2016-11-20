@@ -30,12 +30,12 @@
 	<input id="thumbSize" type="range"  min="10" max="500" value="30"/>
 <%= text_field_tag :name, "", data: {autocomplete_source: autocomplete_attris_path}, autofocus: :autofocus, size: 28%>
 
-<button id="setIt">  <i data-tooltip="Set Tag" class="fa fa-tag"></i> </button>
+<button id="setIt" >  <i class="material-icons md-18">check_circle</i> </button>
 <p>
-<button id="hideUnselected"> <i data-tooltip="Hide Unselected" class="fa fa-ban"></i>  </button>
-<button id="showAll"> <i data-tooltip="Show All" class="fa fa-dot-circle-o"></i> </button>
-<button id="selectInvert"> <i data-tooltip="Invert" class="fa fa-adjust"></i> </button>
-<button id="selectAll"> <i data-tooltip="Select All" class="fa fa-check-circle"></i> </button>
+<button id="hideUnselected"> <i class="material-icons md-18">visibility_off</i>   </button>
+<button id="showAll">  <i class="material-icons md-18">visibility</i>  </button>
+<button id="selectInvert"> <i class="material-icons md-18">loop</i>   </button>
+<button id="selectAll"> <i class="material-icons md-18">zoom_out_map</i> </button>
 
 <% 
    @agroups = Agroup.all

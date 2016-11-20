@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161113130759) do
+ActiveRecord::Schema.define(version: 20161119113849) do
 
   create_table "agroups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20161113130759) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "folder_id"
   end
 
   create_table "collection", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -91,6 +92,7 @@ ActiveRecord::Schema.define(version: 20161113130759) do
     t.datetime "updated_at"
     t.string   "prefix"
     t.integer  "mfile_id"
+    t.boolean  "origin"
   end
 
   create_table "matches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

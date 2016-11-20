@@ -15,7 +15,16 @@
 
        <%= submit_tag("Set Dates of Mfiles in this Storage", class: "buttonForm") %>
     <% end %>
-    
+
+<% @f.each do |fe|%> 
+   <%=fe[0].folder.title%>
+	<% fe.each do |g| %>
+	<div style="padding-left: 3em ">
+		<%= g.folder.mpath.to_s + " " + g.folder.lfolder.to_s+ " "+ g.filename %>
+    </div>
+    <% end %>
+<% end %>
+
 <div class="fbox">
 <%= render 'shared/folders' %>
 </div>

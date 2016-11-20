@@ -1,6 +1,7 @@
-<h1>Editing bookmark</h1>
+<h1>Bookmark<%= link_to material_icon.fiber_new, new_bookmark_path %>
+	<%= link_to material_icon.search, @bookmark %> 
+    <%= link_to material_icon.list, bookmarks_path %>
+
+</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @bookmark %> |
-<%= link_to 'Back', bookmarks_path %>

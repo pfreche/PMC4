@@ -2,6 +2,18 @@ class Storage < ActiveRecord::Base
   has_many :locations
   has_many :folders,  :dependent => :destroy # too risky
 
+  def originLocation
+   locations.where(storage_id: id).where(origin: true).first
+  end
+
+  def originPath
+    if l = originLocation
+        l.uri      
+    else
+        ""
+    end
+  end
+
   def webLocation
    locations.where(storage_id: id).where(inuse: true, typ: 1).first
   end

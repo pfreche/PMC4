@@ -1,13 +1,19 @@
+<h1>Bookmark  <i class="titleName"> <%= @bookmark.title %>  </i >
+
+<%= link_to material_icon.fiber_new, new_bookmark_path %>
+    <%= link_to material_icon.list, bookmarks_path %>
+    <%= link_to  material_icon.mode_edit, edit_bookmark_path(@bookmark) %></td>
+    <%= link_to  material_icon.delete, @bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
+</h1>
+
+
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @bookmark.title %>
-</p>
 
 <p>
   <strong>Url:</strong>
-  <%= @bookmark.url %>
+  <%= link_to @bookmark.url, @bookmark.url  %>
 </p>
 
 <p>
@@ -15,5 +21,9 @@
   <%= @bookmark.description %>
 </p>
 
-<%= link_to 'Edit', edit_bookmark_path(@bookmark) %> |
-<%= link_to 'Back', bookmarks_path %>
+<p>
+  <strong>Linked Folder:</strong>
+  <%= @bookmark.folderTitle%>
+</p>
+
+

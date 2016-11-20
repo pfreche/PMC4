@@ -1,13 +1,12 @@
-<h1>Listing bookmarks</h1>
-<%= link_to material_icon.fiber_new.css_class('orange600'), new_bookmark_path %>
+<h1>Bookmarks <%= link_to material_icon.fiber_new.css_class('orange600'),new_bookmark_path %>
+</h1>
 
 <table>
   <thead>
     <tr>
       <th>Title</th>
       <th>Url</th>
-      <th>Description</th>
-      <th colspan="3"></th>
+      <th colspan="5">Functions</th>
     </tr>
   </thead>
 
@@ -16,11 +15,14 @@
       <tr>
         <td><%= link_to bookmark.title, bookmark.url, target: '_blank' %></td>
         <td><%= link_to bookmark.url, bookmark.url, target: '_blank' %></td>
-        <td><%= bookmark.description %></td>
-        <td><%= link_to 'Show', bookmark %></td>
-        <td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
-        <td><%= link_to 'Scan', scan_bookmark_path(bookmark) %></td>
-        <td><%= link_to 'Destroy', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td> <% if bookmark.folder_id %>        
+        <%= link_to material_icon.link , folder_path(bookmark.folder_id||0) %>
+        <% end%>
+        </td>
+        <td><%= link_to material_icon.scanner.css_class('md-18'), scan_bookmark_path(bookmark) %></td>
+        <td><%= link_to material_icon.search.css_class('md-18'), bookmark %></td>
+        <td><%= link_to material_icon.mode_edit.css_class('md-18'), edit_bookmark_path(bookmark) %></td>
+        <td><%= link_to  material_icon.delete.css_class('md-18'), bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

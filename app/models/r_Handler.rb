@@ -1,8 +1,13 @@
+#require 'open_uri_redirections'
+
 class RHandler
 
 def self.extract(url, tag, attr, pattern)
     
     sourcee = loadURL(url)
+    if sourcee == "URL Load Error"
+        links = ["Error"]
+    end
     page = Nokogiri::HTML(sourcee)
 
     urlbase = url
@@ -44,7 +49,7 @@ def self.scanAndMatch(url, level = 0, maxdepth=3, scanners=nil)
           
           thislinks = RHandler.extract(url,s.tag,s.attr,s.pattern) 
           thislinks.map! {|l| [l, level, s.final]}
-          unless s.final == "x" 
+          unless s.final == "x" or s.final == "Error"
             nextlinks = []
             thislinks.each {|l|
               nextlinks << l
@@ -80,6 +85,7 @@ def self.detCommonStart(links)
    }
 
 #   cs
+   return "" unless cs
   /(.*\/)/.match(cs)[1].strip
 end
 
@@ -127,11 +133,13 @@ def self.createMfiles(url,location)
 #   new Folder
 
 #  mfile.folder
+
+   folder
 end
 
 
 def self.loadURL(u)
-  
+#    Rails.cache.delete(u)
     Rails.cache.fetch(u, expires_in: 12.hours) do
         begin
           open(u).read

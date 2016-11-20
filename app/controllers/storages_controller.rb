@@ -12,6 +12,7 @@ class StoragesController < ApplicationController
   # GET /storages/1.json
   def show
     @folders = @storage.folders
+    @f = @folders.map {|f| f.mfiles}
     @mfiles =  @storage.getMfiles
     @mtypes = Mfile.group(:mtype).count(:id)
   end
@@ -49,15 +50,15 @@ class StoragesController < ApplicationController
     @storage.location(1)
 
     typs = params[:typ]
-    byebug ee
+#    byebug eex
     @locations = Location.where(storage_id: @storage.id)
     
     for location in @locations
       location.inuse = false
       if typs
-        for typ in typs do
-          if typ[1].to_i == location.id
-          location.inuse = true
+        typs.each do |key, value|   
+          if value.to_i == location.id
+             location.inuse = true
           end
         end
       end

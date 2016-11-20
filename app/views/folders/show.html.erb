@@ -16,9 +16,13 @@
  
 </p>
 
+  <strong>Orgin Path</strong>
+  <%= @folder.originPath %>
+ 
+</p>
+
   <strong>Filesystem:</strong>
   <%= @folder.path(2) %>
-  <%= @folder.mkdir(@folder.storage.location(2)) %>
 </p>
 
 
@@ -34,10 +38,17 @@
 
   <div class="actions">
     <%= hidden_field_tag :folder_id, {value: @folder.id} %>
-    <% @folder.storage.locations.select{|l| l.typ == 1}.each do  |location|%>
     
-    <%= submit_tag "Download files from "+location.uri + @folder.mpath + @folder.lfolder %>
-  <% end %>
+    <%= submit_tag "Download files from Origin"%>
+</div>
+<% end %>
+
+<%= form_tag(generateTNs_folder_path(@folder) )  do %>
+
+  <div class="actions">
+    <%= hidden_field_tag :folder_id, {value: @folder.id} %>
+    
+    <%= submit_tag "Generate Thumbnails"%>
 </div>
 <% end %>
 

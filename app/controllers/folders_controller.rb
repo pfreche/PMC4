@@ -1,5 +1,5 @@
 class FoldersController < ApplicationController
-  before_action :set_folder, only: [:show, :edit, :update, :destroy, :copyFiles]
+  before_action :set_folder, only: [:show, :edit, :update, :destroy, :copyFiles, :generateTNs]
 
   # GET /folders
   # GET /folders.json
@@ -74,7 +74,8 @@ class FoldersController < ApplicationController
 
   def copyFiles
     
-    message = @folder.copyFiles(@folder.storage.location(1), @folder.storage.location(2))
+    @folder.storage.location(2).mkDirectories    
+    message = @folder.copyFiles(@folder.storage.originLocation, @folder.storage.location(2))
 
     flash[:notice] = message
 
@@ -82,6 +83,16 @@ class FoldersController < ApplicationController
 
   end
 
+  def generateTNs
+
+    @folder.storage.location(4).mkDirectories    
+    message = @folder.generateTNs(@folder.storage.location(2), @folder.storage.location(4), true, "", 20000)
+
+    flash[:notice] = message
+
+    redirect_to @folder
+
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

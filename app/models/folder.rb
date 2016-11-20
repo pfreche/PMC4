@@ -1,7 +1,16 @@
+require 'open-uri'
+
 class Folder < ActiveRecord::Base
   belongs_to :storage
   has_many :mfiles,  :dependent => :destroy
   
+
+  def originPath
+    ppath = storage.originPath
+    a =  ppath+ "/" +  mpath + "/" +  lfolder + "/"
+    a.gsub("//", "/").gsub("//", "/").gsub("http:/","http://")
+  end
+
   def path(typ)
     
     if FOLDERPATH[typ] == nil 
@@ -61,7 +70,7 @@ class Folder < ActiveRecord::Base
     FOLDERPATH.map! {|x| nil}  # puh, jetzt gehts
   end
  
-  def mkdir(toLocation)
+  def mkdir_DISABLED(toLocation)
 
      toStorage = toLocation.storage
      if toStorage != storage
@@ -90,10 +99,10 @@ class Folder < ActiveRecord::Base
 
  def copyFiles(fromLocation, toLocation, force = false) # force implementierung fehlt noch für File Copy
    
-   storage = toLocation.storage
-   return "different storages" unless fromLocation.storage == storage
+   toStorage = toLocation.storage
+   return "different storages" unless fromLocation.storage == toStorage
    
-   return "folder is in different storage" unless storage == storage
+   return "folder is in different storage" unless toStorage.id == storage.id
 
    toUri = toLocation.uri
    fromUri = fromLocation.uri
@@ -129,8 +138,10 @@ class Folder < ActiveRecord::Base
 
         if fromLocation.typ == URL_STORAGE_WEB           
               uri = URI.parse(URI.encode(fromFile))
+              req = Net::HTTP::Get.new(uri.request_uri)
+              req['Referer'] = uri.scheme+"://"+uri.host
               Net::HTTP.start(uri.host, uri.port) do |http|
-                 response = http.get(uri.path)
+                  response = http.request(req)
                  open(toFile, "wb") do |file|
                      file.write(response.body)
                      n = n +1
@@ -144,9 +155,59 @@ class Folder < ActiveRecord::Base
              n = n +1
           end
         end     
+      break if n >20
    end
    return n.to_s+ " files copied"
  end
+
+
+def generateTNs(fromLocation, toLocation, force=true, prefix, area)
+   
+   toStorage = toLocation.storage
+   return "different storages" unless fromLocation.storage == toStorage
+   toUri = toLocation.uri
+   fromUri = fromLocation.uri
+# check types
+   return "wrong typ in fromLocation"  unless fromLocation.typ == URL_STORAGE_FS  
+   return "wrong typ in toLocation"    unless toLocation.typ == URL_STORAGE_FSTN
+   
+   n = 0
+   
+   from = File.join(fromUri, mpath, lfolder)
+   to =   File.join(toUri, mpath, lfolder)
+     
+     
+   mfiles.each do |mfile|
+        tofile = File.join(to,prefix+mfile.filename)
+        next unless force or !File.exist?(tofile)  # 
+        
+        fromfile = File.join(from,mfile.filename)
+       
+        case 
+        when mfile.pic?
+           if area == 0 
+              command = "jhead -st \"" + tofile + "\"  \"" + fromfile  +"\""
+           else
+              command = "convert \""+ fromfile + "\" -thumbnail "+area.to_s+"@ \""+ tofile+"\""
+           end
+        when mfile.pdf?
+              tofile = tofile.gsub(".pdf",".jpg").gsub(".PDF",".jpg")
+              are = (area==0)?20000:area
+              command = "convert \""+File.join(from,mfile.filename)+ "\"[0] -thumbnail "+are.to_s+"@ \""+ tofile+"\""
+        else 
+             command = nil
+        end
+        
+        if command
+           puts command
+           system(command)
+        end
+        n = n + 1
+   end
+   return n.to_s+" thumbnails generated"
+ end
+
+
 
 def next
     f = Folder.where(storage_id: storage_id).where('id >?', id).first

@@ -26,7 +26,11 @@ class BookmarksController < ApplicationController
 
   # GET /bookmarks/new
   def new
-    @bookmark = Bookmark.new
+    if params[:url]
+      @bookmark = Bookmark.new(url: params[:url], title: params[:title])
+    else
+      @bookmark = Bookmark.new
+    end
   end
 
   # GET /bookmarks/1/edit

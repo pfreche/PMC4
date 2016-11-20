@@ -30,6 +30,7 @@
 <% @links.each do |link| %>
 <li>  <%=link_to link, link%>
 	  <%=link_to "Match", match_scanners_path(url: link) %>
+    <%= %>
 	
 </li>
 <% end %>

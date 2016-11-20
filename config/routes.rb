@@ -4,6 +4,9 @@ PMC4::Application.routes.draw do
   get 'scanners/match' => 'scanners#match', as: 'match_scanners'
   post 'scanners/match' => 'scanners#match', as: 'match_scanners_post'
 
+  get 'scanners/msas' => 'scanners#msas', as: 'msas_scanners'
+
+#
   resources :scanners do
 #    get 'match', :on => :collection
     get 'copy', :on => :member
@@ -77,6 +80,7 @@ PMC4::Application.routes.draw do
 
   resources :folders do
     post 'copyFiles', :on => :member
+    post 'generateTNs', :on => :member
   end
 
 
