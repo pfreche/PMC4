@@ -14,20 +14,24 @@
 
 <%= submit_tag value="save", class: "buttonForm" %>
 
-  <span class='clink'>
-<%= link_to 'Show', @storage %> |
-<%= link_to 'List', storages_path %>
-    </span>
-
     
  <p>
 <div class= "fieldbox">
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_field :name,  size: 100%>
+    <%= f.text_field :name,  size: 80%>
   </div>
 
-
+<% if @storage.id  == nil %>
+  <div class="field">
+    <%= f.label :Origin %>
+    <%= text_field_tag :origin,  nil, size: 80%>
+  </div>
+  <div class="field">
+    <%= f.label  :NormalWeb%>
+    <%= text_field_tag :normalWeb, nil,  size: 80%>
+  </div>
+<%end%>
 
 
 <table>
@@ -83,3 +87,9 @@
     
  <% end %>
     
+
+      <span class='clink'>
+<%= link_to 'Show', @storage %> |
+<%= link_to 'List', storages_path %>
+    </span>
+

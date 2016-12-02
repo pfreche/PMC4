@@ -13,6 +13,7 @@ services:
     volumes:
       - .:/myapp
       - /c/Users/systemq/docker/media:/me
+      - /zmedia:/zmedia
     ports:
       - "3000:3000"
     depends_on:

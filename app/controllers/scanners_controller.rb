@@ -9,7 +9,9 @@ class ScannersController < ApplicationController
   end
 
   def match
+
     @url = params[:url]
+    @bookmark_id = params[:bookmark_id]
     @urly = Urly.new(@url)
     location_id = params[:location_id]
     @location = Location.find(location_id) if location_id
@@ -17,29 +19,41 @@ class ScannersController < ApplicationController
       matchAndScan
     end
     @scanners = Scanner.all
-    @scanners = @scanners.sort {|a,b| a.url <=> b.url} 
+    @scanners = @scanners.sort {|a,b| b.matchS(@url).to_s+a.url <=> a.matchS(@url).to_s+b.url} 
+
   end
 
   def matchAndScan
     @url = params[:url]
-    unless @location
-      @links = RHandler.scanAndMatch(@url)
-      @commonStart = RHandler.detCommonStart(@links.select{|l| l[2]=="x"}.map{|l| l[0].rstrip})
-      @possibleLocations = Location.all.select{|l| @commonStart.include? l.uri} 
-    else      
-      RHandler.createMfiles(@url,@location)
-    end
+    @bookmark_id = params[:bookmark_id]
+    @links = Scanner.matchAndScan(@url)
+#      @commonStart = RHandler.detCommonStart(@links.select{|l| l[2]=="x"}.map{|l| l[0].rstrip})
+    @commonStart = Scanner.detCommonStart(@links)
+    @possibleLocations = Location.all.select{|l| @commonStart.include? l.uri} # besser auf der DB ???
     render :scanResult
   end
 
   def msas # match scan and save
      @url = params[:url]
+     @bookmark_id = params[:bookmark_id]
      location_id = params[:location_id]
-     @location = Location.find(location_id) if location_id
-     folder = RHandler.createMfiles(@url,@location)
-     bm = Bookmark.new(url: @url, folder_id: folder.id)
-     bm.save
+     if location_id and @url
+       @location = Location.find(location_id)
+       @links = Scanner.matchAndScan(@url)
+       folder = Scanner.createFolderAndMfiles(@url,@links,@location)
+       if @bookmark_id
+         bm = Bookmark.find(@bookmark_id)
+         bm.folder_id = folder.id
+         bm.title = folder.title
+         bm.save
+       else
+         bm = Bookmark.new(url: @url, folder_id: folder.id, title: folder.title)
+         bm.save
+        end
+       redirect_to folder_path(folder)
+     else
 
+     end
   end
 
   # GET /scanners/1

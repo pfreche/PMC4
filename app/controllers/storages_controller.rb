@@ -15,6 +15,11 @@ class StoragesController < ApplicationController
     @f = @folders.map {|f| f.mfiles}
     @mfiles =  @storage.getMfiles
     @mtypes = Mfile.group(:mtype).count(:id)
+
+    if params[:move]
+      render :movindex
+    end
+
   end
 
   # GET /storages/new
@@ -34,6 +39,19 @@ class StoragesController < ApplicationController
 
     respond_to do |format|
       if @storage.save
+          if @storage.id
+            normalWeb = params[:normalWeb].strip
+            if normalWeb != ""
+                location = Location.new(name: normalWeb, typ: 1, uri: normalWeb, origin: false, inuse: true, storage_id: @storage.id)
+                location.save
+            end
+            origin = params[:origin].strip
+            if origin != ""
+                location = Location.new(name: origin, typ: 1, uri: origin, origin: true, inuse: false, storage_id: @storage.id)
+                location.save
+            end
+
+          end
         format.html { redirect_to @storage, notice: 'Storage was successfully created.' }
         format.json { render action: 'show', status: :created, location: @storage }
       else

@@ -9,7 +9,7 @@ Common Start:  <%= @commonStart %>
 
 <ul>
 <% @possibleLocations.each do |location| %>
-<li> <%= link_to "SELECT", msas_scanners_path(url: @url, location_id: location) %> 
+<li> <%= link_to "SELECT", msas_scanners_path(url: @url, location_id: location, bookmark_id: @bookmark_id) %> 
    <%=location.name+ " "+location.uri %>
 <% end %>
 </ul>

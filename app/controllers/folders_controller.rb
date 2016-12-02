@@ -72,15 +72,22 @@ class FoldersController < ApplicationController
     end
   end
 
+# copy files from from origin location to location of type typ
+
   def copyFiles
-    
-    @folder.storage.location(2).mkDirectories    
-    message = @folder.copyFiles(@folder.storage.originLocation, @folder.storage.location(2))
 
-    flash[:notice] = message
+    typString = params[:typ]
 
+    if typString 
+       typ = typString.to_i 
+       if typ == 1 or typ == 2
+          toLocation = @folder.storage.location(typ)
+#          mk = toLocation.mkDirectories # (@folder)
+          message = @folder.storage.originLocation.copyFiles(toLocation,@folder)
+          flash[:notice] = message
+        end
+    end
     redirect_to @folder
-
   end
 
   def generateTNs

@@ -3,15 +3,15 @@
 <table>
   <thead>
     <tr>
+      <th>Storage </th>
       <th>Title</th>
       <th>Mpath</th>
-      <th>Name</th>
-           <th>Storage Id</th>
-     <th>Anzahl Objekte</th>
+      <th>Anzahl </th>
 
       <% @agroups.each do |agroup|%>
       <th><%=agroup.name%></th>
       <%end%>
+      <th></th>
       <th></th>
     </tr>
   </thead>
@@ -20,12 +20,12 @@
     <% @folders.each do |folder| %>
       <tr>
 
-        <td><%= folder.title %></td>
+        <td><%= folder.storage.name%> </td>
+       <td><%= folder.title %></td>
         
-        <td><%= folder.mpath %></td>
-        
-        <td><%= folder.lfolder %></td>
-                    <td><%= folder.storage_id%> </td>
+        <td><%= folder.mpath + " " + folder.lfolder%></td>
+                      
+
         <td><%= @numbers[folder.id] %></td>
 
 
@@ -35,12 +35,15 @@
         <th><%=(@numbersa[a]?@numbersa[a]*100/@numbers[folder.id]:0)%></th>
         <%end%>
          
-        <td><%= link_to 'Show', folder %></td>
-        <td><%= link_to 'Destroy', folder , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to material_icon.search.css_class('md-18'), folder %></td>
+        <td><%= link_to material_icon.delete.css_class('md-18'), folder , method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
   </tbody>
 </table>
 
 <br>
+
+
+
 
 <%= link_to 'Index to Edit', indexedit_folders_path, method: :patch %>

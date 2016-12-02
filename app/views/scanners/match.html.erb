@@ -7,6 +7,10 @@
   <div class="field">
     <%= label_tag :url %>
     <%= text_field_tag :url, @url, size: 80 %>
+    <% if @bookmark_id %>
+     <%= @bookmark_id %>
+    <%= hidden_field_tag :bookmark_id, @bookmark_id %>
+    <% end %>
   <%= submit_tag("Match") %>
   <%= submit_tag("Match and Scan") %>
   </div>
@@ -43,11 +47,12 @@
         <td><%= scanner.match %></td>
         <td><%= scanner.tag %></td>
         <td><%= scanner.pattern %></td>
+        <td><%= scanner.final %></td>
         <td><%= scanner.matchS(@url) %></td>
         
-        <td><%= link_to 'scan', scann_scanner_path(scanner, url: @url)  %></td>
-        <td><%= link_to 'new as copy', copy_scanner_path(scanner, urlExtern: @url) %></td>
-        <td><%= link_to 'Edit', edit_scanner_path(scanner) %></td>
+        <td><%= link_to material_icon.scanner.css_class('md-18'), scann_scanner_path(scanner, url: @url)  %></td>
+        <td><%= link_to material_icon.fiber_new.css_class('md-18'), copy_scanner_path(scanner, urlExtern: @url) %></td>
+        <td><%= link_to material_icon.mode_edit.css_class('md-18'), edit_scanner_path(scanner) %></td>
       </tr>
     <% end %>
   </tbody>

@@ -2,7 +2,7 @@
 
 class RHandler
 
-def self.extract(url, tag, attr, pattern)
+def self.extract(url, tag, attr, pattern) # obsolete
     
     sourcee = loadURL(url)
     if sourcee == "URL Load Error"
@@ -54,7 +54,7 @@ def self.scanAndMatch(url, level = 0, maxdepth=3, scanners=nil)
             thislinks.each {|l|
               nextlinks << l
               nextlinks += scanAndMatch(l[0], level + 1, maxdepth, scanners)
-            }
+            } 
             thislinks = nextlinks if nextlinks.length > 0 
           end
           links += thislinks
@@ -126,8 +126,7 @@ def self.createMfiles(url,location)
       mfile.folder_id = folder.id
       ldiff = offsetLength - l.length
       mfile.filename = l[ldiff..-1]
-#      mfile.filename = l[0].length.to_s + " " + ldiff.to_s
-      mfile.mtype = 2
+      mfile.mtype = 2 ########### muss noch im Dialog abgefragt werden
       mfile.save
     }
 #   new Folder

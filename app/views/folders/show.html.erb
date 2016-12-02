@@ -1,4 +1,10 @@
-<h1>Folder  <i class="titleName"> <%= @folder.mpath %> <%= @folder.lfolder %>  </i ></h1>
+<h1>Folder  <i class="titleName"> <%= @folder.mpath %> <%= @folder.lfolder %>  </i > 
+    <%= link_to material_icon.list, folders_path %>
+    <%= link_to material_icon.edit, edit_folder_path %>
+
+</h1>
+
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -8,7 +14,7 @@
 
 <p>
   <strong>Storage:</strong>
-  <%= @folder.storage.name %>
+  <%= link_to @folder.storage.name, edit_storage_path(@folder.storage) %>
 </p>
 
   <strong>Web Path</strong>
@@ -18,7 +24,7 @@
 
   <strong>Orgin Path</strong>
   <%= @folder.originPath %>
- 
+
 </p>
 
   <strong>Filesystem:</strong>
@@ -31,15 +37,23 @@
   <%= @folder.mfile_id %>
 </p>
 
-<%= link_to 'Edit', edit_folder_path(@folder) %> |
-<%= link_to 'Back', folders_path %>
+<%= form_tag(copyFiles_folder_path(@folder) )  do %>
+
+  <div class="actions">
+    <%= hidden_field_tag :folder_id, {value: @folder.id} %>
+    <%= hidden_field_tag :typ, 1 %>
+    
+    <%= submit_tag "Download files from Origin to active Web-Server"%>
+</div>
+<% end %>
 
 <%= form_tag(copyFiles_folder_path(@folder) )  do %>
 
   <div class="actions">
     <%= hidden_field_tag :folder_id, {value: @folder.id} %>
+    <%= hidden_field_tag :typ, 2 %>
     
-    <%= submit_tag "Download files from Origin"%>
+    <%= submit_tag "Download files from Origin to active File-System"%>
 </div>
 <% end %>
 
@@ -51,6 +65,7 @@
     <%= submit_tag "Generate Thumbnails"%>
 </div>
 <% end %>
+
 
 
 

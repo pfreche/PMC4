@@ -1,8 +1,19 @@
 1. integriere Webserver im Docker-compose
 	Volume sollte auch von rails zugreifbar sein.
 
+digital ocean proxy
 
+scanner.extract(url)
+Scanner.matchandScan(url)
+
+urly
 
 Bugs: 
 a) attris ohne agroup
 b) 
+
+
+
+tim, Whiteboard
+CSG begehungsapp
+

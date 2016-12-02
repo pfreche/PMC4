@@ -4,11 +4,19 @@ class Folder < ActiveRecord::Base
   belongs_to :storage
   has_many :mfiles,  :dependent => :destroy
   
+  def pathLocation(location)
+ #    p = location.uri + "/" +  mpath + "/" +  lfolder + "/"
+ #   p.gsub("///", "/").gsub("//", "/").gsub("//", "/").gsub("http:/","http://")
+    location.uri + mpath + lfolder
+
+  end
 
   def originPath
     ppath = storage.originPath
-    a =  ppath+ "/" +  mpath + "/" +  lfolder + "/"
-    a.gsub("//", "/").gsub("//", "/").gsub("http:/","http://")
+  #  a =  ppath+ "/" +  mpath + "/" +  lfolder + "/"
+    a= ppath + mpath + lfolder
+    
+#    a.gsub("///", "/").gsub("//", "/").gsub("//", "/").gsub("http:/","http://")
   end
 
   def path(typ)
@@ -30,9 +38,11 @@ class Folder < ActiveRecord::Base
         ppath = storage.path(typ)
         location = storage.location(typ)
         return unless location  #  important if a location for a certain type has not been defined
-        a =  ppath+ "/" +  mpath + "/" +  lfolder + "/"
-        FOLDERPATH[typ][id]=  a.gsub("//", "/").gsub("//", "/").gsub("http:/","http://")
+ #       a =  ppath+ "/" +  mpath + "/" +  lfolder + "/"
 
+#        FOLDERPATH[typ][id]=  a.gsub("///", "/").gsub("//", "/").gsub("//", "/").gsub("http:/","http://")
+        FOLDERPATH[typ][id]=   File.join(ppath,mpath,lfolder) # .gsub("http:/","http://")
+#  
   end
 
   def Folder.setFolderPath(typ)
@@ -58,11 +68,12 @@ class Folder < ActiveRecord::Base
              a =  ppath+ "/"  # relevant for thumbnails path in the old fashion
           end
         else 
-          a =  ppath+ "/" +  f.mpath + "/" +  f.lfolder + "/"
+          a =  ppath +  f.mpath +  f.lfolder 
           
         end 
+        FOLDERPATH[typ][f.id]=  a
         
-        FOLDERPATH[typ][f.id]=  a.gsub("//", "/").gsub("//", "/").gsub("http:/","http://")
+#        FOLDERPATH[typ][f.id]=  a.gsub("//", "/").gsub("//", "/").gsub("http:/","http://")
       end
   end
   
@@ -200,6 +211,7 @@ def generateTNs(fromLocation, toLocation, force=true, prefix, area)
         
         if command
            puts command
+           ee
            system(command)
         end
         n = n + 1

@@ -15,7 +15,8 @@ class BookmarksController < ApplicationController
  # GET /bookmarks/1/scan
   # GET /bookmarks/1.json
   def scan
-    redirect_to match_scanners_path(url: @bookmark.url)
+#    redirect_to match_scanners_path(url: @bookmark.url)
+    redirect_to match_scanners_path(bookmark_id: @bookmark.id, url: @bookmark.url)
     # @scanners = Scanner.all
     # scanID = params[:scanID]
     # if scanID
