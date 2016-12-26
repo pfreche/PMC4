@@ -10,10 +10,8 @@ urly
 
 Bugs: 
 a) attris ohne agroup
-b) 
-
-
-
-tim, Whiteboard
-CSG begehungsapp
+b) einschränkung von Funktionen, wenn diese nicht zur Verfügung stehen
+	DL oder copy zu nicht existierenden ..
+	Classify folder/attribute
+c) 
 

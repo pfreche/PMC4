@@ -1,4 +1,4 @@
-
+<div id="picview"> </div>
 <div id="thumbnailBox">
 <%= form_tag(set_attris_mfiles_path, method: "post", remote: :true) do  %>
 
@@ -9,9 +9,10 @@
              style="background-image: url('<%=URI.escape(mfile.path(URL_STORAGE_WEBTN), Regexp.union('\'','-',' ','(', ')'))%>')" >
         
        <div class="check"> <%= hidden_field_tag "mfile["+mfile.id.to_s+"]" %> </div>
-              <div class="marker">  <i data-tooltip="Show" class="fa fa-search fa-2x"> </i></div>
-
-             </div>
+              <div class="marker"> 
+<%= material_icon.search.css_class('orange600') %>
+              </div>
+       </div>
     <% end %>
     <div style="display: none">
     <%= text_field_tag "ag_id" %>
@@ -67,7 +68,7 @@
     <div id="bildCont">   </div>
 	<div id="bildAttris"> </div>
 	
-	<div id="bildNext"> <i data-tooltip="Next" class="fa fa-chevron-right fa-3x"> </i> </div>
-	<div id="bildPrev"> <i data-tooltip="Prev" class="fa fa-chevron-left fa-3x"> </i> </div>
+	<div id="bildNext"> <%=material_icon.keyboard_arrow_right %></div>
+	<div id="bildPrev"> <%=material_icon.keyboard_arrow_left %></div>
 	
 </div>

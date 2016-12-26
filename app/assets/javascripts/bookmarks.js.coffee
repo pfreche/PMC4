@@ -12,3 +12,8 @@ $(document).ready ->
           $("#bookmark_title").attr('value', data);
 
    $('.getTitle').bind 'click', getTitle
+
+   $('#bookmarks').DataTable( {
+        scrollCollapse: false,
+        paging:         true
+    } );

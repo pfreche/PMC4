@@ -81,6 +81,7 @@ PMC4::Application.routes.draw do
   resources :folders do
     post 'copyFiles', :on => :member
     post 'generateTNs', :on => :member
+    get 'changeStorage', :on => :member
   end
 
 

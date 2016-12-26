@@ -13,22 +13,46 @@
 </p>
 
 <p>
-  <strong>Storage:</strong>
+ <div class="lbl">
+    Storage
+  </div>
   <%= link_to @folder.storage.name, edit_storage_path(@folder.storage) %>
 </p>
-
-  <strong>Web Path</strong>
-  <%= @folder.path(1) %>
+<p>
+ <div class="lbl">
+  <strong>Orgin Path:</strong>
+  </div>
+  <%= @folder.originPath %>
  
 </p>
 
-  <strong>Orgin Path</strong>
-  <%= @folder.originPath %>
+<p>
+ <div class="lbl">
+    Web Path:
+  </div>
+    <%=  @folder.path(1) %>
+<%= form_tag(copyFiles_folder_path(@folder) )  do %>
+
+<% end %>
 
 </p>
-
+ <div class="lbl">
   <strong>Filesystem:</strong>
+  </div>
   <%= @folder.path(2) %>
+</p>
+
+</p>
+ <div class="lbl">
+<strong>Web TNs Path:</strong>
+  </div>
+  <%= @folder.path(3) %>
+</p>
+</p>
+ <div class="lbl">
+<strong>FS TNs Path:</strong>
+  </div>
+  <%= @folder.path(4) %>
 </p>
 
 
@@ -56,6 +80,27 @@
     <%= submit_tag "Download files from Origin to active File-System"%>
 </div>
 <% end %>
+
+<%= form_tag(copyFiles_folder_path(@folder) )  do %>
+
+  <div class="actions">
+    <%= hidden_field_tag :folder_id, {value: @folder.id} %>
+    <%= hidden_field_tag :typ, 3 %>
+    
+    <%= submit_tag "Make Thumbnails from active Webserver to active TN-Webserver"%>
+</div>
+<% end %>
+
+<%= form_tag(copyFiles_folder_path(@folder) )  do %>
+
+  <div class="actions">
+    <%= hidden_field_tag :folder_id, {value: @folder.id} %>
+    <%= hidden_field_tag :typ, 4 %>
+    
+    <%= submit_tag "Make Thumbnails from active Webserver to active TN-Fileserver"%>
+</div>
+<% end %>
+
 
 <%= form_tag(generateTNs_folder_path(@folder) )  do %>
 

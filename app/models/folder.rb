@@ -21,6 +21,7 @@ class Folder < ActiveRecord::Base
 
   def path(typ)
     
+#    Folder.resetFOLDERPATH
     if FOLDERPATH[typ] == nil 
        Folder.setFolderPath(typ)
     end
@@ -63,7 +64,7 @@ class Folder < ActiveRecord::Base
         if typ == URL_STORAGE_WEBTN or typ == URL_STORAGE_FSTN
           tnprefix = location.prefix
           if (tnprefix && !tnprefix.empty?) or true # CHANGE 25.02.2015
-              a =  ppath+ "/" +  f.mpath + "/" +  f.lfolder + "/" + tnprefix
+              a =  ppath+   f.mpath +   f.lfolder + tnprefix
           else
              a =  ppath+ "/"  # relevant for thumbnails path in the old fashion
           end
@@ -79,6 +80,15 @@ class Folder < ActiveRecord::Base
   
   def Folder.resetFOLDERPATH()
     FOLDERPATH.map! {|x| nil}  # puh, jetzt gehts
+  end
+
+  def resetFOLDERPATH()
+    FOLDERPATH.map! {|x| 
+      if x  
+        x[id] = nil
+      end
+      x
+      } 
   end
  
   def mkdir_DISABLED(toLocation)
@@ -211,7 +221,6 @@ def generateTNs(fromLocation, toLocation, force=true, prefix, area)
         
         if command
            puts command
-           ee
            system(command)
         end
         n = n + 1

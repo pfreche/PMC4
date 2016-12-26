@@ -26,7 +26,12 @@ class ScannersController < ApplicationController
   def matchAndScan
     @url = params[:url]
     @bookmark_id = params[:bookmark_id]
+
+    @lll = Scantree.new(@url,nil,0,"",3)
+    @lll.scan
+    
     @links = Scanner.matchAndScan(@url)
+#    @links = @lll.to_a
 #      @commonStart = RHandler.detCommonStart(@links.select{|l| l[2]=="x"}.map{|l| l[0].rstrip})
     @commonStart = Scanner.detCommonStart(@links)
     @possibleLocations = Location.all.select{|l| @commonStart.include? l.uri} # besser auf der DB ???
@@ -83,9 +88,9 @@ class ScannersController < ApplicationController
 
   def scann
     @url = params[:url]
-      @links = RHandler.extract(@url,@scanner.tag,@scanner.attr,@scanner.pattern) 
+#      @links = RHandler.extract(@url,@scanner.tag,@scanner.attr,@scanner.pattern) 
    #  @links = RHandler.scanAndMatch(@url,2)
-
+      @links = @scanner.scan(@url)
   end
 
   def scan

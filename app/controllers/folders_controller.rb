@@ -1,5 +1,5 @@
 class FoldersController < ApplicationController
-  before_action :set_folder, only: [:show, :edit, :update, :destroy, :copyFiles, :generateTNs]
+  before_action :set_folder, only: [:show, :edit, :update, :destroy, :copyFiles, :generateTNs, :changeStorage]
 
   # GET /folders
   # GET /folders.json
@@ -72,6 +72,23 @@ class FoldersController < ApplicationController
     end
   end
 
+# change storage
+  def changeStorage
+     @storage = Storage.find(params[:storage_id])
+     op = @storage.originPath
+     fp = @folder.originPath
+     old_storage_id = @folder.storage.id
+
+     if fp[op]
+       @folder.mpath = fp.sub(op, "")
+       @folder.storage_id = @storage.id
+       @folder.save
+       @folder.resetFOLDERPATH
+     end
+    redirect_to storage_path(old_storage_id, move: "x")
+  end
+
+
 # copy files from from origin location to location of type typ
 
   def copyFiles
@@ -80,10 +97,16 @@ class FoldersController < ApplicationController
 
     if typString 
        typ = typString.to_i 
-       if typ == 1 or typ == 2
+       if typ == 1 or typ == 2 or typ == 3 or typ == 4
           toLocation = @folder.storage.location(typ)
-#          mk = toLocation.mkDirectories # (@folder)
-          message = @folder.storage.originLocation.copyFiles(toLocation,@folder)
+          mk = toLocation.mkDirectories(@folder)
+          
+          if typ == 3 or typ == 4
+            message = @folder.storage.location(1).copyFiles(toLocation,@folder,true)
+          else
+            message = @folder.storage.originLocation.copyFiles(toLocation,@folder,false)
+          end
+
           flash[:notice] = message
         end
     end
@@ -109,6 +132,6 @@ class FoldersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def folder_params
-      params.require(:folder).permit(:storage_id, :mpath, :lfolder, :mfile_id)
+      params.require(:folder).permit(:storage_id, :mpath, :lfolder, :mfile_id, :storage_id)
     end
 end

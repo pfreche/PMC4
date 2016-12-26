@@ -4,8 +4,8 @@ body {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 14px;
-  margin-left: 20px;
-  margin-right: 20px;
+//  margin-left: 20px;
+//  margin-right: 20px;
   background: linear-gradient( to left, #aac, #88a)
 }
 
@@ -31,6 +31,8 @@ li {
 }
 
  th,td {
+
+  height: 1px;
   line-height: 10px;
   font-size: 10px;
   background-color: #88A;
@@ -38,7 +40,7 @@ li {
   padding: 0px;
   border-collapse: collapse;
     border: 1px solid grey;
-   max-width: 300px;
+#   max-width: 200px;
    overflow: hidden;
      &:hover {
     color: #004;
@@ -92,6 +94,10 @@ div {
   }
 }
 
+.main {
+  width: 90%;
+}
+
 .actions {
 
 }
@@ -143,12 +149,20 @@ input  {
 }
 
 .fbox {
-  margin-left: 50px;
-  margin-top: 30px;
+  margin-left: 3px;
+  margin-top: 3px;
 }
 
 .processFiles {
   cursor: pointer;
+}
+
+.lbl {
+  display: inline-block;
+  width: 150px;  
+//  font-size: 16px;
+  text-align: right;  
+
 }
 
 label {

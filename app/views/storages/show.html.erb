@@ -1,29 +1,15 @@
 
-
 <p id="notice"><%= notice %></p>
 
 <h1> Storage   <i class="titleName"><%= @storage.name %> </i>
+
+    <%= link_to material_icon.fiber_new, new_storage_path %>
+    <%= link_to material_icon.list, storages_path %>
+    <%= link_to  material_icon.mode_edit, edit_storage_path(@storage) %></td>
+    <%= link_to  material_icon.delete, @folder, method: :delete, data: { confirm: 'Are you sure?' } %>
+
 </h1>
 
-
-  <span class='clink'>
-  	<%= link_to 'Edit', edit_storage_path(@storage) %> |
-    <%= link_to 'Back', storages_path %>
-  </span>
-
-    <%= form_tag touchMfiles_storage_path(@storage), method: "post"  do %>
-
-       <%= submit_tag("Set Dates of Mfiles in this Storage", class: "buttonForm") %>
-    <% end %>
-
-<% @f.each do |fe|%> 
-   <%=fe[0].folder.title%>
-	<% fe.each do |g| %>
-	<div style="padding-left: 3em ">
-		<%= g.folder.mpath.to_s + " " + g.folder.lfolder.to_s+ " "+ g.filename %>
-    </div>
-    <% end %>
-<% end %>
 
 <div class="fbox">
 <%= render 'shared/folders' %>
@@ -33,6 +19,14 @@
 <%= render 'shared/mfiles' %>
 </div>
 
+<% @f.each do |fe|%> 
+   <%=fe[0].folder.title%>
+  <% fe.each do |g| %>
+  <div style="padding-left: 3em ">
+    <%= g.folder.mpath.to_s + " " + g.folder.lfolder.to_s+ " "+ g.filename %>
+    </div>
+    <% end %>
+<% end %>
 
 
 

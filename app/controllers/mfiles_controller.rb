@@ -167,7 +167,7 @@ class MfilesController < ApplicationController
     case extension
     when ".jpg", ".jpeg", ".gif", ".png", ".JPG", ".JPEG", ".GIF", ".PNG"
       p "Bild"
-#      render text: @mfile.path(URLWEB)
+#       render text: @mfile.path(URLWEB)
        render "snippet_picture",  layout: false
      when ".mp4"
        p "Film"

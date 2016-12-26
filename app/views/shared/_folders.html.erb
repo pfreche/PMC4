@@ -1,11 +1,12 @@
-<h2>Folders</h2>
+<h1>Folders</h1>
 
 <table>
   <thead>
     <tr>
+      <th>Storage </th>
+      <th>Title</th>
       <th>Mpath</th>
-      <th>Name</th>
-           <th>Storage Id</th>
+
       <th></th>
     </tr>
   </thead>
@@ -14,14 +15,12 @@
     <% @folders.each do |folder| %>
       <tr>
 
-        <td><%= folder.mpath %></td>
-        
-        <td><%= folder.lfolder %></td>
-                    <td><%= folder.storage_id%> </td>
+        <td><%= folder.storage.name%> </td>
+       <td><%= folder.title %></td>
+        <td><%= folder.mpath + " " + folder.lfolder%></td>
+        <td><%= link_to material_icon.search.css_class('md-18'), folder %></td>
+        <td><%= link_to material_icon.delete.css_class('md-18'), folder , method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
-         
-        <td><%= link_to 'Show', folder %> </td>
-        <td><%= link_to 'Destroy', folder , method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
   </tbody>
 </table>

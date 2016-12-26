@@ -12,7 +12,7 @@
  *= require material
  *= require_self
  *= require jquery-ui
-
+ *= require dataTables/jquery.dataTables
  *= require_tree .
  
 

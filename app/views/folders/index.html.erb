@@ -19,22 +19,14 @@
   <tbody>
     <% @folders.each do |folder| %>
       <tr>
-
         <td><%= folder.storage.name%> </td>
        <td><%= folder.title %></td>
-        
         <td><%= folder.mpath + " " + folder.lfolder%></td>
-                      
-
         <td><%= @numbers[folder.id] %></td>
-
-
-     
         <% @agroups.each do |agroup|%>
         <% a = [folder.id,agroup.id] %>
         <th><%=(@numbersa[a]?@numbersa[a]*100/@numbers[folder.id]:0)%></th>
         <%end%>
-         
         <td><%= link_to material_icon.search.css_class('md-18'), folder %></td>
         <td><%= link_to material_icon.delete.css_class('md-18'), folder , method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>

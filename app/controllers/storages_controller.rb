@@ -12,14 +12,13 @@ class StoragesController < ApplicationController
   # GET /storages/1.json
   def show
     @folders = @storage.folders
+    if params[:move]
+      @storages = Storage.all
+      render :showm
+    end
     @f = @folders.map {|f| f.mfiles}
     @mfiles =  @storage.getMfiles
     @mtypes = Mfile.group(:mtype).count(:id)
-
-    if params[:move]
-      render :movindex
-    end
-
   end
 
   # GET /storages/new

@@ -1,19 +1,23 @@
 <h1>Bookmarks <%= link_to material_icon.fiber_new.css_class('orange600'),new_bookmark_path %>
 </h1>
 
-<table>
+<table id="bookmarks" class="compact" >
   <thead>
     <tr>
       <th>Title</th>
       <th>Url</th>
-      <th colspan="5">Functions</th>
+      <th >F</th>
+      <th >F</th>
+      <th >F</th>
+      <th >F</th>
+      <th >F</th>
     </tr>
   </thead>
 
   <tbody>
     <% @bookmarks.each do |bookmark| %>
       <tr>
-        <td><%= link_to bookmark.title, bookmark.url, target: '_blank' %></td>
+        <td><%= link_to (bookmark.title||""), bookmark.url, target: '_blank' %></td>
         <td><%= link_to bookmark.url, bookmark.url, target: '_blank' %></td>
         <td> <% if bookmark.folder_id %>        
         <%= link_to material_icon.link , folder_path(bookmark.folder_id||0) %>

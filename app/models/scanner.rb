@@ -3,6 +3,8 @@ class Scanner < ApplicationRecord
   attr_accessor :urlExtern
   attr_accessor :lastMatch 
 
+  @@cache = true
+
   def matches?(url)
 
     regex = %r{#{match}}
@@ -45,6 +47,10 @@ class Scanner < ApplicationRecord
         "failure"
       end
       } 
+#    eeej
+    
+    pa = pattern
+    pattern = pa.sub("<url>",url)
     
     links.select! { |l| l[%r{#{pattern}}] } if pattern
     if pattern and pattern.length >0 
@@ -83,6 +89,64 @@ class Scanner < ApplicationRecord
     links
   end
 
+
+
+def self.createFolderAndMfiles(url,links,location)
+
+    linksToSave =  links.select{|l| l[2]=="x"}.map{|l| l[0].rstrip}.uniq
+    folderTitles =  links.select{|l| l[2]=="title"}.map{|l| l[0].rstrip}.uniq
+    if folderTitles.length > 0
+      folderTitle = folderTitles[0]
+    else 
+      folderTitle = ""
+    end  
+
+    @commonStart = Scanner.detCommonStart(links)
+    locationLength = location.uri.length
+    ldiff = - @commonStart.length + locationLength 
+    if ldiff < 0 
+       foldername = @commonStart[ldiff..-1]   
+    else
+       foldername = ""
+    end 
+
+    folder = Folder.new
+    
+    folder.mpath = foldername
+    folder.lfolder = ""
+    folder.title = folderTitle
+
+    folder.storage_id = location.storage_id
+    folder.save
+
+    offsetLength = foldername.length + locationLength
+
+    linksToSave.each {|l|
+
+      mfile = Mfile.new
+      mfile.folder_id = folder.id
+      ldiff = offsetLength - l.length
+      mfile.filename = l[ldiff..-1]
+      mfile.mtype = 2 ########### muss noch im Dialog abgefragt werden
+      mfile.save
+    }
+#   new Folder
+
+#  mfile.folder
+
+   folder
+end
+
+
+
+
+def self.detCommonStartNew(st)
+
+  st.sts.each {|s|
+  }
+
+end
+
 def self.detCommonStart(links)
 
    cs = nil
@@ -111,7 +175,18 @@ def self.detCommonStart(links)
 end
 
 def self.loadURL(u)
+ 
+ if u == "clear"
+    @@cache = false
+ end
+ if u == "cache"
+    @@cache = true
+ end
+
+ if true
 #    Rails.cache.delete(u)
+ end
+
     Rails.cache.fetch(u, expires_in: 12.hours) do
         begin
           open(u).read

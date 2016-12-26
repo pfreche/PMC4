@@ -1,0 +1,30 @@
+
+
+<p id="notice"><%= notice %></p>
+
+<h1> Storage   <i class="titleName"><%= @storage.name %> </i>
+</h1>
+
+
+  <span class='clink'>
+  	<%= link_to 'Edit', edit_storage_path(@storage) %> |
+    <%= link_to 'Back', storages_path %>
+  </span>
+
+    <%= form_tag touchMfiles_storage_path(@storage), method: "post"  do %>
+
+       <%= submit_tag("Set Dates of Mfiles in this Storage", class: "buttonForm") %>
+    <% end %>
+
+<div class="fbox">
+<%= render 'shared/foldersm' %>
+</div>
+
+
+
+
+
+
+
+
+

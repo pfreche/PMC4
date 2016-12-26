@@ -29,6 +29,12 @@ class BookmarksController < ApplicationController
   def new
     if params[:url]
       @bookmark = Bookmark.new(url: params[:url], title: params[:title])
+      bo = Bookmark.find_by_url(params[:url])
+      if bo
+        @bookmark_old = bo
+        flash[:notice] = "Bookmark already exists"
+        redirect_to edit_bookmark_path(id: @bookmark_old.id)          
+      end
     else
       @bookmark = Bookmark.new
     end
@@ -47,7 +53,7 @@ class BookmarksController < ApplicationController
       if @bookmark.save
         format.html { redirect_to @bookmark, notice: 'Bookmark was successfully created.' }
         format.json { render :show, status: :created, location: @bookmark }
-      else
+     else
         format.html { render :new }
         format.json { render json: @bookmark.errors, status: :unprocessable_entity }
       end
