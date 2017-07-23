@@ -20,7 +20,18 @@ class FoldersController < ApplicationController
   # GET /folders/1.json
   def show
     session[:selectedFolder] = @folder.id
+    typ = params[:typ]
+    if typ 
+      if typ == "next"
+        @folder = Folder.find(@folder.id).next 
+      end
+      if typ == "prev"
+        @folder = Folder.find(@folder.id).previous
+      end
+      session[:selectedFolder] = @folder.id
+    end
     @mfiles = @folder.mfiles
+    @bookmark = Bookmark.find_by_folder_id(@folder.id)
   end
 
   # GET /folders/new

@@ -13,6 +13,7 @@ class AttrisController < ApplicationController
     attri = Attri.find(params[:id])
     if attri != nil
       a =Mfile.joins(:attris).where("attris.id = ?", attri.id)
+  
       @mfiles = a
       render 'mfiles/index'
     else

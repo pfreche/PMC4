@@ -18,11 +18,14 @@
 			<%= link_to 'Folders', folders_path%> 
 <li class="menu">
 		<li class="menu">	<%= link_to 'Thumbs (Attr)', thumbs_mfiles_path+"?typ=attribute"%> 
-		<li class="menu">	<%= link_to 'Thumbs (Folder)', thumbs_mfiles_path+"?typ=folder"%>|
 			<li class="menu">
 			<%= link_to 'Classify (Attr)', classify_mfiles_path+"?typ=attribute"%> |
-		<li class="menu"> <%= link_to 'Classify(Folder)', classify_mfiles_path+"?typ=folder"%> 
-		<li class="menu">	<%= link_to 'Classify(Folder) Next', classify_mfiles_path+"?typ=nextFolder"%> 
+		<li class="menu">	Folder:
+		<li class="menu"> <%= link_to session[:selectedFolder]||"x", folder_path(session[:selectedFolder]||"x") %> 
+		<li class="menu">	<%= link_to 'Pics', thumbs_mfiles_path+"?typ=folder"%>
+		<li class="menu"> <%= link_to 'Classify', classify_mfiles_path+"?typ=folder"%> 
+
+		<li class="menu">	<%= link_to 'Next', classify_mfiles_path+"?typ=nextFolder"%> 
 			</ul> 
 		</div>
 		

@@ -34,6 +34,7 @@ class ScannersController < ApplicationController
 #    @links = @lll.to_a
 #      @commonStart = RHandler.detCommonStart(@links.select{|l| l[2]=="x"}.map{|l| l[0].rstrip})
     @commonStart = Scanner.detCommonStart(@links)
+    
     @possibleLocations = Location.all.select{|l| @commonStart.include? l.uri} # besser auf der DB ???
     render :scanResult
   end

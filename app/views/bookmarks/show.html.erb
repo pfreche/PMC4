@@ -23,7 +23,9 @@
 
 <p>
   <strong>Linked Folder:</strong>
-  <%= @bookmark.folderTitle%>
+   <% if @bookmark.folder_id %>
+  <%= link_to @bookmark.folderTitle, folder_path(@bookmark.folder_id)%>
+   <% end %>
 </p>
 
 

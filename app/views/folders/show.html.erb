@@ -1,6 +1,12 @@
-<h1>Folder  <i class="titleName"> <%= @folder.mpath %> <%= @folder.lfolder %>  </i > 
+<h1>Folder  <i class="titleName">   <%= @folder.title %>
+  </i > 
     <%= link_to material_icon.list, folders_path %>
     <%= link_to material_icon.edit, edit_folder_path %>
+    <% if @bookmark %>
+       <%= link_to material_icon.bookmark, bookmark_path(@bookmark) %>
+    <% end %>
+    <%= link_to material_icon.chevron_left, folder_path(@folder, typ: :prev) %>
+    <%= link_to material_icon.chevron_right, folder_path(@folder, typ: :next) %>
 
 </h1>
 
@@ -8,9 +14,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @folder.title %>
+ <div class="lbl">
+  <strong>Path:</strong>
+  </div>
+<%= @folder.mpath %> <%= @folder.lfolder %>
+ 
 </p>
+
 
 <p>
  <div class="lbl">

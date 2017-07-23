@@ -65,6 +65,12 @@ class BookmarksController < ApplicationController
   def update
     respond_to do |format|
       if @bookmark.update(bookmark_params)
+        # update folder description 
+        if fi = @bookmark.folder_id
+           folder = Folder.find(fi)
+           folder.title = @bookmark.title
+           folder.save
+        end
         format.html { redirect_to @bookmark, notice: 'Bookmark was successfully updated.' }
         format.json { render :show, status: :ok, location: @bookmark }
       else
