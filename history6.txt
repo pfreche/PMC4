@@ -1,0 +1,500 @@
+    5  e
+    6  exit
+    7  cd docker
+    8  cd PMC4
+    9  docker-compose up
+   10  docker-compose up
+   11  docker-compose up
+   12  docker-compose up
+   13  docker-compose up
+   14  exit
+   15  docker ps
+   16  docker-compose ps
+   17  cd docker
+   18  cd pmc3
+   19  cd pmc4
+   20  docker-compose
+   21  docker-compose stop
+   22  docker-compose start
+   23  docker ps
+   24  docker-compose ps
+   25  less histor2.txt 
+   26  less histor2.txt 
+   27  docker-compose exec -d ls
+   28  docker-compose exec -d webp ls
+   29  docker-compose exec -d mysql ls
+   30  docker-compose ps
+   31  less docker-compose.yml 
+   32  docker-compose exec -d dbp ls
+   33  docker-compose exec  dbp ls
+   34  docker-compose exec  dbp mysadfa
+   35  docker-compose exec  dbp pwd
+   36  docker-compose ps
+   37  docker ps
+   38  docker exec -it af sh
+   39  docker exec -it af mysqldump --user=root --password=wordpress media_development
+   40  docker exec -it af mysqldump --user=root --password=wordpress media_development > mytest.sql
+   41  docker exec -it ee rake db:reset
+   42  docker ps
+   43  docker exec -it 44 rake db:reset
+   44  docker exec -it af mysql --user=root --password=wordpress media_development < mytest.sql 
+   45  docker exec -t af mysql --user=root --password=wordpress media_development < mytest.sql 
+   46  pl
+   47  s
+   48  docker exec -i af mysql --user=root --password=wordpress media_development < mytest.sql 
+   49  docker exec -i af mysql --user=root --password=wordpress media_development < mytest.sql 
+   50  history > history3.txt
+   51  docker-compose stop
+   52  git branch
+   53  git commit -am "dockerized and new Scanner / RHandler"
+   54  git status
+   55  git add .
+   56  git commit -am "dockerized and new Scanner / RHandler"
+   57  git push origin mdl
+   58  git push origin mdl
+   59  git pull origin
+   60  git status
+   61  git rm --cached abe.txt
+   62  git status
+   63  docker exec -it af mysqldump --user=root --password=wordpress media_development > mytest.sql
+   64  docker-compose up
+   65  docker-compose start
+   66  docker exec -it af mysqldump --user=root --password=wordpress media_development > mytest.sql
+   67  git rm --cached mytest.sql
+   68  cat mytest.sql 
+   69  git status
+   70  docker-compose stop
+   71  git add .
+   72  git commit -am "gitignore use"
+   73  git push origin mdl
+   74  docker-compose stop
+   75  exit
+   76  cd docker
+   77  cd PMC4
+   78  docker-compose start
+   79  docker-compose logs
+   80  docker-compose stop
+   81  docker-compose uip
+   82  docker-compose up
+   83  docker-compose up
+   84  docker-compose up
+   85  docker-compose run -d webp g migration AttrToScanner attr:string
+   86  docker-compose run -d webp rails g migration AttrToScanner attr:string
+   87  docker exec -it 44 rake db:migrate
+   88  docker-compose run -d webp rake db:migrate
+   89  docker-compose up
+   90  docker-compose run -d webp rails g migration AddAttrToScanner attr:string
+   91  docker-compose run -d webp rake db:migrate
+   92  docker-compose up
+   93  docker exec -it af mysqldump --user=root --password=wordpress media_development > mytest2.sql
+   94  docker-compose start
+   95  docker ps
+   96  docker exec -it af mysqldump --user=root --password=wordpress media_development > mytest2.sql
+   97  exit
+   98  ps
+   99  history
+  100  docker-compose start
+  101  cd docker/
+  102  cd pmc4
+  103  docker-compose start
+  104  docker-compose stop
+  105  exit
+  106  cd docker
+  107  cd PMC4
+  108  docker-compose start
+  109  docker-compose stop
+  110  docker-compose start
+  111  docker-compose stop
+  112  docker-compose start
+  113  docker-compose stop
+  114  history |grep git
+  115  git status
+  116  history |grep git
+  117  git branch
+  118  git add .
+  119  git commit -am "match and scanner" 
+  120  history |grep git
+  121  git push origin mdl
+  122  history |grep add
+  123  history |grep Add
+  124  docker-compose run -d webp rails g migration AddTitleToFolder title:string
+  125  history |grep migra
+  126  docker-compose run -d webp rake db:migrate
+  127  docker-compose start
+  128  history grep |mys
+  129  history | grep mys
+  130  docker exec -it af mysqldump --user=root --password=wordpress media_development > mytest2.sql
+  131  history |grep dock
+  132  docker-compose stop
+  133  docker-compose build
+  134  docker-compose start
+  135  docker ps
+  136  docker attach a1d
+  137  docker attach a1d
+  138  ddd
+  139  docker exec -i -t a1d /bin/bash
+  140  pwd
+  141  cd ..
+  142   cd media/
+  143  pwd
+  144  ls
+  145  pwd
+  146  cd ..
+  147  cd pmc4
+  148  ls
+  149  docker-compose stop
+  150  docker-compose start
+  151  docker-compose stop
+  152  docker-compose start
+  153  docker inspect d
+  154  docker inspect webp
+  155  docker ps
+  156  docker inspect a1
+  157   pwd
+  158  docker-compose stop
+  159  docker-compose build
+  160  docker-compose build
+  161  docker-compose build
+  162  docker-compose start
+  163  docker ps
+  164  docker exec -i -t a1d /bin/bash
+  165  docker-compose stopt
+  166  docker-compose stop
+  167  docker-compose start
+  168  docker exec -i -t a1d /bin/bash
+  169  docker-compose stop
+  170  docker-compose start
+  171  docker exec -i -t a1d /bin/bash
+  172  docker inspect
+  173  docker inspect 1
+  174  docker ps
+  175  docker inspect a1
+  176  docker logs 1a
+  177  docker logs 1
+  178  docker logs 
+  179  docker ps
+  180  docker logs a1
+  181  docker inspect a1
+  182  docker-compose stop
+  183  docker-compose build
+  184  docker-compose start
+  185  docker inspect a1
+  186  docker-compose stop
+  187  docker-compose up
+  188  history|more
+  189  history | mor
+  190  history | more
+  191  history | less
+  192  history | less
+  193  docker-compose up
+  194  cd docker/
+  195  cd PMC4
+  196  docker-compose build
+  197  docker-compose up
+  198  docker-compose build
+  199  docker-compose build
+  200  docker-compose up
+  201  docker-compose up
+  202  git commit -am "dl mfiles" 
+  203  git push origin mdl
+  204  exit
+  205  git status
+  206  cd docker/
+  207  cd PMC4
+  208  git status
+  209  git add .
+  210  git commit -am "add unmonitored files" 
+  211  git push origin mdl
+  212  exit
+  213  cd docker
+  214  cd PMC4
+  215  docker-compose start
+  216  docker exec -i -t a1d /bin/bash
+  217  ls
+  218  docker ps
+  219  docker exec -i -t b8 /bin/bash
+  220  docker-compose stop
+  221  exit
+  222  z
+  223  cd /z
+  224  ls
+  225  ls
+  226  pwd
+  227  cd /c
+  228  cd Users/
+  229  ls
+  230  cd systemq/
+  231  cd docker/
+  232  cd PMC4
+  233  docker-compose start
+  234  history | grep run
+  235  history | grep exec
+  236  docker ps 
+  237  docker exec -i -t b8 /bin/bash
+  238  docker-compose stop
+  239  docker-compose up
+  240  docker-compose start
+  241  docker exec -i -t b8 /bin/bash
+  242  docker ps 
+  243  docker exec -i -t ea /bin/bash
+  244  docker-compose stop
+  245  docker-compose up
+  246  docker-compose start
+  247  docker ps 
+  248  docker exec -i -t 13 /bin/bash
+  249  docker ps
+  250  c
+  251  docker volume
+  252  docker volume ls
+  253  docker volume inspect
+  254  docker volume inspect 1a
+  255  docker volume inspect a3
+  256  docker volume ls
+  257  pwd
+  258  cd 
+  259  pwd
+  260  cd docker/
+  261  docker run -d ubuntu
+  262  docker ps
+  263  docker stop
+  264  docker-compose stop
+  265  docker ps
+  266  pwd
+  267  cd PMC4
+  268  docker ps
+  269  docker-compose stop
+  270  cd ..
+  271  docker run -d ubuntu
+  272  docker ps
+  273  docker run -d -it ubuntu bash
+  274  docker run -it ubuntu /bin/bash
+  275  docker run -it -v .:/mmm ubuntu /bin/bash
+  276  docker run -v .:/mmm -it ubuntu /bin/bash
+  277  docker run -v /c/Users/Peter/docker:/mmm -it ubuntu /bin/bash
+  278  docker run -v /c/Users/Peter/docker:/opt/data1 -it ubuntu /bin/bash
+  279  pwd
+  280  docker run -v /c/Users/systemq/docker:/opt/data1 -it ubuntu /bin/bash
+  281  exit
+  282  z
+  283  cd /z
+  284  ls
+  285  exit
+  286  cd docker/
+  287  cd PMC4
+  288  docker-compose start
+  289  do
+  290  docker ps
+  291  docker exec -i -t ee /bin/bash
+  292  docker ps
+  293  docker-compose logs
+  294  docker ee logs
+  295  docker logs
+  296  docker logs ee
+  297  docker-compose stop
+  298  ls
+  299  rm tmp/pids/server.pid 
+  300  docker-compose start
+  301  docker exec -i -t ee /bin/bash
+  302  docker-compose stop
+  303  docker-compose start
+  304  docker-compose stop
+  305  docker-compose build
+  306  docker-compose up
+  307  docker-compose up
+  308  rm tmp/pids/server.pid 
+  309  docker-compose up
+  310  docker-compose up
+  311  docker-compose up
+  312  rm tmp/pids/server.pid 
+  313  docker-compose up
+  314  rm tmp/pids/server.pid 
+  315  docker-compose up
+  316  docker-compose up
+  317  docker-compose up
+  318  docker-compose up
+  319  exit
+  320  cd docker/
+  321  docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
+  322  docker ps
+  323  docker ip
+  324  docker-machine ip
+  325  docker stop
+  326  docker ps 
+  327  docker step ea
+  328  docker stop ea
+  329  docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
+  330  docker ps 
+  331  docker stop 35
+  332  docker stop 358
+  333  docker ps
+  334  docker run -d -p 80:80 jwilder/nginx-proxy
+  335  docker ps
+  336  docker run -d -p 80:80 jwilder/nginx-proxy
+  337  docker ps
+  338  docker logs
+  339  docker ps -a
+  340  docker logs
+  341  docker logs c05
+  342  docker run -d -p 80:80 -v ./docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
+  343  ls
+  344  cd /var
+  345  cd /tmp
+  346  ls
+  347  ls dock*
+  348  ls -la
+  349  pwd
+  350  docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
+  351  docker run -d -p 80:80 -v /var/run/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
+  352  ping 192.168.99.100
+  353  telnet 192.168.99.100 80
+  354  telnet 192.168.99.100 80
+  355  docker ps
+  356  docker logs ef
+  357  docker logs efc
+  358  docker logs efc
+  359  docker logs efc
+  360  docker stop efc
+  361  ps
+  362  pw
+  363  pwd
+  364  docker run -d -p 80:80 -v /tmp/docker.sock:/tmp/docker.sock:ro jwilder/nginx-proxy
+  365  docker ps
+  366  docker ps -a
+  367  docker logs 56d
+  368  docker ps 
+  369  docker run --rm -it -p 8080:8080 mitmproxy/mitmproxy
+  370  docker ps
+  371  docker ps
+  372  docker run --rm -it -p 8080:8080 mitmproxy/mitmproxy
+  373  history |grep create
+  374  exit
+  375  pwd
+  376  cd docker/
+  377  docker-machine create --driver digitalocean --image docker --digitalocean-access-token=3193795222a008122e98706fa234f22997fa005560899bfb048fb86fc7a33e12 opvpn1
+  378  docker-machine create --driver digitalocean  --digitalocean-access-token=3193795222a008122e98706fa234f22997fa005560899bfb048fb86fc7a33e12 opvpn1
+  379  docker-machine create --driver digitalocean --digitalocean-image docker --digitalocean-access-token=3193795222a008122e98706fa234f22997fa005560899bfb048fb86fc7a33e12 opvpn1
+  380  docker-machine create --driver digitalocean --digitalocean-image docker --digitalocean-access-token=3193795222a008122e98706fa234f22997fa005560899bfb048fb86fc7a33e12 opvpn2
+  381  docker-machine env opvpn2
+  382  docker-machine env 
+  383  docker-machine 
+  384  docker-machine active
+  385  docker-machine env opvpn2
+  386  eval   $("C:\Program Files\Docker Toolbox\docker-machine.exe" env opvpn2)
+  387  docker-machine active
+  388  OVPN_DATA="ovpn-data"
+  389  docker volume create --name $OVPN_DATA
+  390  docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_genconfig -u udp://104.236.226.222
+  391  docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
+  392  docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
+  393  docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
+  394  docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn ovpn_initpki
+  395  docker ps
+  396  docker run -v $OVPN_DATA:/etc/openvpn -d -p 1194:1194/udp --cap-add=NET_ADMIN kylemanna/openvpn
+  397  docker ps
+  398  docker run -v $OVPN_DATA:/etc/openvpn --rm -it kylemanna/openvpn easyrsa build-client-full laptop nopass
+  399  docker run -v $OVPN_DATA:/etc/openvpn --rm kylemanna/openvpn ovpn_getclient laptop > laptop.ovpn
+  400  ls
+  401  docker-machine active
+  402  docker-machine 
+  403  docker-machine ls
+  404  docker-machine env default
+  405  eval 104.236.226.222104.236.226.222
+  406  eval $("C:\Program Files\Docker Toolbox\docker-machine.exe" env default)
+  407  pwd
+  408  cd PMC4
+  409  docker-machine start
+  410  history > history4.txt
+  411  exit
+  412  cd docker/
+  413  cd pmc4
+  414  history
+  415  docker-machine start
+  416  docker-compose start
+  417  docker-compose stop
+  418  rm tmp/pids/server.pid 
+  419  docker-compose stop
+  420  docker-compose start
+  421  docker-compose stop
+  422  history |grep buil
+  423  docker-compose build
+  424  history |grep run
+  425  history |grep compose|more
+  426  history |grep compose|less
+  427  docker-compose run -d webp ls
+  428  docker ps
+  429  docker-compose stop
+  430  docker ps
+  431  docker-compose exec -d webp ls
+  432  docker-compose start
+  433  docker-compose exec -d webp ls
+  434  docker-compose run -d webp ls
+  435  docker ps
+  436  docker-compose stop
+  437  history |grep >
+  438  history |grep sql
+  439  docker-compose start
+  440  docker ps
+  441  docker exec -it 17 rails generate jquery:datatables:install
+  442  docker ps
+  443  docker-compose stop
+  444  docker-compose start
+  445  docker ps
+  446  docker ps -a
+  447  docker logs
+  448  docker logs 17
+  449  ls ou*
+  450  docker-compose up
+  451  docker ps
+  452  history |grep sql
+  453  docker-compose start
+  454  docker ps
+  455  docker exec -it db rails generate jquery:datatables:install
+  456  docker ps
+  457  docker exec -it dbe rails generate jquery:datatables:install
+  458  docker exec -it dbe rails generate jquery:datatables:install
+  459  history
+  460  history > history5.txt
+  461  docker-compose stop
+  462  exit
+  463  cd docker/
+  464  cd PMC4
+  465  docker-compose start
+  466  docker-compose stop
+  467  exit
+  468  cd docker/
+  469  cd pmc4
+  470  docker-compose start
+  471  docker-compose stop
+  472  pwd
+  473  rm tmp/pids/
+  474  cd tmp/
+  475  ls
+  476  cd sockets/
+  477  ls
+  478  cd ..
+  479  cd pids/
+  480  ls
+  481  cd ..
+  482  docker ps
+  483  cd ..
+  484  pwd
+  485  ls
+  486  docker-compose start
+  487  exit
+  488  pwd
+  489  cd docker/
+  490  cd pmc4
+  491  docker-compose start
+  492  ls 
+  493  type
+  494  type docker-compose.yml 
+  495  less docker-compose.yml 
+  496  exit
+  497  cd docker/pmc4
+  498  docker-compose start
+  499  exit
+  500  pwd
+  501  cd docker/
+  502  ls
+  503  cd pmc4
+  504  history > history6.txt
