@@ -245,8 +245,8 @@ def self.canonize(cpath)
   
      cpath = "" unless cpath
      split = cpath.split(/\//).reverse
-     name = split[0] || ""
-     lfolder = split[1] || "" 
+     name = split[0] || ""    
+     lfolder = (split[1] || "") +"/" # pfr 20172009 -  needs end with /
      
      split.reverse!
      

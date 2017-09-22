@@ -1,6 +1,9 @@
 mysqldump --user=root --password=master media_production  > picdb_prod.txt
 mysql     --user root --password=master media_development  --port=3306 < picdb_prod.txt 
 
+mysqldump --user=root --password=wordpress media_development  > development.sql
+mysql --user root --password=wordpress media_development < development.sql
+
 rake db:migrate
 rake db:reset --> deletes all tables and recreates via schema.rb
 rake db:rollback --> one step back 	

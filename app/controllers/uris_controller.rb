@@ -84,6 +84,7 @@ def save
     @action = parmams[:action]
     
   files = UriHandler.getFiles(@path,@filter)
+
   @links = UriHandler.match(files)
   
 end

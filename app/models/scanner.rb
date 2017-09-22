@@ -184,16 +184,29 @@ def self.loadURL(u)
  end
 
  if true
-#    Rails.cache.delete(u)
+    Rails.cache.delete(u)
  end
 
-    Rails.cache.fetch(u, expires_in: 12.hours) do
+#    Rails.cache.fetch(u, expires_in: 12.hours) do
         begin
-          open(u).read
-        rescue 
-          "URL Load Error"
+##         open(u).read
+ 
+          uri = URI.parse(u)
+          
+	  pams = { :id => 97563, :page => 3 }
+          uri.query = URI.encode_www_form(pams)
+
+          req = Net::HTTP::Get.new(uri.request_uri)
+          req['Referer'] = uri.scheme+"://"+uri.host
+          Net::HTTP.start(uri.host, uri.port) do |http|
+              response = http.request(req)
+              response.body
+          end
+
+#       rescue 
+#          "URL Load Error"
         end
-    end
+#    end
  end
 
 
