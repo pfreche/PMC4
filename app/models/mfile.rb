@@ -3,6 +3,7 @@ class Mfile < ActiveRecord::Base
   has_and_belongs_to_many :agroups
   belongs_to :folder
   has_one :location, :dependent => :destroy
+  has_one :bookmark, :dependent => :destroy
   
   def path(typ)
 #    if typ == URL_STORAGE_WEBTN  or typ == URL_STORAGE_FSTN #  Thumbnails 
@@ -22,17 +23,29 @@ class Mfile < ActiveRecord::Base
   end
   def name
     if mtype == MFILE_LOCATION
-      location.name
+      location.name+" *"
     else
-      filename
+      if mtype == MFILE_BOOKMARK
+         bookmark.title+" *"
+      else 
+        filename
+      end
     end
   end
   
   def furlder
     if mtype == MFILE_LOCATION
-      location.uri
+      location.uri+" *"
     else
-       folder.lfolder
+      if mtype == MFILE_BOOKMARK
+         bookmark.url+" *"
+      else 
+         if folder 
+           folder.mpath + folder.lfolder
+         else
+          "xxxxxxxxxxxxx"
+         end
+      end
     end
   end
   

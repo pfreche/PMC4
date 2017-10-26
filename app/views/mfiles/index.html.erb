@@ -1,7 +1,7 @@
 <h1>Listing mfiles</h1>
     <% @mtypes.each do |mtype| %>
 <p>
-      <%= mtype[0].to_s + " "+mtype[1].to_s%>
+      <%=  MFILETYPE[mtype[0].to_i] +" " +mtype[0].to_s + "/ "+mtype[1].to_s%>
 
     <%end %>
 <table>
@@ -10,7 +10,7 @@
       <th>Folder/URL</th>
       <th>Name</th>
       <th>Modified</th>
-      <th>Mod date</th>
+      <th>Type</th>
       <th></th>
       <th></th>
       <th></th>
@@ -23,7 +23,7 @@
       	<td><%= mfile.furlder %></td>
         <td><%= mfile.name %></td>
         <td><%= mfile.modified %></td>
-        <td><%= mfile.mod_date %></td>
+        <td><%= mfile.mtype %></td>
         <td><%= link_to 'Show', mfile %></td>
         <td><%= link_to 'Edit', edit_mfile_path(mfile) %></td>
         <td><%= link_to 'Destroy', mfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>

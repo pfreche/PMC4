@@ -2,6 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+ .attributenew {
+   
+  background-color: #DDD;  
+//  display: inline-block
+  cursor: pointer;
+
+  color: #222;
+  padding: 0 5px;
+  white-space: nowrap;
+  margin: 3px;
+    a {
+    background-color: #ddd;
+    color: #222;
+    text-decoration: none;
+    }
+  } 
+ 
+
+
 .attribute:hover { background: yellow}
 
  .attribute {
@@ -159,10 +178,6 @@
 //        overflow: auto;
 }
 
-.mfileForm {
-    width: 300px;
-//    float: left;
-}
 
 #overlayPic {
   

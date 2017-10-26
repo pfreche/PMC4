@@ -42,12 +42,34 @@ class BookmarksController < ApplicationController
 
   # GET /bookmarks/1/edit
   def edit
+
+    @mfile = @bookmark.mfile 
+    unless @mfile  # for old bookmarks without mfile
+      @mfile = Mfile.new
+      @mfile.mtype = MFILE_BOOKMARK
+      @mfile.filename = ""
+      @mfile.modified = Time.now
+      @mfile.mod_date = Time.now
+      @mfile.save
+      @bookmark.mfile = @mfile
+      @bookmark.save
+    end
+
   end
 
   # POST /bookmarks
   # POST /bookmarks.json
   def create
     @bookmark = Bookmark.new(bookmark_params)
+
+  #create mfile
+     mfile = Mfile.new
+     mfile.mtype = MFILE_BOOKMARK
+     mfile.filename = ""
+     mfile.modified = Time.now
+     mfile.mod_date = Time.now
+     mfile.save
+     @bookmark.mfile = mfile
 
     respond_to do |format|
       if @bookmark.save
@@ -71,6 +93,7 @@ class BookmarksController < ApplicationController
            folder.title = @bookmark.title
            folder.save
         end
+
         format.html { redirect_to @bookmark, notice: 'Bookmark was successfully updated.' }
         format.json { render :show, status: :ok, location: @bookmark }
       else

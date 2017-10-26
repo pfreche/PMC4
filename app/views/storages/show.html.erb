@@ -19,16 +19,6 @@
 <%= render 'shared/mfiles' %>
 </div>
 
-<% @f.each do |fe|%> 
-   <%=fe[0].folder.title%>
-  <% fe.each do |g| %>
-  <div style="padding-left: 3em ">
-    <%= g.folder.mpath.to_s + " " + g.folder.lfolder.to_s+ " "+ g.filename %>
-    </div>
-    <% end %>
-<% end %>
-
-
 
 
 

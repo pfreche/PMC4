@@ -13,7 +13,7 @@ $(document).ready ->
 
    $('.getTitle').bind 'click', getTitle
 
-   $('#bookmarks').DataTable( {
-        scrollCollapse: false,
-        paging:         true
-    } );
+#   $('#bookmarks').DataTable( {
+#        scrollCollapse: false,
+#        paging:         true
+#    } );

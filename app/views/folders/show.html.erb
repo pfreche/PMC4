@@ -13,73 +13,65 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
+<div class= "valuepair">
  <div class="lbl">
   <strong>Path:</strong>
   </div>
-<%= @folder.mpath %> <%= @folder.lfolder %>
- 
-</p>
+<span> <%= @folder.mpath %> <%= @folder.lfolder %> </span>
+</div>
 
 
-<p>
+<div class= "valuepair">
  <div class="lbl">
     Storage
   </div>
   <%= link_to @folder.storage.name, edit_storage_path(@folder.storage) %>
-</p>
-<p>
+</div>
+
+<div class= "valuepair">
  <div class="lbl">
   <strong>Orgin Path:</strong>
   </div>
   <%= @folder.originPath %>
- 
-</p>
+</div>
 
-<p>
+<div class= "valuepair">
+ <div class="lbl">
+  <strong>Orgin Bookmark:</strong>
+  </div>
+  <%=  (bm=@folder.bookmark) ? bm.url : "No Bookmark" %>
+</div>
+<p> 
+<div class= "valuepair">
  <div class="lbl">
     Web Path:
   </div>
     <%=  @folder.path(1) %>
 <%= form_tag(copyFiles_folder_path(@folder) )  do %>
-
 <% end %>
+</div>
 
-</p>
+<div class= "valuepair">
  <div class="lbl">
   <strong>Filesystem:</strong>
   </div>
   <%= @folder.path(2) %>
-</p>
+</div>
 
-</p>
+<div class= "valuepair">
  <div class="lbl">
 <strong>Web TNs Path:</strong>
   </div>
   <%= @folder.path(3) %>
-</p>
-</p>
+</div>
+
+<div class= "valuepair">
  <div class="lbl">
 <strong>FS TNs Path:</strong>
   </div>
   <%= @folder.path(4) %>
-</p>
-
-
-<p>
-  <strong>Mfile:</strong>
-  <%= @folder.mfile_id %>
-</p>
-
-<%= form_tag(copyFiles_folder_path(@folder) )  do %>
-
-  <div class="actions">
-    <%= hidden_field_tag :folder_id, {value: @folder.id} %>
-    <%= hidden_field_tag :typ, 1 %>
-    
-    <%= submit_tag "Download files from Origin to active Web-Server"%>
 </div>
-<% end %>
+<hr>
 
 <%= form_tag(copyFiles_folder_path(@folder) )  do %>
 
@@ -88,16 +80,6 @@
     <%= hidden_field_tag :typ, 2 %>
     
     <%= submit_tag "Download files from Origin to active File-System"%>
-</div>
-<% end %>
-
-<%= form_tag(copyFiles_folder_path(@folder) )  do %>
-
-  <div class="actions">
-    <%= hidden_field_tag :folder_id, {value: @folder.id} %>
-    <%= hidden_field_tag :typ, 3 %>
-    
-    <%= submit_tag "Make Thumbnails from active Webserver to active TN-Webserver"%>
 </div>
 <% end %>
 
@@ -121,11 +103,28 @@
 </div>
 <% end %>
 
+<%= form_tag(copyFiles_folder_path(@folder) )  do %>
 
+  <div class="actions">
+    <%= hidden_field_tag :folder_id, {value: @folder.id} %>
+    <%= hidden_field_tag :typ, 1 %>
+    
+    <%= submit_tag "Download files from Origin to active Web-Server"%>
+</div>
+<% end %>
+
+<%= form_tag(copyFiles_folder_path(@folder) )  do %>
+
+  <div class="actions">
+    <%= hidden_field_tag :folder_id, {value: @folder.id} %>
+    <%= hidden_field_tag :typ, 3 %>
+    
+    <%= submit_tag "Make Thumbnails from active Webserver to active TN-Webserver"%>
+</div>
+<% end %>
 
 
 <%= render 'shared/mfiles' %>
-
 
 <% @mfiles.each do |mfile| %>
       <div class="thumbD" id="<%=mfile.id%>" data-<%=mfile.id%>="a" 

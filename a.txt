@@ -15,3 +15,8 @@ b) einschränkung von Funktionen, wenn diese nicht zur Verfügung stehen
 	Classify folder/attribute
 c) 
 
+
+new functions:
+bookmark 
+in attris nach mfile selektieren
+

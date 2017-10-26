@@ -5,6 +5,8 @@ PMC4::Application.routes.draw do
   post 'scanners/match' => 'scanners#match', as: 'match_scanners_post'
 
   get 'scanners/msas' => 'scanners#msas', as: 'msas_scanners'
+  get 'scanners/msytdl' => 'scanners#msytdl', as: 'msytdl_scanners' # youtube dl
+
 
 #
   resources :scanners do
@@ -98,6 +100,7 @@ PMC4::Application.routes.draw do
     post 'gswl', :on => :member
     get 'checkAvail', :on => :member
     get 'parseURL', :on => :member
+    get 'scan', :on => :member
   end
 
   resources :storages do

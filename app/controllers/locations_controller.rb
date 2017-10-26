@@ -4,7 +4,7 @@ require "uri"
 #require "nokogiri"
 
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy, :parse, :checkAvail, :parseURL, :gswl, :getTitle, :analyzeFiles, :copyToFiles, :downloadToFiles, :deleteFiles]
+  before_action :set_location, only: [:show, :edit, :update, :destroy, :parse, :checkAvail, :parseURL, :gswl, :getTitle, :analyzeFiles, :copyToFiles, :downloadToFiles, :deleteFiles, :scan]
   # GET /locations
   # GET /locations.json
   def index
@@ -118,16 +118,28 @@ class LocationsController < ApplicationController
     render "parse"
   end
 
-# analyze files
-
+# ccc checks how many files are physically in the location from all
   def analyzeFiles
+
      a = UriHandler.checkContent(@location)
-     
      text =  a[1].to_s
      text = text + " from " + a[0].to_s
      render :text => text
     
   end
+
+# ccc Scans files on the storage
+  def scan
+
+    @commit = params[:commit]
+    if @commit
+      level = @commit[23,1].to_i
+       @files = @location.scanAndAdd(level)
+    else
+      @files = @location.scan
+    end
+  end
+
 
 # copy files
 

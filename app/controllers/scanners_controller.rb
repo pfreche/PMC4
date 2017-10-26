@@ -26,17 +26,31 @@ class ScannersController < ApplicationController
   def matchAndScan
     @url = params[:url]
     @bookmark_id = params[:bookmark_id]
-
-    @lll = Scantree.new(@url,nil,0,"",3)
-    @lll.scan
     
     @links = Scanner.matchAndScan(@url)
-#    @links = @lll.to_a
-#      @commonStart = RHandler.detCommonStart(@links.select{|l| l[2]=="x"}.map{|l| l[0].rstrip})
-    @commonStart = Scanner.detCommonStart(@links)
-    
-    @possibleLocations = Location.all.select{|l| @commonStart.include? l.uri} # besser auf der DB ???
-    render :scanResult
+    if @links.select{|a,b| b[1]=="YT"}.empty?
+     
+      @commonStart = Scanner.detCommonStart(@links)
+      @possibleLocations = Location.all.select{|l| @commonStart.include? l.uri} # besser auf der DB ???
+      render :scanResult
+    else 
+      @possibleLocations = Location.all.where(typ: 2)
+      render :scanResultYT     
+    end
+
+  end
+
+  def msytdl # match scan youtube download
+    @url = params[:url]
+    @links = Scanner.matchAndScan(@url)
+     location_id = params[:location_id]
+     location = Location.find(location_id)
+
+    user, x = @links.select{|a,b| b[1]=="user"}.first
+    title, x = @links.select{|a,b| b[1]=="title"}.first
+    folder = Scanner.createFolder("/"+user, title,location)
+    location.downloadTube(folder, @url)    
+
   end
 
   def msas # match scan and save
@@ -162,6 +176,6 @@ class ScannersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def scanner_params
-      params.require(:scanner).permit(:tag, :attr, :pattern, :scan, :url, :location, :name, :match, :final)
+      params.require(:scanner).permit(:tag, :attr, :pattern, :scan, :url, :location, :name, :match, :final, :stype)
     end
 end

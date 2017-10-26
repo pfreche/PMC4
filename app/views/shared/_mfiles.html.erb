@@ -1,4 +1,3 @@
-<h1>Mfiles</h1>
 
 <table>
   <thead>
@@ -16,10 +15,8 @@
   <tbody>
     <% @mfiles.each do |mfile| %>
       <tr>
-      	<td><%= mfile.furlder %></td>
-        <td><%= link_to mfile.name, mfile.path(1) %></td>
-        
-        
+        <td><%= link_to mfile.furlder, mfile.folder %></td>
+        <td><%= link_to mfile.name, mfile.path(1) %></td>        
         <td><%= mfile.modified %></td>
         <td><%= mfile.mod_date %></td>
         <td><%= link_to 'Show', mfile %></td>

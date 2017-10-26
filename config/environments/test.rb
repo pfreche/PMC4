@@ -33,4 +33,8 @@ PMC4::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  config.web_console.development_only = false
+  config.web_console.whitelisted_ips = '192.168.0.0/16'
+
 end

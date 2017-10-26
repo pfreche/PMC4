@@ -1,18 +1,28 @@
 <h1>Attributes
-	
 </h1>
-	<%= link_to "All", attris_path+"?reset=1"%>
-<% if @selectedAttributes
-      @selectedAttributes.each do |attri| %>    
 
- <%= link_to attri.name, attris_path+"?id_remove="+attri.id.to_s, method: :get %>
- 
+<% if @selectedAttributes %>
+ <div class="lbl">
+  <strong>Selected Attributes:</strong>
+  </div>
+
+<%      @selectedAttributes.each do |attri| %>    
+
+<span class='attributenew'> <%= attri.name %> 
+        <%= link_to 'X', attris_path+"?id_remove="+attri.id.to_s, method: :get%>
+         </span>
+
  <% end %>
+<%= link_to material_icon.delete.css_class('md-18'), attris_path+"?reset=1"%>
  <% end %>
- -->
- <%= link_to "Show selected Mfiles", mfiles_path+"?typ=attribute", method: :get %>
- <%= link_to "Show selected Mfiles as Thumbs", thumbs_mfiles_path+"?typ=attribute", method: :get %>
- 
+ <div class="valuepair">
+ <div class="lbl">
+  <strong>Show selected Mfiles:</strong>
+  </div>
+ <%= link_to "<As List>", mfiles_path+"?typ=attribute", method: :get %>
+ <%= link_to "<As Thumbs>", thumbs_mfiles_path+"?typ=attribute", method: :get %>
+ </div>
+<hr>
 <table>
   <thead>
     <tr>

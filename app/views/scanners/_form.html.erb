@@ -22,6 +22,12 @@
   </div>
 
   <div class="field">
+    <%= f.label :stype %>
+    <%= f.text_field :stype, size: 20 %>
+  </div>
+
+
+  <div class="field">
     <%=  @scanner.matchS(@scanner.url) %>
 
   </div>

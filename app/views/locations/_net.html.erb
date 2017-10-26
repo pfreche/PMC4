@@ -4,9 +4,7 @@
 	<button class="getTitle" id=<%=@location.id%>>
 		Get Title </button>
 		
-	
-	<%= form_tag parse_location_path(@location), method: "get"  do %>
-
+   <%= form_tag parse_location_path(@location), method: "get"  do %>
        <%= submit_tag("Get Content") %>
     <% end %>
 	
@@ -15,5 +13,6 @@
        <%= submit_tag("Genarate Storage with Location") %>
     <% end %>
 
+   <%= link_to "Scan Physical Content", "scan" %>
     
 </div>

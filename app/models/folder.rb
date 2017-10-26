@@ -3,6 +3,7 @@ require 'open-uri'
 class Folder < ActiveRecord::Base
   belongs_to :storage
   has_many :mfiles,  :dependent => :destroy
+  has_one :bookmark
   
   def pathLocation(location)
  #    p = location.uri + "/" +  mpath + "/" +  lfolder + "/"
@@ -201,6 +202,7 @@ def generateTNs(fromLocation, toLocation, force=true, prefix, area)
    mfiles.each do |mfile|
         tofile = File.join(to,prefix+mfile.filename)
         next unless force or !File.exist?(tofile)  # 
+        toLocation.createDirsIfNecessary(tofile) # 20171015
         
         fromfile = File.join(from,mfile.filename)
        

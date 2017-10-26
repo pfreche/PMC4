@@ -26,18 +26,68 @@ class Location < ActiveRecord::Base
   def downloadAllowedTo?
      isFS? and ((storage.location(URL_STORAGE_WEB)  and (typ == URL_STORAGE_FS))          or (storage.location(URL_STORAGE_WEBTN)  and (typ == URL_STORAGE_FSTN )))
   end
-  
+
+# 20171015 Scans files physically
+def scan (filter = nil)
+
+    path = uri
+    files = []
+    if filter == nil
+      filter  = "."
+    end
+    Dir.glob(path+"/**/*") {|f| 
+      if !File.directory?(f) and f[%r{#{filter}}] 
+        files << f 
+      end
+      }
+    locPathLength = path.length
+    files.map{|l| l[locPathLength+1..-1]}.map {|l| l.split(/\//)}
+end
+
+def scanAndAdd (level, filter = nil)
+
+    files = scan(filter)
+
+    files.each { |file|
+       path = ""
+       for i in 1..level 
+           path = path + "/"+ file[i-1]
+       end
+       path = path + "/"
+       filename = ""
+       for i in level..5
+           filename = filename + file[i]
+           break unless file[i+1] 
+           filename = filename + "/"
+       end
+       folder = Folder.where(storage_id: storage_id, mpath: path ).first
+       unless folder
+         folder = Folder.create(storage_id: storage_id, mpath: path, lfolder: "")
+         folder.save    
+         foldernew = true
+       end
+   
+       if foldernew or !Mfile.where(folder_id: folder.id, filename: filename).first
+         mfile = Mfile.new(folder_id: folder.id, filename: filename, mtype: MFILE_UNDEFINED)   
+         mfile.save
+         file[0] = "ADDED: "+file[0] 
+       end
+    }
+
+end
+
+
 
 def mkDirectories(folder = nil)
    
   if folder 
-    folders = [folder]
+     folders = [folder]
   else
-# get all folder from storage
      folders = storage.folders 
    end
    a = ""
-# check types   
+
+# type switches 
   if typ == URL_STORAGE_FS  or typ == URL_STORAGE_FSTN
    
     folders.each do |folder|
@@ -194,7 +244,11 @@ end
           end
         end
      end
-    n
+#  Download via curl in the background
+    if @curl
+        Process.spawn(@curl)
+    end
+    return n
    end 
 
   def copyFile (fromFile, toFile, tns)
@@ -298,10 +352,21 @@ end
 
   end 
 
+def  downloadTube(folder, url)    
+    
+   apath = "-o \""+ uri + folder.mpath + folder.lfolder + "/%(title)s-%(id)s.%(ext)s\" "
+   command = "youtube-dl "+ apath + url
+   system(command)
+    adf
+end
+
 private
 
+
 # downloads a file from Web to a local file 
-   def download(fromWebFile, toFile) 
+   def download(fromWebFile, toFile, method=1) 
+      case method 
+      when 0 
           uri = URI.parse(URI.encode(fromWebFile))
           req = Net::HTTP::Get.new(uri.request_uri)
           req['Referer'] = uri.scheme+"://"+uri.host
@@ -313,6 +378,10 @@ private
                   file.write(response.body)
               end
           end
+      when 1
+        @curl = "curl" unless @curl
+        @curl =  @curl + " -o \""+ toFile + "\" \"" + fromWebFile +  "\""
+      end
   end
 
 # uploads a file locally stored in Tempfile to HFS-Webserver 
