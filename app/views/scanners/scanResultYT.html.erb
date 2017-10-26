@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+
+  <strong>Scanned Url: </strong>
+  <%= @url %>
+</p>
+
+Possilbe File-Locations 
+<ul>
+<% @possibleLocations.each do |location| %>
+<li> <%= link_to "SELECT", msytdl_scanners_path(url: @url, location_id: location, bookmark_id: @bookmark_id) %> 
+   <%=location.name+ " "+location.uri %>
+<% end %>
+</ul>
+
+
+<% if @lll %>
+   <%= @lll.show.html_safe %>
+<% end %>
+
+
+<% if @lll %>
+<% @lll.to_a.each do |link| %>
+<% if link[2] == "x"
+     m = "-------"
+   else
+     m = "Match"
+   end
+ %>
+      <div style="padding-left: <%=link[1]*3%>em ">
+    <%=link_to link[1], match_scanners_path(url: link[0]) %>
+    <%=link_to link[0], link[0]%>
+   <%= link[2] %> 
+   </div>
+    
+
+    
+<% end %>
+<% end %>
+
+<p>
+<p>
+<p>
+
+<% if @links %>
+<% @links.each do |link| %>
+<% if link[2] == "x"
+     m = "-------"
+   else
+   	 m = "Match"
+   end
+ %>
+      <div style="padding-left: <%=link[1]*3%>em ">
+    <%=link_to link[1], match_scanners_path(url: link[0]) %>
+    <%=link_to link[0], link[0]%>
+   <%= link[2] %> 
+   </div>
+    
+
+	  
+<% end %>
+<% end %>
+
+<%= link_to 'Back', scanners_path %>

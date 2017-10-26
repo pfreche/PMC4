@@ -1,0 +1,1000 @@
+  149  cd PMC4
+  150  sudo chown  osboxes media
+  151  sudo docker ps
+  152  sudo docker-compose stop
+  153  ls
+  154  cd tmp/
+  155  ls
+  156  cd pids
+  157  ls
+  158  dir
+  159  ls
+  160  ls -al
+  161  rm server.pid 
+  162  su
+  163  login root
+  164  login
+  165  sudo rm server.pid 
+  166  cd ..
+  167  cd .
+  168  cd ..
+  169  sudo docker-compose start
+  170  pwd
+  171  cd media
+  172  cd ..
+  173  cd media/
+  174  ls
+  175  ls -la
+  176  ruby -v
+  177  cd ..
+  178  cd PMC4/
+  179  more Dockerfile 
+  180  cd media
+  181  ls
+  182  cd ..
+  183  cd media
+  184  ls
+  185  ls -la
+  186  ls
+  187  cd scary-hairy/
+  188  ls
+  189  cd 1302/289065/
+  190  ls
+  191  ls -la
+  192  ls
+  193  ls -la
+  194  history
+  195  exit
+  196  pwd
+  197  cd rails/
+  198  cd PMC4/
+  199  ls
+  200  cd tmp/
+  201  ls
+  202  dir
+  203  ls -la
+  204  cd cache
+  205  ls
+  206  cd ..
+  207  ls
+  208  cd ..
+  209  ls
+  210  cd public/
+  211  ls
+  212  ls -la
+  213  cd ..
+  214  ls -la
+  215  cd log
+  216  ls
+  217  tail development.log 
+  218  tee development.log 
+  219  more development.log 
+  220  tail development.log 
+  221  cd ..
+  222  dir
+  223  nano 
+  224  nano Gemfile
+  225  sudo docker-compose stop
+  226  sudo docker-compose start
+  227  sudo docker-compose stop
+  228  sudo docker-compose build
+  229  sudo docker-compose start
+  230  ls
+  231  pwd
+  232  more Gemfile
+  233  edit
+  234  ps
+  235  ps a
+  236  psa -a
+  237  ps -a
+  238  ps -al
+  239  ps -A
+  240  ps -A|more
+  241  ps -A|grep ed
+  242  gedit
+  243  sudo docker-compose build
+  244  sudo docker-compose stop
+  245  sudo docker-compose start
+  246  sudo docker-compose stop
+  247  sudo docker-compose build
+  248  sudo docker-compose start
+  249  gedit app/controllers/folders_controller.rb 
+  250  sudo docker-compose stop
+  251  sudo docker-compose build
+  252  sudo docker-compose start
+  253  sudo docker-compose stop
+  254  sudo docker-compose up
+  255  sudo docker-compose stop
+  256  sudo docker-compose up
+  257  sudo docker-compose stop
+  258  sudo docker-compose up
+  259  sudo docker-compose stop
+  260  sudo docker-compose up
+  261  sudo docker-compose stop
+  262  sudo docker-compose up
+  263  sudo docker-compose stop
+  264  sudo docker-compose up
+  265  sudo docker-compose stop
+  266  history |more
+  267  cd ..
+  268  mkdir backup
+  269  mv PMC4/ backup/
+  270  git clone https://github.com/pfreche/PMC4
+  271  history
+  272  history |more
+  273  history |grep git
+  274  cd PMC4/
+  275  git 
+  276  git branch
+  277  git branch ad
+  278  git branch
+  279  git branches
+  280  git branch list
+  281  git branch --help
+  282  git branch -a
+  283  git merge --help
+  284  git merge mdl
+  285  git merge origin/mdl
+  286  git status
+  287  git merge origin/mdl
+  288  pwd
+  289  cd ..
+  290  cd backup/
+  291  ls
+  292  cd PMC4/
+  293  cd app/
+  294  cd models/
+  295  ls
+  296  cd ..
+  297  cd..
+  298  cd .
+  299  cd ..
+  300  ls
+  301  cd ..
+  302  cd PMC4/
+  303  sudo docker-compose build
+  304  sudo docker-compose up
+  305  git status
+  306  git commit -a
+  307  git commit -am
+  308  git commit -am "merge mdl to master"
+  309  git config --global user.email "pfreche@gmail.com"
+  310  git config --global user.name Peter
+  311  git commit -am "merge mdl to master"
+  312  git push origin master
+  313  ls
+  314  cd ..
+  315  ls
+  316  ls -la
+  317  cd media
+  318  ls
+  319  cd ..
+  320  rmdir media
+  321  mv media.back/ media
+  322  ls 
+  323  ls -la
+  324  exit
+  325  cd media/
+  326  ls
+  327  pwd
+  328  ls 
+  329  pwd
+  330  cd ..
+  331  ls
+  332  cd rails
+  333  ls
+  334  cd media/
+  335  ls
+  336  cd mature-and-hairy/
+  337  ls
+  338  cd 1549/336012/
+  339  ls
+  340  ls -la
+  341  cd ~
+  342  ls
+  343  cd rails
+  344  cd PMC4/
+  345  more Dockerfile 
+  346  more docker-compose.yml 
+  347  cd tmp/
+  348  ls
+  349  cd cache/
+  350  ls
+  351  ls -la
+  352  cd 1E8/
+  353  ls
+  354  cd BE2/
+  355  ls
+  356  ls -la
+  357  rm http%3A%2F%2Freadcomiconline.to%2FComic%2F100th-Anniversary-Special-Fantastic-Four%2FFull%3Fid%3D97563 
+  358  sudo rm http%3A%2F%2Freadcomiconline.to%2FComic%2F100th-Anniversary-Special-Fantastic-Four%2FFull%3Fid%3D97563 
+  359  ls
+  360  sudo rm http%3A%2F%2Freadcomiconline.to%2FComic%2F100th-Anniversary-Special-Fantastic-Four%2FFull%3Fid%3D97563 
+  361  ls
+  362  cd home
+  363  cd 
+  364  cd ~
+  365  cd Downloads/
+  366  cd
+  367  cd media/
+  368  cd
+  369  cd media/
+  370  cd 
+  371  cd rails/
+  372  mkdir dbdata
+  373  ls
+  374  cd dbdata/
+  375  ls
+  376  cd ..
+  377  cd PMC4/
+  378  more histor2.txt 
+  379  exit
+  380  history
+  381  cd rails/PMC4/
+  382  sudo docker-compose start
+  383  cd .
+  384  ls
+  385  cd ..
+  386  cd media/
+  387  ls
+  388  cd scary-hairy/
+  389  ls
+  390  cd 1302/
+  391  cd 289065/
+  392  ls
+  393  cd ..
+  394  cd ll
+  395  ls -la
+  396  mkdir a
+  397  ls
+  398  cd ..
+  399  ls
+  400  ls -la
+  401  ls
+  402  ls -la
+  403  cd media
+  404  ls
+  405  ls -la
+  406  cd scary-hairy/
+  407  ls
+  408  ls -la
+  409  cd ..
+  410  chmod 777 media
+  411  ls -la
+  412  cd media
+  413  l
+  414  cd ..
+  415  ls
+  416  cd media
+  417  ls
+  418  pwd
+  419  cd .
+  420  cd ..
+  421  ls 
+  422  cd PMC4/
+  423  more Dockerfile 
+  424  more docker-compose.yml 
+  425  gedit docker-compose.yml 
+  426  sudo docker-compose stop
+  427  sudo docker-compose build
+  428  sudo docker-compose start
+  429  sudo docker-compose stop
+  430  sudo docker 
+  431  sudo docker ps
+  432  sudo docker ps -a
+  433  sudo docker rm a4b
+  434  sudo docker-compose build
+  435  sudo docker ps -a
+  436  sudo docker-compose up
+  437  sudo docker ps -a
+  438  sudo docker rm c73
+  439  sudo docker rmi pmc4_webp
+  440  sudo docker-compose build
+  441  sudo docker-compose up
+  442  history |more 
+  443  ls
+  444  more histor2.txt 
+  445  sudo docker-compose stop
+  446  sudo docker-compose start
+  447  sudo docker-compose stop
+  448  sudo docker-compose build
+  449  sudo docker-compose up
+  450  sudo docker-compose stop
+  451  sudo docker-compose rm dbp
+  452  sudo docker-compose build
+  453  sudo docker-compose up
+  454  sudo docker-compose run -d webp rake db:reset
+  455  sudo docker-compose stop
+  456  sudo docker-compose up
+  457  exit
+  458  ist
+  459  history
+  460  cd rails/
+  461  cd media/
+  462  ls
+  463  cd gruq/
+  464  cd mature-and-hairy/1549/336013/
+  465  ls
+  466  cd 
+  467  cd media/
+  468  ls
+  469  cd ..
+  470  cd rails/
+  471  cd media/
+  472  ls
+  473  cd gruqtns/mature-and-hairy/1549/336013/
+  474  ls
+  475  cd 
+  476  ls
+  477  cd rails/
+  478  ls
+  479  cd media
+  480  ls
+  481  cd gruq
+  482  ls
+  483  cd .
+  484  cd ..
+  485  mv mature-and-hairy/1549/ gruq/mature-and-hairy/
+  486  cd gruq
+  487  ls
+  488  cd mature-and-hairy/
+  489  ls
+  490  cd ..
+  491  ls
+  492  cd mature-and-hairy/
+  493  ls
+  494  rmdir -r 1549/
+  495  rmdir -R 1549/
+  496  rm -R 1549/
+  497  sud rm -R 1549/
+  498  sudo rm -R 1549/
+  499  ls
+  500  cd ..
+  501  rmdir  mature-and-hairy/
+  502  ls
+  503  cd scary-hairy/
+  504  ls
+  505  cd 1302/289065/
+  506  ls
+  507  rm *.jg
+  508  rm *.jpg
+  509  sudo rm *.jpg
+  510  cd ..
+  511  rmdir  289065/
+  512  sudo rmdir  289065/
+  513  cd ..
+  514  sudo rmdir  1302/
+  515  ls
+  516  cd ..
+  517  ls
+  518  rm scary-hairy/
+  519  sudo rmdir scary-hairy/
+  520  ls
+  521  cd a
+  522  ls
+  523  cd ..
+  524  rmdir a
+  525  ls -la
+  526  cd rails/
+  527  ls
+  528  cd dbdata/
+  529  ls
+  530  ls -la
+  531  cd ..
+  532  cd PMC4/
+  533  sudo docker-compose up
+  534  cd /
+  535  ls
+  536  cd media
+  537  ls
+  538  ls -la
+  539  cd sf_Z_DRIVE/
+  540  sudo cd df_Z_DRIVE
+  541  ps -A
+  542  ps
+  543  ps -A
+  544  ps 
+  545  ps -A
+  546  ps -A|more
+  547  ps --help
+  548  ps --help all
+  549  ps
+  550  ps -A|more
+  551  unity-files
+  552  unity-files-home
+  553  which unity
+  554  unity
+  555  cd /
+  556  ls
+  557  cd media
+  558  ls
+  559  root
+  560  su
+  561  us
+  562  su
+  563  ls
+  564  ls -la
+  565  sudo chmod 777 sf_Downloads/
+  566  ls
+  567  cd sf_Z_DRIVE/
+  568  ls
+  569  cd sf_Downloads/
+  570  ls
+  571  ls -la
+  572  cd sf_Downloads/
+  573  ls
+  574  exit
+  575  ls
+  576  samba docker it --name samba -p 139:139 -p 445:445 -v /home/osboxes/rails/media:/media -d dperson/samba
+  577  sudo docker run -it --name samba -p 139:139 -p 445:445 -v /home/osboxes/rails/media:/media -d dperson/samba
+  578  sudo docker ps
+  579  sudo docker stop
+  580  sudo docker stop 0
+  581  sudo docker stop 07
+  582  sudo docker stop 0f
+  583  sudo docker ps
+  584  sudo docker run -it --name samba -p 139:139 -p 445:445 -v /home/osboxes/rails/media:/media -d dperson/samba
+  585  ls -la
+  586  cd rails/
+  587  ls
+  588  ls -la
+  589  sudo docker run -it --name samba -p 139:139 -p 445:445 -v /home/osboxes/rails/media:/media -d dperson/samba -u "name:name" -s "media;/media"
+  590  sudo docker run -it --name samba3 -p 139:139 -p 445:445 -v /home/osboxes/rails/media:/media -d dperson/samba -u "name:name" -s "media;/media"
+  591  samba
+  592  sudo apt install samba
+  593  sudo docker ps
+  594  history
+  595  sudo docker run -it --name samba3 -p 139:139 -p 445:445 -v /home/osboxes/rails/media:/media -d dperson/samba -u "name:name" -s "media;/media"
+  596  sudo docker run -it --name samba4 -p 139:139 -p 445:445 -v /home/osboxes/rails/media:/media -d dperson/samba -u "name:name" -s "media;/media"
+  597  sudo docker ps
+  598  sudo docker ps -A
+  599  sudo docker ps -a
+  600  sudo docker rm 0e
+  601  pwd
+  602  ls -la
+  603  pwd
+  604  cd /etc/samba/
+  605  sudo gedit smb.conf 
+  606  sh /etc/init.d/samba start
+  607  useradd
+  608  adduser
+  609  useradd --help
+  610  useradd --help|more
+  611  user
+  612  userlist
+  613  smbpasswd -a osboxes
+  614  sudo smbpasswd -a osboxes
+  615  cd 
+  616  cd rails/
+  617  cd PMC4/
+  618  sudo docker-compose start
+  619  sudo docker-compose star
+  620  sudo docker-compose stop
+  621  exit
+  622  cd rails
+  623  cd PMC4/
+  624  sudo docker-compose stop
+  625  gvfs-mount
+  626  gvfs-mount -d /dev/sdb
+  627  ls /dev sd*
+  628  gvfs-mount -d /dev/sdb
+  629  gvfs-mount -d /dev/sdb1
+  630  ls
+  631  cd media/
+  632  ls
+  633  cd ..
+  634  cd Documents/
+  635  ls
+  636  cd .
+  637  ln
+  638  ln --help
+  639  cd rails/
+  640  cd media/
+  641  ln -s /media/osboxes/mediapart/
+  642  ls
+  643  ls -la
+  644  rn mediapart m1
+  645  mv mediapart m1
+  646  ls -la
+  647  cd fs1
+  648  ls
+  649  cd ..
+  650  ls -la
+  651  mv fs1 m1
+  652  mv gruq m1
+  653  sudo mv gruq m1
+  654  ls 
+  655  cd m1
+  656  ls
+  657  ls -la
+  658  cd fs1
+  659  ls
+  660  cd ..
+  661  cd gruq/
+  662  ls
+  663  ls -la
+  664  du
+  665  cd ..
+  666  ls
+  667  cd gruq
+  668  ls
+  669  rm -r mature-and-hairy/*
+  670  sudo rm -r mature-and-hairy/*
+  671  sudo rm -r young-and-hairy/*
+  672  ls 
+  673  rmdir young-and-hairy/
+  674  sudo rmdir young-and-hairy/
+  675  sudo rmdir  mature-and-hairy/
+  676  ls -la
+  677  cd ..
+  678  ls
+  679  sudo rmdir gruq
+  680  sudo rmdir gruqtns/
+  681  sudo rmdir gruqtns/*
+  682  sudo rmdir -r gruqtns/*
+  683  sudo rm -r gruqtns/*
+  684  rmdir gruqtns/
+  685  ls
+  686  ls -la
+  687  rm Dockerfile 
+  688  cd m1
+  689  ls
+  690  ls -la
+  691  cd lost+found/
+  692  ls
+  693  cd gruq
+  694  ls
+  695  cd mature-and-hairy/
+  696  ls
+  697  cd 1550
+  698  ls
+  699  cd 3360
+  700  cd 336015
+  701  ls
+  702  m01.jpg
+  703  cd 
+  704  history
+  705  sh /etc/init.d/samba start
+  706  sh /etc/init.d/samba restart
+  707  pwd
+  708  cd rails/
+  709  ls -la
+  710  cd media
+  711  ls -la
+  712  cd m1
+  713  ls
+  714  ls -la
+  715  cd /media/osboxes/
+  716  ls -la
+  717  chmod 777 mediapart/
+  718  ls -la
+  719  cd 
+  720  cd rails/ 
+  721  ls -la
+  722  cd media/
+  723  ls 
+  724  ls -la
+  725  sudo gedit
+  726  sh /etc/init.d/samba start
+  727  sh /etc/init.d/samba restart
+  728  exit
+  729  history
+  730  exit
+  731  cd rails 
+  732  cd PMC4/
+  733  docker-compose start
+  734  sudo docker-compose start
+  735  sudo docker-compose exec dbp sh
+  736  cd rails 
+  737  cd PMC4
+  738  sudo docker-compose exec dbp sh
+  739  sudo docker-compose exec dbp mysqldump --user=root --password=wordpress media_development  > development.sql
+  740  ls
+  741  ls -la
+  742  sudo docker-compose exec dbp sh
+  743  sudo docker-compose exec dbp mysqldump --user=root --password=wordpress media_development 
+  744  "sudo docker-compose exec dbp mysqldump --user=root --password=wordpress media_development" 
+  745  (sudo docker-compose exec dbp mysqldump --user=root --password=wordpress media_development )
+  746  (sudo docker-compose exec dbp mysqldump --user=root --password=wordpress media_development ) > o.txt
+  747  (sudo docker-compose exec dbp mysql --user root --password=wordpress media_development ) < o.txt
+  748  sudo docker-compose exec dbp mysqldump --user=root --password=wordpress media_development > /var/lib/mysql/o.txt
+  749  sudo docker-compose exec dbp mysqldump --user=root --password=wordpress media_development > ooo.txt
+  750  sudo docker-compose exec dbp mysql --user root --password=wordpress media_development  < o.txt
+  751  history
+  752  history > zestyhist1.txt
+  753  ls 
+  754  dir *.sql
+  755  rm development.sql 
+  756  ls -la
+  757  git commit -am "start with zesty"
+  758  git push origin master
+  759  ping www.google.de
+  760  ping
+  761  ifconfig
+  762  docker-compose stop
+  763  exit
+  764  cd /media/osboxes/
+  765  ls
+  766  cd mediapart/
+  767  ls
+  768  ls -la
+  769  cd fs1/
+  770  ls
+  771  ls -la
+  772  cd ..
+  773  ls
+  774  cd fs1/
+  775  ls
+  776  cd ..
+  777  ls -la
+  778  cd cd gruq/
+  779  ls
+  780  cd gruq/
+  781  ls
+  782  du
+  783  view
+  784  cd
+  785  ping www.google.de
+  786  cd /media/osboxes
+  787  ls
+  788  cd 
+  789  cd rails/
+  790  cd PMC4/
+  791  cd rails/
+  792  cd PMC4/
+  793  sudo docker-compose build&
+  794  ps
+  795  sudo docker-compose build
+  796  sudo docker-compose up
+  797  sudo docker-compose start
+  798  sudo docker-compose stop
+  799  sudo docker-compose start
+  800  sudo docker-compose ps
+  801  sudo docker-compose stop
+  802  sudo docker-compose start
+  803  sudo docker-compose stop
+  804  sudo docker-compose build
+  805  sudo docker-compose up
+  806  exit
+  807  cd /
+  808  cd media
+  809  ls
+  810  cd osboxes/
+  811  ls
+  812  cd mediapart/
+  813  ls
+  814  ls -la
+  815  sudo rm -R gruq/*
+  816  ls -la
+  817  sudo rmdir gr
+  818  sudo rmdir gruq/
+  819  ls -la
+  820  cd ..
+  821  ls -
+  822  ls -l
+  823  acd mediapart
+  824  ls
+  825  cd mediapart
+  826  ls
+  827  cd ..
+  828  cd mediapart1/
+  829  ls
+  830  cd ..
+  831  ls -la
+  832  sudo rm mediapart/
+  833  sudo rmdir mediapart/
+  834  ls
+  835  exit
+  836  cd rails/dbdata
+  837  sudo cp /media/osboxes/mediapart/m2.txt .
+  838  sudo cp /media/osboxes/mediapart/mfiles.txt .
+  839  ls -la
+  840  sudo cp /media/osboxes/mediapart/folders.txt .
+  841  cd ../PMC4/
+  842  sudo docker-compse stop
+  843  sudo docker-compose stop
+  844  sudo docker-compose start
+  845  sudo cp /media/osboxes/mediapart/attris_mfiles.txt ../dbdata
+  846  sudo cp /media/osboxes/mediapart/props.txt  ../dbdata
+  847  history |grep dump
+  848  sudo docker-compose exec dbp mysqldump --user=root --password=wordpress media_dev2 > media_dev2.txt
+  849  cd rails/
+  850  cd PMC4/
+  851  sudo docker-compose start
+  852  sudo docker-compose exec dbp sh
+  853  sudo docker-compose ps
+  854  sudo docker-compose exec webp sh
+  855  sudo docker-compose stop
+  856  sudo docker-compose start
+  857  cp docker-compose.yml docker-compose2.yml 
+  858  sudo docker-compose stop
+  859  sudo docker-compose -f docker-compose2.yml start
+  860  sudo docker-compose -f docker-compose2.yml stop
+  861  sudo docker-compose -f docker-compse2.yml stop
+  862  sudo docker-compose -f docker-compose2.yml up
+  863  sudo docker-compose -f docker-compose2.yml start
+  864  cd config/
+  865  cd environments/
+  866  ls
+  867  cp development.rb  dev2.rb
+  868  sudo docker-compose -f docker-compose2.yml up
+  869  cd .
+  870  cd ..
+  871  cd .
+  872  cd ..
+  873  sudo docker-compose -f docker-compose2.yml up
+  874  history
+  875  history |grep mysql
+  876  sudo docker-compose exec dbp mysqldump --user=root --password=wordpress media_development > o2.txt
+  877  sudo docker-compose up
+  878  sudo docker-compose exec dbp mysqldump --user=root --password=wordpress media_development > o2.txt
+  879  sudo docker-compose ps
+  880  sudo docker-compose up
+  881  sudo docker-compose start
+  882  sudo docker-compose exec dbp mysqldump --user=root --password=wordpress media_development > o2.txt
+  883  sudo docker-compose -f docker-compose2.yml up
+  884  history |grep rake
+  885  sudo docker-compose run -d web rake:r111
+  886  sudo docker-compose run -d webp rake:r111
+  887  sudo docker-compose run -d webp rake:reset
+  888  sudo docker-compose exec webp sh
+  889  sudo docker-compose -f docker-compose2.yml build
+  890  sudo docker-compose exec webp sh
+  891  histoy |grep exec
+  892  history |grep exec
+  893  clear
+  894  history |grep exec
+  895  sudo docker-compose  build
+  896  sudo docker-compose exec webp sh
+  897  sudo docker-compose  up
+  898  sudo docker-compose exec webp sh
+  899  sudo docker-compose  start
+  900  sudo docker-compose exec webp sh
+  901  sudo docker-compose -f docker-compose2.yml build
+  902  sudo docker-compose -f docker-compose2.yml up
+  903  sudo docker-compose -f docker-compose2.yml run webp sh
+  904  sudo docker-compose -f docker-compose2.yml up
+  905  sudo docker-compose -f docker-compose2.yml run webp sh
+  906  sudo docker-compose -f docker-compose2.yml up
+  907  sudo docker-compose -f docker-compose2.yml build
+  908  sudo docker-compose -f docker-compose2.yml up
+  909  sudo docker-compose -f docker-compose.yml up
+  910  sudo docker-compose -f docker-compose2.yml build
+  911  sudo docker-compose -f docker-compose.yml up
+  912  sudo docker-compose -f docker-compose2.yml up
+  913  sudo docker-compose run webp sh
+  914  sudo docker-compose -f docker-compose2.yml up
+  915  sudo docker-compose run webp s
+  916  sudo docker-compose -f docker-compose2.yml build
+  917  sudo docker-compose -f docker-compose2.yml up
+  918  sudo docker-compose run webp sh
+  919  sudo docker-compose -f docker-compose2.yml start
+  920  sudo docker-compose exec webp sh
+  921  sudo docker-compose -f docker-compose.yml up
+  922  sudo docker-compose -f docker-compose2.yml start
+  923  sudo docker-compose -f docker-compose2.yml up
+  924  sudo docker-compose start
+  925  cp /media/osboxes/mediapart/attrigroups.sql ..
+  926  cd ..
+  927  ls
+  928  cp attrigroups.sql dbdata
+  929  sudo cp attrigroups.sql dbdata
+  930  cd dbdata
+  931  cd ..
+  932  cd rails
+  933  cd PMC4/
+  934  sudo docker-compose exec dbp sh
+  935  ls
+  936  sudo docker-compose exec dbp sh
+  937  exit
+  938  docker
+  939  docker version
+  940  docker -version
+  941  docker version
+  942  yum
+  943  sudo apt-get list
+  944  sudo apt-get 
+  945  wget https://github.com/ContainX/docker-volume-netshare/releases/download/v0.18/docker-volume-netshare_0.18_amd64.deb
+  946  sudo dpkg -i docker-volume-netshare_0.18_amd64.deb
+  947  service docker-volume-netshare start
+  948  sudo service docker-volume-netshare start
+  949  docker-volume-netshare -h
+  950  sudo docker-volume-netshare cifs
+  951  cd rails/PMC4/
+  952  sudo docker-compose -f docker-compose.yml up
+  953  docker run -it --volume-driver=cifs -v cifshost/share:/data ubuntu /bin/bash
+  954  sudo docker run -it --volume-driver=cifs -v 192.168.178.20/public:/data ubuntu /bin/bash
+  955  sudo docker run -it --volume-driver=cifs -v 192.168.178.220/public:/data ubuntu /bin/bash
+  956  sudo docker-compose start
+  957  sudo docker-compose stop
+  958  sudo docker run -it --volume-driver=cifs -v 192.168.178.20/public:/data ubuntu /bin/bash
+  959  sudo docker-volume-netshare cifs
+  960  cd 
+  961  ls .*
+  962  ls .ne*
+  963  touch .netrc
+  964  edit .netrc 
+  965  ls .ne*
+  966  ping syni
+  967  sudo docker-volume-netshare cifs
+  968  sudo docker-volume-netshare cifs &
+  969  sudo docker run -it --volume-driver=cifs -v 192.168.178.20/public:/data ubuntu /bin/bash
+  970  syslog
+  971  sudo docker run -it --volume-driver=cifs -v 192.168.178.20/public:/data ubuntu /bin/bash
+  972  sudo docker run -it --volume-driver=cifs -v syni/video:/data ubuntu /bin/bash
+  973  mount 
+  974  mount -t
+  975  mount -t cifs
+  976  mount -t cifs2
+  977  mount -t
+  978  mount 
+  979  mkdir test
+  980  mount -t cifs //syni/video ./test
+  981  sudo mount -t cifs //syni/video ./test
+  982  sudo mount -t cifs 192.168.178.20/public ./test
+  983  sudo mount -t cifs 111
+  984  sudo mount -t cifs 192.168.178.20
+  985  sudo mount -t cifs 192.168.178.20/s 
+  986  sudo mount -t cifs 192.168.178.20/public ./test
+  987  sudo mount -t cifs 192.168.178.20/publi ./test
+  988  sudo mount -t cifs 192.168.178.11 ./test
+  989  sudo mount -t cifs //192.168.178.20/public ./test
+  990  sudo mount -t cifs //11192.168.178.20/public ./test
+  991  sudo apt-get install cifs-util
+  992  sudo apt-get install cifs-utils
+  993  sudo 
+  994  sudo mount -t cifs //syni/video ./test
+  995  sudo docker run -it --volume-driver=cifs -v syni/video:/data ubuntu /bin/bash
+  996  ls /var/lib/docker
+  997  sudo ls /var/lib/docker
+  998  ssh
+  999  ssh syni
+ 1000  ssh 192.168.178.20
+ 1001  ssh -v
+ 1002  ssh root@192.168.178.20
+ 1003  cd rails/
+ 1004  cd PMC4/
+ 1005  sudo docker-compose start
+ 1006  sudo docker-compose stop
+ 1007  ps 
+ 1008  ps -A
+ 1009  ps -A|grep do
+ 1010  sudo kill 2489
+ 1011  exit
+ 1012  cd rails/
+ 1013  cd PMC4/
+ 1014  ls
+ 1015  ls -la h*
+ 1016  history > zestyhist2.txt 
+ 1017  ls -la o*
+ 1018  more o2.txt 
+ 1019  ls
+ 1020  sudo docker-compose start
+ 1021  sudo docker-compose stop
+ 1022  sudo docker-compose start
+ 1023  sudo docker-compose stop
+ 1024  ps -A 
+ 1025  exit
+ 1026  cd rails/
+ 1027  cd PMC4/
+ 1028  sudo docker-compose start
+ 1029  cd /media/osboxes/
+ 1030  ls
+ 1031  cd mediapart/
+ 1032  ls
+ 1033  cd gruq/
+ 1034  ls
+ 1035  ls -la
+ 1036  du
+ 1037  cd ..
+ 1038  ls
+ 1039  cd ..
+ 1040  mv mediapart/ mediapart.old
+ 1041  sudo mv mediapart/ mediapart.old
+ 1042  ls
+ 1043  cd mediapart
+ 1044  ls
+ 1045  cd ..
+ 1046  cd 
+ 1047  cd rails/
+ 1048  cd PMC4/
+ 1049  sudo docker-compose stop
+ 1050  exit
+ 1051  cd /media/osboxes/mediapart
+ 1052  ls
+ 1053  cd gruq
+ 1054  cd hairy-fun/226/
+ 1055  ls
+ 1056  cd 119710/
+ 1057  ls
+ 1058  rm *.jpg
+ 1059  sudo rm 
+ 1060  sudo rm *.jpg
+ 1061  ls
+ 1062  sudo rm *.jpg
+ 1063  more m05.jpg 
+ 1064  sudo rm *.jpg
+ 1065  exit
+ 1066  cd rails/PMC4/db/
+ 1067  cd migrate/
+ 1068  sudo edit 20171022172842_add_type_to_scanners.rb 
+ 1069  edit
+ 1070  gedit
+ 1071  sudo gedit 20171022172842_add_type_to_scanners.rb 
+ 1072  exit
+ 1073  ps
+ 1074  kill
+ 1075  cd /media/osboxes/mediapart
+ 1076  ls
+ 1077  cd youtube/
+ 1078  ls
+ 1079  cd ..
+ 1080  ls
+ 1081  cd mediapart1
+ 1082  ls
+ 1083  cd ..
+ 1084  ls
+ 1085  mv mediapart mediapart.old1
+ 1086  sudo mv mediapart mediapart.old1
+ 1087  ls
+ 1088  cd mediapart.old1
+ 1089  ls
+ 1090  cd youtube/
+ 1091  ls
+ 1092  cd Proko/
+ 1093  ls
+ 1094  cd ..
+ 1095  ls
+ 1096  cd youtube/
+ 1097  ls
+ 1098  cd Acoustician/
+ 1099  ls
+ 1100  cd
+ 1101  cd rails/PMC4/
+ 1102  sudo docker-compose stop
+ 1103  cd /media/osboxes/
+ 1104  ls
+ 1105  ls -la
+ 1106  sudo rm mediapart.old1
+ 1107  sudo rm -r mediapart.old1
+ 1108  ls
+ 1109  ls -ka
+ 1110  cd mediapart.old/
+ 1111  ls
+ 1112  cd gruq/
+ 1113  ls
+ 1114  ls -la
+ 1115  du
+ 1116  cd ..
+ 1117  cd mediapart
+ 1118  du
+ 1119  cd..
+ 1120  cd .
+ 1121  cd ..
+ 1122  ls
+ 1123  cd mediapart
+ 1124  cd ..
+ 1125  cd mediapart.old/
+ 1126  ls
+ 1127  sudo rm -r gruq/
+ 1128  cd rails/PMC4/
+ 1129  sudo docker-compose up
+ 1130  sudo docker-compose start
+ 1131  sudo docker-compose ps
+ 1132  sudo docker-compose stop
+ 1133  sudo docker-compose start
+ 1134  sudo docker-compose stop
+ 1135  ls h*
+ 1136  ls
+ 1137  rm The\ Servant\ -\ Cells\ \(Sin\ City\ \)-fUkKLK_fZb4.webm.part 
+ 1138  cd test/
+ 1139  cd ..
+ 1140  cd rails/
+ 1141  ls
+ 1142  ls -la
+ 1143  more o2.txt 
+ 1144  ls
+ 1145  cd PMC4/
+ 1146  ls
+ 1147  gedit zestyhist2.txt 
+ 1148  history >zestyhist3.txt

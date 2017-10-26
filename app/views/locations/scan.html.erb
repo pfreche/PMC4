@@ -1,0 +1,49 @@
+<h1>Scanned Files in Location <%= @location.name %></h1>
+
+<%= @location.uri%>
+
+
+	<%= form_tag(scan_location_path, method: "get") do%>
+
+    <%= text_field_tag :filter, @filter%>
+     <%= hidden_field_tag :path, @path%>
+     <%= hidden_field_tag :act, @act%>
+             
+	<%= submit_tag "Filter"%>
+	<%= submit_tag "Save with folder level 1"%>
+	<%= submit_tag "Save with folder level 2"%>
+	<%= submit_tag "Save with folder level 3"%>
+	<%= submit_tag "Save with folder level 4"%>
+	
+	<% end%>
+
+<table>
+  <thead>
+    <tr>
+      <th> nr </th>
+      <th> level 1 </th>    
+      <th> level 2 </th>    
+      <th> level 3 </th>    
+      <th> level 4 </th>    
+      <th> level 5 </th>    
+      <th> level 6 </th>    
+    </tr>
+  </thead>
+
+  <tbody>
+    <% i = 0
+    @files.each do |file| %>
+       <tr>
+       <td ><%= i = i+1 %></td>
+       <td>/<%= file[0]  %></td>
+       <td>/<%= file[1]  %></td>
+       <td>/<%= file[2]  %></td>
+       <td>/<%= file[3]  %></td>
+       <td>/<%= file[4]  %></td>
+       <td>/<%= file[5]  %></td>
+       <td>/<%= file[6]  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
