@@ -4,6 +4,8 @@
     <%= link_to material_icon.list, bookmarks_path %>
     <%= link_to  material_icon.mode_edit, edit_bookmark_path(@bookmark) %></td>
     <%= link_to  material_icon.delete, @bookmark, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to material_icon.scanner, scan_bookmark_path(@bookmark) %>
+
 </h1>
 
 
@@ -27,5 +29,3 @@
   <%= link_to @bookmark.folderTitle, folder_path(@bookmark.folder_id)%>
    <% end %>
 </p>
-
-

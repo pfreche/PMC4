@@ -7,30 +7,29 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<% folder_id = (session[:selectedFolder] || "").to_s %>
 		<div id='menu'>
 			<ul><li class="menu"><%= link_to 'Attribute-Groups', agroups_path%></li>
 				<li class="menu"><%= link_to 'Locations', locations_path%> </li>
 				<li class="menu"><%= link_to 'Bookmarks', bookmarks_path%> </li>
 				<li class="menu"><%= link_to 'Storages', storages_path%></li>
-			
+
 	<li class="menu">
-			<%= link_to 'Folders', folders_path%> 
+			<%= link_to 'Folders', folders_path%>
 <li class="menu">
-		<li class="menu">	<%= link_to 'Thumbs (Attr)', thumbs_mfiles_path+"?typ=attribute"%> 
+		<li class="menu">	<%= link_to 'Thumbs (Attr)', thumbs_mfiles_path+"?typ=attribute"%>
 			<li class="menu">
 			<%= link_to 'Classify (Attr)', classify_mfiles_path+"?typ=attribute"%> |
 		<li class="menu">	Folder:
-		<li class="menu"> <%= link_to session[:selectedFolder]||"x", folder_path(session[:selectedFolder]||"x") %> 
-		<li class="menu">	<%= link_to 'Pics', thumbs_mfiles_path+"?typ=folder"%>
-		<li class="menu"> <%= link_to 'Classify', classify_mfiles_path+"?typ=folder"%> 
-
-		<li class="menu">	<%= link_to 'Next', classify_mfiles_path+"?typ=nextFolder"%> 
-			</ul> 
+		<li class="menu"> <%= link_to session[:selectedFolder]||"x", folder_path(session[:selectedFolder]||"x") %>
+		<li class="menu">	<%= link_to 'Pics', thumbs_mfiles_path+"?typ=folder&folder_id="+folder_id%>
+		<li class="menu"> <%= link_to 'Classify', classify_mfiles_path+"?typ=folder&folder_id="+folder_id%>
+		<li class="menu">	<%= link_to 'Next', classify_mfiles_path+"?typ=nextFolder&folder_id="+folder_id%>
+			</ul>
 		</div>
-		
-		
-	
+
+
+
 	<button id="menu-speed" class="mdl-button mdl-js-button mdl-button--icon">
   <i class="material-icons">more_vert</i>
 </button>
@@ -42,7 +41,7 @@
 
 <div class="main">
 		<%= yield %>
-		
+
         </div>
-</body> 
+</body>
 </html>

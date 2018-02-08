@@ -33,7 +33,7 @@ class BookmarksController < ApplicationController
       if bo
         @bookmark_old = bo
         flash[:notice] = "Bookmark already exists"
-        redirect_to edit_bookmark_path(id: @bookmark_old.id)          
+        redirect_to edit_bookmark_path(id: @bookmark_old.id)
       end
     else
       @bookmark = Bookmark.new
@@ -43,7 +43,7 @@ class BookmarksController < ApplicationController
   # GET /bookmarks/1/edit
   def edit
 
-    @mfile = @bookmark.mfile 
+    @mfile = @bookmark.mfile
     unless @mfile  # for old bookmarks without mfile
       @mfile = Mfile.new
       @mfile.mtype = MFILE_BOOKMARK
@@ -87,7 +87,7 @@ class BookmarksController < ApplicationController
   def update
     respond_to do |format|
       if @bookmark.update(bookmark_params)
-        # update folder description 
+        # update folder description
         if fi = @bookmark.folder_id
            folder = Folder.find(fi)
            folder.title = @bookmark.title

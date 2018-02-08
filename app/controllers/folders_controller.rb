@@ -9,7 +9,7 @@ class FoldersController < ApplicationController
         @numbersa = Folder.joins(mfiles: :agroups).group('folders.id').group('agroups.id').count('mfiles.id')
   #      @numbersa = Folder.joins(mfiles: :agroups).group('folders.id').count('mfiles.id')
     @agroups = Agroup.all
-    
+
   end
 
   def indexedit
@@ -21,9 +21,9 @@ class FoldersController < ApplicationController
   def show
     session[:selectedFolder] = @folder.id
     typ = params[:typ]
-    if typ 
+    if typ
       if typ == "next"
-        @folder = Folder.find(@folder.id).next 
+        @folder = Folder.find(@folder.id).next
       end
       if typ == "prev"
         @folder = Folder.find(@folder.id).previous
@@ -76,6 +76,10 @@ class FoldersController < ApplicationController
   # DELETE /folders/1
   # DELETE /folders/1.json
   def destroy
+    if bm = @folder.bookmark
+       bm.folder_id = nil
+       bm.save
+    end
     @folder.destroy
     respond_to do |format|
       format.html { redirect_to folders_url }
@@ -106,16 +110,16 @@ class FoldersController < ApplicationController
 
     typString = params[:typ]
 
-    if typString 
-       typ = typString.to_i 
+    if typString
+       typ = typString.to_i
        if typ == 1 or typ == 2 or typ == 3 or typ == 4
           toLocation = @folder.storage.location(typ)
           mk = toLocation.mkDirectories(@folder)
-          
+
           if typ == 3 or typ == 4
             message = @folder.storage.location(1).copyFiles(toLocation,@folder,true)
           else
-            message = @folder.storage.originLocation.copyFiles(toLocation,@folder,false)
+            message = @folder.storage.originLocation.copyFiles(toLocation,@folder,false, false || true)
           end
 
           flash[:notice] = message
@@ -126,7 +130,7 @@ class FoldersController < ApplicationController
 
   def generateTNs
 
-    @folder.storage.location(4).mkDirectories    
+    @folder.storage.location(4).mkDirectories
     message = @folder.generateTNs(@folder.storage.location(2), @folder.storage.location(4), true, "", 20000)
 
     flash[:notice] = message
@@ -143,6 +147,6 @@ class FoldersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def folder_params
-      params.require(:folder).permit(:storage_id, :mpath, :lfolder, :mfile_id, :storage_id)
+      params.require(:folder).permit(:storage_id, :mpath, :lfolder, :mfile_id, :storage_id, :dlm)
     end
 end

@@ -41,6 +41,14 @@
 </p>
 <%end%>
 
+<p>
+  <strong>Original Path</strong>
+  <%= link_to @mfile.originPath , @mfile.originPath  %>
+</p>
+
+<%= link_to 'Downlad', download_mfile_path(@mfile) %> |
+
+
 <%= link_to 'Edit', edit_mfile_path(@mfile) %> |
 <%= link_to 'Back', mfiles_path %>
 

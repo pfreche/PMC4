@@ -14,22 +14,22 @@ PMC4::Application.routes.draw do
     get 'copy', :on => :member
     get 'scann', :on => :member
     get 'extract', :on => :member
-    get 'extractsave', :on => :member    
+    get 'extractsave', :on => :member
   end
 
   resources :bookmarks do
     get 'getTitle', :on => :member
     get 'scan', :on => :member
   end
-  
+
   resources :mtypes
-  
+
 
   resources :matches do
     get 'match', :on => :collection
     get 'extract', :on => :member
-    get 'extractsave', :on => :member    
-   
+    get 'extractsave', :on => :member
+
   end
 
   resources :regurls do
@@ -78,6 +78,7 @@ PMC4::Application.routes.draw do
     get  'slideshow', :on => :collection
     post 'set_attris', :on => :collection
     get  'thumbs', :on => :collection
+    get 'download', :on => :member
   end
 
   resources :folders do

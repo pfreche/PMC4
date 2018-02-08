@@ -1,17 +1,17 @@
 class MfilesController < ApplicationController
-  before_action :set_mfile, only: [:show, :edit0, :edit, :path, :update, :destroy, :add_attri, :add_attri_name, :remove_attri, :add_agroup, :remove_agroup, :renderMfile]
+  before_action :set_mfile, only: [:show, :edit0, :edit, :path, :update, :destroy, :add_attri, :add_attri_name, :remove_attri, :add_agroup, :remove_agroup, :renderMfile, :download]
   # GET /mfiles
   # GET /mfiles.json
   def index
     typ = params[:typ]
-    
+
     @mtypes = Mfile.group(:mtype).count(:id)
-    
+
     getMfiles(typ)
 
  #   render "thumbs"
   end
-  
+
   def thumbs
     typ = params[:typ]
     getMfiles(typ)
@@ -44,7 +44,12 @@ class MfilesController < ApplicationController
       end
 
     else if  typ == "folder"
-        fid = session[:selectedFolder]
+        fid = params[:folder_id]
+        if fid
+          session[:selectedFolder] = fid
+        else
+          fid = session[:selectedFolder]
+        end
         @mfiles = Mfile.where(folder_id: fid)
 
       else
@@ -52,7 +57,7 @@ class MfilesController < ApplicationController
         fid = session[:selectedFolder]
         folder = Folder.find(fid).next ### to be defined
         fid = session[:selectedFolder] = folder.id
-        @mfiles = Mfile.where(folder_id: fid)  
+        @mfiles = Mfile.where(folder_id: fid)
         else
 #          @mfiles = Mfile.find([1,2,3])
           @mfiles = Mfile.all
@@ -93,10 +98,10 @@ class MfilesController < ApplicationController
     @attris = Attri.joins(:mfiles).where('mfiles.id in (?)', mfs).distinct
     as = @attris.map(&:id)
 
-  end 
+  end
 
 
- 
+
   #
   def set_attris
 
@@ -121,15 +126,15 @@ class MfilesController < ApplicationController
     end)
 
 
-                
-                
+
+
     mfs = mf.map {|m|   m[0]  }
     @myn = mf.inject({}) do |hash,value|
       hash[value.first.to_i] = value.last.to_i
       hash
     end
-    
-    @count = 0 
+
+    @count = 0
     @mfiles = Mfile.includes(:attris).find(mfs)
     @mfiles.each do |mfile|
       if @myn[mfile.id] == 1
@@ -155,11 +160,11 @@ class MfilesController < ApplicationController
     @name2 += @ag.id.to_s
 
   end
-  
+
   def path
     render text: @mfile.path(URLWEB)
   end
-  
+
   def renderMfile
     extension = File.extname(@mfile.filename)
     p extension
@@ -175,7 +180,7 @@ class MfilesController < ApplicationController
      when ".pdf", ".PDF"
        p "PDF"
        render "snippet_pdf", layout: false
-     else 
+     else
  #            render text: @mfile.path(URLWEB)
     end
   end
@@ -286,6 +291,29 @@ class MfilesController < ApplicationController
     @mfile.agroups.delete(agroup)
     #   redirect_to edit_location_path(@media_object.location)
     render 'add_attri.js'
+  end
+
+
+# Downlad
+  def download
+  # check file comming from internet
+
+  # get relevant properties
+    storage = @mfile.folder.storage
+    file_to   =  @mfile.path(URL_STORAGE_FS)
+    file_from =  @mfile.originPath
+
+    originLocation = storage.originLocation
+    referer = @mfile.folder.bookmark.url
+    originLocation.download_with_referer(file_from, file_to, referer,0)
+    originLocation.finish_download
+
+
+  # downlad methods
+
+  # downlod
+#    render 'show'
+     render plain: referer
   end
 
   private

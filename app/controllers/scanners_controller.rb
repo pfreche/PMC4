@@ -5,13 +5,20 @@ class ScannersController < ApplicationController
   # GET /scanners.json
   def index
     @scanners = Scanner.all
-    @scanners = @scanners.sort {|a,b| a.url <=> b.url} 
+    @scanners = @scanners.sort {|a,b| a.url <=> b.url}
   end
 
   def match
 
     @url = params[:url]
     @bookmark_id = params[:bookmark_id]
+    unless @bookmark_id
+      bo = Bookmark.find_by_url(@url)
+      if bo
+        @bookmark_id = bo.id
+      end
+    end
+
     @urly = Urly.new(@url)
     location_id = params[:location_id]
     @location = Location.find(location_id) if location_id
@@ -19,23 +26,23 @@ class ScannersController < ApplicationController
       matchAndScan
     end
     @scanners = Scanner.all
-    @scanners = @scanners.sort {|a,b| b.matchS(@url).to_s+a.url <=> a.matchS(@url).to_s+b.url} 
+    @scanners = @scanners.sort {|a,b| b.matchS(@url).to_s+a.url <=> a.matchS(@url).to_s+b.url}
 
   end
 
   def matchAndScan
     @url = params[:url]
     @bookmark_id = params[:bookmark_id]
-    
+
     @links = Scanner.matchAndScan(@url)
     if @links.select{|a,b| b[1]=="YT"}.empty?
-     
+
       @commonStart = Scanner.detCommonStart(@links)
       @possibleLocations = Location.all.select{|l| @commonStart.include? l.uri} # besser auf der DB ???
       render :scanResult
-    else 
+    else
       @possibleLocations = Location.all.where(typ: 2)
-      render :scanResultYT     
+      render :scanResultYT
     end
 
   end
@@ -49,7 +56,7 @@ class ScannersController < ApplicationController
     user, x = @links.select{|a,b| b[1]=="user"}.first
     title, x = @links.select{|a,b| b[1]=="title"}.first
     folder = Scanner.createFolder("/"+user, title,location)
-    location.downloadTube(folder, @url)    
+    location.downloadTube(folder, @url)
 
   end
 
@@ -90,7 +97,7 @@ class ScannersController < ApplicationController
   def copy
      if params[:id]
        @scanner = Scanner.find(params[:id]).dup
-       @scanner.url = params[:urlExtern] if params[:urlExtern] 
+       @scanner.url = params[:urlExtern] if params[:urlExtern]
      else
        @scanner = Scanner.new
     end
@@ -103,7 +110,7 @@ class ScannersController < ApplicationController
 
   def scann
     @url = params[:url]
-#      @links = RHandler.extract(@url,@scanner.tag,@scanner.attr,@scanner.pattern) 
+#      @links = RHandler.extract(@url,@scanner.tag,@scanner.attr,@scanner.pattern)
    #  @links = RHandler.scanAndMatch(@url,2)
       @links = @scanner.scan(@url)
   end
@@ -112,16 +119,16 @@ class ScannersController < ApplicationController
     if params[:scanner]
        @scanner = Scanner.new(scanner_params)
 
-       if  params[:commit] == "Scan"   
-         @links = RHandler.extract(@scanner.url,"a",@scanner.pattern) 
-       else 
+       if  params[:commit] == "Scan"
+         @links = RHandler.extract(@scanner.url,"a",@scanner.pattern)
+       else
          @scanner.save
           redirect_to @scanner, notice: 'Scanner was successfully created.'
        end
     else
        @scanner = Scanner.new
     end
-  end 
+  end
 
 
   # POST /scanners
@@ -131,7 +138,7 @@ class ScannersController < ApplicationController
 
     respond_to do |format|
       if @scanner.save
-        
+
         format.html { redirect_to @scanner, notice: 'Scanner was successfully created.' }
         format.json { render :show, status: :created, location: @scanner }
       else
@@ -146,8 +153,8 @@ class ScannersController < ApplicationController
   def update
     respond_to do |format|
       if @scanner.update(scanner_params)
-        if  params[:commit] == "Scan"   
-           @links = RHandler.extract(@scanner.url,@scanner.tag,@scanner.attr, @scanner.pattern) 
+        if  params[:commit] == "Scan"
+           @links = RHandler.extract(@scanner.url,@scanner.tag,@scanner.attr, @scanner.pattern)
         end
         format.html { render :edit, notice: 'Scanner was successfully updated.' }
         format.json { render :show, status: :ok, location: @scanner }
