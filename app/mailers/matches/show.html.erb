@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pattern:</strong>
+  <%= @match.pattern %>
+</p>
+
+<p>
+  <strong>Extract:</strong>
+  <%= @match.extract %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @match.tag %>
+</p>
+
+<p>
+  <strong>Filter:</strong>
+  <%= @match.filter %>
+</p>
+
+<%= link_to 'Edit', edit_match_path(@match) %> |
+<%= link_to 'Back', matches_path %>

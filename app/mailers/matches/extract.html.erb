@@ -1,0 +1,39 @@
+<h1>Extracts</h1>
+
+
+URL: <%= @url%>
+<br>
+
+
+Pattern: <%= @match.pattern%>
+<br>
+
+Tag: <%= @match.tag%>
+<br>
+
+
+Filter:  <%= @match.filter%>
+<br>
+
+
+<table>
+  <thead>
+    <tr>
+    	<th> Name </th>
+      <th>Uri</th>
+ 
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+    <% i = 0
+    @links.each do |link| %>
+    
+       <td><%= link_to link, match_matches_path(:url => link) %></td>
+       <td><%= link_to link, link %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
