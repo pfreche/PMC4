@@ -14,12 +14,15 @@ class Mfile < ActiveRecord::Base
 #         p +filename
 #      end
 #    else
-      p =  folder.path(typ) + ""+ filename
-      if pdf? and (typ == URL_STORAGE_WEBTN  or typ == URL_STORAGE_FSTN)
-        p.gsub!(".pdf", ".jpg")
-      end
-      p
- #   end
+      if folder
+        p =  folder.path(typ) + ""+ filename
+        if pdf? and (typ == URL_STORAGE_WEBTN  or typ == URL_STORAGE_FSTN)
+          p.gsub!(".pdf", ".jpg")
+        end
+        p
+     else
+        "<no folder>"
+     end
   end
 
   def originPath

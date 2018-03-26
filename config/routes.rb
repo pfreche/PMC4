@@ -1,5 +1,7 @@
 PMC4::Application.routes.draw do
 
+  get 'config/show' => 'config#show', as: 'show_config'
+
   get 'scanners/scan' => 'scanners#scan', as: 'scan_scanners'
   get 'scanners/match' => 'scanners#match', as: 'match_scanners'
   post 'scanners/match' => 'scanners#match', as: 'match_scanners_post'
@@ -20,6 +22,7 @@ PMC4::Application.routes.draw do
   resources :bookmarks do
     get 'getTitle', :on => :member
     get 'scan', :on => :member
+    post 'search', :on => :collection
   end
 
   resources :mtypes

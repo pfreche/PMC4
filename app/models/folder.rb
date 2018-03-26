@@ -233,15 +233,15 @@ def generateTNs(fromLocation, toLocation, force=true, prefix, area)
 
 
 def next
-    f = Folder.where(storage_id: storage_id).where('id >?', id).first
+    f = Folder.where(storage_id: storage_id).where('id >?', id).order(id: :asc).first
     if f
       return f
     else
       return  Folder.where(storage_id: storage_id).first
     end
-  end
+end
 
-  def previous
+def previous
     f = Folder.where(storage_id: storage_id).where('id <?', id).order(id: :desc).take
     if f
       return f

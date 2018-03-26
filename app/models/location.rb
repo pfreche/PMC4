@@ -44,17 +44,22 @@ def scan (filter = nil)
     files.map{|l| l[locPathLength+1..-1]}.map {|l| l.split(/\//)}
 end
 
-def scanAndAdd (level, filter = nil)
+def scanAndAdd (inlevel, filter = nil)
+
 
     files = scan(filter)
-
+    if inlevel == 100
+       naturallevel = true
+    end
     files.each { |file|
        path = ""
+       level = naturallevel ? file.length : inlevel
        for i in 1..level
            path = path + "/"+ file[i-1]
        end
        path = path + "/"
        filename = ""
+       next unless file[level] # omit files on root level 
        for i in level..5
            filename = filename + file[i]
            break unless file[i+1]
@@ -213,7 +218,7 @@ def uriMkdir(url, folder)
   res.code != "404"
 end
 
-  def copyFiles(toLocation, folder = nil, tns=false, force = false) # force implementierung fehlt noch für File Copy
+  def copyFiles(toLocation, folder = nil, tns=false, force ) # force implementierung fehlt noch für File Copy
 
      @force = force
 
@@ -257,12 +262,18 @@ end
 
     fromWeb = (fromFile[0,4]=="http")
     toWeb   = (toFile[0,4]=="http")
-    if !@force
-      if toWeb
-        return 0 if uriExist?(toFile)
-      else
-        return 0 if File.exist?(toFile)
-      end
+    if @force.is_a? Integer
+          if !toWeb and File.exist?(toFile)
+             return 0 if File.new(toFile).size > @force
+          end
+    else
+      if !@force
+        if toWeb
+          return 0 if uriExist?(toFile)
+        else
+          return 0 if File.exist?(toFile)
+        end
+      end 
     end
 
     return false if createDirsIfNecessary(toFile,toWeb) < 0
@@ -369,6 +380,7 @@ end
 
 # downloads a file from Web to a local file
    def download(fromWebFile, toFile, method=0, referer= nil)
+      method = Config::Settings.dlm()
       case method
       when 0
           uri = URI.parse(URI.encode(fromWebFile))
@@ -396,7 +408,15 @@ end
         end
         @curl =  @curl + " -o \""+ toFile + "\" \"" + fromWebFile +  "\""
         c = @curl
-#        adfa
+      when 2
+
+          uri = URI.parse(URI.encode("http://192.168.178.81:3001/hallo"))
+          req = Net::HTTP::Get.new(uri.request_uri)
+          q = CGI.escape("http://192.168.178.81:3001")
+          uri = "http://192.168.178.81:3001" +"?web="+ CGI.escape(fromWebFile)+"&file="+CGI.escape(toFile)
+          uri = uri + "&referer="+CGI.escape(referer) if referer
+          a = open(uri).read()
+          uri
       end
   end
 

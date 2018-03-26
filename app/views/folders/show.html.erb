@@ -1,13 +1,19 @@
-<h1>Folder  <i class="titleName">   <%= @folder.title %>
-  </i > 
-    <%= link_to material_icon.list, folders_path %>
-    <%= link_to material_icon.edit, edit_folder_path %>
-    <% if @bookmark %>
-       <%= link_to material_icon.bookmark, bookmark_path(@bookmark) %>
-    <% end %>
-    <%= link_to material_icon.chevron_left, folder_path(@folder, typ: :prev) %>
-    <%= link_to material_icon.chevron_right, folder_path(@folder, typ: :next) %>
 
+
+<div class="mdl-grid">
+
+<div class="mdl-cell mdl-cell--1-col">
+<h2>
+Folder
+
+</h2>
+</div>
+
+
+<div class="mdl-cell mdl-cell--9-col">
+
+<h1>  <i class="titleName">   <%= @folder.title %>
+  </i > 
 </h1>
 
 
@@ -71,7 +77,21 @@
   </div>
   <%= @folder.path(4) %>
 </div>
-<hr>
+
+</div>
+
+<div class="mdl-cell mdl-cell--2-col">
+<h1>
+
+    <%= link_to material_icon.list, folders_path %>
+    <%= link_to material_icon.edit, edit_folder_path %>
+    <% if @bookmark %>
+       <%= link_to material_icon.bookmark, bookmark_path(@bookmark) %>
+    <% end %>
+    <%= link_to material_icon.chevron_left, folder_path(@folder, typ: :prev) %>
+    <%= link_to material_icon.chevron_right, folder_path(@folder, typ: :next) %>
+
+</h1>
 
 <%= form_tag(copyFiles_folder_path(@folder) )  do %>
 
@@ -124,17 +144,16 @@
 <% end %>
 
 
+
+</div>
+</div>
+
+<div class="mdl-grid">
+<div class="mdl-cell mdl-cell--1-col" >
+</div>
+
+<div class="mdl-cell mdl-cell--7-col" style="overflow:auto;height:200px">
+
 <%= render 'shared/mfiles' %>
-
-<% @mfiles.each do |mfile| %>
-      <div class="thumbD" id="<%=mfile.id%>" data-<%=mfile.id%>="a" 
-     	class=" <% mfile.attris.each do |attri| %> <%=attri.name%> <% end %> 
-             <% mfile.agroups.each do |agroup| %> <%=agroup.name%> <% end %> " >
-
-
-<%= mfile.folder_id %>
-        <%= mfile.filename %>
-
-    <% end %>
-
-
+</div>
+</div>

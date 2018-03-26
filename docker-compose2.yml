@@ -1,27 +1,33 @@
 version: '2'
+volumes:
+  sv:
+    driver: nfs
+    driver_opts:
+      share: "192.168.178.21/volume1/video"
 services:
-  dbp:
+  mydb:
     image: mysql
     volumes:
-      - ../dbdata:/var/lib/mysql
+      - ../mydata:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: wordpress
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
-  webp:
+  pmcapp:
     build: .
     environment:
-      RAILS_ENV: dev2
-    command: bundle exec rails s -p 3001 -b '0.0.0.0' -e dev2
+      RAILS_ENV: dev
+    command: bundle exec rails s -p 2000 -b '0.0.0.0' -e dev
     volumes:
       - .:/myapp
       - /media/osboxes/mediapart:/media
+      - sv:/synivideo
     ports:
-      - "3001:3001"
+      - "2000:2000"
     depends_on:
-      - dbp
-  webserver:
+      - mydb
+  webserver2:
     build: 
       context: .
       dockerfile: mynginx.Dockerfile

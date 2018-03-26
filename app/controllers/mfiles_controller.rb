@@ -14,9 +14,15 @@ class MfilesController < ApplicationController
 
   def thumbs
     typ = params[:typ]
+    @mode = params[:mode]
+
     getMfiles(typ)
-    @mfiles.to_a.select!{|mfile| mfile.pic?}
-     render "thumbs"
+    @mfiles = @mfiles.to_a.select{|mfile| mfile.pic?}
+    if @mode=="P"
+         render "thumbs", :layout => false
+    else
+     render "thumbs2"
+    end
   end
 
   def getMfiles(typ)

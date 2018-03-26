@@ -298,11 +298,11 @@ def self.loadURL(u)
     @@cache = true
  end
 
- if true
-    Rails.cache.delete(u)
- end
+# if true
+#    Rails.cache.delete(u)
+# end
 
-#    Rails.cache.fetch(u, expires_in: 12.hours) do
+    Rails.cache.fetch(u, expires_in: 12.hours) do
         begin
          open(u).read  #1
  
@@ -321,7 +321,7 @@ def self.loadURL(u)
 #       rescue 
 #          "URL Load Error"
         end
-#    end
+    end
  end
 
 

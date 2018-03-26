@@ -11,6 +11,18 @@ module Business
   end
 end
 
+module Config
+  class Settings
+    @@dl_method = 2 # 0 intern, 1 wget, 2 extern 
+    def self.dlm=(x)
+      @@dl_method = x
+    end
+    def self.dlm()
+      @@dl_method
+    end
+  end
+end
+
 kala = "dies ist eine Variable"
 @kala = "dies ist eine @-Variable"
 #KALA = Folder.find(1)

@@ -1,4 +1,9 @@
 version: '2'
+volumes:
+  sv:
+    driver: nfs
+    driver_opts:
+      share: "192.168.178.21/volume1/video"
 services:
   dbp:
     image: mysql
@@ -11,12 +16,15 @@ services:
       MYSQL_PASSWORD: wordpress
   webp:
     build: .
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    environment:
+      RAILS_ENV: dev2
+    command: bundle exec rails s -p 3001 -b '0.0.0.0' -e dev2
     volumes:
       - .:/myapp
-      - /media/osboxes/newmedia:/media
+      - /media/osboxes/mediapart:/media
+      - sv:/synivideo
     ports:
-      - "3000:3000"
+      - "3001:3001"
     depends_on:
       - dbp
   webserver:
@@ -24,14 +32,6 @@ services:
       context: .
       dockerfile: mynginx.Dockerfile
     volumes:
-      - /media/osboxes/newmedia:/usr/share/nginx/html
+      - /media/osboxes/mediapart:/usr/share/nginx/html
     ports:
       - "80:80"
-  dlserver:
-    build: ./vendor/dlserver
-#    command: bundle exec rackup  -o '0.0.0.0'
-    volumes:
-      - /media/osboxes/newmedia:/media
-      - ./vendor/dlserver:/myapp
-    ports:
-      - "3001:9292"

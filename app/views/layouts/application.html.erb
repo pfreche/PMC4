@@ -8,26 +8,31 @@
 </head>
 <body>
 <% folder_id = (session[:selectedFolder] || "").to_s %>
-		<div id='menu'>
-			<ul><li class="menu"><%= link_to 'Attribute-Groups', agroups_path%></li>
-				<li class="menu"><%= link_to 'Locations', locations_path%> </li>
-				<li class="menu"><%= link_to 'Bookmarks', bookmarks_path%> </li>
-				<li class="menu"><%= link_to 'Storages', storages_path%></li>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header " >
+	<header class="mdl-layout__header mdl-layout__header-scroll">
+       <div class="mdl-layout__header-row" >
+         	<button id="menu-speed" class="mdl-button mdl-js-button mdl-button--icon">
+               <i class="material-icons">more_vert</i>
+             </button>
+       <span class="mdl-layout-title">PMC4</span>
+       <div class="mdl-layout-spacer"></div>
+       <nav class="mdl-navigation" >
+         <a class="mdl-navigation__link" href="<%=agroups_path%>" > Agroups </a>
+         <a class="mdl-navigation__link" href="<%=bookmarks_path%>" > Bookmarks </a>
+         <a class="mdl-navigation__link" href="<%=thumbs_mfiles_path(typ: :attribute)%>" > Thumbs (A) </a>
+         <a class="mdl-navigation__link" href="<%=classify_mfiles_path(typ: :attribute)%>" > Classify (A) </a>
 
-	<li class="menu">
-			<%= link_to 'Folders', folders_path%>
-<li class="menu">
-		<li class="menu">	<%= link_to 'Thumbs (Attr)', thumbs_mfiles_path+"?typ=attribute"%>
-			<li class="menu">
-			<%= link_to 'Classify (Attr)', classify_mfiles_path+"?typ=attribute"%> |
-		<li class="menu">	Folder:
-		<li class="menu"> <%= link_to session[:selectedFolder]||"x", folder_path(session[:selectedFolder]||"x") %>
-		<li class="menu">	<%= link_to 'Pics', thumbs_mfiles_path+"?typ=folder&folder_id="+folder_id%>
-		<li class="menu"> <%= link_to 'Classify', classify_mfiles_path+"?typ=folder&folder_id="+folder_id%>
-		<li class="menu">	<%= link_to 'Next', classify_mfiles_path+"?typ=nextFolder&folder_id="+folder_id%>
-			</ul>
-		</div>
+         <a class="mdl-navigation__link" href="<%=folders_path%>" > Folders</a>
+         <a class="mdl-navigation__link" href="<%=thumbs_mfiles_path(typ: :folder,folder_id: folder_id)%>" > Pics </a>
+         <a class="mdl-navigation__link" href="<%=classify_mfiles_path+"?typ=folder&folder_id="+folder_id%>" > Classify </a>
+         <a class="mdl-navigation__link" href="<%=classify_mfiles_path(typ: :nextFolder,folder_id: folder_id) %>" > Next </a>
+         <a class="mdl-navigation__link" href="<%=folder_path(session[:selectedFolder]||'x') %>" > 
+         		<%=session[:selectedFolder]||'x' %> </a>
+         
+       </nav>  
+       </div>
 
+	</header>
 
 
 	<button id="menu-speed" class="mdl-button mdl-js-button mdl-button--icon">
@@ -35,13 +40,20 @@
 </button>
 <ul class="mdl-menu mdl-js-menu" for="menu-speed">
   <li class="mdl-menu__item"><%= link_to 'Attributes', attris_path%> </li>
+  <li class="mdl-menu__item"><%= link_to 'Locations', locations_path%> </li>
+  <li class="mdl-menu__item"><%= link_to 'Storages', storages_path%> </li>
   <li class="mdl-menu__item">Medium</li>
   <li class="mdl-menu__item">Slow</li>
+
+
 </ul>
 
-<div class="main">
-		<%= yield %>
+   <main class="mdl-layout--content">
 
-        </div>
+		<%= yield %>
+</main>
+</div>
+
+
 </body>
 </html>

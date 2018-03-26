@@ -1,0 +1,41 @@
+class Container
+ 
+ @@counter = 0
+ @@collection = {}
+
+ def  self.inc()
+  @@counter = @@counter +1
+  end
+
+  def self.counter()
+  @@counter
+  end 
+ 
+  def self.add(env)
+      request = Rack::Request.new(env)
+#      @@collection[env["QUERY_STRING"]] = "x"
+       @@collection['web'] = CGI.unescape(request.params['web'])
+       @@collection['file'] = CGI.unescape(request.params['file'])
+        referer = "http://www.google.de"
+        @curl = "curl -e \"" + referer +  "\""
+        @curl =  @curl + " -o \""+ @@collection['file'] + "\" \"" + @@collection['web'] +  "\""
+        p @curl
+        Process.exec(@curl)
+
+  end
+
+  def self.collection
+     @@collection 
+  end
+
+end
+
+run Proc.new { |env| 
+	Container.inc()
+	Container.add(env)
+
+# 	['200', {'Content-Type' => 'text/html'}, [env["PATH_INFO"].to_s]] 
+# 	['200', {'Content-Type' => 'text/html'}, [env.to_s]] 
+ 	['200', {'Content-Type' => 'text/html'}, [Container.collection.to_s]] 
+
+}

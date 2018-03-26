@@ -1,10 +1,24 @@
-<h1>Bookmarks <%= link_to material_icon.fiber_new.css_class('orange600'),new_bookmark_path %>
-</h1>
 
-<table id="bookmarks" class="compact" >
+<div class="mdl-grid">
+
+<div class="mdl-cell mdl-cell--1-col">
+<h2>Bookmarks
+</h2>
+  </div>
+<div class="mdl-cell mdl-cell--10-col">
+
+ <%= form_tag(search_bookmarks_path) do %>
+  <div class="field">
+    <%= label_tag :url %>
+    <%= text_field_tag :bquery, @bquery, size: 80 %>
+  <%= submit_tag("Search") %>
+  </div>
+<% end %>
+
+<table id="bookmarks"  style="width:700px">
   <thead>
     <tr>
-      <th>Title</th>
+      <th >Title</th>
       <th>Url</th>
       <th >F</th>
       <th >F</th>
@@ -17,7 +31,7 @@
   <tbody>
     <% @bookmarks.each do |bookmark| %>
       <tr>
-        <td><%= link_to (bookmark.title||""), bookmark.url, target: '_blank' %></td>
+        <td ><%= link_to (bookmark.title||""), bookmark.url, target: '_blank' %></td>
         <td><%= link_to bookmark.url, bookmark.url, target: '_blank' %></td>
         <td> <% if bookmark.folder_id %>        
         <%= link_to material_icon.link , folder_path(bookmark.folder_id||0) %>
@@ -33,4 +47,12 @@
 </table>
 
 <br>
+
+
+  </div>
+
+
+<div class="mdl-cell mdl-cell--1-col">
+<%= link_to material_icon.fiber_new.css_class('orange600'),new_bookmark_path %>
+  </div>
 

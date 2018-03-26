@@ -1,4 +1,54 @@
-<h1>Bookmark  <i class="titleName"> <%= @bookmark.title %>  </i >
+<div class="mdl-grid">
+
+<div class="mdl-cell mdl-cell--1-col">
+<h2>
+Bookmark
+
+</h2>
+</div>
+
+
+<div class="mdl-cell mdl-cell--9-col">
+<h1> <i class="titleName"> <%= @bookmark.title %>  </i >
+
+</h1>
+
+
+
+<p id="notice"><%= notice %></p>
+
+
+<div class= "valuepair">
+ <div class="lbl">
+    URL:
+  </div>
+  <%= link_to @bookmark.url, @bookmark.url  %>
+</div>
+
+
+<div class= "valuepair">
+ <div class="lbl">
+  <strong>Description:</strong>
+  </div>
+  <%= @bookmark.description %>
+</div>
+
+<div class= "valuepair">
+ <div class="lbl">
+  <strong>Linked Folder:</strong>
+  </div>
+   <% if @bookmark.folder_id %>
+  <%= link_to @bookmark.folderTitle, folder_path(@bookmark.folder_id)%>
+   <% end %>
+
+</div>
+
+
+</div>
+
+
+<div class="mdl-cell mdl-cell--2-col">
+<h1>
 
 <%= link_to material_icon.fiber_new, new_bookmark_path %>
     <%= link_to material_icon.list, bookmarks_path %>
@@ -8,24 +58,5 @@
 
 </h1>
 
-
-
-<p id="notice"><%= notice %></p>
-
-
-<p>
-  <strong>Url:</strong>
-  <%= link_to @bookmark.url, @bookmark.url  %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @bookmark.description %>
-</p>
-
-<p>
-  <strong>Linked Folder:</strong>
-   <% if @bookmark.folder_id %>
-  <%= link_to @bookmark.folderTitle, folder_path(@bookmark.folder_id)%>
-   <% end %>
-</p>
+</div>
+</div>

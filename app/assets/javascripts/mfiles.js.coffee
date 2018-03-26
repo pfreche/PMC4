@@ -13,12 +13,15 @@ $(document).ready ->
   hlColour = "#ddf"
 
   $(document).keypress (e) ->
+#    alert(e.keyCode)
     if e.which == 100
       id = actualPic.attr("id")
       $.get id+"/download", (data) ->
         alert(id+" "+data)
-    if e.which == 101
+    if e.which == 121
        prevPic(actualPic)
+    if e.which == 120
+       nextPic(actualPic)
 
   $('#name').autocomplete
     source: $('#name').data('autocomplete-source')
@@ -167,7 +170,7 @@ $(document).ready ->
       showPic(th)
     ,300
 
-  showPic = (th) ->
+  showPic= (th) ->
 #    $this = $(this)
     th = $(this).parent()  # new 1.1.2015
     actualPic = th
@@ -176,25 +179,36 @@ $(document).ready ->
 #      $("#bild").attr('src',data)
     $.get id+"/renderMfile", (data) ->
        $("#bildCont").html(data)
-
     $("#overlayPic").show()
     $("#dunkel").css('z-index', 2)
 
     showPicAttris(th)
 
+  showPic2 = (th) ->
+    th = $(this)
+    actualPic = th
+    id = th.attr("id")
+    $.get id+"/renderMfile", (data) ->
+       $("#bildCont").html(data)
+    $("#overlayPic").show()
+    $("#dunkel").css('z-index', 2)
+
+    showPicAttris(th)
+
+
   nextPic = (th) ->
-    actualPic = actualPic.next()
-    if actualPic == false # idea!!!!
-      actualPic = actualPic
+    ne = actualPic.next()
+    if ne.length > 0 # idea!!!!
+      actualPic = ne
 #       actualPic = erstes Bild
     id = actualPic.attr("id")
     $.get id+"/renderMfile", (data) ->
        $("#bildCont").html(data)
 
    prevPic = (th) ->
-    actualPic = actualPic.prev()
-    if actualPic == false # idea!!!!
-      actualPic = actualPic
+    ne = actualPic.prev()
+    if ne.length > 0 
+      actualPic = ne
 #       actualPic = erstes Bild
     id = actualPic.attr("id")
     $.get id+"/renderMfile", (data) ->
@@ -268,6 +282,7 @@ $(document).ready ->
 #  $('.thumbC').bind 'click', selectMfileP
   $('.thumbC').mousedown(startTimer2).click(selectMfileP)
 #
+  $('.thumbe').bind 'click', showPic2
   $('.marker').click(showPic)
 
   $('#hideUnselected').bind 'click', hideUnselected

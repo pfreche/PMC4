@@ -116,10 +116,10 @@ class FoldersController < ApplicationController
           toLocation = @folder.storage.location(typ)
           mk = toLocation.mkDirectories(@folder)
 
-          if typ == 3 or typ == 4
+          if typ == 3 or typ == 4   # if thumbnails!
             message = @folder.storage.location(1).copyFiles(toLocation,@folder,true)
-          else
-            message = @folder.storage.originLocation.copyFiles(toLocation,@folder,false, false || true)
+          else # if web
+            message = @folder.storage.originLocation.copyFiles(toLocation,@folder,false, 1000)
           end
 
           flash[:notice] = message

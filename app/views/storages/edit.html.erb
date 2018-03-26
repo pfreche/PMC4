@@ -1,5 +1,21 @@
-<h1>Storage</h1>
+<div class="mdl-grid">
+
+<div class="mdl-cell mdl-cell--1-col">
+<h1>
+llll  lj l jl l l ll ll 
+
+<%= link_to 'Show', @storage %> 
+<%= link_to 'List', storages_path %>
+
+</h1>
 <p id="notice"><%= notice %></p>
+
+</div>
+
+<div class="mdl-cell mdl-cell--8-col">
+
+
+<h1>Storage</h1>
 <%= render 'form' %>
 
 
@@ -17,3 +33,5 @@
 
        <%= submit_tag("Set Dates of Mfiles in this Storage", class: "buttonForm") %>
     <% end %>
+</div>
+</div>

@@ -1,0 +1,214 @@
+    1  sudo apt-get update
+    2  dpkg-reconfigure keyboard-configuration
+    3  sudo dpkg-reconfigure keyboard-configuration
+    4  sudo apt-get update
+    5  sudo dpkg-reconfigure keyboard-configuration
+    6  historz
+    7  exit
+    8  sudo dpkg-reconfigure keyboard-configuration
+    9  cd rails/
+   10  ls
+   11  cd ..
+   12  ls
+   13  cd rails/
+   14  git clone http://github.com/pfreche/PMC4
+   15  ls
+   16  cd PMC4/
+   17  ls
+   18  more docker-compose
+   19  more docker-compose.yml 
+   20  cd ..
+   21  mkdir dbdata
+   22  cd PMC4/
+   23  sudo docker run hello-world
+   24  sudo docker-compose build
+   25  docker-compose
+   26  sudo apt install docker-compose
+   27  sudo docker-compose build
+   28  exit 
+   29  cd rails
+   30  ls
+   31  cd PMC4/
+   32  sudo docker-compose up
+   33  cd ..
+   34  cd PMC4/
+   35  ls
+   36  sudo docker-compose up
+   37  cd ..
+   38  cd rails/ 
+   39  cd PMC4/
+   40  sudo docker-compose build
+   41  sudo docker-compose up
+   42  ifconfig
+   43  sudo apt install net-tools
+   44  ifconfig
+   45  sudo docker-compose up
+   46  ifconfig
+   47  mv ../dbdata/media_p.sql  ..
+   48  sudo mv ../dbdata/media_p.sql  ..
+   49  sudo docker-compose up
+   50  cd rails/
+   51  sudo mv media_p.sql dbdata/
+   52  exit
+   53  cd PMC4/
+   54  cd rail
+   55  cd rails
+   56  cd ..
+   57  cd rails/
+   58  cd PMC4/
+   59  sudo docker-compose exec webp bash
+   60  ls
+   61  cd ..
+   62  ls -la
+   63  sudo mv media_p.sql dbdata/
+   64  history
+   65  apt install nfs-common
+   66  ssh 192.168.178.20
+   67  ssh root@192.168.178.20
+   68  sudo mount syni:/volume1/video syni
+   69  ls
+   70  cd ..
+   71  sudo mount syni:/volume1/video syni
+   72  cd syni
+   73  ls -la
+   74  sudo chown syni osboxes
+   75  sudo chown osboxes syni
+   76  cd syni/
+   77  ls
+   78  umount syni
+   79  sudo umount syni
+   80  ls -la
+   81  sudo chown osboxes syni
+   82  ls -la
+   83  sudo chgrp osboxes syni
+   84  sudo mount syni:/volume1/video syni
+   85  cd syni/
+   86  ls -la
+   87  sudo -i
+   88  pwd
+   89  ls -la
+   90  sudo umount syni
+   91  ls -la
+   92  mount syni:/volume1/video syni
+   93  mount
+   94  sudo mount syni:/volume1/video syni
+   95  mount
+   96  ls -la
+   97  sudo umount syni
+   98  help mount
+   99  mount help
+  100  info mount
+  101  sudo mount syni:/volume1/video syni -o uid=osboxes
+  102  info mount
+  103  sudo mount -o uid=osboxes syni:/volume1/video syni 
+  104  info mount
+  105  sudo mount -o uid syni:/volume1/video syni 
+  106  ping syni
+  107  info mount
+  108  info nfs
+  109  info mount.nfs
+  110  sudo mount syni:/volume1/video syni -o uid=osboxes
+  111  sudo mount syni:/volume1/video syni -o nouid
+  112  sudo mount syni:/volume1/video syni
+  113  sudo umount syni
+  114  sudo docker-compose build
+  115  pwd
+  116  cd rails/PMC4/
+  117  sudo docker-compose build
+  118  sudo docker-compose uip
+  119  sudo docker-compose up
+  120  ping syni
+  121  sudo docker-compose up
+  122  sudo docker-compose build
+  123  sudo docker-compose up
+  124  sudo docker-compose build
+  125  sudo docker-compose up
+  126  go
+  127  go get adfa
+  128  dpkg
+  129  
+  130  wget https://github.com/ContainX/docker-volume-netshare/releases/download/v0.34/docker-volume-netshare_0.34_amd64.deb
+  131  mv docker-volume-netshare_0.34_amd64.deb ..
+  132  cd ..
+  133  sudo dpkg -i docker-volume-netshare_0.34_amd64.deb 
+  134  more /etc/default/docker-volume-netshare 
+  135  sudo service docker-volume-netshare start
+  136  ps
+  137  ps -A
+  138  sudo docker-compose stop
+  139  cd PMC4/
+  140  sudo docker-compose stop
+  141  ps -A
+  142  ps -A|more
+  143  docker run -i -t --volume-driver=nfs -v syni/volume1/video:/aaa ubuntu /bin/bash
+  144  cd ..
+  145  ls
+  146  pwd
+  147  cd ..
+  148  cd syni/
+  149  ls
+  150  cd ..
+  151  sudo docker run -i -t --volume-driver=nfs -v syni/volume1/video:./syni ubuntu /bin/bash
+  152  sudo docker run -i -t --volume-driver=nfs -v 192.168.178.21/volume1/video:./syni ubuntu /bin/bash
+  153  sudo docker-volume-netshare nfs
+  154  sudo docker-volume-netshare nfs &
+  155  sudo docker run -i -t --volume-driver=nfs -v 192.168.178.21/volume1/video:./syni ubuntu /bin/bash
+  156  sudo docker run -i -t --volume-driver=nfs -v 192.168.178.21/volume1/video:/home/osboxes/syni ubuntu /bin/bash
+  157  sudo docker run -i -t --volume-driver=nfs -v 192.168.178.21/volume1/video:/syni ubuntu /bin/bash
+  158  pwd
+  159  cd rails/PMC4/
+  160  sudo docker-compose build
+  161  sudo docker-compose up
+  162  sudo docker-compose start
+  163  sudo docker-compose exec webp bash
+  164  sudo docker-compose stop
+  165  sudo docker-compose exec webp bash
+  166  sudo docker-compose start
+  167  sudo docker-compose exec webp bash
+  168  ls
+  169  ls -la
+  170  ls C*
+  171  ls -la C*
+  172  rm Compound\ licks\ for\ blues\ and\ jazz\ -\ from\ YouTube.mp4 
+  173  ls -la C*
+  174  sudo docker-compose stop
+  175  sudo docker-compose -f docker-compose2.yml 
+  176  cd ..
+  177  docker-compose hel
+  178  sudo docker-compose build -f docker-compose2.yml 
+  179  sudo docker-compose  -f docker-compose2.yml build
+  180  cd PMC4/
+  181  sudo docker-compose  -f docker-compose2.yml build
+  182  sudo docker-compose  -f docker-compose2.yml start
+  183  sudo docker-compose  -f docker-compose2.yml build
+  184  sudo docker-compose  -f docker-compose2.yml stop
+  185  sudo docker-compose  -f docker-compose2.yml build
+  186  sudo docker-compose start
+  187  sudo docker-compose stop
+  188  sudo docker-compose  -f docker-compose22.yml build
+  189  sudo docker-compose  -f docker-compose2.yml build
+  190  sudo docker-compose start
+  191  sudo docker-compose stop
+  192  sudo docker-compose  -f docker-compose2.yml up
+  193  sudo docker-compose  -f docker-compose2.yml start
+  194  cp /media/osboxes/mediapart/media_pictures.sql ../dbdata/
+  195  sudo cp /media/osboxes/mediapart/media_pictures.sql ../dbdata/
+  196  sudo docker-compose exec dbp bash
+  197  sudo docker-compose exec webp bash
+  198  sudo docker-compose exec dbp bash
+  199  sudo docker-compose stop
+  200  sudo docker-compose start
+  201  sudo docker-compose stop
+  202  sudo docker-compose  -f docker-compose2.yml build
+  203  sudo docker-compose  -f docker-compose2.yml up
+  204  sudo docker-compose  start
+  205  sudo docker-compose exec webp bash
+  206  ssh peter@syni
+  207  sudo docker-compose stop
+  208  sudo docker-compose  -f docker-compose.yml build
+  209  sudo docker-compose  -f docker-compose.yml uip
+  210  sudo docker-compose  -f docker-compose.yml up
+  211  sudo docker-compose  -f docker-compose.yml start
+  212  history
+  213  history|more
+  214  history > history.artful1.txt

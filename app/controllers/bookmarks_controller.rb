@@ -7,6 +7,14 @@ class BookmarksController < ApplicationController
     @bookmarks = Bookmark.all
   end
 
+
+  def search
+    @bquery = params[:bquery]
+    q = "%"+@bquery+"%"
+    @bookmarks = Bookmark.where("url like ?", q).order(url: :asc)
+    render :index
+  end
+
   # GET /bookmarks/1
   # GET /bookmarks/1.json
   def show

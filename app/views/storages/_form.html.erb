@@ -11,7 +11,7 @@
     </div>
   <% end %>
   
-
+<% r = -1 %>
 <%= submit_tag value="save", class: "buttonForm" %>
 
     
@@ -20,6 +20,13 @@
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name,  size: 80%>
+  </div>
+
+  <div class="field">
+    <%= f.label :Type %>
+    <%= f.select :mtype,
+  MFILETYPE.map {|l| [l,r=r+1]},
+  prompt: "Bitte wählen" %>
   </div>
 
 <% if @storage.id  == nil %>
