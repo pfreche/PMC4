@@ -366,6 +366,8 @@ label {
     border: 4px solid #002;
     margin: 0px;
     background-color: black;
+//    width: 150px;
+ //   height: 150px;
 //    display: flex;
 //    flex-grow: 1;
   }
@@ -604,3 +606,7 @@ color:#f00;
 z-index: -12;
 top:0;
 left:0; }
+
+.menu_folder_title {
+  width: 50px;
+}

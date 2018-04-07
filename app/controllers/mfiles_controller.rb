@@ -17,7 +17,7 @@ class MfilesController < ApplicationController
     @mode = params[:mode]
 
     getMfiles(typ)
-    @mfiles = @mfiles.to_a.select{|mfile| mfile.pic?}
+#    @mfiles = @mfiles.to_a.select{|mfile| mfile.pic?}  tbd
     if @mode=="P"
          render "thumbs", :layout => false
     else
@@ -180,7 +180,7 @@ class MfilesController < ApplicationController
       p "Bild"
 #       render text: @mfile.path(URLWEB)
        render "snippet_picture",  layout: false
-     when ".mp4"
+     when ".mp4", ".webm"
        p "Film"
        render "snippet_video",  layout: false
      when ".pdf", ".PDF"

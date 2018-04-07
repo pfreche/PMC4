@@ -1,5 +1,5 @@
 class BookmarksController < ApplicationController
-  before_action :set_bookmark, only: [:show, :edit, :update, :destroy, :getTitle, :scan]
+  before_action :set_bookmark, only: [:show, :edit, :update, :destroy, :getTitle, :scan, :linkFolder]
 
   # GET /bookmarks
   # GET /bookmarks.json
@@ -136,6 +136,12 @@ class BookmarksController < ApplicationController
     render plain: @title
   end
 
+  def linkFolder
+    @folder = Folder.find(session[:selectedFolder])
+    @bookmark.folder_id = @folder.id
+    @bookmark.save
+    render :show
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

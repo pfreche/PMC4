@@ -27,39 +27,58 @@ class Location < ActiveRecord::Base
      isFS? and ((storage.location(URL_STORAGE_WEB)  and (typ == URL_STORAGE_FS))          or (storage.location(URL_STORAGE_WEBTN)  and (typ == URL_STORAGE_FSTN )))
   end
 
-# 20171015 Scans files physically
-def scan (filter = nil)
-
+def ls(dir = "")
+    files = []
     path = uri
+    d = File.join(path,dir,"/*")
+    Dir.glob(d) {|f|
+       files << [f,File.directory?(f)]
+      }
+     a=  ActionController::Base.helpers.link_to "a", "b"
+    files
+  
+end
+
+# 20171015 Scans files physically
+def scan (filter = nil, dir)
+
+    dir = dir||""
+    path = File.join(uri,dir,"/**/*")
+    uriLength = File.join(uri,"/").length
     files = []
     if filter == nil
       filter  = "."
     end
-    Dir.glob(path+"/**/*") {|f|
+    Dir.glob(path) {|f|
       if !File.directory?(f) and f[%r{#{filter}}]
         files << f
       end
       }
-    locPathLength = path.length
-    files.map{|l| l[locPathLength+1..-1]}.map {|l| l.split(/\//)}
+    k = files.map{|l| l[uriLength..-1]}.map {|l| l.split(/\//)}
+    k
+
 end
 
-def scanAndAdd (inlevel, filter = nil)
+def scanAndAdd (inlevel, filter = nil, dir)
 
-
-    files = scan(filter)
+    files = scan(filter,dir)
     if inlevel == 100
        naturallevel = true
     end
     files.each { |file|
-       path = ""
+
        level = naturallevel ? file.length : inlevel
+       unless file[level] # omit files below level 
+          file[0] = "LEVEL TOO HIGH: Skipped "+file[0]
+          next 
+       end
+       path = ""
        for i in 1..level
            path = path + "/"+ file[i-1]
        end
        path = path + "/"
        filename = ""
-       next unless file[level] # omit files on root level 
+
        for i in level..5
            filename = filename + file[i]
            break unless file[i+1]
@@ -76,9 +95,11 @@ def scanAndAdd (inlevel, filter = nil)
          mfile = Mfile.new(folder_id: folder.id, filename: filename, mtype: MFILE_UNDEFINED)
          mfile.save
          file[0] = "ADDED: "+file[0]
+       else
+         file[0] = "Not Added as already existing: "+file[0]
        end
     }
-
+   files
 end
 
 

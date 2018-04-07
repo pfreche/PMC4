@@ -258,6 +258,7 @@ $(document).ready ->
 
   $("#bildCont").bind 'click', ->
     $("#overlayPic").hide()
+    $("video")[0].pause()
     $("#dunkel").css('z-index', -2)
 
   $("#bildNext").bind 'click', ->

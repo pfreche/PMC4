@@ -4,7 +4,7 @@ require "uri"
 #require "nokogiri"
 
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy, :parse, :checkAvail, :parseURL, :gswl, :getTitle, :analyzeFiles, :copyToFiles, :downloadToFiles, :deleteFiles, :scan]
+  before_action :set_location, only: [:show, :edit, :update, :destroy, :parse, :checkAvail, :parseURL, :gswl, :getTitle, :analyzeFiles, :copyToFiles, :downloadToFiles, :deleteFiles, :scan, :ls]
   # GET /locations
   # GET /locations.json
   def index
@@ -133,15 +133,28 @@ class LocationsController < ApplicationController
 
   end
 
-# ccc Scans files on the storage
+# Scans files on location
   def scan
 
     @commit = params[:commit]
+    @filter = params[:filter]
+    @dir = params[:dir]
     if @commit
       level = @commit[23,1].to_i
-       @files = @location.scanAndAdd(level)
+       @files = @location.scanAndAdd(level,@filter,@dir)
     else
-      @files = @location.scan
+      @files = @location.scan(@filter,@dir)
+    end
+#        files << (ActionController::Base.helpers.link_to f, ActionController::Base.helpers.ls_location_path(id, dir: f[uri.length,200]))
+  end
+
+# Directory Listing on location
+  def ls
+
+    @directory = params[:dir] ||""
+    
+    if @directory
+       @files = @location.ls(@directory)
     end
   end
 
@@ -311,6 +324,6 @@ class LocationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def location_params
-    params.require(:location).permit(:name, :uri, :description, :typ, :storage_id, :inuse, :origin, :prefix, :requestTitle, :dlm)
+    params.require(:location).permit(:name, :uri, :description, :typ, :storage_id, :inuse, :origin, :prefix, :requestTitle, :dlm, :filter, :dir)
   end
 end

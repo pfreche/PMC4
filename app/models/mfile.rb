@@ -1,4 +1,6 @@
 class Mfile < ActiveRecord::Base
+  serialize :filename # fix for issue with UTF8 with only 3 bytes issue in mysql
+
   has_and_belongs_to_many :attris
   has_and_belongs_to_many :agroups
   belongs_to :folder
@@ -15,10 +17,12 @@ class Mfile < ActiveRecord::Base
 #      end
 #    else
       if folder
-        p =  folder.path(typ) + ""+ filename
-        if pdf? and (typ == URL_STORAGE_WEBTN  or typ == URL_STORAGE_FSTN)
-          p.gsub!(".pdf", ".jpg")
+        p =  folder.path(typ) + ""+ URI.escape(filename) #  TBD for typ <> web
+        if (typ == URL_STORAGE_WEBTN  or typ == URL_STORAGE_FSTN)
+#          p.gsub!(".pdf", ".jpg")
+           p.gsub!(/\.[\w]*$/, ".jpg")  # Assuming Thumbnails to be always jpg's 
         end
+        
         p
      else
         "<no folder>"

@@ -1,0 +1,29 @@
+sudo docker run -it --privileged=true centos:7 bash
+yum install -y nfs-utils
+mkdir video
+mount -t nfs 192.168.178:/volume1/video /video
+
+------------
+
+wget https://github.com/ContainX/docker-volume-netshare/releases/download/v0.34/docker-volume-netshare_0.34_amd64.deb
+mv docker-volume-netshare_0.34_amd64.deb ..
+cd ..
+sudo dpkg -i docker-volume-netshare_0.34_amd64.deb 
+more /etc/default/docker-volume-netshare 
+
+
+sudo service docker-volume-netshare start
+sudo docker-volume-netshare nfs & 
+sudo docker-compose -f docker-compose2.yml up
+
+
+--------------
+Database Handling:
+
+within dbp  (sudo docker-compose exec dbp bash)
+	mysql_config_editor set --login-path=local --host=localhost --user=root --password
+
+backup:  sudo docker-compose exec dbp mysqldump --login-path=local media_development  > backup.sql
+
+enter mysql: sudo docker-compose exec dbp mysql --login-path=local media_development
+

@@ -230,8 +230,6 @@ def generateTNs(fromLocation, toLocation, force=true, prefix, area)
    return n.to_s+" thumbnails generated"
  end
 
-
-
 def next
     f = Folder.where(storage_id: storage_id).where('id >?', id).order(id: :asc).first
     if f

@@ -20,13 +20,16 @@ class FoldersController < ApplicationController
   # GET /folders/1.json
   def show
     session[:selectedFolder] = @folder.id
+    session[:selectedFolderTitle] = @folder.title
     typ = params[:typ]
     if typ
       if typ == "next"
         @folder = Folder.find(@folder.id).next
+        redirect_to folder_path(@folder)
       end
       if typ == "prev"
         @folder = Folder.find(@folder.id).previous
+        redirect_to folder_path(@folder)
       end
       session[:selectedFolder] = @folder.id
     end
@@ -147,6 +150,6 @@ class FoldersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def folder_params
-      params.require(:folder).permit(:storage_id, :mpath, :lfolder, :mfile_id, :storage_id, :dlm)
+      params.require(:folder).permit(:storage_id, :title, :mpath, :lfolder, :mfile_id, :storage_id, :dlm)
     end
 end

@@ -1,0 +1,18 @@
+<h1>Directory in Location <%= @location.name %></h1>
+
+<%= @location.uri + "  " + @directory%>
+<%= link_to "Scan", scan_location_path(@location, dir: @directory)%>
+
+<ul>
+    <% i = 0
+    @files.each do |file| %>
+
+<li> <% if file[1] %>
+  <%= link_to file[0], ls_location_path(@location, dir: file[0][@location.uri.length,200])%> </li>
+    
+    <% else %>
+      <%= file[0] %>
+    <% end %>
+
+    <% end %>
+</ul>

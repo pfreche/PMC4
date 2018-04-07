@@ -23,6 +23,7 @@ PMC4::Application.routes.draw do
     get 'getTitle', :on => :member
     get 'scan', :on => :member
     post 'search', :on => :collection
+    get 'linkFolder', :on => :member
   end
 
   resources :mtypes
@@ -105,6 +106,7 @@ PMC4::Application.routes.draw do
     get 'checkAvail', :on => :member
     get 'parseURL', :on => :member
     get 'scan', :on => :member
+    get 'ls', :on => :member
   end
 
   resources :storages do
