@@ -77,6 +77,7 @@ PMC4::Application.routes.draw do
     get 'delete_tag', :on => :member
     get 'pic', :on => :member
     get 'path', :on => :member
+    get 'youtubeLink', :on => :member
     get 'renderMfile', :on => :member
     get  'classify', :on => :collection
     get  'slideshow', :on => :collection
@@ -89,7 +90,10 @@ PMC4::Application.routes.draw do
     post 'copyFiles', :on => :member
     post 'generateTNs', :on => :member
     get 'changeStorage', :on => :member
+    post 'checkForVideoFiles', :on => :member
+
   end
+
 
 
 

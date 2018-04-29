@@ -1,5 +1,5 @@
 class BookmarksController < ApplicationController
-  before_action :set_bookmark, only: [:show, :edit, :update, :destroy, :getTitle, :scan, :linkFolder]
+  before_action :set_bookmark, only: [:show, :edit, :update, :destroy, :getTitle, :scan, :linkFolder,:unlink]
 
   # GET /bookmarks
   # GET /bookmarks.json
@@ -137,8 +137,12 @@ class BookmarksController < ApplicationController
   end
 
   def linkFolder
-    @folder = Folder.find(session[:selectedFolder])
-    @bookmark.folder_id = @folder.id
+    if params[:unlink]
+      @bookmark.folder_id = nil
+    else
+      @folder = Folder.find(session[:selectedFolder])
+      @bookmark.folder_id = @folder.id
+    end
     @bookmark.save
     render :show
   end

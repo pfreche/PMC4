@@ -17,8 +17,10 @@ class StoragesController < ApplicationController
       render :showm
     end
     @f = @folders.map {|f| f.mfiles}
-    @mfiles =  @storage.getMfiles
-    @mtypes = Mfile.group(:mtype).count(:id)
+#    @mfiles =  @storage.getMfiles # 29.04.2018 not needed any longer
+    @numbers = Folder.joins(:mfiles).group('folders.id').count('mfiles.id')
+
+    @mtypes = Mfile.group(:mtype).count(:id) # brauche wir dies????
   end
 
   # GET /storages/new
@@ -410,6 +412,6 @@ class StoragesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def storage_params
-    params[:storage].permit(:name, :path)
+    params[:storage].permit(:name, :path, :mtype)
   end
 end

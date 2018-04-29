@@ -54,10 +54,24 @@ class ScannersController < ApplicationController
      location = Location.find(location_id)
 
     user, x = @links.select{|a,b| b[1]=="user"}.first
-    title, x = @links.select{|a,b| b[1]=="title"}.first
-    folder = Scanner.createFolder("/"+user, title,location)
+    #title, x = @links.select{|a,b| b[1]=="title"}.first
+    user = user.lstrip
+    title = user 
+    folder = Scanner.createFolder("/"+user+"/", title,location)
     location.downloadTube(folder, @url)
 
+     @bookmark_id = params[:bookmark_id]
+       if @bookmark_id
+         bm = Bookmark.find(@bookmark_id)
+         bm.folder_id = folder.id
+         bm.title = folder.title
+         bm.save
+       else
+         bm = Bookmark.new(url: @url, folder_id: folder.id, title: folder.title)
+         bm.save
+        end
+
+    redirect_to folder
   end
 
   def msas # match scan and save

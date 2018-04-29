@@ -34,12 +34,6 @@ Folder
   <%= link_to @folder.storage.name, edit_storage_path(@folder.storage) %>
 </div>
 
-<div class= "valuepair">
- <div class="lbl">
-  <strong>Orgin Path:</strong>
-  </div>
-  <%= @folder.originPath %>
-</div>
 
 <div class= "valuepair">
  <div class="lbl">
@@ -61,7 +55,7 @@ Folder
  <div class="lbl">
   <strong>Filesystem:</strong>
   </div>
-  <%= @folder.path(2) %>
+  <%= link_to  @folder.path(2), ls_location_path(@folder.storage.location(2), dir: @folder.rpath) %>
 </div>
 
 <div class= "valuepair">
@@ -78,8 +72,15 @@ Folder
   <%= @folder.path(4) %>
 </div>
 
-<div style="overflow:auto;height:200px">
+<div class= "valuepair">
+ <div class="lbl">
+  <strong>Orgin Path:</strong>
+  </div>
+  <%= @folder.originPath %>
+</div>
 
+<div style="overflow:auto;height:200px">
+<%= @n %>
 <%= render 'shared/mfiles' %>
 
 </div>
@@ -149,6 +150,15 @@ Folder
 </div>
 <% end %>
 
+<%= form_tag(checkForVideoFiles_folder_path(@folder) )  do %>
+
+  <div class="actions">
+    <%= hidden_field_tag :folder_id, {value: @folder.id} %>
+    <%= hidden_field_tag :typ, 2 %>
+    
+    <%= submit_tag "check for Video Files"%>
+</div>
+<% end %>
 
 
 </div>

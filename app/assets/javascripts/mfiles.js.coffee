@@ -12,16 +12,29 @@ $(document).ready ->
 
   hlColour = "#ddf"
 
-  $(document).keypress (e) ->
-#    alert(e.keyCode)
-    if e.which == 100
-      id = actualPic.attr("id")
-      $.get id+"/download", (data) ->
-        alert(id+" "+data)
-    if e.which == 121
-       prevPic(actualPic)
-    if e.which == 120
-       nextPic(actualPic)
+  if window.location.pathname == "/mfiles/thumbs"
+     key1 =  true
+
+  $(document).keydown (e) ->
+    if key1 == true
+#      alert(e.keyCode)
+      if e.which == 68
+        id = actualPic.attr("id")
+        $.get id+"/download", (data) ->
+          alert(id+" "+data)
+      if e.which == 37
+         prevPic(actualPic)
+      if e.which == 39
+         nextPic(actualPic)
+      if e.which == 89
+        id = actualPic.attr("id")
+        $.get id+"/youtubeLink", (data) ->
+#          window.location = data
+          window.open(data, 'you')
+#          $("#bildCont").html("")
+#          $("#overlayPic").hide()
+          $("video")[0].pause()
+     true
 
   $('#name').autocomplete
     source: $('#name').data('autocomplete-source')
@@ -257,8 +270,9 @@ $(document).ready ->
 
 
   $("#bildCont").bind 'click', ->
+    $("#bildCont").html("")
     $("#overlayPic").hide()
-    $("video")[0].pause()
+#    $("video")[0].pause()
     $("#dunkel").css('z-index', -2)
 
   $("#bildNext").bind 'click', ->

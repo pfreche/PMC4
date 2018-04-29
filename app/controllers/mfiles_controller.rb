@@ -1,5 +1,5 @@
 class MfilesController < ApplicationController
-  before_action :set_mfile, only: [:show, :edit0, :edit, :path, :update, :destroy, :add_attri, :add_attri_name, :remove_attri, :add_agroup, :remove_agroup, :renderMfile, :download]
+  before_action :set_mfile, only: [:show, :edit0, :edit, :path, :youtubeLink, :update, :destroy, :add_attri, :add_attri_name, :remove_attri, :add_agroup, :remove_agroup, :renderMfile, :download]
   # GET /mfiles
   # GET /mfiles.json
   def index
@@ -57,13 +57,12 @@ class MfilesController < ApplicationController
           fid = session[:selectedFolder]
         end
         @mfiles = Mfile.where(folder_id: fid)
-
+        @mfiles = Mfile.order(id: :desc).where(folder_id: fid)
       else
         if typ == "nextFolder"
-        fid = session[:selectedFolder]
-        folder = Folder.find(fid).next ### to be defined
-        fid = session[:selectedFolder] = folder.id
-        @mfiles = Mfile.where(folder_id: fid)
+          fid = session[:selectedFolder]
+          folder = Folder.find(fid).next ### to be defined
+          fid = session[:selectedFolder] = folder.id
         else
 #          @mfiles = Mfile.find([1,2,3])
           @mfiles = Mfile.all
@@ -169,6 +168,10 @@ class MfilesController < ApplicationController
 
   def path
     render text: @mfile.path(URLWEB)
+  end
+
+  def youtubeLink
+    render text: @mfile.youtubeLink
   end
 
   def renderMfile

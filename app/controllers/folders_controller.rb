@@ -1,5 +1,5 @@
 class FoldersController < ApplicationController
-  before_action :set_folder, only: [:show, :edit, :update, :destroy, :copyFiles, :generateTNs, :changeStorage]
+  before_action :set_folder, only: [:show, :edit, :update, :destroy, :copyFiles, :generateTNs, :changeStorage, :checkForVideoFiles]
 
   # GET /folders
   # GET /folders.json
@@ -19,6 +19,7 @@ class FoldersController < ApplicationController
   # GET /folders/1
   # GET /folders/1.json
   def show
+    
     session[:selectedFolder] = @folder.id
     session[:selectedFolderTitle] = @folder.title
     typ = params[:typ]
@@ -33,8 +34,11 @@ class FoldersController < ApplicationController
       end
       session[:selectedFolder] = @folder.id
     end
+#    @mfiles = @folder.mfiles.reverse
     @mfiles = @folder.mfiles
-    @bookmark = Bookmark.find_by_folder_id(@folder.id)
+#    @bookmark = Bookmark.find_by_folder_id(@folder.id)
+    @bookmark =  @folder.bookmark
+    @n = @folder.mfiles.count
   end
 
   # GET /folders/new
@@ -67,6 +71,7 @@ class FoldersController < ApplicationController
   def update
     respond_to do |format|
       if @folder.update(folder_params)
+        @folder.resetFOLDERPATH # 07042018
         format.html { redirect_to @folder, notice: 'Folder was successfully updated.' }
         format.json { head :no_content }
       else
@@ -137,10 +142,44 @@ class FoldersController < ApplicationController
     message = @folder.generateTNs(@folder.storage.location(2), @folder.storage.location(4), true, "", 20000)
 
     flash[:notice] = message
-
     redirect_to @folder
 
   end
+ 
+ def checkForVideoFiles
+
+    location = @folder.storage.location(2) # filesystem
+#    message = location.checkForVideoFiles
+
+    mfiles = @folder.mfiles
+    n = 0
+
+    mfiles.each do |mfile|
+       fp =  mfile.path(2)
+       ext = ".mp4"
+       fvideo = fp.gsub(/\.[\w]*$/, ext) 
+#File.basename(fp) > xyz.mp4
+#File.extname(fp) > .mp4
+#File.basename(fp, ".mp4") > xyz
+#File.basename(fp, ".*") > xyz
+#File.dirname(fp) >  /synivideo/youtube"
+
+       if fvideo != fp and File.exist?(fvideo)
+          mfile.filename =  File.basename(fvideo)
+          n = n + 1
+          mfile.save
+       end
+
+    end
+    if n > 0
+      message = " >  " + n.to_s + " jpg files were switched to video Files"
+    end
+    flash[:notice] = message
+    redirect_to @folder
+
+end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

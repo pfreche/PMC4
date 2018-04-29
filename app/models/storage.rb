@@ -7,11 +7,7 @@ class Storage < ActiveRecord::Base
   end
 
   def originPath
-    if l = originLocation
-        l.uri      
-    else
-        ""
-    end
+     originLocation ? originLocation.uri : nil
   end
 
   def webLocation

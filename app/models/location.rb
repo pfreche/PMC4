@@ -54,7 +54,8 @@ def scan (filter = nil, dir)
         files << f
       end
       }
-    k = files.map{|l| l[uriLength..-1]}.map {|l| l.split(/\//)}
+    files.sort_by!{ |f| File.mtime(f)}
+    k = files.reverse.map{|l| l[uriLength..-1]}.map {|l| l.split(/\//)}
     k
 
 end
@@ -388,8 +389,18 @@ def  downloadTube(folder, url)
 
    apath = "-o \""+ uri + folder.mpath + folder.lfolder + "/%(title)s-%(id)s.%(ext)s\" "
    command = "youtube-dl "+ apath + url
-   system(command)
-    adf
+#   system(command)
+
+   command = "..\\youtube-dl.exe --write-all-thumbnails -i -w "
+   command = command + "-o \"%%(title)s-%%(upload_date)s-%%(id)s.%%(ext)s\" " +  url
+
+   ypath = File.join(uri,folder.mpath,folder.lfolder,"download tubes.bat")
+   File.open(ypath, 'w') {|file| file.write(command)}
+
+   command = "..\\youtube-dl.exe --write-all-thumbnails -i -w --skip-download "
+   command = command + "-o \"%%(title)s-%%(upload_date)s-%%(id)s.%%(ext)s\" " +  url
+   ypath = File.join(uri,folder.mpath,folder.lfolder,"download pics.bat")
+   File.open(ypath, 'w') {|file| file.write(command)}
 end
 
 def finish_download
@@ -434,7 +445,7 @@ end
           uri = URI.parse(URI.encode("http://192.168.178.81:3001/hallo"))
           req = Net::HTTP::Get.new(uri.request_uri)
           q = CGI.escape("http://192.168.178.81:3001")
-          uri = "http://192.168.178.81:3001" +"?web="+ CGI.escape(fromWebFile)+"&file="+CGI.escape(toFile)
+          uri = "http://192.168.178.85:3001" +"?web="+ CGI.escape(fromWebFile)+"&file="+CGI.escape(toFile)
           uri = uri + "&referer="+CGI.escape(referer) if referer
           a = open(uri).read()
           uri
@@ -467,6 +478,17 @@ end
           c = @curl
   #        adfa
         end
+    end
+
+
+    def checkForVideoFiles(folder)
+       mfiles = folder.mfiles
+       mfiles.each do |mfile|
+         # physical name
+         # check for video file
+         # if there then replace mfile name by video file name and save
+
+       end
     end
 
 private

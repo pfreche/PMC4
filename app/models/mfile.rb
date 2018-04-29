@@ -17,7 +17,12 @@ class Mfile < ActiveRecord::Base
 #      end
 #    else
       if folder
-        p =  folder.path(typ) + ""+ URI.escape(filename) #  TBD for typ <> web
+        if (typ == URL_STORAGE_FS  or typ == URL_STORAGE_FSTN)
+           p =  File.join(folder.path(typ), filename) #   typ <> web
+        else
+           p =  File.join(folder.path(typ), URI.escape(filename)) #  typ == web
+        end
+
         if (typ == URL_STORAGE_WEBTN  or typ == URL_STORAGE_FSTN)
 #          p.gsub!(".pdf", ".jpg")
            p.gsub!(/\.[\w]*$/, ".jpg")  # Assuming Thumbnails to be always jpg's 
@@ -75,6 +80,22 @@ class Mfile < ActiveRecord::Base
 
   def mp3?
      name.end_with?("mp3") || name.end_with?("MP3")
+  end
+
+  def mtypee
+     mtype == 0 ? folder.storage.mtype : 0
+  end
+  
+  def youtubeLink
+    
+     fwo = filename.gsub(/\.[\w]*$/, "")[-11..-1]  
+     if fwo
+       youtube_id = fwo[-11..-1]  
+       "https://www.youtube.com/watch?v="+youtube_id
+       "https://www.youtube.com/embed/"+youtube_id
+      else
+        "n/a"
+      end
   end
 
 end

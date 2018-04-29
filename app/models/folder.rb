@@ -9,15 +9,15 @@ class Folder < ActiveRecord::Base
  #    p = location.uri + "/" +  mpath + "/" +  lfolder + "/"
  #   p.gsub("///", "/").gsub("//", "/").gsub("//", "/").gsub("http:/","http://")
     location.uri + mpath + lfolder
+  end
 
+  def rpath
+    File.join(mpath, lfolder)
   end
 
   def originPath
-    ppath = storage.originPath
-  #  a =  ppath+ "/" +  mpath + "/" +  lfolder + "/"
-    a= ppath + mpath + lfolder
-    
-#    a.gsub("///", "/").gsub("//", "/").gsub("//", "/").gsub("http:/","http://")
+        ppath = storage.originPath
+        ppath ? File.join(ppath,mpath,lfolder) : "<not defined>"
   end
 
   def path(typ)

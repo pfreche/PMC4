@@ -8,6 +8,8 @@
       <th>Mpath</th>
 
       <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -18,6 +20,8 @@
         <td><%= folder.storage.name%> </td>
        <td><%= folder.title %></td>
         <td><%= folder.mpath + " " + folder.lfolder%></td>
+        <td><%= @numbers[folder.id] %></td>
+
         <td><%= link_to material_icon.search.css_class('md-18'), folder %></td>
         <td><%= link_to material_icon.delete.css_class('md-18'), folder , method: :delete, data: { confirm: 'Are you sure?' } %></td>
 

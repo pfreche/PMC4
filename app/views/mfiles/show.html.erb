@@ -3,7 +3,7 @@
 
 <p>
   <strong>Media Type</strong>
-  <%= MFILETYPE[@mfile.mtype] %>
+  <%= MFILETYPE[@mfile.mtype] %> /  <%= @mfile.mtypee %> 
 </p>
 <p>
   <strong>Folder:</strong>
@@ -13,7 +13,8 @@
 
 <p>
   <strong>Filename:</strong>
-  <%= @mfile.filename %>
+  <%= @mfile.filename %>  
+
 </p>
 
 <p>
@@ -44,6 +45,11 @@
 <p>
   <strong>Original Path</strong>
   <%= link_to @mfile.originPath , @mfile.originPath  %>
+</p>
+
+<p>
+  <strong>Youtube</strong>
+  <%= link_to "youtube", @mfile.youtubeLink  %>
 </p>
 
 <%= link_to 'Downlad', download_mfile_path(@mfile) %> |

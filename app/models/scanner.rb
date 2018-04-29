@@ -30,18 +30,23 @@ class Scanner < ApplicationRecord
     if sourcee == "URL Load Error"
         links = ["Error"]
     end
+
+    if tag.strip == ""
+      links = []
+      links[0] = sourcee
+    else 
     page = Nokogiri::HTML(sourcee)
 
     urlbase = url
     
     links = page.css(tag)
-
+    i = 0
     links = links.map { |l| 
       begin
       if attr and attr.length >0 
         URI.decode(URI.join(urlbase, (l.attr(attr)||"").to_s).to_s)
       else 
-
+        i = i  + 1
         l.text.to_s
       end
       rescue
@@ -49,6 +54,8 @@ class Scanner < ApplicationRecord
       end
       } 
     
+    end
+
     pa = pattern
     pattern = pa.sub("<url>",url)
     
@@ -80,7 +87,7 @@ class Scanner < ApplicationRecord
                   unless s.final == "x" or s.final == "Error"
                      u =  Scanner.matchAndScan(l, level + 1, maxdepth, scanners, result)
                   end
- 	       end
+      	       end
        	    }
 #          else
 #		jlj
@@ -122,16 +129,15 @@ def self.createFolder(foldername, folderTitle,location)
 
     f = Folder.where(storage_id: location.storage.id, mpath: foldername, lfolder: "")
     if !f.empty?
-       return f.first
-    end
-    folder = Folder.new
-    folder.mpath = foldername
-    folder.lfolder = ""
-    folder.title = folderTitle
-
-    folder.storage_id = location.storage_id
-        
-    folder.save
+       folder= f.first
+    else
+      folder = Folder.new
+      folder.mpath = foldername
+      folder.lfolder = ""
+      folder.title = folderTitle
+      folder.storage_id = location.storage_id
+      folder.save
+    end 
     location.mkDirectories(folder)
     return folder
 
