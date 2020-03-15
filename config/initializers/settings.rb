@@ -2,8 +2,11 @@ module Business
   class Logic
     @@dl_method = 0
     Here = "hello world"
-    def self.dlm=(x)
-      @@dl_method = x
+    def self.dlm=(y) #blödsinn
+      x = y.to_i
+      if x.is_a? Integer
+        @@dl_method = x
+      end
     end
     def self.dlm()
       @@dl_method
@@ -13,9 +16,9 @@ end
 
 module Config
   class Settings
-    @@dl_method = 2 # 0 intern, 1 wget, 2 extern 
+    @@dl_method = 2 # 0 intern, 1 curl, 2 extern 
     def self.dlm=(x)
-      @@dl_method = x
+      @@dl_method = x.to_i
     end
     def self.dlm()
       @@dl_method

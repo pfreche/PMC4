@@ -63,6 +63,7 @@ class MfilesController < ApplicationController
           fid = session[:selectedFolder]
           folder = Folder.find(fid).next ### to be defined
           fid = session[:selectedFolder] = folder.id
+          @mfiles = Mfile.where(folder_id: fid)
         else
 #          @mfiles = Mfile.find([1,2,3])
           @mfiles = Mfile.all
@@ -315,6 +316,7 @@ class MfilesController < ApplicationController
     originLocation = storage.originLocation
     referer = @mfile.folder.bookmark.url
     originLocation.download_with_referer(file_from, file_to, referer,0)
+    p file_from + " / " + referer
     originLocation.finish_download
 
 
@@ -322,7 +324,7 @@ class MfilesController < ApplicationController
 
   # downlod
 #    render 'show'
-     render plain: referer
+     render plain:  file_from
   end
 
   private

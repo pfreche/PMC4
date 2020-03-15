@@ -208,6 +208,7 @@ def generateTNs(fromLocation, toLocation, force=true, prefix, area)
        
         case 
         when mfile.pic?
+           tofile = tofile.gsub(".JPG",".jpg")
            if area == 0 
               command = "jhead -st \"" + tofile + "\"  \"" + fromfile  +"\""
            else

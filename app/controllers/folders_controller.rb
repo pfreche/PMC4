@@ -117,16 +117,16 @@ class FoldersController < ApplicationController
   def copyFiles
 
     typString = params[:typ]
-
+    dlm = params[:dlm]
+    Config::Settings.dlm= dlm if dlm
     if typString
        typ = typString.to_i
        if typ == 1 or typ == 2 or typ == 3 or typ == 4
           toLocation = @folder.storage.location(typ)
           mk = toLocation.mkDirectories(@folder)
-
           if typ == 3 or typ == 4   # if thumbnails!
             message = @folder.storage.location(1).copyFiles(toLocation,@folder,true)
-          else # if web
+          else # if web 
             message = @folder.storage.originLocation.copyFiles(toLocation,@folder,false, 1000)
           end
 

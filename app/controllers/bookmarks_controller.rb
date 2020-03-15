@@ -11,7 +11,7 @@ class BookmarksController < ApplicationController
   def search
     @bquery = params[:bquery]
     q = "%"+@bquery+"%"
-    @bookmarks = Bookmark.where("url like ?", q).order(url: :asc)
+    @bookmarks = Bookmark.where("url like ?", q).or(Bookmark.where("title like ?",q)).order(url: :asc)
     render :index
   end
 

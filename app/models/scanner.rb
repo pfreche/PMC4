@@ -40,16 +40,18 @@ class Scanner < ApplicationRecord
     urlbase = url
     
     links = page.css(tag)
+  
     i = 0
     links = links.map { |l| 
       begin
       if attr and attr.length >0 
-        URI.decode(URI.join(urlbase, (l.attr(attr)||"").to_s).to_s)
+        URI.decode(URI.join(urlbase, URI.encode((l.attr(attr)||"").to_s)).to_s)
       else 
         i = i  + 1
         l.text.to_s
       end
       rescue
+     jllj
         "failure"
       end
       } 
@@ -58,7 +60,7 @@ class Scanner < ApplicationRecord
 
     pa = pattern
     pattern = pa.sub("<url>",url)
-    
+
     links.select! { |l| l[%r{#{pattern}}] } if pattern
     if pattern and pattern.length >0 
         links.map! { |link| 

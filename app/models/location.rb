@@ -359,6 +359,8 @@ end
 
         case
         when mfile.pic?
+           tofile = tofile.gsub(".JPG",".jpg")
+           afe
            if area == 0
               command = "jhead -st \"" + tofile + "\"  \"" + fromfile  +"\""
            else
@@ -410,9 +412,11 @@ def finish_download
   @curl = ""
 end
 
+
 # downloads a file from Web to a local file
    def download(fromWebFile, toFile, method=0, referer= nil)
       method = Config::Settings.dlm()
+    
       case method
       when 0
           uri = URI.parse(URI.encode(fromWebFile))
@@ -424,7 +428,6 @@ end
           end
           Net::HTTP.start(uri.host, uri.port) do |http|
               response = http.request(req)
-
               open(toFile, "wb") do |file|
                   file.write(response.body)
               end
@@ -442,10 +445,10 @@ end
         c = @curl
       when 2
 
-          uri = URI.parse(URI.encode("http://192.168.178.81:3001/hallo"))
+          uri = URI.parse(URI.encode("http://192.168.178.70:3001/hallo"))
           req = Net::HTTP::Get.new(uri.request_uri)
-          q = CGI.escape("http://192.168.178.81:3001")
-          uri = "http://192.168.178.85:3001" +"?web="+ CGI.escape(fromWebFile)+"&file="+CGI.escape(toFile)
+          q = CGI.escape("http://192.168.178.70:3001")
+          uri = "http://192.168.178.70:3001" +"?web="+ CGI.escape(fromWebFile)+"&file="+CGI.escape(toFile)
           uri = uri + "&referer="+CGI.escape(referer) if referer
           a = open(uri).read()
           uri

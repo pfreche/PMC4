@@ -8,7 +8,7 @@
 </head>
 <body>
 <% folder_id = (session[:selectedFolder] || "").to_s %>
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header " >
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" >
 	<header class="mdl-layout__header mdl-layout__header-scroll">
        <div class="mdl-layout__header-row" >
          	<button id="menu-speed" class="mdl-button mdl-js-button mdl-button--icon">
@@ -17,15 +17,15 @@
        <span class="mdl-layout-title">PMC4</span>
        <div class="mdl-layout-spacer"></div>
        <nav class="mdl-navigation" >
-         <a class="mdl-navigation__link" href="<%=agroups_path%>" > Agroups </a>
          <a class="mdl-navigation__link" href="<%=bookmarks_path%>" > Bookmarks </a>
          <a class="mdl-navigation__link" href="<%=thumbs_mfiles_path(typ: :attribute)%>" > Thumbs (A) </a>
          <a class="mdl-navigation__link" href="<%=classify_mfiles_path(typ: :attribute)%>" > Classify (A) </a>
 
          <a class="mdl-navigation__link" href="<%=folders_path%>" > Folders</a>
          <a class="mdl-navigation__link" href="<%=thumbs_mfiles_path(typ: :folder,folder_id: folder_id)%>" > Pics </a>
+       <a class="mdl-navigation__link" href="<%=thumbs_mfiles_path(typ: :folder,folder_id: folder_id, mode: "P" )%>" > P </a>
          <a class="mdl-navigation__link" href="<%=classify_mfiles_path+"?typ=folder&folder_id="+folder_id%>" > Classify </a>
-         <a class="mdl-navigation__link" href="<%=classify_mfiles_path(typ: :nextFolder,folder_id: folder_id) %>" > Next </a>
+         <a class="mdl-navigation__link" href="<%=thumbs_mfiles_path(typ: :nextFolder,folder_id: folder_id) %>" > Next </a>
          <div class="menu_folder_title" >
          <a href="<%=folder_path(session[:selectedFolder]||'x') %>" > 
          		<%=session[:selectedFolderTitle]||'x' %> </a>
@@ -38,6 +38,7 @@
 
 <ul class="mdl-menu mdl-js-menu" for="menu-speed">
   <li class="mdl-menu__item"><%= link_to 'Attributes', attris_path%> </li>
+  <li class="mdl-menu__item"> <%= link_to 'Agroups', agroups_path%> </li> 
   <li class="mdl-menu__item"><%= link_to 'Locations', locations_path%> </li>
   <li class="mdl-menu__item"><%= link_to 'Storages', storages_path%> </li>
   <li class="mdl-menu__item"><%= link_to 'download wget', 'http://192.168.178.81:3001/bdl'%></li>

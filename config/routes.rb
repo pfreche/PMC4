@@ -1,5 +1,6 @@
 PMC4::Application.routes.draw do
 
+  resources :notices
   get 'config/show' => 'config#show', as: 'show_config'
 
   get 'scanners/scan' => 'scanners#scan', as: 'scan_scanners'

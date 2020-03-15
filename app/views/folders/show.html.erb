@@ -105,10 +105,24 @@ Folder
   <div class="actions">
     <%= hidden_field_tag :folder_id, {value: @folder.id} %>
     <%= hidden_field_tag :typ, 2 %>
+    <%= hidden_field_tag :dlm, 2 %>
     
-    <%= submit_tag "Download files from Origin to active File-System"%>
+    <%= submit_tag "DL files from Origin to active File-System"%>
 </div>
 <% end %>
+
+<%= form_tag(copyFiles_folder_path(@folder) )  do %>
+
+  <div class="actions">
+    <%= hidden_field_tag :folder_id, {value: @folder.id} %>
+    <%= hidden_field_tag :typ, 2 %>
+    <%= hidden_field_tag :dlm, 0 %>
+    
+    <%= submit_tag "direct-DL files from Origin to active File-System"%>
+</div>
+<% end %>
+
+
 
 <%= form_tag(copyFiles_folder_path(@folder) )  do %>
 

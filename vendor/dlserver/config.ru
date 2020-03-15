@@ -4,9 +4,12 @@ class Container
  @@collection = {}
  @@dl_files = {}
  @@thread = "init"
- 
+ @@total_dl = 0
+ @@actual_dl = 0
+  
+
  def self.thread()
-  @@thread.status
+  @@thread.status.to_s + " " + @@actual_dl.to_s  + "/" + @@total_dl.to_s
  end
 
  def  self.inc()
@@ -39,7 +42,9 @@ class Container
   end
 
   def self.dl_queue()
-    n = 0
+    m = 1
+    @@total_dl = @@collection.length
+    @@actual_dl = 0
     @@dl_files = @@collection.dup
 
     @@collection = {}
@@ -50,19 +55,40 @@ class Container
        referer = q[1]
        uri = URI.parse(URI.encode(web))
        next unless uri 
-          if referer == nil
+          if referer == nil 
              referer = uri.scheme + "://"+uri.host
            end
+       if m == 1
         @curl = "curl -e \"" + referer +  "\""
-        @curl =  @curl + " -o \""+ file + "\" \"" + web +  "\""
+        @curl =  @curl + " -o \""+ file + "\" \"" + URI.encode(web) +  "\""
         p @curl
-#        Process.spawn(@curl)
         system(@curl)
-        n = n + 1 
+       else 
+         if m == 0 
+           Container.dl_file_ruby(URI.encode(web), file, referer)         
+         end
+       end
+#        Process.spawn(@curl)
+       @@actual_dl = @@actual_dl + 1
     end
-     @@dl_files = {}
-    return n 
+    @@dl_files = {}
+    return @@actual_dl
   end
+
+  def self.dl_file_ruby(fromWebFile, toFile, referer)
+            uri = URI.parse(URI.encode(fromWebFile))
+            req = Net::HTTP::Get.new(uri.request_uri)
+            req['Referer'] = URI.encode(referer)
+
+            Net::HTTP.start(uri.host, uri.port) do |http|
+                response = http.request(req)
+
+                open(toFile, "wb") do |file|
+                    file.write(response.body)
+                end
+            end
+            p fromWebFile + " / " + referer
+ end
 
   def self.collection
      @@collection 

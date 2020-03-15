@@ -108,6 +108,8 @@ bs.bi(:n1t){ |sit|
 		 }
 }
 
+bs.bi(:TranferStayman)
+
 bs.bidding("1T","2SA")
 bs.bidding("1T","1SA","2T")
 
